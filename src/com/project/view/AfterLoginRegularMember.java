@@ -12,7 +12,7 @@ public class AfterLoginRegularMember {
 		
 		System.out.println("    일반 회원 로그인 후 화면");
 		System.out.println("========================");
-		System.out.println("1. 로그인");
+		System.out.println("1. 로그아웃");
 		System.out.println("2. 센터 정보");
 		System.out.println("3. 수강 신청 안내 페이지");
 		System.out.println("4. 수강 신청");

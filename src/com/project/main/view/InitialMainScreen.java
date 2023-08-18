@@ -17,6 +17,7 @@ public class InitialMainScreen {
 		System.out.println("3. 수강 신청 안내 페이지");
 		System.out.println("4. 센터 정보");
 		System.out.println("5. 셔틀");
+		System.out.println("6. 공지사항");
 		System.out.println("========================");
 		System.out.println("번호 입력: ");
 		
