@@ -1,7 +1,5 @@
 package com.project.user.data;
 
-import java.util.Arrays;
-
 public class DataTeacher {
 	private String teacherCode; 
 	private String id; 
@@ -20,6 +18,10 @@ public class DataTeacher {
 		this.birth = "";
 		this.using = 0;
 	}	
+	
+	public DataTeacher(String[] teacherLine) {
+		this.setDataTeacher(teacherLine);
+	}
 	
 	public void setDataTeacher(String[] teacherLine) {
 		this.teacherCode = teacherLine[0];

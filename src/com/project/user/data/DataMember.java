@@ -2,7 +2,6 @@ package com.project.user.data;
 
 public class DataMember {
 	
-	//N001,otqapf7199,QkTu9itZdxO660,최승철,010-2020-4288,19950808,4,하나,814920789887885,0
 	private String memberCode; 
 	private String id; 
 	private String password; 
@@ -26,7 +25,9 @@ public class DataMember {
 		this.refundAccountNum = "";
 		this.using = 0;
 	}
-	
+	public DataMember(String[] memberLine) {
+		this.setDataMemeber(memberLine);
+	}
 	public void setDataMemeber(String[] memberLine) {
 		this.memberCode = memberLine[0];
 		this.id = memberLine[1];

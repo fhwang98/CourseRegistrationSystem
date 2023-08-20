@@ -134,7 +134,7 @@ public class SignUpMember {
 		System.out.print("계좌번호: ");
 		refundAccountNum = scan.nextLine();
 		while (!refundAccountNumCheck(refundAccountNum )) {
-			System.out.println("유효하지 않은 전화번호입니다. 다시 입력해주세요.");
+			System.out.println("유효하지 않은 계좌번호입니다. 다시 입력해주세요.");
 			System.out.print("전화번호: ");
 			refundAccountNum  = scan.nextLine();
 		}

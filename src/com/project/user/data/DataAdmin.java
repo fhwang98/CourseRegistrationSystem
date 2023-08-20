@@ -2,7 +2,6 @@ package com.project.user.data;
 
 public class DataAdmin {
 	
-	//A001,qjweirowe142,Bdkwoqkmw8123,김준면,010-1988-7531,19910522,0
 	private String adminCode; 
 	private String id; 
 	private String password; 
@@ -19,6 +18,9 @@ public class DataAdmin {
 		this.tel = "";
 		this.birth = "";
 		this.using = 0;
+	}	
+	public DataAdmin(String[] adminLine) {
+		this.setDataAdmin(adminLine);
 	}	
 	
 	public void setDataAdmin(String[] adminLine) {
