@@ -2,16 +2,24 @@ package com.project.admin.notice;
 
 import java.util.Scanner;
 
+import com.project.admin.AdminUtil;
 import com.project.notice.NoticeData;
 
 public class NoticeMain {
 
 	private static int page;
 	private static int lastpage;
+	private static boolean mainLoop;
+	private static boolean checkingLoop;
+	private static Scanner scan;
+	
 	
 	static {
-		NoticeMain.page = 0;
-		NoticeMain.lastpage =NoticeData.getList().size() / 10 ; 
+		page = 0;
+		lastpage =NoticeData.getList().size() / 10 - 1;
+		mainLoop = true;
+		checkingLoop = true;
+		scan = new Scanner(System.in);
 	}
 	
 	public static int getPage() {
@@ -22,99 +30,72 @@ public class NoticeMain {
 		return lastpage;
 	}
 
-	public static void controlNotice() {
+	public static void controlNoticeMain() {
 		 //공지사항 전체 루프
-		Scanner scan = new Scanner(System.in);
-		while (true) {
-			
+		while (mainLoop) {
 			//공지사항 첫화면 출력
 			NoticeView.printNoticePage(page);
-			
-			System.out.print("번호 입력:"); // 뒤로가기, 이전페이지, 다음페이지, 확인, 등록
-			String firstInput = scan.nextLine(); //유효성 체크 해야함
-			if (firstInput.equals("0")) { //뒤로가기
-				break;
-			} else if (firstInput.equals("1")) {
+			 // 뒤로가기, 이전페이지, 다음페이지, 확인, 등록
+			String sel1 = scan.nextLine();
+			//유효성 체크
+			if (sel1.equals("")) {
+				continue;
+			} else if ( !(AdminUtil.isDigit(sel1))
+					|| Integer.parseInt(sel1) < 0
+					|| Integer.parseInt(sel1) > 4) {
+				NoticeView.printInvalidInputMessage();
+				NoticeView.printPendingMessage();
+				scan.nextLine();
+				continue;
+			} else if (sel1.equals("0")) { //뒤로가기
+				mainLoop = false;
+			} else if (sel1.equals("1")) {
+				//이전페이지
 				firstSelect1();
-			} else if (firstInput.equals("2")) {
-				firstSelect2(scan);
-			} else if (firstInput.equals("3")) {
-				firstSelect3(scan);
-			}  else if (firstInput.equals("4")) {
-				firstSelect4(scan);
-			} else {
-				break;
+			} else if (sel1.equals("2")) {
+				firstSelect2();
+			} else if (sel1.equals("3")) {
+				firstSelect3();
+			}  else if (sel1.equals("4")) {
+				firstSelect4();
 			}
-			
-			
 		}
-		
-		scan.close();
-		System.out.println("종료");
+		System.out.println("공지사항 종료");
+		System.out.println("back to previous step");
+		scan.nextLine();
 	}
 
-	private static void firstSelect4(Scanner scan) {
+
+	private static void firstSelect4() {
 		if (page == 0 || page == lastpage) {
 			//잘못된 선택
-			System.out.println("잘못된 선탣");
+			NoticeView.printInvalidInputMessage();
+			NoticeView.printPendingMessage();
+			scan.nextLine();
 		} else {
 			//공지 등록
-			NoticeService.addNotice(scan);
+			NoticeService.addNotice();
 		}
 	}
 
-	private static void firstSelect3(Scanner scan) {
+	private static void firstSelect3() {
 		if (page == 0 || page == lastpage) {
 			//공지 등록
-			NoticeService.addNotice(scan);
+			NoticeService.addNotice();
 		} else {
 			//공지 확인
-			checkingControl(scan);
+			checkingControl();
 		}
 	}
 
-	private static void firstSelect2(Scanner scan) {
+	private static void firstSelect2() {
 		if (page == 0 || page == lastpage) {
 			//공지 확인
-			checkingControl(scan);
+			checkingControl();
 			
 		} else {
 			//다음페이지로
 			page++;
-		}
-	}
-
-	private static void checkingControl(Scanner scan) {
-		
-		System.out.println("공지사항 확인");
-		System.out.println("번호: ");
-		String inputNo = scan.nextLine(); //유효성 검사
-		int no = Integer.parseInt(inputNo);
-		int noticeNo = NoticeData.getList().size() - no - page*10;
-		
-		//숫자 아닌 경우, 1미만, 10초과인 경우 걸러줘야함
-		while (true) {
-			NoticeView.printNotice(NoticeData.getList().size() - no - NoticeMain.getPage() * 10);
-			NoticeView.printOpenedNoticeMenu();
-			System.out.println("번호: ");
-			String secondInput = scan.nextLine();
-			if (secondInput.equals("0")) {
-				return;
-			} else if (secondInput.equals("1")) {
-				//수정을 누르면 수정을 하고 다시 이 글을 본다
-				NoticeService.modifyNoticeTitle(noticeNo, scan);
-				continue;
-			} else if (secondInput.equals("2")) {
-				//수정을 누르면 수정을 하고 다시 이 글을 본다
-				NoticeService.modifyNoticeContent(noticeNo, scan);
-				continue;
-			} else if (secondInput.equals("3")) {
-				NoticeService.deleteNotice(noticeNo, scan);
-				return;
-			} else {
-				System.out.println("잘못된 번호 입력");
-				return;
-			}
 		}
 	}
 
@@ -127,5 +108,56 @@ public class NoticeMain {
 			page--;
 		}
 	}
-	// 뒤로가기, 이전페이지, 다음페이지, 확인, 등록	
+	
+	private static void checkingControl() {
+		
+		System.out.println("확인하고 싶은 공지사항의 번호를 입력해 주세요.");
+		System.out.println("번호 입력: ");
+		String selNotice = scan.nextLine(); //유효성 검사
+		if (selNotice.equals("")) {
+			return;
+		} else if (!(AdminUtil.isDigit(selNotice))
+				|| Integer.parseInt(selNotice) < 1
+				||  Integer.parseInt(selNotice) > 10) {
+			NoticeView.printInvalidInputMessage();
+			NoticeView.printPendingMessage();
+			scan.nextLine();
+			return;
+		}
+		
+		//공지사항의 진짜 인덱스 = 리스트 총길이 - 입력받은 번호 - 페이지*10 
+		int noticeNo = NoticeData.getList().size() - Integer.parseInt(selNotice) - page*10;
+		
+		while (checkingLoop) {
+			
+			NoticeView.printNotice(noticeNo);
+			NoticeView.printOpenedNoticeMenu();
+			String sel2 = scan.nextLine();
+			//sel2 유효성 검사
+			if (sel2.equals("")) {
+				continue;
+			} else if (!(AdminUtil.isDigit(sel2))
+							|| Integer.parseInt(sel2) < 0 
+							|| Integer.parseInt(sel2) > 3) {
+				
+				NoticeView.printInvalidInputMessage();
+				NoticeView.printPendingMessage();
+				scan.nextLine();
+				continue;
+			} 
+			else if (sel2.equals("0")) {
+				checkingLoop = false;
+			} else if (sel2.equals("1")) {
+				// 수정을 누르면 수정을 하고 다시 돌아온다
+				NoticeService.modifyNoticeTitle(noticeNo);
+			} else if (sel2.equals("2")) {
+				//수정을 누르면 수정을 하고 다시 돌아온다
+				NoticeService.modifyNoticeContent(noticeNo);
+			} else if (sel2.equals("3")) {
+				NoticeService.deleteNotice(noticeNo);
+				checkingLoop = false;
+			}
+		}
+	}
+
 }

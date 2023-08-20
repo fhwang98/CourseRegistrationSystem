@@ -5,16 +5,21 @@ import com.project.notice.NoticeData;
 
 public class NoticeView {
 
+	public static void printInvalidInputMessage() {
+		System.out.println();
+		System.out.println("올바른 번호를 입력해 주세요.");
+	}
 	
 	public static void printPendingMessage() {
+		System.out.println();
 		System.out.println("계속하려면 엔터를 입력해 주세요.");
 	}
 	
 	public static void printPosting() {
 		
-		System.out.println("==================================");
+		System.out.println("=====================================");
 		System.out.println("\t\t\t\t공지사항 등록");
-		System.out.println("==================================");
+		System.out.println("=====================================");
 		
 		System.out.println("새로운 공지사항을 작성합니다.");
 	}
@@ -44,14 +49,13 @@ public class NoticeView {
 
 
 	public static void printOpenedNoticeMenu() {
-		System.out.println("----------------------------------------------");
-
+		System.out.println("-------------------------------------------------");
 		System.out.println("0. 뒤로가기");
 		System.out.println("1. 제목 수정");
 		System.out.println("2. 내용 수정");
 		System.out.println("3. 삭제");
-
-		System.out.println("----------------------------------------------");
+		System.out.println("-------------------------------------------------");
+		System.out.println("번호: ");
 	}
 
 	public static void printNoticePage(int page) {
@@ -60,22 +64,22 @@ public class NoticeView {
 
 		int lastindex = NoticeData.getList().size() - 1 - page * 10;
 		
-		//
+		System.out.println("[번호]\t[제목]");
 		for (int no = 0; no < ((lastindex / 10 == 0) ? lastindex % 10 + 1 : 10); no++) {
-			System.out.printf("%3d.\t", no + 1);
+			System.out.printf("%5d.\t\t", no + 1);
 			System.out.println(NoticeData.getList().get(lastindex - no).getTitle());
 		}
 		
 		printNoticeListMenu(page);
-
+		System.out.print("번호 입력:");
 	}
 
 	private static void printNoticeListMenu(int page) {
-		System.out.println("----------------------------------------------");
+		System.out.println("-------------------------------------------------");
 
 				
 		System.out.println("0. 뒤로가기");
-		if (page == 0 || page == NoticeData.getList().size() / 10) {
+		if (page == 0 || page == NoticeMain.getLastpage()) {
 			if (page == 0) {
 				System.out.println("1. 다음 페이지");
 			} else {
@@ -91,14 +95,14 @@ public class NoticeView {
 			
 		}
 
-		System.out.println("----------------------------------------------");
+		System.out.println("-------------------------------------------------");
 
 	}
 
 	private static void printNoticeHead() {
-		System.out.println("==================================");
+		System.out.println("=====================================");
 		System.out.println("\t\t\t\t공지사항");
-		System.out.println("==================================");
+		System.out.println("=====================================");
 	}
 
 }
