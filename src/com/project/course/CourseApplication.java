@@ -2,20 +2,29 @@ package com.project.course;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class CourseApplication {
 
+	public static ArrayList<CourseApplication> list;
+
+	static {
+
+		CourseApplication.list = new ArrayList<CourseApplication>();
+
+	}
+
 	public static void courseApplication() {
-		
+
 		courseApplicationment();
-		
+
 	}
 
 	private static void courseApplicationment() {
 		Scanner scan = new Scanner(System.in);
-		
+
 		System.out.println();
 		System.out.println("=====================");
 		System.out.println("수강신청");
@@ -25,49 +34,103 @@ public class CourseApplication {
 		System.out.println("---------------------");
 		System.out.print("입력: ");
 		String code = scan.nextLine();
-		
-		
-		
-		if(code.equals("0")) {
-		//	Main.mainMent();
+
+		if (code.equals("0")) {
+//			Main.mainMent();
 		}
-		
+
 		try {
 
-				BufferedReader reader = new BufferedReader(new FileReader("data/lectureList.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("data/lectureList.txt"));
 
-				String line = null;
+			String line = null;
 
-				while ((line = reader.readLine()) != null) {
+			
+			boolean courseFound = false;
+			
+			while ((line = reader.readLine()) != null) {
+
+				String[] temp = line.split(",");
+
+				if (temp[0].equalsIgnoreCase(code.toUpperCase())) {
+					Course c = new Course(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7],
+							temp[8], temp[9], temp[10], temp[11]);
 					
-					String[] temp = line.split(",");
+					courseMent(c);
 
-					String upperCode = code.toUpperCase();
-					
-					if (temp[0].equals((upperCode))) {
+					String input = scan.nextLine();
 
-						System.out.println("수강신청이 완료되었습니다.");
-						Course c = new Course(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8],
-								temp[9], temp[10], temp[11]);
-
+					if (input.equals("y")) {
+						int tempValue = Integer.parseInt(temp[10]);
+						
+						if (tempValue < 202308) {
+							System.out.println();
+							System.out.println("\"이미 신청이 마감된 강좌 입니다.\"");
+							System.out.println("\"처음으로 이동합니다.\"");
+							System.out.println();
+//							Main.mainMent();
+						} else {
+							System.out.println();
+							System.out.println("\"수강신청이 완료되었습니다.\"");
+							System.out.println();
+//							Main.mainMent();
+						}
+					} else if(input.equals("n")) {
+						System.out.println();
+						System.out.println("\"처음으로 이동합니다.\"");
+						System.out.println();
+//						Main.mainMent();
+						courseFound = true;
+						break;
 					}
+
+				} 
+				
+				if(!courseFound){
+					System.out.println();
+					System.out.println("\"잘못된 강좌코드 입니다.\"");
+					System.out.println("\"강좌코드를 확인해 주세요.\"");
+					System.out.println();
+//					Main.mainMent();
 				}
-		
+
+			}
 			reader.close();
 
-		} catch (Exception e) {
+			} catch (Exception e) {
 			e.printStackTrace();
-		
+
+		}
+
 	}
-}	
-		
-		//버퍼리더 해서 코드 같은 거 찾아보고 있으면 
-		//if(code.equals(더미데이터 변수){
-		//System.out.println("수강신청이 완료되었습니다.");
-		//이거 또는 
-		//같은 코드가 있지만 해당 데이터의 시간과 겹치는지 확인 하는메소드
-		//시간이 중복되면
-		//System.out.println(“이미 신청된 강좌와 중복 된 시간의 강좌입니다.”);
-		//System.out.println(“처음으로 이동합니다.”);
-		
+
+	private static void courseMent(Course c) {
+		if (c != null) {
+			System.out.printf("[%s] 프로그램명 : %s\n", c.getCategory(), c.getLectureName());
+			System.out.printf("강좌코드: %s\n", c.getNum());
+			System.out.println();
+			System.out.printf("강사코드: %s\n", c.getTeacherNum());
+			System.out.println();
+			System.out.printf("시간: %s\n", c.getTime());
+			System.out.println();
+			System.out.printf("요일: %s\n", c.getDay());
+			System.out.println();
+			System.out.printf("대상: %s\n", c.getTarget());
+			System.out.println();
+			System.out.printf("수강료: %s\n", c.getLectureFee());
+			System.out.println();
+			System.out.printf("정원: %s\n", c.getPerson());
+			System.out.println();
+			System.out.printf("강좌내용: %s\n", c.getContents());
+			System.out.println();
+			System.out.printf("강좌시작일: %s\n", c.getStartDay());
+			System.out.println();
+			System.out.printf("강의실 : %s\n", c.getRoomNum());
+			System.out.println("-----------------------------------------");
+			System.out.println();
+			System.out.println("\"신청하신 강좌가 맞습니까?\"");
+			System.out.print("입력: ");
+		}
+
+	}
 }
