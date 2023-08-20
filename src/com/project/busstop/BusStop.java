@@ -11,7 +11,7 @@ public class BusStop {
 
 	@Override
 	public String toString() {
-		return "BusStop [name=" + name + ", num=" + num + ", time1=" + time1 + ", time2=" + time2 + ", time3=" + time3
+		return "[name=" + name + ", num=" + num + ", time1=" + time1 + ", time2=" + time2 + ", time3=" + time3
 				+ ", time4=" + time4 + ", time5=" + time5 + "]";
 	}
 

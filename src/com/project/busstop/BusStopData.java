@@ -5,6 +5,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -15,15 +17,18 @@ public class BusStopData {
 
 	public static ArrayList<BusStop> busStopList;
 
+	public static Set<String> busStopNameSet;
+
 	static {
 		BusStopData.busStopList = new ArrayList<>();
+		BusStopData.busStopNameSet = new HashSet<>();
 	}
 
 	// 버스정류장 데이터를 open api를 이용하여 가져온 후 list에 저장
 	public static void load() {
 
 		// 1. 요청 URL 만들기
-		String url = "https://api.odcloud.kr/api/3072646/v1/uddi:e1b5b0b2-b00a-4834-bf9d-c35438b80982?page=1&perPage=75&returnType=json&serviceKey="
+		String url = "https://api.odcloud.kr/api/3072646/v1/uddi:e1b5b0b2-b00a-4834-bf9d-c35438b80982?page=1&perPage=36&returnType=json&serviceKey="
 				+ KEY;
 
 		// URL 객체 생성
@@ -52,17 +57,23 @@ public class BusStopData {
 
 			// 객체를 하나씩 읽어서 BusStop 객체로 변환하기
 			for (Object obj : dataArr) {
-				JSONObject busStopJSonObj = (JSONObject) obj;
+				JSONObject busStopJsonObj = (JSONObject) obj;
 
-				String bName = busStopJSonObj.get("정 류 장").toString();
-				String bNum = busStopJSonObj.get("연번").toString();
+				String bName = busStopJsonObj.get("정 류 장").toString();
+
+				// 중복된 이름의 버스정류장은 구분짓기 위해 이름을 변경한다.
+				if (hasBusStopName(bName)) {
+					bName = bName + "(하행)";
+				}
+
+				String bNum = busStopJsonObj.get("연번").toString();
 
 				// null인 경우는 toString()이 안된다. -> toStrin() 하기 전에 null인지 값 확인을 먼저 해야 한다.
-				String bTime1 = timeValueToString(busStopJSonObj.get("1회"));
-				String bTime2 = timeValueToString(busStopJSonObj.get("2회"));
-				String bTime3 = timeValueToString(busStopJSonObj.get("3회"));
-				String bTime4 = timeValueToString(busStopJSonObj.get("4회"));
-				String bTime5 = timeValueToString(busStopJSonObj.get("5회"));
+				String bTime1 = timeValueToValidString(busStopJsonObj.get("1회"));
+				String bTime2 = timeValueToValidString(busStopJsonObj.get("2회"));
+				String bTime3 = timeValueToValidString(busStopJsonObj.get("3회"));
+				String bTime4 = timeValueToValidString(busStopJsonObj.get("4회"));
+				String bTime5 = timeValueToValidString(busStopJsonObj.get("5회"));
 
 				// 가져온 데이터로 BusStop 객체 만들기
 				BusStop busStop = new BusStop(bName, bNum, bTime1, bTime2, bTime3, bTime4, bTime5);
@@ -73,17 +84,28 @@ public class BusStopData {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
 
-		// 확인용 출력
-//		System.out.println(BusStopData.busStopList);
+	// 버스정류장 이름이 같은 것이 있는지 확인하기.
+	private static boolean hasBusStopName(String bName) {
+		if (BusStopData.busStopNameSet.contains(bName)) {
+			return true;
+		} else {
+			BusStopData.busStopNameSet.add(bName);
+			return false;
+		}
 	}
 
 	// 가져온 값이 null이면 null을 반환하고, null이 아닌 값이 들어있다면 문자열로 형변환하여 반환한다.
-	private static String timeValueToString(Object data) {
+	private static String timeValueToValidString(Object data) {
 		if (data == null) {
 			return null;
 		} else {
-			return data.toString();
+			if (!data.toString().contains(":")) {
+				return data.toString().substring(0, 2) + ":" + data.toString().substring(2);
+			} else {
+				return data.toString();
+			}
 		}
 	}
 }
