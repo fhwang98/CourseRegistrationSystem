@@ -16,16 +16,20 @@ public class AdminUserService {
 		UserData.loadUserData(); // 테스트용 임시 데이터 생성 메소드
 //		System.out.println(UserData.userList);
 
-		int count = 1;
+		int count = 0;
 
 		// 회원 리스트 읽어오기
 		for (User u : UserData.userList) {
-			System.out.println(u.getName());
+//			System.out.println(u.getName());
+			count++;
+			
+			// 회원 정보 읽기
+//			AdminUserView.printUserData(u);
+			
 			if (count == 10) {
 				AdminUserView.printMovePage();
-				count = 0;
+				count = 1;
 			}
-			count++;
 		}
 
 		System.out.println("-------------------------------------");

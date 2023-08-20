@@ -35,6 +35,6 @@ public class AdminUserView {
 		System.out.println("이름 : " + u.getUserNum());
 		System.out.println("전화번호 : " + u.getPhone());
 		System.out.println("생년월일 : " + u.getBday());
-		System.out.println("할인 : " +u.);
+//		System.out.println("할인 : " +u.);
 	}
 }
