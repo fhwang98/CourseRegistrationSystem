@@ -1,6 +1,7 @@
 package com.project.user.login;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import com.project.user.data.UserDbms;
@@ -32,77 +33,101 @@ public class FindData {
 		
 	}
 
-	public static ArrayList<String> findPw() {
+	public static HashMap<String, String> findPw() {
 		
 		String name = "";
 		String tel = "";
 		String newPassword = "";
 		String checkNewPassword = "";
-		
-
+		HashMap<String, String> pwMap = new HashMap<String, String>();
 		Scanner scan = new Scanner(System.in);
 		
-		System.out.println("======================");
-		System.out.println("      비밀번호 재설정      ");
-		System.out.println("======================");
-		System.out.println();
-		System.out.print("이름: ");
-		name = scan.nextLine();
-		System.out.print("전화번호: ");
-		tel = scan.nextLine();
-		System.out.println("======================");
-		
-		String temp = tel.replaceAll("-", "");
-		ArrayList<String> pwList = UserDbms.getPwFind(name, temp);
+		while(true) {
+			System.out.println("======================");
+			System.out.println("      비밀번호 재설정     ");
+			System.out.println("======================");
+			System.out.println();
+			System.out.print("이름: ");
+			name = scan.nextLine();
+			System.out.print("전화번호: ");
+			tel = scan.nextLine();
+			System.out.println("======================");
 			
-			if(pwList.size()>0) {
-				System.out.print("새로운 비밀번호를 입력해주세요: ");
-				newPassword = scan.nextLine();
+			String temp = tel.replaceAll("-", "");
+			pwMap = UserDbms.getPwFind(name, temp);
+			int step = 0;
+			//입력된 값과 고유 코드와 일치하지 않을시
+			if(!("".equals(pwMap.get("code")) || pwMap.get("code") == null   )) {
 				
-				while (newPassword.equals(pwList.get(0))) {
-					System.out.println("기존 비밀번호는 사용할 수 없습니다.");
-					System.out.print("새로운 비밀번호를 입력해주세요: ");
-					newPassword = scan.nextLine();
-					
-					while (!newPasswordCheck(newPassword)) {
-						System.out.println("유효하지 않은 비밀번호입니다. 다시 입력해주세요.");
+				// 비밀번호 변경 로직 start
+				while(true) {
+					if(step < 2) {
 						System.out.print("새로운 비밀번호를 입력해주세요: ");
 						newPassword = scan.nextLine();
+						System.out.println();
 					}
 					
+					// 1. 기존의 pw와 새로 입력된 pw가 같을시
+					if( newPassword.equals(pwMap.get("password")) ) {
+						System.out.println("기존 비밀번호는 사용할 수 없습니다.");
+						continue;
+					} else {
+						step = 1;
+					}
 					
-				}
-				
-				while(!newPassword.equals(pwList.get(0))) {
-					System.out.print("새 비밀번호 확인: ");
-					checkNewPassword = scan.nextLine();
-					while(!checkNewPassword.equals(newPassword)) {
-						System.out.println("입력받은 비밀번호가 일치하지 않습니다.");
+					// 2. 새로 입력한 pw가 유효성 검사와 맞지 않을시 
+					if(!newPasswordCheck(newPassword)) {
+						System.out.println("유효하지 않은 비밀번호입니다. 다시 입력해주세요.");
+						continue;
+					}else {
+						step = 2;
+					}
+					
+					if(step>=2) {
 						System.out.print("새 비밀번호 확인: ");
 						checkNewPassword = scan.nextLine();
-						
 					}
-					break;
+					
+					// 3. 새 비밀번호와 확인용으로 입력한 새 비밀번호가 일치하지 않을시
+					if( !checkNewPassword.equals(newPassword) ) {
+						System.out.println("입력받은 비밀번호가 일치하지 않습니다.");
+						continue;
+					} else {
+						step = 3;
+					}
+					
+					if(step == 3) {
+						break;
+					}
+					
 				}
 				
-				
-				
-				System.out.println("재설정 완료.");
-				
-				
-				
 			}else {
-				System.out.print("정보가 일치하지 않습니다.");
+				System.out.println("정보가 일치하지 않습니다.");
 			}
+			
+			//위 단계를 모두 수행시
+			if(step == 3) {
+				System.out.println("재설정 완료.");
+				pwMap.put("chPw", newPassword);
+				// 비밀번호 데이터 변경
+				UserDbms.setModifyPw(pwMap);
+				break;
+			} else {
+				System.out.print("비밀번호 재설정 하시겠습니까? (Y/N)");
+				
+				if("N".equals(scan.nextLine())) {
+					break;
+				}
+			}
+			
+		}
 		
-		
-		return pwList;
-		
+		return pwMap;
 	}
 	
-	
+	//새 비밀번호 유효성 체크
 	private static boolean newPasswordCheck(String newPassword) {
-			
 		//길이 제한 10-16자
 		 if (newPassword.length() < 10 || newPassword.length() > 16) {
 	            return false;
