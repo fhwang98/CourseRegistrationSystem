@@ -72,7 +72,7 @@ public class Notice {
 
 	@Override
 	public String toString() {
-		return String.format("%03d,%tF-%tT,%s,%s,%s", no,uploadTime,uploadTime,writerCode,title,content);
+		return String.format("%03d✡%tF-%tT✡%s✡%s✡%s", no,uploadTime,uploadTime,writerCode,title,content);
 	}
 	
 
