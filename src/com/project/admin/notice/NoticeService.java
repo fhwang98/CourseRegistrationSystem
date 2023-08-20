@@ -1,4 +1,4 @@
-package com.project.notice;
+package com.project.admin.notice;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Calendar;
 import java.util.Scanner;
+
+import com.project.notice.Notice;
+import com.project.notice.NoticeData;
 
 public class NoticeService {
 	

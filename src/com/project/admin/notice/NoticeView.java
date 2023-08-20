@@ -1,4 +1,7 @@
-package com.project.notice;
+package com.project.admin.notice;
+
+import com.project.notice.Notice;
+import com.project.notice.NoticeData;
 
 public class NoticeView {
 

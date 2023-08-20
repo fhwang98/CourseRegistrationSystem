@@ -1,6 +1,8 @@
-package com.project.notice;
+package com.project.admin.notice;
 
 import java.util.Scanner;
+
+import com.project.notice.NoticeData;
 
 public class NoticeMain {
 
