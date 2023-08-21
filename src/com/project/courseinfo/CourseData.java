@@ -787,7 +787,7 @@ public class CourseData {
 	}
 	private static void courseMent(Course c) {
 		if (c != null) {
-			System.out.printf("[%s] 프로그램명 : %s\n", c.getCategory(), c.getLectureName());
+			System.out.printf("[%s] 프로그램명 : %s\n", c.getCategory(), c.getCourseName());
 			System.out.printf("강좌코드: %s\n", c.getNum());
 			System.out.println();
 			System.out.printf("강사코드: %s\n", c.getTeacherNum());
@@ -798,7 +798,7 @@ public class CourseData {
 			System.out.println();
 			System.out.printf("대상: %s\n", c.getTarget());
 			System.out.println();
-			System.out.printf("수강료: %s\n", c.getLectureFee());
+			System.out.printf("수강료: %s\n", c.getCourseFee());
 			System.out.println();
 			System.out.printf("정원: %s\n", c.getPerson());
 			System.out.println();
