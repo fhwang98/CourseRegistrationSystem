@@ -3,6 +3,7 @@ package com.project.admin;
 import java.util.Scanner;
 
 import com.project.admin.notice.NoticeMain;
+import com.project.admin.room.RoomMain;
 import com.project.notice.NoticeData;
 
 public class AdminMain {
@@ -21,6 +22,7 @@ public class AdminMain {
 		while (loop) {
 			AdminView.printAdminMain();
 			String sel = scan.nextLine();
+			
 			if (sel.equals("")) {
 				continue;
 			} else if ( !(AdminUtil.isDigit(sel))
@@ -30,7 +32,9 @@ public class AdminMain {
 				System.out.println("if you wnt keep going enter a new line");
 				scan.nextLine();
 				continue;
-			}else if (sel.equals("1")) {
+			}
+			
+			else if (sel.equals("1")) {
 				//일반 회원 관리
 				System.out.println("일반 회원 관리");
 			} else if (sel.equals("2")) {
@@ -42,6 +46,7 @@ public class AdminMain {
 			} else if (sel.equals("4")) {
 				//강의실 관리
 				System.out.println("강의실 관리");
+				RoomMain.roomControl();
 			} else if (sel.equals("5")) {
 				//5. 공지사항
 				NoticeData.load();
@@ -56,5 +61,7 @@ public class AdminMain {
 		}
 		
 	}
+
+
 	
 }
