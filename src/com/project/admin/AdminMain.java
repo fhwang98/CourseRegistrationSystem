@@ -22,19 +22,14 @@ public class AdminMain {
 		while (loop) {
 			AdminView.printAdminMain();
 			String sel = scan.nextLine();
-			
-			if (sel.equals("")) {
-				continue;
-			} else if ( !(AdminUtil.isDigit(sel))
-					|| Integer.parseInt(sel) < 1
-					|| Integer.parseInt(sel) > 7) {
-				System.out.println("invalid input");
-				System.out.println("if you wnt keep going enter a new line");
+			if (!AdminUtil.isValidSel(sel, 1, 4)) {
+				System.out.println("is invalid input");
+				System.out.println("enter a new line to going back");
 				scan.nextLine();
 				continue;
 			}
 			
-			else if (sel.equals("1")) {
+			if (sel.equals("1")) {
 				//일반 회원 관리
 				System.out.println("일반 회원 관리");
 			} else if (sel.equals("2")) {

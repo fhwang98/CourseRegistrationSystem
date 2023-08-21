@@ -1,5 +1,7 @@
 package com.project.admin;
 
+import java.util.Scanner;
+
 public class AdminUtil {
 
 	public static boolean isDigit(String sel) {
@@ -11,5 +13,14 @@ public class AdminUtil {
 		return true;
 	}
 	
+	public static boolean isValidSel(String sel, int min, int max) {
+		
+		if (sel.replace(" ", "").equals("")) {
+			return false;
+		} else if (!isDigit(sel) ||Integer.parseInt(sel) < min || Integer.parseInt(sel) > max) {
+			return false;
+		}
+		return true;
+	}
 	
 }

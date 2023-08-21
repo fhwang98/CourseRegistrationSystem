@@ -38,19 +38,14 @@ public class NoticeMain {
 			 // 뒤로가기, 이전페이지, 다음페이지, 확인, 등록
 			String sel1 = scan.nextLine();
 			//유효성 체크
-			if (sel1.equals("")) {
-				continue;
-			} else if ( !(AdminUtil.isDigit(sel1))
-					|| Integer.parseInt(sel1) < 0
-					|| Integer.parseInt(sel1) > 4) {
-				NoticeView.printInvalidInputMessage();
-				NoticeView.printPendingMessage();
+			if (!AdminUtil.isValidSel(sel1, 0, 4)) {
+				System.out.println("is invalid input");
+				System.out.println("enter a new line to going back");
 				scan.nextLine();
 				continue;
-			} else if (sel1.equals("0")) { //뒤로가기
+			}  else if (sel1.equals("0")) { //뒤로가기
 				mainLoop = false;
 			} else if (sel1.equals("1")) {
-				//이전페이지
 				firstSelect1();
 			} else if (sel1.equals("2")) {
 				firstSelect2();
@@ -114,16 +109,14 @@ public class NoticeMain {
 		System.out.println("확인하고 싶은 공지사항의 번호를 입력해 주세요.");
 		System.out.println("번호 입력: ");
 		String selNotice = scan.nextLine(); //유효성 검사
-		if (selNotice.equals("")) {
-			return;
-		} else if (!(AdminUtil.isDigit(selNotice))
-				|| Integer.parseInt(selNotice) < 1
-				||  Integer.parseInt(selNotice) > 10) {
-			NoticeView.printInvalidInputMessage();
-			NoticeView.printPendingMessage();
+
+		if (!AdminUtil.isValidSel(selNotice, 1, 10)) {
+			System.out.println("is invalid input");
+			System.out.println("enter a new line to going back");
 			scan.nextLine();
 			return;
 		}
+		
 		
 		//공지사항의 진짜 인덱스 = 리스트 총길이 - 입력받은 번호 - 페이지*10 
 		int noticeNo = NoticeData.getList().size() - Integer.parseInt(selNotice) - page*10;
