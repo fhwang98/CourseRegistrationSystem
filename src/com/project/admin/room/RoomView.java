@@ -1,49 +1,62 @@
 package com.project.admin.room;
 
+import java.util.ArrayList;
+
+import com.project.room.RoomData;
+
 public class RoomView {
-//
-//	public static void printRoomMenu() {
-//		printRoomHead();
-//		System.out.println("\t0.\t뒤로가기");
-//		System.out.println("\t1.\t전체 강의실 조회");
-//		System.out.println("\t2.\t강의실 검색");
-//		System.out.println("--------------------------------------------------");
-//		System.out.println("번호 입력:");
-//	}
-//	
-//	public static void printRoom(int no) {
-//		
-//	System.out.printf("강의실 번호: %03d\n", RoomScheduleData.getList().get(no).getNo());	
-//	System.out.printf("강의실 이름: %s\n", RoomScheduleData.getList().get(no).getName());
-//	System.out.printf("강의 일정: %s\n", RoomScheduleData.getList().get(no) ); 
-//		
-//	}
-//	
-//	public static void printRoomList(int page) {
-//		printRoomHead();
-//		for (int i = 0; i < 5 ; i++) {
-//			printRoom(i + page * 10);
-//		}
-//	}
-//	
-//	public static void printRoomListMenu(int page, int lastpage) {
-//		System.out.println("0. 뒤로가기");
-//		if (page == 0) {
-//			System.out.println("1. 다음 페이지");
-//		} else if (page == lastpage) {
-//			System.out.println("1. 이전 페이지");			
-//		} else {
-//			System.out.println("1. 다음 페이지");
-//			System.out.println("2. 이전 페이지");
-//			
-//		}
-//	}
-//	
-//	public static void printRoomHead() {
-//		System.out.println("=====================================");
-//		System.out.println("\t\t\t\t강의실 관리");
-//		System.out.println("=====================================");
-//		
-//	}
-//	
+	
+	public static void printRoomHead() {
+		System.out.println("=====================================");
+		System.out.println("\t\t\t\t강의실 관리");
+		System.out.println("=====================================");
+		
+	}
+
+	public static void printRoomMenu() {
+		printRoomHead();
+		System.out.println("\t0.\t뒤로가기");
+		System.out.println("\t1.\t전체 강의실 조회");
+		System.out.println("\t2.\t강의실 검색");
+		System.out.println("--------------------------------------------------");
+		System.out.println("번호 입력:");
+	}
+
+	public static void printRoom(int index) {
+		
+		System.out.printf("강의실 번호: %s\n", RoomData.getRoomList().get(index).getRoomNum());
+		
+		ArrayList<String> schedule = RoomData.getRoomList().get(index).getSchedule();
+		for (int i = 0; i < schedule.size(); i++ ) {
+			
+			if (i == 0) {
+				System.out.printf("강의 일정:\t%s\n",schedule.get(i).replace("_ _ (_)", "없음"));
+			} else {
+				System.out.printf("\t\t%s\n",schedule.get(i));
+			}
+		}
+		
+	}
+	
+	public static void printRoomList(int page) {
+		printRoomHead();
+		for (int i = 0; i < 10 ; i++) {
+			System.out.println();
+			printRoom(i + page * 10);
+		}
+	}
+	
+	public static void printRoomListMenu(int page, int lastpage) {
+		System.out.println("0. 뒤로가기");
+		if (page == 0) {
+			System.out.println("1. 다음 페이지");
+		} else if (page == lastpage) {
+			System.out.println("1. 이전 페이지");			
+		} else {
+			System.out.println("1. 다음 페이지");
+			System.out.println("2. 이전 페이지");
+			
+		}
+	}
+	
 }
