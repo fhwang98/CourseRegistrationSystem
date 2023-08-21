@@ -7,10 +7,9 @@ public class BusStopMain {
 	public static boolean inLoop = true;
 
 	public static void main(String[] args) {
-
+		
+		//버스정류장 데이터 가져오기
 		BusStopData.load();
-
-//		System.out.println(BusStopData.busStopList);
 
 		Scanner scan = new Scanner(System.in);
 
