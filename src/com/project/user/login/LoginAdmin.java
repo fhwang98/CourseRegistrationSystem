@@ -48,7 +48,7 @@ public class LoginAdmin {
 			
 			System.out.println("로그인이 완료되었습니다.");
 			return UserDbms.searchAdminByIdPw(id, password);
-			
+			//로그인 후 화면으로 이동해야함
 		}else {
 			System.out.println();
 			System.out.println("======================");

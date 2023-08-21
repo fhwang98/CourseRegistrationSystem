@@ -117,6 +117,8 @@ public class FindData {
 				System.out.print("비밀번호 재설정 하시겠습니까? (Y/N)");
 				
 				if("N".equals(scan.nextLine())) {
+					//로그인 메인페이지로 이동
+//					LoginMain.LoginProcess();
 					break;
 				}
 			}
