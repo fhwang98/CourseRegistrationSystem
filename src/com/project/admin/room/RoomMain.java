@@ -43,7 +43,6 @@ public class RoomMain {
 				RoomService.searchRoom();
 			}
 			
-			loop = false;
 		}
 		
 	}

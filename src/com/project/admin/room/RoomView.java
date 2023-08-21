@@ -47,16 +47,29 @@ public class RoomView {
 	}
 	
 	public static void printRoomListMenu(int page, int lastpage) {
+		System.out.println("--------------------------------------------------");
 		System.out.println("0. 뒤로가기");
 		if (page == 0) {
 			System.out.println("1. 다음 페이지");
 		} else if (page == lastpage) {
 			System.out.println("1. 이전 페이지");			
 		} else {
-			System.out.println("1. 다음 페이지");
-			System.out.println("2. 이전 페이지");
-			
+			System.out.println("1. 이전 페이지");
+			System.out.println("2. 다음 페이지");
 		}
+		System.out.println("--------------------------------------------------");
+		System.out.println("번호 입력:");
+	}
+
+	public static void printSearchSelectDay() {
+
+		System.out.println("사용 가능한 강의실을 찾습니다.");
+		System.out.println("요일을 선택해 주세요");
+		System.out.println("--------------------------------------------------");
+		System.out.println("1. 전체");
+		System.out.println("2. 월, 수, 금");
+		System.out.println("3. 화, 목");
+		
 	}
 	
 }

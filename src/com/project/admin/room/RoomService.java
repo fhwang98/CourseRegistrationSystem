@@ -20,13 +20,13 @@ public class RoomService {
 		int page = 0;
 		int lastPage = RoomData.getRoomList().size() / 10 - 1;
 		
+		System.out.println("전체 강의실 목록을 조회합니다. ");
+		AdminView.printPendingMessage();
+		scan.nextLine();
+		
 		boolean loop = true;
 		while (loop) {
 
-			System.out.println("전체 강의실 목록을 조회합니다. ");
-			AdminView.printPendingMessage();
-			scan.nextLine();
-			
 			RoomView.printRoomList(page);
 			RoomView.printRoomListMenu(page, lastPage);
 			
@@ -63,6 +63,33 @@ public class RoomService {
 	}
 	
 	public static void searchRoom() {
+		
+		//강의실검색
+	/*
+		사용 가능한 강의실을 찾습니다.
+
+		요일을 입력해 주세요
+		1. 월, 수, 금
+		2. 화, 목
+		3. 전체
+		번호: 
+		
+		시간대를 선택해 주세요
+		오전
+		오후
+		전체
+		번호: 
+		
+		[요일], [시간대] 에 사용 가능한 강의실을 찾습니다.
+		
+		*/
+		RoomView.printSearchSelectDay();
+
+		
+		
+		
+		boolean outerLoop = true;
+		boolean innerLoop = true;
 		
 	}
 	
