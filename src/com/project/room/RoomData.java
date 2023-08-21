@@ -37,7 +37,7 @@ public class RoomData {
 				if (idx == -1) {
 					ArrayList<String> scheduleList = new ArrayList<String>();
 					scheduleList.add(schedule);
-					roomList.add(new Room(temp[0], "", scheduleList));
+					roomList.add(new Room(temp[0], scheduleList));
 				} else {
 					roomList.get(idx).getSchedule().add(schedule);
 				}
@@ -46,11 +46,10 @@ public class RoomData {
 			reader.close();
 			
 			roomList.sort((Room r1, Room r2) -> r1.getRoomNum().compareTo(r2.getRoomNum()));
+
+
 			
-			int n = 101;
-			for(Room r : roomList) {
-				r.setRoomName(String.format("%d호", n++));
-			}
+			
 			
 			BufferedWriter writer = new BufferedWriter(new FileWriter("data//dataRoom.txt"));
 			for (Room r : roomList) {

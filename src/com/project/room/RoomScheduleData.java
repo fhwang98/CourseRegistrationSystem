@@ -30,6 +30,13 @@ public class RoomScheduleData {
 				list.add(new RoomSchedule(roomNum, dayOfWeek, time, courseNum));
 			}
 			
+			for (int i = 1; i < 1000; i++) {
+				String num = String.format("%03d", i);
+				if (!listContains(num)) {
+					list.add(new RoomSchedule(num, "_", "_", "_"));
+				}
+				
+			}
 			list.sort((s1, s2) -> s1.getTime().compareTo(s2.getTime()));
 			list.sort((s1, s2) ->s1.getDayOfWeek().length() - s2.getDayOfWeek().length());
 			list.sort((s1, s2) -> s1.getRoomNum().compareTo(s2.getRoomNum()));
@@ -48,6 +55,18 @@ public class RoomScheduleData {
 			System.out.println("at RoomScheduleData.load");
 			e.printStackTrace();
 		}
+	}
+
+	private static boolean listContains(String num) {
+		// TODO Auto-generated method stub
+		
+		for (RoomSchedule s : list) {
+			if (s.getRoomNum().equals(num)) {
+				return true;
+			}
+		}
+		return false;
+		
 	}
 	
 	
