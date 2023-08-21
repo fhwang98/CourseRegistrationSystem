@@ -12,7 +12,6 @@ public class Individual {
 	}
 
 	private static void individualMent() {
-		System.out.println("test0");
 
 		System.out.println();
 		System.out.println("==========================");
@@ -30,13 +29,15 @@ public class Individual {
 		System.out.println("----------------------------------");
 		
 		System.out.print("번호 입력: ");
-		int input = scan.nextInt();
+		String input = scan.nextLine();
+		
+		if(input.equals("0")) {
+			CourseInfo.lectureInfo();
+		}
+		//
+		while (!input.equals("0")) {
 
-		if (input == 0) {
-			 goBack();
-
-		} else if (input == 1) {
-			System.out.println("test1");
+		if (input.equals("1")) {
 			System.out.println();
 			System.out.println("==========================");
 			System.out.println("개인 별 강좌 추천");
@@ -50,16 +51,15 @@ public class Individual {
 
 			System.out.println();
 			System.out.println("0.뒤로가기");
-			System.out.print("> ");
+			System.out.print("입력: ");
 
-			input = scan.nextInt();
+			input = scan.nextLine();
 
-			if (input == 0) {
+			if (input.equals("0")) {
 				individualMent();
-			}
+				}
 
-		} else if (input == 2) {
-			System.out.println("test2");
+		} else if (input.equals("2")) {
 			System.out.println();
 			System.out.println("==========================");
 			System.out.println("개인 별 강좌 추천");
@@ -73,15 +73,15 @@ public class Individual {
 
 			System.out.println();
 			System.out.println("0.뒤로가기");
-			System.out.println("> ");
+			System.out.println("입력: ");
 
-			input = scan.nextInt();
+			input = scan.nextLine();
 
-			if (input == 0) {
+			if (input.equals("0")) {
 				individualMent();
-			}
+				}
 
-		} else if (input == 3) {
+		} else if (input.equals("3")) {
 			System.out.println();
 			System.out.println("==========================");
 			System.out.println("개인 별 강좌 추천");
@@ -95,16 +95,15 @@ public class Individual {
 
 			System.out.println();
 			System.out.println("0.뒤로가기");
-			System.out.println("> ");
+			System.out.println("입력: ");
 
-			input = scan.nextInt();
+			input = scan.nextLine();
 
-			if (input == 0) {
+			if (input.equals("0")) {
 				individualMent();
-			}
+				}
 
-		} else if (input == 4) {
-			System.out.println("test4");
+		} else if (input.equals("4")) {
 			System.out.println();
 			System.out.println("==========================");
 			System.out.println("개인 별 강좌 추천");
@@ -118,16 +117,15 @@ public class Individual {
 
 			System.out.println();
 			System.out.println("0.뒤로가기");
-			System.out.println("> ");
+			System.out.println("입력: ");
 
-			input = scan.nextInt();
+			input = scan.nextLine();
 
-			if (input == 0) {
+			if (input.equals("0")) {
 				individualMent();
-			}
+				}
 
-		} else if (input == 5) {
-			System.out.println("test5");
+		} else if (input.equals("5")) {
 			System.out.println();
 			System.out.println("==========================");
 			System.out.println("개인 별 강좌 추천");
@@ -139,18 +137,28 @@ public class Individual {
 
 			CourseData.blockRecommend();
 
-			input = scan.nextInt();
+			input = scan.nextLine();
 
-			if (input == 0) {
+			if (input.equals("0")) {
 				individualMent();
+				}
+			} else {
+				System.out.println("목록에 있는 번호를 입력하세요.");
+				System.out.print("입력: ");
+				input = scan.nextLine();
+
+				
 			}
+		}
+		if(input.equals("0")) {
+			CourseInfo.lectureInfo();
 		}
 
 	}
 
-	private static void goBack() {
-		CourseInfo.lectureInfo();
-		
-	}
+//	private static void goBack() {
+//		CourseInfo.lectureInfo();
+//		
+//	}
 
 }// 문화, 피아노, 어린이, 체육, 블럭교실

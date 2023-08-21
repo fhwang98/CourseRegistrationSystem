@@ -42,12 +42,24 @@ public class Popularity {
 	
 		System.out.println();
 		System.out.println("0. 뒤로가기 ");
-		System.out.print(">  ");
-		int input = scan.nextInt();
-		if (input == 0) {
-		CourseInfo.lectureInfo();
-		}
+		System.out.print("입력:  ");
+		String input = scan.nextLine();
+		while (!input.equals("0")) {
 
+			if (input.equals("0")) {
+				CourseInfo.lectureInfo();
+
+			} else {
+				System.out.println("뒤로가려면 0번을 입력하세요.");
+				System.out.print("입력: ");
+				input = scan.nextLine();
+
+			}
+
+		}
+		if (input.equals("0")) {
+			CourseInfo.lectureInfo();
+		}
 	}
 	
 }
