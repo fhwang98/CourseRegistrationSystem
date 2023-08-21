@@ -41,7 +41,6 @@ public class AdminMain {
 			} else if (sel.equals("4")) {
 				//강의실 관리
 				System.out.println("강의실 관리");
-				RoomMain.roomControl();
 			} else if (sel.equals("5")) {
 				//5. 공지사항
 				NoticeData.load();
