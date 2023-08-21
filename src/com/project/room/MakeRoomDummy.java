@@ -58,6 +58,7 @@ public class MakeRoomDummy {
 			
 			for (int j = 0; j < rnd.nextInt(10)+1; j++) { //스케줄 루프 빈강의실 걸렀으니까 무조건 1개 이상
 				
+				courseCode = courses[rnd.nextInt(19)];
 				String dayOfWeek = days[rnd.nextInt(5)];
 				String time = String.format("%02d:00", rnd.nextInt(15) + 6);
 				String schedule = i + dayOfWeek + time + courseCode;
