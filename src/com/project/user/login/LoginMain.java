@@ -56,6 +56,7 @@ public class LoginMain {
 		if (num == 1) {
 			LoginChoice.login(this);
 		}else if(num==2) {
+			//idList와 회원정보가 일치할시 아이디를 찾아준다.
 			ArrayList<String> idList = FindData.findId();
 			if(idList.size()>0) {
 				System.out.print("회원님의 아이디는 ");
@@ -66,7 +67,7 @@ public class LoginMain {
 			}
 		}else {
 			
-			FindData.findPw();
+			FindData.resetPw();
 		}
 		
 	}

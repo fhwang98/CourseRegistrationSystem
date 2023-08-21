@@ -25,7 +25,7 @@ public class FindData {
 		birth = scan.nextLine();
 		System.out.println("======================");
 		
-		
+		//이름과 생년월일이 일치할시 idList를 반환한다.
 		ArrayList<String> idList = UserDbms.getIdFind(name, birth);
 		
 		return idList;
@@ -33,7 +33,7 @@ public class FindData {
 		
 	}
 
-	public static HashMap<String, String> findPw() {
+	public static HashMap<String, String> resetPw() {
 		
 		String name = "";
 		String tel = "";
@@ -114,11 +114,12 @@ public class FindData {
 				UserDbms.setModifyPw(pwMap);
 				break;
 			} else {
-				System.out.print("비밀번호 재설정 하시겠습니까? (Y/N)");
+				System.out.print("비밀번호 재설정 하시겠습니까? (Y/N): ");
 				
 				if("N".equals(scan.nextLine())) {
 					//로그인 메인페이지로 이동
-//					LoginMain.LoginProcess();
+					LoginMain lMain = new LoginMain();
+					lMain.LoginProcess();
 					break;
 				}
 			}
