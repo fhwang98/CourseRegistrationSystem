@@ -25,7 +25,7 @@ public class LoginMember {
 			System.out.println();
 			System.out.print("비밀번호: ");
 			password = scan.nextLine();
-			//아이디는 틀리고 
+			//아이디가 틀리고 
 			if(UserDbms.searchMemberById(id) == null) {
 				System.out.println("아이디 또는 비밀번호가 틀립니다.");
 			}else if(UserDbms.searchMemberByIdPw(id, password) == null) {

@@ -24,6 +24,7 @@ public class UserDbms {
 	private static String maxTeacherCode = "T000";
 	private static String maxAdminCode = "A000";
 
+
 	static { // static 생성자 추가
 		memberAllList = new ArrayList<DataMember>();
 		teacherAllList = new ArrayList<DataTeacher>();
