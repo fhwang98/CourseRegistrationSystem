@@ -33,7 +33,7 @@ public class LoginTeacher {
 				break;
 			}
 			if(PwErrorCnt >=5) {
-				FindData.findPw();
+				FindData.resetPw();
 				break;
 			}
 		}
