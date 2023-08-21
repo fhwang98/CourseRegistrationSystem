@@ -20,7 +20,7 @@ public class RoomData {
 
 	public static void load() {
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader("data//roomdummy.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("data\\roomdummy.txt"));
 			String line = null;
 			int n = 1;
 			while ((line = reader.readLine()) != null) {
