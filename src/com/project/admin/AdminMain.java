@@ -22,7 +22,7 @@ public class AdminMain {
 		while (loop) {
 			AdminView.printAdminMain();
 			String sel = scan.nextLine();
-			if (!AdminUtil.isValidSel(sel, 1, 4)) {
+			if (!AdminUtil.isValidSel(sel, 1, 7)) {
 				System.out.println("is invalid input");
 				System.out.println("enter a new line to going back");
 				scan.nextLine();

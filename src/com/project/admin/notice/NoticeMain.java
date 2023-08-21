@@ -127,17 +127,13 @@ public class NoticeMain {
 			NoticeView.printOpenedNoticeMenu();
 			String sel2 = scan.nextLine();
 			//sel2 유효성 검사
-			if (sel2.equals("")) {
-				continue;
-			} else if (!(AdminUtil.isDigit(sel2))
-							|| Integer.parseInt(sel2) < 0 
-							|| Integer.parseInt(sel2) > 3) {
-				
-				NoticeView.printInvalidInputMessage();
-				NoticeView.printPendingMessage();
+			//유효성 체크
+			if (!AdminUtil.isValidSel(sel2, 0, 3)) {
+				System.out.println("is invalid input");
+				System.out.println("enter a new line to going back");
 				scan.nextLine();
 				continue;
-			} 
+			}
 			else if (sel2.equals("0")) {
 				checkingLoop = false;
 			} else if (sel2.equals("1")) {
