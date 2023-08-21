@@ -15,7 +15,7 @@ public class UserData {
 	public static void loadUserData() {
 		try {
 
-			BufferedReader reader = new BufferedReader(new FileReader("file\\dataMember.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("data\\dataMember.txt"));
 
 			String line = null;
 

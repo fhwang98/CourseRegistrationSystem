@@ -37,11 +37,8 @@ public class PageTest {
 				System.out.println(index + ". " + list.get(index));
 				index++;
 			}
-			System.out.println();
-			System.out.println("0. 뒤로가기");
-			System.out.println("1. 이전 페이지");
-			System.out.println("2. 다음 페이지");
-			System.out.print("번호 입력: ");
+			
+			printMovePage();
 
 			while (inLoop) {
 				sel = scan.nextInt();
@@ -71,6 +68,14 @@ public class PageTest {
 			}
 		}
 
+	}
+
+	private static void printMovePage() {
+		System.out.println();
+		System.out.println("0. 뒤로가기");
+		System.out.println("1. 이전 페이지");
+		System.out.println("2. 다음 페이지");
+		System.out.print("번호 입력: ");
 	}
 
 	private static void putList() {
