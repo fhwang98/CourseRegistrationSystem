@@ -23,7 +23,9 @@ public class UserDbms {
 	private static String maxMemberCode = "N000";
 	private static String maxTeacherCode = "T000";
 	private static String maxAdminCode = "A000";
-
+	
+	
+	
 	public UserDbms() {
 		readMemberData();
 		readTeacherData();

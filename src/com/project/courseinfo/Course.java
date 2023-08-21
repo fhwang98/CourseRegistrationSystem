@@ -1,4 +1,4 @@
-package com.project.course;
+package com.project.courseinfo;
 
 public class Course {
 	

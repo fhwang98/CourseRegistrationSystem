@@ -2,13 +2,17 @@ package com.project.user.login;
 
 import java.util.Scanner;
 
+import com.project.auth.Auth;
 import com.project.user.data.DataAdmin;
 import com.project.user.data.DataMember;
 import com.project.user.data.DataTeacher;
 
 public class LoginChoice {
 	public static void login(LoginMain main) {
-
+		
+		Auth auth = new Auth();
+		
+		 
 		int num = 0;
 
 		Scanner scan = new Scanner(System.in);
@@ -37,6 +41,11 @@ public class LoginChoice {
 		if (num == 1) {
 			DataMember m = LoginMember.login();
 			if(m !=  null) {
+				auth.setAllCode(m.getMemberCode());
+				auth.setChoiceCode("1");
+				auth.setId(m.getId());
+				auth.setName(m.getName());
+				
 				main.getLoginMList().add(m);
 			}
 		} else if (num == 2) {
