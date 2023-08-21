@@ -27,9 +27,7 @@ public class AdminUserService {
 			inLoop = true;
 			int sel = -1;
 
-			System.out.println("=====================================");
-			System.out.println("            일반 회원 정보 조회");
-			System.out.println("=====================================");
+			printMemberList("조회");
 
 			for (int i = 0; i < 10; i++) {
 				if (index == UserDbms.getMemberAllList().size()) { // 멈춰야 한다! 다 출력함
@@ -104,9 +102,9 @@ public class AdminUserService {
 		String discountType = checkDiscountType(m);
 		System.out.println("할인: " + discountType);
 
-		//전체 수강 내역 읽고 회원 코드와 일치하는 수강명만 보여주기
-		System.out.println("수강내역: "); 
-		
+		// 전체 수강 내역 읽고 회원 코드와 일치하는 수강명만 보여주기 (추가할 것)
+		System.out.println("수강내역: ");
+
 		System.out.println();
 	}
 
@@ -122,13 +120,60 @@ public class AdminUserService {
 		} else {
 			discountType = "해당없음";
 		}
-		
+
 		return discountType;
 	}
 
 	public static void searchUser() {
-		// TODO Auto-generated method stub
+		Scanner scan = new Scanner(System.in);
+
+		while (true) {
+			printMemberList("검색"); // View에 추출하기
+
+			System.out.println("0. 뒤로가기");
+			System.out.println("1. 아이디로 검색");
+			System.out.println("2. 이름으로 검색");
+			System.out.println("3. 전화번호로 검색");
+			System.out.println("-------------------------------------");
+			System.out.print("번호를 입력하세요 : ");
+
+			String sel = scan.nextLine(); // 유효화 과정 필요
+
+			if (sel.equals("0")) {
+				// 이전 화면으로 이동
+				break;
+			} else if (sel.equals("1")) {
+				searchById();
+			} else if (sel.equals("2")) {
+				searchByName();
+			} else if (sel.equals("3")) {
+				searchByPhone();
+			} else {
+				System.out.print("유효하지 않은 입력입니다. 다시 입력해주세요. : ");
+			}
+		}
+
+	}
+
+	private static void searchByPhone() {
+		System.out.print("전화번호를 입력하세요. : ");
+
+	}
+
+	private static void searchByName() {
+		System.out.print("이름을 입력하세요. : ");
+
+	}
+
+	private static void searchById() {
+		System.out.print("아이디를 입력하세요. : ");
 		
+	}
+
+	private static void printMemberList(String label) {
+		System.out.println("=====================================");
+		System.out.println("            일반 회원 정보 " + label);
+		System.out.println("=====================================");
 	}
 
 }
