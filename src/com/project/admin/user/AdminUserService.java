@@ -43,7 +43,7 @@ public class AdminUserService {
 
 //				System.out.println(m.toString());
 
-				System.out.println(index + ". " + UserDbms.getMemberAllList().get(index));
+//				System.out.println(index + ". " + UserDbms.getMemberAllList().get(index));
 				index++;
 			}
 
@@ -104,8 +104,10 @@ public class AdminUserService {
 		String discountType = checkDiscountType(m);
 		System.out.println("할인: " + discountType);
 
+		//전체 수강 내역 읽고 회원 코드와 일치하는 수강명만 보여주기
+		System.out.println("수강내역: "); 
 		
-		System.out.println("수강내역: ");
+		System.out.println();
 	}
 
 	private static String checkDiscountType(DataMember m) {

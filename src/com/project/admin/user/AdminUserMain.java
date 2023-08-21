@@ -26,10 +26,19 @@ public class AdminUserMain {
 
 			} else { // invalid
 				AdminUserView.printInvalidInput();
+
+				int n = makeRandomNum();
+				
+				System.out.println(n);
 			}
 		}
 
 		System.out.println("AdminUserMain Out");
+	}
+
+	private static int makeRandomNum() {
+
+		return (int) (Math.random() * 15) + 1;
 	}
 
 	public static void main(String[] args) {
