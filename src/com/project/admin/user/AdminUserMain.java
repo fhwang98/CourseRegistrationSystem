@@ -20,25 +20,16 @@ public class AdminUserMain {
 				break;
 			} else if (sel.equals("1")) { // 전체 회원 조회 페이지로 이동
 				AdminUserService.showUserList();
-
+				break;
 			} else if (sel.equals("2")) { // 회원 검색 페이지로 이동
 				AdminUserService.searchUser();
-
+				break;
 			} else { // invalid
 				AdminUserView.printInvalidInput();
-
-				int n = makeRandomNum();
-				
-				System.out.println(n);
 			}
 		}
 
 		System.out.println("AdminUserMain Out");
-	}
-
-	private static int makeRandomNum() {
-
-		return (int) (Math.random() * 15) + 1;
 	}
 
 	public static void main(String[] args) {

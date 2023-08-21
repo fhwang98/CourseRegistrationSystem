@@ -23,7 +23,7 @@ public class Course {
 		this.num = num;
 		this.category = category;
 		this.lectureName = lectureName;
-		Time = time;
+		Time = time; 
 		Day = day;
 		Target = target;
 		this.lectureFee = lectureFee;
