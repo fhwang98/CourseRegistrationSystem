@@ -25,7 +25,8 @@ public class RoomScheduleData {
 				String[] temp = line.split(",");
 				String roomNum = temp[11];
 				String dayOfWeek = temp[4];
-				String time = temp[3];
+				int startTime = Integer.parseInt(temp[3].substring(0, 2));
+				String time = String.format("%02d:00-%02d:00", startTime, startTime + 1);
 				String courseNum = temp[0];
 				list.add(new RoomSchedule(roomNum, dayOfWeek, time, courseNum));
 			}
