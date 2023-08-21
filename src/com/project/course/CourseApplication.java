@@ -73,6 +73,7 @@ public class CourseApplication {
 							System.out.println();
 							System.out.println("\"수강신청이 완료되었습니다.\"");
 							System.out.println();
+							
 //							Main.mainMent();
 						}
 					} else if(input.equals("n")) {
