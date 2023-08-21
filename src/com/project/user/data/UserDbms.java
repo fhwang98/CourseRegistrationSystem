@@ -12,87 +12,106 @@ import java.util.HashMap;
 
 public class UserDbms {
 	private final static String CRLF = "\r\n";
-	private final static String dataMemberPath = "../data/dataMember.txt";
-	private final static String dataTeacherPath = "../data/dataTeacher.txt";
-	private final static String dataAdminPath = "../data/dataAdmin.txt";
+	private final static String dataMemberPath = "data\\dataMember.txt";
+	private final static String dataTeacherPath = "data\\dataTeacher.txt";
+	private final static String dataAdminPath = "data\\dataAdmin.txt";
 
-	private static ArrayList<DataMember> memberAllList = new ArrayList<DataMember>();
-	private static ArrayList<DataTeacher> teacherAllList = new ArrayList<DataTeacher>();
-	private static ArrayList<DataAdmin> adminAllList = new ArrayList<DataAdmin>();
+	private static ArrayList<DataMember> memberAllList;
+	private static ArrayList<DataTeacher> teacherAllList;
+	private static ArrayList<DataAdmin> adminAllList;
 
 	private static String maxMemberCode = "N000";
 	private static String maxTeacherCode = "T000";
 	private static String maxAdminCode = "A000";
+
+	static { // static 생성자 추가
+		memberAllList = new ArrayList<DataMember>();
+		teacherAllList = new ArrayList<DataTeacher>();
+		adminAllList = new ArrayList<DataAdmin>();
+	}
 
 	public UserDbms() {
 		readMemberData();
 		readTeacherData();
 		readAdminData();
 	}
-	
+
+	// list getter 추가
+	public static ArrayList<DataMember> getMemberAllList() {
+		return memberAllList;
+	}
+
+	public static ArrayList<DataTeacher> getTeacherAllList() {
+		return teacherAllList;
+	}
+
+	public static ArrayList<DataAdmin> getAdminAllList() {
+		return adminAllList;
+	}
+
 	// 패스워드 변경
 	public static void setModifyPw(HashMap<String, String> pwInfo) {
 		String code = pwInfo.get("code");
 		String chPw = pwInfo.get("chPw");
 		File file = null;
 		StringBuffer strBff = new StringBuffer();
-		
-		if( "N".equals(code.substring(0,1)) ) {
-			file= new File(dataMemberPath);
-		} else if( "T".equals(code.substring(0,1)) ) {
-			file= new File(dataTeacherPath);
-		} else if( "A".equals(code.substring(0,1)) ) {
-			file= new File(dataAdminPath);
-		}else {
-			return ;
+
+		if ("N".equals(code.substring(0, 1))) {
+			file = new File(dataMemberPath);
+		} else if ("T".equals(code.substring(0, 1))) {
+			file = new File(dataTeacherPath);
+		} else if ("A".equals(code.substring(0, 1))) {
+			file = new File(dataAdminPath);
+		} else {
+			return;
 		}
-		
-		if( file != null ) {
+
+		if (file != null) {
 			try {
 				BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file.getPath())));
-				
+
 				String line = null;
 				while ((line = br.readLine()) != null) {
 					String[] lineSplit = line.split(",");
-					
-					if( "N".equals(code.substring(0,1)) ) {
+
+					if ("N".equals(code.substring(0, 1))) {
 						DataMember m = new DataMember(lineSplit);
-						if(m.getMemberCode().equals(code)) {
+						if (m.getMemberCode().equals(code)) {
 							m.setPassword(chPw);
 							strBff.append(m.toString());
 						} else {
 							strBff.append(line);
 						}
-						
-					}else if( "T".equals(code.substring(0,1)) ) {
+
+					} else if ("T".equals(code.substring(0, 1))) {
 						DataTeacher t = new DataTeacher(lineSplit);
-						if(t.getTeacherCode().equals(code)) {
+						if (t.getTeacherCode().equals(code)) {
 							t.setPassword(chPw);
 							strBff.append(t.toString());
 						} else {
 							strBff.append(line);
 						}
-					}else if( "A".equals(code.substring(0,1)) ) {
+					} else if ("A".equals(code.substring(0, 1))) {
 						DataAdmin a = new DataAdmin(lineSplit);
-						if(a.getAdminCode().equals(code)) {
+						if (a.getAdminCode().equals(code)) {
 							a.setPassword(chPw);
 							strBff.append(a.toString());
 						} else {
 							strBff.append(line);
 						}
-						
+
 					}
-					
+
 					strBff.append(CRLF);
 				}
-				
+
 				FileWriter fw = new FileWriter(file.getPath());
-				fw.write(strBff.toString());	
-				
+				fw.write(strBff.toString());
+
 				fw.close();
 				br.close();
 			} catch (Exception e) {
-				System.out.println("Exception:"+e.getMessage());
+				System.out.println("Exception:" + e.getMessage());
 			}
 		}
 	}
