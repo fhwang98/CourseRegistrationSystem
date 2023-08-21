@@ -90,7 +90,7 @@ public class AdminUserService {
 		// 전체 수강 내역 읽고 회원 코드와 일치하는 수강명만 보여주기 (추가할 것)
 		System.out.println("수강내역: ");
 
-		System.out.println("-------------------------------------");
+		System.out.println("-------------------------------------"); // view로 빼야하나
 
 //		System.out.println();
 	}
