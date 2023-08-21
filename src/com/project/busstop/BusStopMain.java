@@ -3,8 +3,8 @@ package com.project.busstop;
 import java.util.Scanner;
 
 public class BusStopMain {
-	public static boolean outLoop = true;
-	public static boolean inLoop = true;
+	public static boolean outLoop = true; // 바깥 반복문 제어
+	public static boolean inLoop = true; // 안쪽 반복문 제어
 
 	public static void main(String[] args) {
 		
