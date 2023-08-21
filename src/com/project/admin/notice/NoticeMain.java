@@ -31,6 +31,7 @@ public class NoticeMain {
 	}
 
 	public static void controlNoticeMain() {
+		NoticeData.load();
 		 //공지사항 전체 루프
 		while (mainLoop) {
 			//공지사항 첫화면 출력

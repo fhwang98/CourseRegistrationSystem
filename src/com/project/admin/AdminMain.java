@@ -40,10 +40,9 @@ public class AdminMain {
 				System.out.println("강좌 관리");
 			} else if (sel.equals("4")) {
 				//강의실 관리
-				System.out.println("강의실 관리");
+				RoomMain.controlRoom();
 			} else if (sel.equals("5")) {
 				//5. 공지사항
-				NoticeData.load();
 				NoticeMain.controlNoticeMain();
 			} else if (sel.equals("6")) {
 				//내정보

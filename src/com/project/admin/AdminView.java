@@ -19,12 +19,21 @@ public class AdminView {
 		System.out.println("\t1.\t일반 회원 관리\t\t5.\t공지사항");
 		System.out.println("\t2.\t강사 회원 관리\t\t6.\t내정보");
 		System.out.println("\t3.\t강좌 관리\t\t\t7.\t로그아웃");
-		System.out.println("\t4.\t강의실 회원 관리");
+		System.out.println("\t4.\t강의실 관리");
 		System.out.println("--------------------------------------------------");
 		System.out.println("번호 입력:");
+	}
+	
+	public static void printPendingMessage() {
 		
+		System.out.println("계속하려면 엔터를 입력해 주세요.");
 		
+	}
+	
+	public static void printInvalidInputMessage() {
 		
+		System.out.println("입력이 올바르지 않습니다.");
+		System.out.println("다시 입력해 주세요.");
 		
 	}
 	
