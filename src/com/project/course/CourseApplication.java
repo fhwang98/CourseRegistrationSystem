@@ -13,35 +13,21 @@ import com.project.courseinfo.Course;
 public class CourseApplication {
 
 	public static ArrayList<Course> courseList;
+	
+	public static ArrayList<Member> memberList;
+	
+	public static ArrayList<Teacher> teacherList;
+	
+	public static ArrayList<History> historyList;
 	static {
 
 		CourseApplication.courseList = new ArrayList<Course>();
-
-	}
-
-	public static ArrayList<Member> memberList;
-
-	static {
-
 		CourseApplication.memberList = new ArrayList<Member>();
-
-	}
-
-	public static ArrayList<Teacher> teacherList;
-
-	static {
-
 		CourseApplication.teacherList = new ArrayList<Teacher>();
-
-	}
-
-	public static ArrayList<History> historyList;
-
-	static {
-
 		CourseApplication.historyList = new ArrayList<History>();
 
 	}
+
 
 	public static void courseApplication() {
 
@@ -49,82 +35,9 @@ public class CourseApplication {
 
 		
 	}
-//중복검사 -> 
-	//멤버 데이터에서 현재 아이디의 회원코드 가져와서 배열에 담기.
-	//히스토리데이터 회원 코드 같은 거 찾아서 수강내역강좌 정보 끌어와서 시간 비교
-	//배열에 담긴 Histoty 가지고 와서 돌면서 temp[1](회원코드)의 값이 같은거 찾아서 historyList에 저장
-	// 강좌arrayList 가지고 와서 history temp[2](강좌코드)이랑 같은 값 찾아서 배열에 담고
-	//그 담은 리스트의 temp[3] (강좌시작시간)이 같은게 있으면 수강 불가 
 	
-	//회원의 수강 내역에 시간이 겹치는지 확인
-	//회원 수강 내
-	
-	
-//	public static void timecheck() {
-//		String id= "otqapf7199";
-//		
-//		try {
-//			
-//			BufferedReader readerCourse = new BufferedReader(new FileReader("data/lectureList.txt"));
-//			BufferedReader readerMember = new BufferedReader(new FileReader("data/memberData.txt"));
-//			BufferedReader readerHistory = new BufferedReader(new FileReader("data/courseHistory.txt"));
-//
-//			String line = null;
-//
-//			while ((line = readerMember.readLine()) != null) {
-//				
-//				String[] temp = line.split(",");
-//				
-//				Member m = new Member(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8],
-//						temp[9]);
-//				
-//
-//					
-//				//아이디가 로그인 한 아이디랑 같으면 회원 목록에 해당 리스트 추가
-//				//수강내역에서h.getMemberNum.equals(m.getNo())해당리스트의 회원 코드 m.getNo() 같으면 ,
-//				
-//				memberList.add(m);
-//			}
-//			while ((line = readerHistory.readLine()) != null) {
-//			
-//
-//				String[] temp = line.split(",");
-//
-//				History h = new History(temp[0], temp[1], temp[2]);
-//				
-//				historyList.add(h);
-//				
-//			}
-//			
-//			
-//			while ((line = readerCourse.readLine()) != null) {
-//
-//				String[] temp = line.split(",");
-//
-//				Course c = new Course(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8],
-//						temp[9], temp[10], temp[11]);
-//
-//				courseList.add(c);
-//			}
-//			
-//			
-//			
-//		} catch (Exception e) {
-//			
-//			e.printStackTrace();
-//		}
-//		//아이디가 로그인 한 아이디랑 같으면 회원 목록에 해당 리스트 추가 memberList
-//		//수강내역에서h.getMemberNum.equals(m.getNo())해당리스트의 회원 코드 m.getNo() 같으면 ,
-//	if(memberList.get(1).equals(id)) {
-//		
-//	}
-//}
-//			//historyList회원코드가 같은 강좌가 담김 
-//			
-	
-	///////////////////////////////////////////
-
 	private static void courseApplicationment() {
+		
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println();

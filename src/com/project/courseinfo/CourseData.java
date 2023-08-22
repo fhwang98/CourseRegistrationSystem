@@ -15,6 +15,46 @@ public class CourseData {
 	static Scanner scan = new Scanner(System.in);
 
 	public static ArrayList<Course> courseList;
+<<<<<<< HEAD
+	public static ArrayList<Teacher> teacherList;
+	public static HashMap<String, Course> map ;
+	
+	static {
+
+		CourseData.courseList = new ArrayList<Course>();
+		CourseData.teacherList = new ArrayList<Teacher>();
+		HashMap<String,Course> map = new HashMap<String, Course>();
+	}
+	
+//전체 강좌 ArrayList
+	public static void allCourseList() {
+
+		try {
+			BufferedReader allReader = new BufferedReader(new FileReader("data/dataCourse.txt"));
+
+			String line = null;
+
+			while ((line = allReader.readLine()) != null) {
+
+				String[] temp = line.split(",");
+
+				Course c = new Course(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8],
+						temp[9], temp[10], temp[11]);
+
+				courseList.add(c);
+				
+			}
+			
+		} catch (IOException e) {
+
+			e.printStackTrace();
+
+		}
+	}
+
+	// 전체 강좌 HashMap
+	public static void allCourseMap() {
+=======
 
 	public static HashMap<String, Course> map;
 
@@ -28,6 +68,7 @@ public class CourseData {
 //해쉬코드 키를 강좌로 놓고 값을 객체
 
 	public static void allCourse() {
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 
 		try {
 			BufferedReader allReader = new BufferedReader(new FileReader("data\\dataCourse.txt"));
@@ -44,7 +85,11 @@ public class CourseData {
 					map.put(temp[0], c);
 
 				}
+<<<<<<< HEAD
+				System.out.println(map);
+=======
 //				System.out.println(map);
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 
 			} catch (IOException e) {
 
@@ -64,8 +109,14 @@ public class CourseData {
 		try {
 			Random rnd = new Random();
 
+<<<<<<< HEAD
+			BufferedReader reader = new BufferedReader(new FileReader("data/dataCourse.txt"));
+
+			BufferedReader reader2 = new BufferedReader(new FileReader("data/dataTeacher.txt"));
+=======
 			BufferedReader reader = new BufferedReader(new FileReader("data\\dataCourse.txt"));
 			BufferedReader readerTeacher = new BufferedReader(new FileReader("data\\dataCourse.txt"));
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 
 			String line = null;
 
@@ -101,13 +152,33 @@ public class CourseData {
 				}
 			}
 
+<<<<<<< HEAD
+			line = null;
+			while ((line = reader2.readLine()) != null) {
+
+				String[] temp = line.split(",");
+
+				Teacher t = new Teacher(temp[0], temp[3]);
+
+				CourseApplication.teacherList.add(t);
+
+			}
+			Course c = CourseData.courseList.get(rnd.nextInt(CourseData.courseList.size()));
+			
+			for (Teacher t : CourseApplication.teacherList) {
+				if (t.getTeacherNum().equals(c.getTeacherNum())) {
+					courseMent(c,t);
+				}
+			}
+=======
 			Course c = CourseData.courseList.get(rnd.nextInt(CourseData.courseList.size()));
 
 			courseMent(c);
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 //			ment(rnd, reader);
 
 			reader.close();
-
+			reader2.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -119,9 +190,17 @@ public class CourseData {
 
 		try {
 			Random rnd = new Random();
+<<<<<<< HEAD
+			
+			BufferedReader reader = new BufferedReader(new FileReader("data/dataCourse.txt"));
+
+			BufferedReader reader2 = new BufferedReader(new FileReader("data/dataTeacher.txt"));
+			
+=======
 
 			BufferedReader reader = new BufferedReader(new FileReader("data\\dataCourse.txt"));
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 			String line = null;
 
 			while ((line = reader.readLine()) != null) {
@@ -154,6 +233,32 @@ public class CourseData {
 					}
 				}
 			}
+<<<<<<< HEAD
+			
+			line = null;
+			while ((line = reader2.readLine()) != null) {
+
+				String[] temp = line.split(",");
+
+				Teacher t = new Teacher(temp[0], temp[3]);
+
+				CourseApplication.teacherList.add(t);
+
+			}
+			Course c = CourseData.courseList.get(rnd.nextInt(CourseData.courseList.size()));
+			
+			for (Teacher t : CourseApplication.teacherList) {
+				if (t.getTeacherNum().equals(c.getTeacherNum())) {
+					courseMent(c,t);
+				}
+			}
+			//courseMent(c);
+			//ment(rnd, reader);
+			
+			reader.close();
+			reader2.close();
+			
+=======
 
 			Course c = CourseData.courseList.get(rnd.nextInt(CourseData.courseList.size()));
 
@@ -162,6 +267,7 @@ public class CourseData {
 
 			reader.close();
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -173,9 +279,17 @@ public class CourseData {
 
 		try {
 			Random rnd = new Random();
+<<<<<<< HEAD
+			
+			BufferedReader reader = new BufferedReader(new FileReader("data/dataCourse.txt"));
+
+			BufferedReader reader2 = new BufferedReader(new FileReader("data/dataTeacher.txt"));
+			
+=======
 
 			BufferedReader reader = new BufferedReader(new FileReader("data\\dataCourse.txt"));
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 			String line = null;
 
 			while ((line = reader.readLine()) != null) {
@@ -211,6 +325,29 @@ public class CourseData {
 					}
 				}
 			}
+<<<<<<< HEAD
+			line = null;
+			
+			while ((line = reader2.readLine()) != null) {
+				
+				String[] temp = line.split(",");
+				
+				Teacher t = new Teacher(temp[0], temp[3]);
+				
+				CourseApplication.teacherList.add(t);
+			
+			}
+
+			Course c = CourseData.courseList.get(rnd.nextInt(CourseData.courseList.size()));
+			
+			for (Teacher t : CourseApplication.teacherList) {
+				if (t.getTeacherNum().equals(c.getTeacherNum())) {
+					courseMent(c,t);
+				}
+			}
+			//courseMent(c);
+			//ment(rnd, reader);
+=======
 
 //			for(int i=0; i <CourseData.list.size(); i++) {
 //				System.out.println("data1 =" + CourseData.list.get(i));
@@ -222,6 +359,7 @@ public class CourseData {
 
 			courseMent(c);
 			// ment(rnd, reader);
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 
 			reader.close();
 
@@ -230,15 +368,28 @@ public class CourseData {
 		}
 
 	}
+<<<<<<< HEAD
+	
+	//개인별 강좌 추천 어린이 선택
+=======
 
 	// 개인별 강좌 추천 어린이 선택
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 	public static void kidsRecommend() {
 
 		try {
 			Random rnd = new Random();
+<<<<<<< HEAD
+			
+			BufferedReader reader = new BufferedReader(new FileReader("data/dataCourse.txt"));
+
+			BufferedReader reader2 = new BufferedReader(new FileReader("data/dataTeacher.txt"));
+			
+=======
 
 			BufferedReader reader = new BufferedReader(new FileReader("data\\dataCourse.txt"));
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 			String line = null;
 
 			while ((line = reader.readLine()) != null) {
@@ -272,11 +423,35 @@ public class CourseData {
 					}
 				}
 			}
+<<<<<<< HEAD
+			line = null;
+			
+			while ((line = reader2.readLine()) != null) {
+				
+				String[] temp = line.split(",");
+				
+				Teacher t = new Teacher(temp[0], temp[3]);
+				
+				CourseApplication.teacherList.add(t);
+			
+			}
+			
+			Course c = CourseData.courseList.get(rnd.nextInt(CourseData.courseList.size()));
+			
+			for (Teacher t : CourseApplication.teacherList) {
+				if (t.getTeacherNum().equals(c.getTeacherNum())) {
+					courseMent(c,t);
+				}
+			}
+			//courseMent(c);
+			//ment(rnd, reader);
+=======
 
 			Course c = CourseData.courseList.get(rnd.nextInt(CourseData.courseList.size()));
 
 			courseMent(c);
 			// ment(rnd, reader);
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 
 			reader.close();
 
@@ -285,15 +460,28 @@ public class CourseData {
 		}
 
 	}
+<<<<<<< HEAD
+	
+	//개인별 강좌 추천 블럭교실 선택
+=======
 
 	// 개인별 강좌 추천 블럭교실 선택
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 	public static void blockRecommend() {
 
 		try {
 			Random rnd = new Random();
+<<<<<<< HEAD
+			
+			BufferedReader reader = new BufferedReader(new FileReader("data/dataCourse.txt"));
+
+			BufferedReader reader2 = new BufferedReader(new FileReader("data/dataTeacher.txt"));
+			
+=======
 
 			BufferedReader reader = new BufferedReader(new FileReader("data\\dataCourse.txt"));
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 			String line = null;
 
 			while ((line = reader.readLine()) != null) {
@@ -327,14 +515,42 @@ public class CourseData {
 					}
 				}
 			}
-
+			
+			line = null;
+			
+			while ((line = reader2.readLine()) != null) {
+				
+				String[] temp = line.split(",");
+				
+				Teacher t = new Teacher(temp[0], temp[3]);
+				
+				CourseApplication.teacherList.add(t);
+			
+			}
+			
 			Course c = CourseData.courseList.get(rnd.nextInt(CourseData.courseList.size()));
+<<<<<<< HEAD
+			
+			for (Teacher t : CourseApplication.teacherList) {
+				if (t.getTeacherNum().equals(c.getTeacherNum())) {
+					courseMent(c,t);
+				}
+			}
+			//courseMent(c);
+			//ment(rnd, reader);
+			
+
+			reader.close();
+			reader2.close();
+			
+=======
 
 			courseMent(c);
 			// ment(rnd, reader);
 
 			reader.close();
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -359,12 +575,12 @@ public class CourseData {
 
 				String[] temp = line.split(",");
 
-				Course l = new Course(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8],
+				Course c = new Course(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8],
 						temp[9], temp[10], temp[11]);
 
-				CourseData.courseList.add(l);
+				CourseData.courseList.add(c);
 
-				courseMent(l);
+				courseMent(c);
 			}
 
 			reader.close();
@@ -374,8 +590,14 @@ public class CourseData {
 		}
 
 	}
+<<<<<<< HEAD
+	
+=======
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 //강좌 카테고리별 목록
+	
+	//카테고리 문화 선택 시 
 	public static void cultureList() {
 
 		try {
@@ -408,7 +630,12 @@ public class CourseData {
 		}
 
 	}
+<<<<<<< HEAD
+	
+	//카테고리 피아노 선택시
+=======
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 	public static void pianoList() {
 
 		try {
@@ -444,7 +671,12 @@ public class CourseData {
 		}
 
 	}
+<<<<<<< HEAD
+	
+	//카테고리 스포츠 선택시
+=======
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 	public static void sportsList() {
 
 		try {
@@ -469,6 +701,84 @@ public class CourseData {
 							temp[8], temp[9], temp[10], temp[11]);
 
 //					CourseData.list.add(c);
+<<<<<<< HEAD
+					
+					courseMent(c);
+				}
+			}
+			reader.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//카테고리 어린이 선택시
+	public static void kidsList() {
+		
+		try {
+			
+			BufferedReader reader = new BufferedReader(new FileReader("data/dataCourse.txt"));
+			
+			String line = null;
+			
+			System.out.println("===================================");
+			System.out.println("어린이");
+			System.out.println("===================================");
+			
+			while ((line = reader.readLine()) != null) {
+				
+				line = line.replace("\"", "");
+				
+				String[] temp = line.split(",");
+				
+				if (temp[1].equals("어린이")) {
+					
+					Course c = new Course(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8],
+							temp[9], temp[10], temp[11]);
+					
+//					CourseData.list.add(c);
+					
+					courseMent(c);
+				}
+			}
+			reader.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	//카테고리 블럭 선택시
+	public static void blockList() {
+		
+		try {
+			
+			BufferedReader reader = new BufferedReader(new FileReader("data/dataCourse.txt"));
+			
+			String line = null;
+			
+			System.out.println("===================================");
+			System.out.println("블럭교실");
+			System.out.println("===================================");
+			
+			while ((line = reader.readLine()) != null) {
+				
+				line = line.replace("\"", "");
+				
+				String[] temp = line.split(",");
+				
+				if (temp[1].equals("블럭교실")) {
+					
+					Course c = new Course(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7], temp[8],
+							temp[9], temp[10], temp[11]);
+					
+//					CourseData.list.add(c);
+					
+=======
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 
 					courseMent(c);
 				}
@@ -480,6 +790,9 @@ public class CourseData {
 		}
 
 	}
+<<<<<<< HEAD
+	
+=======
 
 	public static void kidsList() {
 
@@ -553,7 +866,9 @@ public class CourseData {
 
 	}
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 //요일 시간별 강좌목록
+	//월요일 오전 선택시
 	public static void mondayAmTime() {
 		try {
 
@@ -576,7 +891,12 @@ public class CourseData {
 		}
 
 	}
+<<<<<<< HEAD
+	
+	//월요일 오후 선택시
+=======
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 	public static void mondayPmTime() {
 		try {
 
@@ -785,6 +1105,8 @@ public class CourseData {
 	}
 
 	// 연령층별 강좌목록
+	
+	//어린이 선택 시
 	public static void child() {
 		try {
 
@@ -812,7 +1134,12 @@ public class CourseData {
 		}
 
 	}
+<<<<<<< HEAD
+	
+	//연령층별  청소년 선택시
+=======
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 	public static void teenager() {
 		try {
 
@@ -840,7 +1167,12 @@ public class CourseData {
 		}
 
 	}
+<<<<<<< HEAD
+	
+	//연령층별 성인 선택시
+=======
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 	public static void adult() {
 		try {
 
@@ -868,7 +1200,11 @@ public class CourseData {
 		}
 
 	}
+<<<<<<< HEAD
+	//연령층별 누구나 선택 시
+=======
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 	public static void everyone() {
 		try {
 
@@ -896,8 +1232,13 @@ public class CourseData {
 		}
 
 	}
+<<<<<<< HEAD
+	
+	//오전 시간 메소드
+=======
 
 	// 오전 오후 시간 메소드
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 	private static void amMethod(String[] temp) {
 		String startTime = temp[3].substring(0, 5);
 
@@ -912,7 +1253,12 @@ public class CourseData {
 			courseMent(c);
 		}
 	}
+<<<<<<< HEAD
+	
+	//오후 시간 메소드
+=======
 
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 	private static void pmMethod(String[] temp) {
 		String startTime = temp[3].substring(0, 5);
 
@@ -927,8 +1273,45 @@ public class CourseData {
 			courseMent(c);
 		}
 	}
+<<<<<<< HEAD
+	
+	private static void courseMent(Course c, Teacher t) {
+		if (c != null) {
+			System.out.printf("[%s] 프로그램명 : %s\n", c.getCategory(), c.getCourseName());
+			System.out.println();
+			System.out.printf("강좌코드: %s\n", c.getNum());
+			System.out.println();
+			System.out.printf("강사명: %s\n", t.getTeacherName());
+			System.out.println();
+			System.out.printf("시간: %s\n", c.getTime());
+			System.out.println();
+			System.out.printf("요일: %s\n", c.getDay());
+			System.out.println();
+			System.out.printf("대상: %s\n", c.getTarget());
+			System.out.println();
+			System.out.printf("수강료: %s\n", c.getCourseFee());
+			System.out.println();
+			System.out.printf("정원: %s\n", c.getPerson());
+			System.out.println();
+			System.out.printf("강좌내용: %s\n", c.getContents());
+			System.out.println();
+			System.out.printf("강좌시작일: %s\n", c.getStartDay());
+			System.out.println();
+			System.out.printf("강의실 : %s\n", c.getRoomNum());
+			System.out.println("-----------------------------------------");
+			System.out.println();
+		}
+		
+		CourseData.courseList.clear();
+	}
+
+
+	//강좌 목록 출력 메소드
+	private static void courseMent(Course c ) {
+=======
 
 	private static void courseMent(Course c) {
+>>>>>>> 6679c8b0f47184567c9dc4effa613fc3c166e565
 		if (c != null) {
 			System.out.printf("[%s] 프로그램명 : %s\n", c.getCategory(), c.getCourseName());
 			System.out.println();
