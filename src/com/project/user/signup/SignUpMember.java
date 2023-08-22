@@ -56,28 +56,34 @@ public class SignUpMember {
       }
 		m.setId(id);
 		
-	
-		System.out.println();
-		System.out.print("비밀번호: ");
-		password = scan.nextLine();
-		
-		while (!passwordCheck(password)) {
-			System.out.println("유효하지 않은 비밀번호입니다. 다시 입력해주세요.");
-			System.out.print("비밀번호: ");
-			password = scan.nextLine();
-		}
-		
-		System.out.println();	
-		System.out.print("비밀번호 확인: ");
-		checkPassword = scan.nextLine();
-		if(!checkPassword.equals(password)) {
-			System.out.println("입력하신 비밀번호와 일치하지 않습니다. 다시 입력해주세요.");
-			System.out.print("비밀번호 확인: ");
-			password = scan.nextLine();
-		}else {
-			
-		}
-		m.setPassword(password);
+	  //회원가입 비밀번호 입력
+	   while(true) {
+         System.out.println("비밀번호: ");
+         password = scan.nextLine();
+         System.out.println();
+         
+         //유효성 검사
+         if(!passwordCheck(password)) {
+            System.out.println("유효하지 않은 비밀번호입니다. 다시 입력해주세요.");
+             continue;
+         }
+         System.out.println();  
+		 
+         //비밀번호 확인
+         while (true) {
+             System.out.print("비밀번호 확인: ");
+             checkPassword = scan.nextLine();
+             System.out.println();
+
+             if (!checkPassword.equals(password)) {
+                 System.out.println("입력하신 비밀번호와 일치하지 않습니다. 다시 입력해주세요.");
+             } else {
+                 break;
+             }
+         }
+         break;
+      }
+	     m.setPassword(password);
 		
 		System.out.println();
 		System.out.print("이름: ");
