@@ -1,15 +1,11 @@
 package com.project.admin.user;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
 
-import com.project.course.Course;
 import com.project.course.CourseHistory;
 import com.project.course.CourseHistoryData;
+import com.project.courseinfo.Course;
 import com.project.courseinfo.CourseData;
 import com.project.user.data.DataMember;
 import com.project.user.data.UserDbms;
@@ -18,7 +14,7 @@ public class AdminUserService {
 
 	public static void showUserList() {
 
-		UserDbms userDbms = new UserDbms(); // 데이터 로드
+//		UserDbms userDbms = new UserDbms(); // 데이터 로드
 
 		// 페이지 출력
 		// 10명씩 보여주기
@@ -102,19 +98,14 @@ public class AdminUserService {
 		AdminUserService.printUserCourse(m.getMemberCode());
 
 		System.out.println("-------------------------------------"); // view로 빼야하나
-
-//		System.out.println();
 	}
 
 	private static void printUserCourse(String memberCode) {
 
+		// 현재 유저가 수강중인 강좌 코드 리스트
 		ArrayList<String> courseNumList = new ArrayList<>();
 
-		// for test
-		Set<String> courseNumSet = new TreeSet<>();
-		Map<String, Course> courseMap = new HashMap<>();
-
-		// historyList 돌면서 객체 뽑아오기
+		// historyList 돌면서 객체 뽑아오기 -> courseNumList에 수강중인 강좌 코드 저장하기
 		for (CourseHistory courseHistory : CourseHistoryData.historyList) {
 
 			// 뽑아온 객체를 읽으면서 멤버코드가 같은지 확인하기
@@ -123,57 +114,29 @@ public class AdminUserService {
 				// 같으면 해당 강좌 코드 받아오기
 				// 강좌코드를 ArrayList에 저장
 				courseNumList.add(courseHistory.getCourseNum());
-
-				// for test
-				courseNumSet.add(courseHistory.getCourseNum());
-//				courseMap = makeMap(courseMap,courseHistory.getCourseNum());
 			}
 		}
 
-		System.out.println(courseNumList);
-		System.out.println(courseNumSet);
+		if (courseNumList.size() == 0) {
+			System.out.println("\t없음");
+			return;
+		}
 
 		// courseList인 경우
-//		for (String num : courseNumList) { // 강좌코드 하나씩 순회
-////			System.out.println("num: " + num);
-//
-//			// ArrayList 순회하면서 강의 데이터에서 강의명 뽑아오기
-//			for (Course c : CourseData.list) {
-//				System.out.println(c.getCourseName());
-//
-//				// 강좌코드가 같다면
-//				if (c.getNum().equals(num)) {
-//
-//					System.out.println("강좌코드가 같은 강의 찾음");
-//					// 강좌명 출력
-//					System.out.println(c.getNum() + ". " + c.getCourseName());
-//				}
-//
-//			}
-//
-//		}
+		for (String curCourseNum : courseNumList) { // 강좌코드 하나씩 순회
+//			System.out.println("num: " + curCourseNum);
 
-		int courseIdx = 1;
-		// courseMap인 경우 - 순회 불필요
-		for (String num : courseNumList) { // 강좌코드 하나씩 순회
-
-			// map에서 강좌 데이터에 해당하는 강좌명 뽑아오기
-			if (courseMap.containsKey(num)) {
-				// 강좌코드가 같다면
-				Course curCourse = courseMap.get(num);
-
-				// 강좌명 출력
-				System.out.println(courseIdx + ". " + curCourse.getNum() + ". " + curCourse.getCourseName());
-				courseIdx++;
+			if (!CourseData.map.containsKey(curCourseNum)) {
+				break;
 			}
+
+			// 강좌 맵에서 현재 강좌 코드 검색
+			Course curCourse = CourseData.map.get(curCourseNum); // 현재 강좌 객체
+//			System.out.println(curCourse.getNum());
+
+			System.out.println(" - " + curCourse.getNum() + " " + curCourse.getCourseName()); // 현재 강좌의 코드와 이름을 출력하기
 		}
 	}
-//
-//	private static HashMap<String, Course> makeMap(Map<String, Course> courseMap, String courseNum) {
-//		HashMap<String, Course> map = new HashMap<>();
-//
-//		return map;
-//	}
 
 	private static String checkDiscountType(DataMember m) {
 		String discountType = "";
@@ -240,7 +203,7 @@ public class AdminUserService {
 		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
 
 		for (DataMember m : userList) {
-			
+
 			// 있다면 - 회원 정보 보여주기
 			if (m.getName().equals(inputName)) {
 				AdminUserService.printMemberData(m); // 찾은 회원 객체 데이터 출력
@@ -258,19 +221,25 @@ public class AdminUserService {
 	}
 
 	private static void searchById() {
+		// 회원 아이디 검색 문자열 출력
+		AdminUserView.printSearchUserId();
+
 		boolean hasData = false;
 
 		Scanner scan = new Scanner(System.in);
 
-		AdminUserView.printSearchUserId();
-
 		String inputId = scan.nextLine();
+		System.out.println("-------------------------------------");
+
+//		UserDbms userDbms = new UserDbms();
 
 		// 입력받은 회원 아이디를 회원 리스트에서 검색하기
 		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
 
+//		System.out.println(userList);
+		
 		for (DataMember m : userList) {
-			System.out.println(m);
+//			System.out.println("m: " + m);
 			// 있다면 - 회원 정보 보여주기
 			if (m.getId().equals(inputId)) {
 				AdminUserService.printMemberData(m); // 찾은 회원 객체 데이터 출력
