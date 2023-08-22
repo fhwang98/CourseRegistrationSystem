@@ -2,13 +2,14 @@ package com.project.admin;
 
 import java.util.Scanner;
 
+import com.project.admin.admininfo.AdminInfoMain;
 import com.project.admin.notice.NoticeMain;
 import com.project.admin.room.RoomMain;
 import com.project.admin.user.AdminUserMain;
 import com.project.notice.NoticeData;
 
 public class AdminMain {
-
+	
 	public static boolean loop;
 
 	static {
@@ -44,6 +45,7 @@ public class AdminMain {
 				NoticeMain.controlNoticeMain();
 			} else if (sel == 6) {
 				//내정보
+				AdminInfoMain.myInfoMain();
 			}  else if (sel == 7) {
 				//로그아웃
 
