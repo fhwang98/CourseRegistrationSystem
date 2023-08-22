@@ -1,10 +1,12 @@
 package com.project.admin;
 
-import java.util.Scanner;
-
 public class AdminUtil {
 
 	public static boolean isDigit(String sel) {
+		//길이가 0일때
+		if (sel.length() == 0) {
+			return false;
+		}
 		for (int i = 0; i < sel.length(); i++) {
 			if (sel.charAt(i) < '0' || sel.charAt(i) > '9') {
 				return false;
@@ -13,14 +15,28 @@ public class AdminUtil {
 		return true;
 	}
 	
-	public static boolean isValidSel(String sel, int min, int max) {
+//	public static boolean isValidSel(String sel, int min, int max) {
+//		
+//		if (sel.replace(" ", "").equals("")) {
+//			return false;
+//		} else if (!isDigit(sel) ||Integer.parseInt(sel) < min || Integer.parseInt(sel) > max) {
+//			return false;
+//		}
+//		return true;
+//	}
+	
+	public static int isValidSel(String input, int min, int max) {
 		
-		if (sel.replace(" ", "").equals("")) {
-			return false;
-		} else if (!isDigit(sel) ||Integer.parseInt(sel) < min || Integer.parseInt(sel) > max) {
-			return false;
+		input = input.replaceAll("(\\s||\\t|\\r\\n|\\n)", "");
+		
+		if (!isDigit(input)) {
+			return -1;
 		}
-		return true;
+		if (Integer.parseInt(input) < min || Integer.parseInt(input) > max) {
+			return -1;
+		}
+		
+		return Integer.parseInt(input);
 	}
 	
 }

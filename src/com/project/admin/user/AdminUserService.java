@@ -1,7 +1,14 @@
 package com.project.admin.user;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 
+import com.project.course.Course;
+import com.project.course.CourseHistory;
+import com.project.course.CourseHistoryData;
+import com.project.courseinfo.CourseData;
 import com.project.user.data.DataMember;
 import com.project.user.data.UserDbms;
 
@@ -26,7 +33,7 @@ public class AdminUserService {
 			inLoop = true;
 			int sel = -1;
 
-			printMemberList("조회");
+			AdminUserView.printMemberList("조회");
 
 			for (int i = 0; i < 10; i++) {
 				if (index == UserDbms.getMemberAllList().size()) { // 멈춰야 한다! 다 출력함
@@ -90,9 +97,54 @@ public class AdminUserService {
 		// 전체 수강 내역 읽고 회원 코드와 일치하는 수강명만 보여주기 (추가할 것)
 		System.out.println("수강내역: ");
 
-		System.out.println("-------------------------------------");
+		AdminUserService.printUserCourse(m.getMemberCode());
+
+		System.out.println("-------------------------------------"); // view로 빼야하나
 
 //		System.out.println();
+	}
+
+	private static void printUserCourse(String memberCode) {
+
+		ArrayList<String> courseNumList = new ArrayList<>();
+		Set<String> courseNumSet = new TreeSet<>();
+
+		// historyList 돌면서 객체 뽑아오기
+		for (CourseHistory courseHistory : CourseHistoryData.historyList) {
+
+			// 뽑아온 객체를 읽으면서 멤버코드가 같은지 확인하기
+			if (courseHistory.getMemberNum().equals(memberCode)) {
+
+				// 같으면 해당 강좌 코드 받아오기
+				// 강좌코드를 ArrayList에 저장
+				courseNumList.add(courseHistory.getCourseNum());
+				courseNumSet.add(courseHistory.getCourseNum());
+			}
+		}
+
+		System.out.println(courseNumList);
+		System.out.println(courseNumSet);
+
+		for (String num : courseNumList) { // 강좌코드 하나씩 순회
+//			System.out.println("num: " + num);
+
+			// ArrayList 순회하면서 강의 데이터에서 강의명 뽑아오기
+			for (Course c : CourseData.list) {
+				System.out.println(c.getCourseName());
+
+				// 강좌코드가 같다면
+				if (c.getNum().equals(num)) {
+
+					System.out.println("강좌코드가 같은 강의 찾음");
+					// 강좌명 출력
+					System.out.println(c.getNum() + ". " + c.getCourseName());
+				}
+
+			}
+
+		}
+
+		// 강의명 출력하기
 	}
 
 	private static String checkDiscountType(DataMember m) {
@@ -115,7 +167,7 @@ public class AdminUserService {
 		Scanner scan = new Scanner(System.in);
 
 		while (true) {
-			printMemberList("검색"); // View에 추출하기
+			AdminUserView.printMemberList("검색"); // View에 추출하기
 
 			System.out.println("0. 뒤로가기");
 			System.out.println("1. 아이디로 검색");
@@ -148,19 +200,61 @@ public class AdminUserService {
 	}
 
 	private static void searchByName() {
-		System.out.print("이름을 입력하세요. : ");
+		boolean hasData = false;
+
+		Scanner scan = new Scanner(System.in);
+
+		AdminUserView.printSearchUserName();
+
+		String inputName = scan.nextLine();
+
+		// 입력받은 회원 아이디를 회원 리스트에서 검색하기
+		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
+
+		for (DataMember m : userList) {
+			// 있다면 - 회원 정보 보여주기
+			if (m.getName().equals(inputName)) {
+				AdminUserService.printMemberData(m); // 찾은 회원 객체 데이터 출력
+				hasData = true;
+			}
+		}
+
+		// 없다면 - 검색결과가 없습니다. 계속하려면 엔터를 입력해주세요. -> 회원 검색 화면(이전 화면)으로 돌아가기
+		if (!hasData) {
+			System.out.println("검색 결과가 없습니다.");
+			System.out.println("계속 하려면 엔터를 입력해주세요.");
+			scan.nextLine();
+		}
 
 	}
 
 	private static void searchById() {
-		System.out.print("아이디를 입력하세요. : ");
+		boolean hasData = false;
 
-	}
+		Scanner scan = new Scanner(System.in);
 
-	private static void printMemberList(String label) {
-		System.out.println("=====================================");
-		System.out.println("            일반 회원 정보 " + label);
-		System.out.println("=====================================");
+		AdminUserView.printSearchUserId();
+
+		String inputId = scan.nextLine();
+
+		// 입력받은 회원 아이디를 회원 리스트에서 검색하기
+		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
+
+		for (DataMember m : userList) {
+			System.out.println(m);
+			// 있다면 - 회원 정보 보여주기
+			if (m.getId().equals(inputId)) {
+				AdminUserService.printMemberData(m); // 찾은 회원 객체 데이터 출력
+				hasData = true;
+			}
+		}
+
+		// 없다면 - 검색결과가 없습니다. 계속하려면 엔터를 입력해주세요. -> 회원 검색 화면(이전 화면)으로 돌아가기
+		if (!hasData) {
+			System.out.println("검색 결과가 없습니다.");
+			System.out.println("계속 하려면 엔터를 입력해주세요.");
+			scan.nextLine();
+		}
 	}
 
 }
