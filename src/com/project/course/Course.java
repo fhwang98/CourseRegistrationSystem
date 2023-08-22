@@ -1,13 +1,13 @@
 package com.project.course;
 
 public class Course {
-	
-	
+
+
 //강좌코드, 카테고리, 강좌명, 강좌시작시간, 요일, 대상, 수강료, 정원, 강사코드, 강좌내용, 강좌시작일, 강의실
-	
-	
-	
-	
+
+
+
+
 	private String num;
 	private String category;
 	private String courseName;
@@ -20,11 +20,11 @@ public class Course {
 	private String contents;
 	private String startDay;
 	private String roomNum;
-	
-	
+
+
 	public Course(String num, String category, String courseName, String time, String day, String target,
-			String courseFee, String person, String teacherNum, String contents, String startDay, String roomNum) {
-		
+				  String courseFee, String person, String teacherNum, String contents, String startDay, String roomNum) {
+
 		this.num = num;
 		this.category = category;
 		this.courseName = courseName;
@@ -167,8 +167,8 @@ public class Course {
 				+ ", teacherNum=" + teacherNum + ", contents=" + contents + ", startDay=" + startDay + ", roomNum="
 				+ roomNum + "]";
 	}
-	
-	
+
+
 }
 	
 	
