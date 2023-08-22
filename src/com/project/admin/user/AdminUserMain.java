@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.project.course.CourseHistoryData;
 import com.project.courseinfo.CourseData;
+import com.project.user.data.UserDbms;
 
 public class AdminUserMain {
 
@@ -43,6 +44,9 @@ public class AdminUserMain {
 	}
 
 	public static void main(String[] args) {
+		//모든 사용자 정보 로드 - 일반, 강사, 관리자
+		UserDbms userDbms = new UserDbms();
+		
 		// 전체 수강 내역 로드
 		CourseHistoryData.load();
 

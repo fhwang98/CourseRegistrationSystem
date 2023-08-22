@@ -10,7 +10,6 @@ import java.util.TreeSet;
 import com.project.course.Course;
 import com.project.course.CourseHistory;
 import com.project.course.CourseHistoryData;
-import com.project.courseinfo.CourseData;
 import com.project.user.data.DataMember;
 import com.project.user.data.UserDbms;
 
@@ -270,7 +269,7 @@ public class AdminUserService {
 		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
 
 		for (DataMember m : userList) {
-			System.out.println(m);
+			System.out.println("m: " + m);
 			// 있다면 - 회원 정보 보여주기
 			if (m.getId().equals(inputId)) {
 				AdminUserService.printMemberData(m); // 찾은 회원 객체 데이터 출력
