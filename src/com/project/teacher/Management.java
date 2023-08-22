@@ -9,7 +9,11 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.project.course.Course;
+import com.project.course.CourseApplication;
 import com.project.teacher.TeacherMain;
+import com.project.user.data.DataTeacher;
+import com.project.user.login.LoginMain;
 
 public class Management {
 
@@ -239,60 +243,61 @@ public class Management {
 
 	public static void loadCourseList() {
 
-		ArrayList<Data> list = new ArrayList<>();
-
-		String teacherCode = "강사의 코드";
-
-		try {
-
-			BufferedReader reader = new BufferedReader(
-					new FileReader("C:\\Users\\juju8\\OneDrive\\바탕 화면\\내프로젝트\\06.데이터\\dataCourse.txt"));
-
-			String line = null;
-
-			line = reader.readLine();
-
-			while ((line = reader.readLine()) != null) {
-
-				String[] temp = line.split(",");
-
-				// 강좌조회시 보여줄 항목들 모두 담아야함 temp[2]말고 추가로 더
-				Data data = new Data(temp[2], temp[3], temp[4], temp[5], temp[6]);
-
-				list.add(data);
-
-			}
-
-			reader.close();
-
-		} catch (Exception e) {
-
-		}
+//		ArrayList<DataTeacher> list = new ArrayList<>();
+//
+//		String teacherCode = "강사의 코드";
+//
+//		try {
+//
+//			BufferedReader reader = new BufferedReader(
+//					new FileReader("data\\dataCourse.txt"));
+//
+//			String line = null;
+//
+//			line = reader.readLine();
+//
+//			while ((line = reader.readLine()) != null) {
+//
+//				String[] temp = line.split(",");
+//
+//				// 강좌조회시 보여줄 항목들 모두 담아야함 temp[2]말고 추가로 더
+//				Data data = new Data(temp[2], temp[3], temp[4], temp[5], temp[6]);
+//
+//				list.add(data);
+//
+//			}
+//
+//			reader.close();
+//
+//		} catch (Exception e) {
+//
+//		}
 
 		int n = 1;
 
 		ArrayList<Course> courseList = new ArrayList<>();
+		
+		//강사 로그인 데이터 가져오기
+		LoginMain lista = new LoginMain();
+		ArrayList<DataTeacher> loginList = lista.getLoginTList();
+		
+		//System.out.println(loginList.get(0).getTeacherCode());
+		
+		//현재 로그인 한 강사 코드
+		String curTeacherCode = loginList.get(0).getTeacherCode();
+		
+		for (Course c : CourseApplication.courseList) {
 
-		for (Course c : list) {
-
-			if (teacherCode.equals(c.getCode())) {
+			if (curTeacherCode.equals(c.getNum())) {
 
 				courseList.add(c);
 
-				System.out.println(n + ". " + c.getName());
+				System.out.println(n + ". " + c.getCourseName());
 
 				n++;
 
 			}
-
-			else {
-
-				System.out.println("일치하는 강사 코드가 없습니다.");
-
-			}
-
 		}
-
 	}
 
 	public static void information() {
