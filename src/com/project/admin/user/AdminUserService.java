@@ -174,6 +174,7 @@ public class AdminUserService {
 				break;
 			} else if (sel.equals("1")) {
 				searchById();
+				break;
 			} else if (sel.equals("2")) {
 				searchByName();
 			} else if (sel.equals("3")) {
@@ -231,19 +232,34 @@ public class AdminUserService {
 		String inputId = scan.nextLine();
 		System.out.println("-------------------------------------");
 
-//		UserDbms userDbms = new UserDbms();
-
 		// 입력받은 회원 아이디를 회원 리스트에서 검색하기
 		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
 
-//		System.out.println(userList);
-		
 		for (DataMember m : userList) {
-//			System.out.println("m: " + m);
 			// 있다면 - 회원 정보 보여주기
 			if (m.getId().equals(inputId)) {
 				AdminUserService.printMemberData(m); // 찾은 회원 객체 데이터 출력
+				
 				hasData = true;
+
+				AdminUserView.printUserSearch();
+
+				while (true) {
+					String inputSearch = scan.nextLine();
+
+					if (inputSearch.equals("0")) { // 이전 메인 화면으로 이동
+						return;
+					} else if (inputSearch.equals("1")) {
+						AdminUserService.modifyMember(m);
+						return;
+					} else if (inputSearch.equals("2")) {
+						AdminUserService.deleteMember(m);
+						return;
+					} else {
+						AdminUserView.printInvalidInput(); // 다시 입력받기
+					}
+				}
+
 			}
 		}
 
@@ -253,6 +269,16 @@ public class AdminUserService {
 			System.out.println("계속 하려면 엔터를 입력해주세요.");
 			scan.nextLine();
 		}
+	}
+
+	private static void deleteMember(DataMember m) {
+		// TODO Auto-generated method stub
+
+	}
+
+	private static void modifyMember(DataMember m) {
+		
+
 	}
 
 }

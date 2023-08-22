@@ -46,4 +46,12 @@ public class AdminUserView {
 		System.out.println("=====================================");
 		System.out.print("이름을 입력하세요. : ");
 	}
+
+	public static void printUserSearch() {
+		System.out.println("0. 뒤로가기");
+		System.out.println("1. 회원정보 수정");
+		System.out.println("2. 회원 탈퇴");
+		System.out.println("-------------------------------------");
+		System.out.print("번호 입력 : ");
+	}
 }
