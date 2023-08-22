@@ -83,7 +83,8 @@ public class DataMember {
 	}
 
 	public void setTel(String tel) {
-		this.tel = tel;
+		String temp = tel.replaceAll("-","");
+		this.tel = temp;
 	}
 
 	public String getBirth() {

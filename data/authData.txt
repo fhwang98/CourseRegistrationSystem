@@ -1,0 +1,13 @@
+N013,1,sutnqp3149,이찬
+T001,2,aldfjsk0425,홍길동
+A006,3,tjdnftlwkd0192,김민석
+N005,1,jggfzb3073,권순영
+N008,1,csjodgl968,이석민
+N014,1,urujxie091,차은우
+T004,2,badlkfja3ed1,민윤기
+T009,2,enjvhv227,박지민
+A010,3,asmdxkq410,임윤아
+A009,3,nvwdmby2669,이순규
+N033,1,likbskp464,김훈훈
+T033,2,gjjrtry937,정동혜
+A019,3,nplfcrx659,신길은
