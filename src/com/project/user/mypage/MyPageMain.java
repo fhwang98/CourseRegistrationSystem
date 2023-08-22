@@ -3,6 +3,10 @@ package com.project.user.mypage;
 import java.util.Scanner;
 
 public class MyPageMain {
+	
+	public static void main(String[] args) {
+		mypage();
+	}
 
 	public static void mypage() {
 		
@@ -18,7 +22,7 @@ public class MyPageMain {
 			
 			String sel = scan.nextLine();
 			
-			String id = "otqapf7199";
+			String id = "otqapf7199"; // TODO 로그인 연동
 			
 			if (sel.equals("0")) {
 				loop = false; // 루프 빠져나가고 myPageData.save 후에 메인화면으로 이동
@@ -34,6 +38,7 @@ public class MyPageMain {
 				MyPageService.logout();
 			} else if (sel.equals("6")) {
 				MyPageService.memDelete();
+				loop = false;
 			} else {
 				System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
 			}
@@ -42,7 +47,7 @@ public class MyPageMain {
 				
 		MyPageData.save();
 		
-		//???.main(); 메인화면으로 이동
+		// TODO ???.???(); 메인화면으로 이동 
 	}
 	
 }

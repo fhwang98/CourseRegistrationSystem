@@ -10,7 +10,7 @@ public class MyPageService {
 		
 		MyPageView.subTitle("내 정보 조회");
 		
-		String id = "otqapf7199";
+		String id = "otqapf7199"; // TODO 로그인 연동
 		
 		for (Member m : MyPageData.memberList) {
 			if (m.getId().equals(id)) {
@@ -54,7 +54,7 @@ public class MyPageService {
 		MyPageView.subTitle("내 정보 수정");
 		MyPageView.changeList();
 		
-		String id = "otqapf7199";
+		String id = "otqapf7199"; // TODO 로그인 연동
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -248,7 +248,7 @@ public class MyPageService {
 		
 		MyPageView.subTitle("수강 내역 조회");
 		
-		String id = "otqapf7199";
+		String id = "otqapf7199"; // TODO 로그인 연동
 		
 		for (Member m : MyPageData.memberList) {
 			if (m.getId().equals(id)) {
@@ -334,7 +334,7 @@ public class MyPageService {
 		
 		MyPageView.subTitle("수강 신청 취소");
 		
-		String id = "otqapf7199";
+		String id = "otqapf7199"; // TODO 로그인 연동
 		
 		System.out.println("0. 마이페이지");
 		System.out.println("===========================");
@@ -423,13 +423,15 @@ public class MyPageService {
 	
 	public static void logout() {
 		
+		// TODO 로그아웃 후 메인 연결
+		
 	}
 	
 	public static void memDelete() {
 		
 		MyPageView.subTitle("회원 영구 탈퇴");
 		
-		String id = "otqapf7199";
+		String id = "otqapf7199"; // TODO 로그인 연동
 		
 		System.out.println();
 		System.out.println("탈퇴한 계정은 절대 복구되지 않습니다.\n"
@@ -459,18 +461,10 @@ public class MyPageService {
 				
 			} else if (answer.equals("N") || answer.equals("n")) {
 				loop = false;
-				MyPageView.pause();
+				System.out.println("취소하였습니다.");
 			} else {
 				System.out.println("잘못 입력하였습니다. 다시 입력해주세요.");
-			}
-			
-		}
-		
-	
-		
+			}	
+		}	
 	}
-
-
-
-
 }
