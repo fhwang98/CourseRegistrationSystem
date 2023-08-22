@@ -2,6 +2,8 @@ package com.project.admin.user;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.TreeSet;
 
 import com.project.course.Course;
 import com.project.course.CourseHistory;
@@ -105,6 +107,7 @@ public class AdminUserService {
 	private static void printUserCourse(String memberCode) {
 
 		ArrayList<String> courseNumList = new ArrayList<>();
+		Set<String> courseNumSet = new TreeSet<>();
 
 		// historyList 돌면서 객체 뽑아오기
 		for (CourseHistory courseHistory : CourseHistoryData.historyList) {
@@ -115,10 +118,12 @@ public class AdminUserService {
 				// 같으면 해당 강좌 코드 받아오기
 				// 강좌코드를 ArrayList에 저장
 				courseNumList.add(courseHistory.getCourseNum());
+				courseNumSet.add(courseHistory.getCourseNum());
 			}
 		}
 
 		System.out.println(courseNumList);
+		System.out.println(courseNumSet);
 
 		for (String num : courseNumList) { // 강좌코드 하나씩 순회
 //			System.out.println("num: " + num);
@@ -126,7 +131,7 @@ public class AdminUserService {
 			// ArrayList 순회하면서 강의 데이터에서 강의명 뽑아오기
 			for (Course c : CourseData.list) {
 				System.out.println(c.getCourseName());
-				
+
 				// 강좌코드가 같다면
 				if (c.getNum().equals(num)) {
 
