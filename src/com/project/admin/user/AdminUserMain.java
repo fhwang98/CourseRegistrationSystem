@@ -53,7 +53,7 @@ public class AdminUserMain {
 
 		// 전체 강좌 목록 로드
 //		CourseData.everyone();
-		CourseData.allCourse();
+		CourseData.allCourseMap();
 
 		AdminUserMain.showAdminUserMain();
 
