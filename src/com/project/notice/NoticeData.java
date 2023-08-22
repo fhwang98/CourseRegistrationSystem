@@ -37,7 +37,7 @@ public class NoticeData {
 	public static void load() {
 		
 				try {
-					BufferedReader reader = new BufferedReader(new FileReader("data//noticedummy.txt"));
+					BufferedReader reader = new BufferedReader(new FileReader("data\\noticedummy.txt"));
 					String line = null;
 					while ((line = reader.readLine()) != null) {
 						String[] temp = line.split("✡");

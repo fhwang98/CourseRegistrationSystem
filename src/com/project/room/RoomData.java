@@ -23,7 +23,7 @@ public class RoomData {
 	public static void load() {
 		
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader("data//dataRoomSchedule.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("data\\dataRoomSchedule.txt"));
 			String line = null;
 			//강의실 코드, 요일, 시간, 강좌 코드
 			//101,월화수목금,09:00,C001
@@ -51,7 +51,7 @@ public class RoomData {
 			
 			
 			
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data//dataRoom.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataRoom.txt"));
 			for (Room r : roomList) {
 				writer.write(r.toString());
 				writer.newLine();

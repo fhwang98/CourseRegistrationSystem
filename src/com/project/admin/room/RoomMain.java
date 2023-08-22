@@ -9,16 +9,13 @@ import com.project.room.RoomScheduleData;
 
 public class RoomMain {
 	
-	public static boolean loop;
-	
-	static {
-		loop = true;
-	}
-	
+
 	public static void controlRoom() {
 		
 		RoomScheduleData.load();
 		RoomData.load();
+		
+		boolean loop = true;
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -26,18 +23,17 @@ public class RoomMain {
 			
 			RoomView.printRoomMenu();
 			
-			String sel = scan.nextLine();
-			if(!AdminUtil.isValidSel(sel, 0, 2)) {
-				AdminView.printInvalidInputMessage();
-				AdminView.printPendingMessage();
-				scan.nextLine();
+			String input = scan.nextLine();
+			int sel = AdminUtil.isValidSel(input, 0, 2); 
+			if(sel == -1) {
+				AdminView.printInvalidInputMessage(scan);
 				continue;
-			} else if (sel.equals("0")) {
+			} else if (sel == 0) {
 				loop = false;
-			} else if (sel.equals("1")) {
+			} else if (sel == 1) {
 				//전체 보기
 				RoomService.showAll();
-			} else if (sel.equals("2")) {
+			} else if (sel == 2) {
 				//검색 하기
 				System.out.println("search room");
 				RoomService.searchRoom();

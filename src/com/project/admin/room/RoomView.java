@@ -30,9 +30,9 @@ public class RoomView {
 		for (int i = 0; i < schedule.size(); i++ ) {
 			
 			if (i == 0) {
-				System.out.printf("강의 일정:\t%s\n",schedule.get(i).replace("_ _ (_)", "없음"));
+				System.out.printf("강의 일정:\t%s\n",schedule.get(i).replace("_ _ (_)", "없음").replace("-오전", "").replace("-오후", ""));
 			} else {
-				System.out.printf("\t\t%s\n",schedule.get(i));
+				System.out.printf("\t\t%s\n",schedule.get(i).replace("-오전", "").replace("-오후", ""));
 			}
 		}
 		
@@ -67,8 +67,18 @@ public class RoomView {
 		System.out.println("요일을 선택해 주세요");
 		System.out.println("--------------------------------------------------");
 		System.out.println("1. 전체");
-		System.out.println("2. 월, 수, 금");
-		System.out.println("3. 화, 목");
+		System.out.println("2. 월수금");
+		System.out.println("3. 화목");
+		
+	}
+	
+	public static void printSearchSelectSlot() {
+		
+		System.out.println("시간대를 선택해 주세요");
+		System.out.println("--------------------------------------------------");
+		System.out.println("1. 전체");
+		System.out.println("2. 오전");
+		System.out.println("3. 오후");
 		
 	}
 	
