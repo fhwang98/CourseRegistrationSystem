@@ -23,11 +23,15 @@ public class AdminUserMain {
 			if (sel.equals("0")) { // 이전 페이지인 관리자 로그인 후 화면으로 돌아간다.
 				break;
 			} else if (sel.equals("1")) { // 전체 회원 조회 페이지로 이동
+				// 기능
 				AdminUserService.showUserList();
+
 				AdminUserView.printAdminUserMain();
 //				break;
 			} else if (sel.equals("2")) { // 회원 검색 페이지로 이동
+				// 기능
 				AdminUserService.searchUser();
+
 				AdminUserView.printAdminUserMain();
 //				break;
 			} else { // invalid
