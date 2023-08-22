@@ -108,13 +108,10 @@ public class AdminUserService {
 
 	private static void printUserCourse(String memberCode) {
 
+		// 현재 유저가 수강중인 강좌 코드 리스트
 		ArrayList<String> courseNumList = new ArrayList<>();
 
-		// for test
-		Set<String> courseNumSet = new TreeSet<>();
-		Map<String, Course> courseMap = new HashMap<>();
-
-		// historyList 돌면서 객체 뽑아오기
+		// historyList 돌면서 객체 뽑아오기 -> courseNumList에 수강중인 강좌 코드 저장하기
 		for (CourseHistory courseHistory : CourseHistoryData.historyList) {
 
 			// 뽑아온 객체를 읽으면서 멤버코드가 같은지 확인하기
@@ -123,50 +120,49 @@ public class AdminUserService {
 				// 같으면 해당 강좌 코드 받아오기
 				// 강좌코드를 ArrayList에 저장
 				courseNumList.add(courseHistory.getCourseNum());
-
-				// for test
-				courseNumSet.add(courseHistory.getCourseNum());
-//				courseMap = makeMap(courseMap,courseHistory.getCourseNum());
 			}
 		}
 
 		System.out.println(courseNumList);
-		System.out.println(courseNumSet);
 
 		// courseList인 경우
-//		for (String num : courseNumList) { // 강좌코드 하나씩 순회
-////			System.out.println("num: " + num);
-//
-//			// ArrayList 순회하면서 강의 데이터에서 강의명 뽑아오기
-//			for (Course c : CourseData.list) {
-//				System.out.println(c.getCourseName());
-//
-//				// 강좌코드가 같다면
-//				if (c.getNum().equals(num)) {
-//
-//					System.out.println("강좌코드가 같은 강의 찾음");
-//					// 강좌명 출력
-//					System.out.println(c.getNum() + ". " + c.getCourseName());
-//				}
-//
-//			}
-//
-//		}
-
+		
 		int courseIdx = 1;
-		// courseMap인 경우 - 순회 불필요
+
 		for (String num : courseNumList) { // 강좌코드 하나씩 순회
+			System.out.println("num: " + num);
 
-			// map에서 강좌 데이터에 해당하는 강좌명 뽑아오기
-			if (courseMap.containsKey(num)) {
+			System.out.println(CourseData.list);
+			// 전체 강좌 리스트 순회
+			for (Course c : CourseData.list) {
+				System.out.println(c.getCourseName());
+
 				// 강좌코드가 같다면
-				Course curCourse = courseMap.get(num);
+				if (c.getNum().equals(num)) {
 
-				// 강좌명 출력
-				System.out.println(courseIdx + ". " + curCourse.getNum() + ". " + curCourse.getCourseName());
-				courseIdx++;
+//					System.out.println("강좌코드가 같은 강의 찾음");
+					// 강좌명 출력
+					System.out.println(c.getNum() + " " + c.getCourseName());
+				}
+
 			}
+
 		}
+
+//		int courseIdx = 1;
+//		// courseMap인 경우 - 순회 불필요
+//		for (String num : courseNumList) { // 강좌코드 하나씩 순회
+//
+//			// map에서 강좌 데이터에 해당하는 강좌명 뽑아오기
+//			if (courseMap.containsKey(num)) {
+//				// 강좌코드가 같다면
+//				Course curCourse = courseMap.get(num);
+//
+//				// 강좌명 출력
+//				System.out.println(courseIdx + ". " + curCourse.getNum() + ". " + curCourse.getCourseName());
+//				courseIdx++;
+//			}
+//		}
 	}
 //
 //	private static HashMap<String, Course> makeMap(Map<String, Course> courseMap, String courseNum) {
@@ -240,7 +236,7 @@ public class AdminUserService {
 		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
 
 		for (DataMember m : userList) {
-			
+
 			// 있다면 - 회원 정보 보여주기
 			if (m.getName().equals(inputName)) {
 				AdminUserService.printMemberData(m); // 찾은 회원 객체 데이터 출력
@@ -270,7 +266,7 @@ public class AdminUserService {
 		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
 
 		for (DataMember m : userList) {
-			System.out.println(m);
+			System.out.println("m: " + m);
 			// 있다면 - 회원 정보 보여주기
 			if (m.getId().equals(inputId)) {
 				AdminUserService.printMemberData(m); // 찾은 회원 객체 데이터 출력
