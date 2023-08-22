@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Popularity {
 
+	//이달의 추천 선택 시 출력 멘트
 	public static void popularity() {
 		
 		Scanner scan = new Scanner(System.in);

@@ -11,7 +11,7 @@ public class Individual {
 		individualMent();
 	}
 
-
+//개인 강좌 추천 출력 멘트
 	private static void individualMent() {
 
 		System.out.println();
@@ -160,10 +160,5 @@ public class Individual {
 		}
 
 	}
-
-//	private static void goBack() {
-//		CourseInfo.lectureInfo();
-//		
-//	}
 
 }// 문화, 피아노, 어린이, 체육, 블럭교실

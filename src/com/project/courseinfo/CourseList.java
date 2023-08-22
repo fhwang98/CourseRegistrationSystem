@@ -11,6 +11,7 @@ public class CourseList {
 		lectureListMent();
 	}
 
+	//강좌 목록 선택시 출력 멘트
 	private static void lectureListMent() {
 
 		System.out.println();

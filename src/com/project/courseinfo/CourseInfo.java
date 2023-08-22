@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class CourseInfo {
 	
-		
+	//수강 안내 페이지 출력 멘트
 	public static void lectureInfo() {
 		
 		
@@ -58,10 +58,6 @@ public class CourseInfo {
 		System.out.println("------------------------");
 		System.out.print("입력: ");
 		
-	}
-	
-	private static void goMain() {
-	//	Main.mainMent();
 	}
 		
 	
