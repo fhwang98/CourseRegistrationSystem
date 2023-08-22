@@ -24,9 +24,6 @@ public class AdminMain {
 
 			String input = scan.nextLine();
 			int sel = AdminUtil.isValidSel(input, 1, 7);
-			System.out.println();
-			System.out.println(sel);
-			System.out.println();
 			if (sel == -1) {
 				AdminView.printInvalidInputMessage(scan);
 			} else if (sel == 1) {

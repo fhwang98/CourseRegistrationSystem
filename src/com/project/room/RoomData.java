@@ -23,19 +23,26 @@ public class RoomData {
 	public static void load() {
 		
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader("data\\dataRoomSchedule.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("data//dataRoomSchedule.txt"));
+			
+			
 			String line = null;
+			
 			//강의실 코드, 요일, 시간, 강좌 코드
 			//101,월화수목금,09:00,C001
+			
 			while ((line = reader.readLine()) != null) {
 				String temp[] = line.split(",");
 				//String roomNum = temp[0];
+				//강의실 넘버, 스케줄, 강좌 코드 
 				String schedule = temp[1] + " " + temp[2] + " (" + temp[3] + ")";
 
+				//강의실 번호의 인덱스를 가져와
 				int idx = getIdx(temp[0]);
+				ArrayList<String> scheduleList = new ArrayList<String>();
 				
 				if (idx == -1) {
-					ArrayList<String> scheduleList = new ArrayList<String>();
+					//인덱스를 못찾았다 = 강의실 데이터 아직 안쌓았다 
 					scheduleList.add(schedule);
 					roomList.add(new Room(temp[0], scheduleList));
 				} else {
@@ -51,7 +58,7 @@ public class RoomData {
 			
 			
 			
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataRoom.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data//dataRoom.txt"));
 			for (Room r : roomList) {
 				writer.write(r.toString());
 				writer.newLine();
@@ -67,6 +74,9 @@ public class RoomData {
 
 
 	private static int getIdx(String roomNum) {
+		
+		//ArrayList 를 전부 돌면서 해당 객체의 roomNum이 인자와 일치하는지 확인해
+		//인덱스 반환해줄거라서 for문
 		for (int i =0 ; i < roomList.size(); i++) {
 			if (roomList.get(i).getRoomNum().equals(roomNum)) {
 				return i;

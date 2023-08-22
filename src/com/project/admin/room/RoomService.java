@@ -20,25 +20,28 @@ public class RoomService {
 		
 	}
 	
-	
+	public static ArrayList<Room> getAvailableRoom() {
+		return availableRoom;
+	}
+
 	public static Scanner scan;
 	
 	static {
 		scan= new Scanner(System.in);
 	}
-	public static void showAll() {
+	public static void showAll(ArrayList<Room> list) {
 		
 		// 리스트가 정렬이 되어있
 		int page = 0;
-		int lastPage = RoomData.getRoomList().size() / 10 - 1;
+		int lastPage = list.size() / 10 - 1;
 		
-		System.out.println("전체 강의실 목록을 조회합니다. ");
+		System.out.println("강의실 목록을 조회합니다. ");
 		AdminView.printPendingMessage(scan);
 		
 		boolean loop = true;
 		while (loop) {
 
-			RoomView.printRoomList(page);
+			RoomView.printRoomList(page, list);
 			RoomView.printRoomListMenu(page, lastPage);
 			
 			String input = scan.nextLine();
@@ -125,9 +128,11 @@ public class RoomService {
 	private static boolean isValidDay(String inputDay) {
 
 		inputDay = inputDay.replaceAll("(\\s||\\t|\\r\\n|\\n)", "");
+		
+		//월화수목금 이외의 것을 포함하고 있다 -> false 때려
 		for (int i = 0; i < inputDay.length(); i++) {
-			if ( !inputDay.equals("월") || !inputDay.equals("화") || !inputDay.equals("수")
-					|| !inputDay.equals("목") || !inputDay.equals("금")) {
+			if (inputDay.charAt(i) != '월' && inputDay.charAt(i) != '화' &&
+					inputDay.charAt(i) != '수' && inputDay.charAt(i) != '목' && inputDay.charAt(i) != '금') {
 				return false;
 			}
 		}
@@ -161,50 +166,10 @@ public class RoomService {
 				availableRoom.add(r);		
 			}
 		}
+
+		showAll(availableRoom);
 	}
 	
-//	public static void showAvailableRoom(ArrayList<Room> availableRoom) {
-//		
-//		// 리스트가 정렬이 되어있
-//		int page = 0;
-//		int lastPage = availableRoom.size() / 10 - 1;
-//		
-//		System.out.println("검색한 강의실 목록을 조회합니다. ");
-//		AdminView.printPendingMessage(scan);
-//		
-//		boolean loop = true;
-//		while (loop) {
-//
-//			RoomView.printRoomList(page);
-//			RoomView.printRoomListMenu(page, lastPage);
-//			
-//			String input = scan.nextLine();
-//			int sel = AdminUtil.isValidSel(input, 0, 2);
-//			if (sel == -1) {
-//				AdminView.printInvalidInputMessage(scan);
-//				continue;
-//			} else if (sel == 0) {
-//				loop = false;
-//			} else if (sel == 1) {
-//				if (page == 0) {
-//					//next page
-//					page++;
-//				} else {
-//					//previous page
-//					page--;
-//				}
-//				
-//			} else if (sel == 2) {
-//				if (page == 0 || page == lastPage) {
-//					//invalid input
-//					AdminView.printInvalidInputMessage(scan);
-//				} else {
-//					//next page
-//					page++;
-//				}
-//				
-//			}
-//		}
-//	}
+
 	
 }
