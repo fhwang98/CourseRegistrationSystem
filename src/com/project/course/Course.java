@@ -1,100 +1,48 @@
 package com.project.course;
 
 public class Course {
-	
-	
+
+
 //강좌코드, 카테고리, 강좌명, 강좌시작시간, 요일, 대상, 수강료, 정원, 강사코드, 강좌내용, 강좌시작일, 강의실
-	
-	
-	
-	
+
+
+
+
 	private String num;
 	private String category;
-	private String lectureName;
-	private String Time;
-	private String Day;
-	private String Target;
-	private String lectureFee;
+	private String courseName;
+	private String time;
+	private String day;
+	private String target;
+	private String courseFee;
 	private String person;
 	private String teacherNum;
 	private String contents;
 	private String startDay;
 	private String roomNum;
-	
-	
-	
-	public Course(String num, String category, String lectureName, String time, String day, String target,
-			String lectureFee, String person, String teacherNum, String contents, String startDay, String roomNum) {
-		super();
+
+
+	public Course(String num, String category, String courseName, String time, String day, String target,
+				  String courseFee, String person, String teacherNum, String contents, String startDay, String roomNum) {
+
 		this.num = num;
 		this.category = category;
-		this.lectureName = lectureName;
-		Time = time;
-		Day = day;
-		Target = target;
-		this.lectureFee = lectureFee;
+		this.courseName = courseName;
+		this.time = time;
+		this.day = day;
+		this.target = target;
+		this.courseFee = courseFee;
 		this.person = person;
 		this.teacherNum = teacherNum;
 		this.contents = contents;
 		this.startDay = startDay;
 		this.roomNum = roomNum;
 	}
-	
-	public String getTeacherNum() {
-		return teacherNum;
-	}
-
-
-
-	public void setTeacherNum(String teacherNum) {
-		this.teacherNum = teacherNum;
-	}
-
-
-
-	public String getContents() {
-		return contents;
-	}
-
-
-
-	public void setContents(String contents) {
-		this.contents = contents;
-	}
-
-
-
-	public String getStartDay() {
-		return startDay;
-	}
-
-
-
-	public void setStartDay(String startDay) {
-		this.startDay = startDay;
-	}
-
-
-
-	public String getRoomNum() {
-		return roomNum;
-	}
-
-
-
-	public void setRoomNum(String roomNum) {
-		this.roomNum = roomNum;
-	}
-	
-
-
-
 
 
 	public String getNum() {
 		return num;
 	}
-
 
 
 	public void setNum(String num) {
@@ -112,58 +60,54 @@ public class Course {
 	}
 
 
-	public String getLectureName() {
-		return lectureName;
+	public String getCourseName() {
+		return courseName;
 	}
 
 
-	public void setLectureName(String lectureName) {
-		this.lectureName = lectureName;
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
 	}
 
 
 	public String getTime() {
-		return Time;
+		return time;
 	}
 
 
 	public void setTime(String time) {
-		Time = time;
+		this.time = time;
 	}
-
 
 
 	public String getDay() {
-		return Day;
+		return day;
 	}
 
 
-
 	public void setDay(String day) {
-		Day = day;
+		this.day = day;
 	}
 
 
 	public String getTarget() {
-		return Target;
+		return target;
 	}
 
 
 	public void setTarget(String target) {
-		Target = target;
+		this.target = target;
 	}
 
 
-	public String getLectureFee() {
-		return lectureFee;
+	public String getCourseFee() {
+		return courseFee;
 	}
 
 
-
-	public void setLectureFee(String lectureFee) {
-		this.lectureFee = lectureFee;
+	public void setCourseFee(String courseFee) {
+		this.courseFee = courseFee;
 	}
-
 
 
 	public String getPerson() {
@@ -174,17 +118,59 @@ public class Course {
 	public void setPerson(String person) {
 		this.person = person;
 	}
-	
+
+
+	public String getTeacherNum() {
+		return teacherNum;
+	}
+
+
+	public void setTeacherNum(String teacherNum) {
+		this.teacherNum = teacherNum;
+	}
+
+
+	public String getContents() {
+		return contents;
+	}
+
+
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+
+
+	public String getStartDay() {
+		return startDay;
+	}
+
+
+	public void setStartDay(String startDay) {
+		this.startDay = startDay;
+	}
+
+
+	public String getRoomNum() {
+		return roomNum;
+	}
+
+
+	public void setRoomNum(String roomNum) {
+		this.roomNum = roomNum;
+	}
+
+
 	@Override
 	public String toString() {
-		return "Corse [num=" + num + ", category=" + category + ", lectureName=" + lectureName + ", Time=" + Time
-				+ ", Day=" + Day + ", Target=" + Target + ", lectureFee=" + lectureFee + ", person=" + person
+		return "Course [num=" + num + ", category=" + category + ", courseName=" + courseName + ", time=" + time
+				+ ", day=" + day + ", target=" + target + ", courseFee=" + courseFee + ", person=" + person
 				+ ", teacherNum=" + teacherNum + ", contents=" + contents + ", startDay=" + startDay + ", roomNum="
 				+ roomNum + "]";
 	}
 
 
-	
-
-	
 }
+	
+	
+	
+	

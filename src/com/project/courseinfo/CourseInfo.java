@@ -13,27 +13,32 @@ public class CourseInfo {
 		
 		lectureInfoList();
 		
-		int input = scan.nextInt();
+		String input = scan.nextLine();
 		
-		if(input == 0) {
-			goMain();
-			
-		} else if (input == 1) {
-			Popularity.popularity();
-			
-		} else if (input == 2) {
-			Individual.individual();
-			
-		} else if(input == 3) {
-			CourseList.lectureList();
-			
-		} else if(input == 4) {
-			Discount.discount();
-			
-		} else if(input == 5) {
-			Refund.refund();
+		//
+		while (!input.equals("0")) {
+
+				if (input.equals("1")) {
+					Popularity.popularity();
+				} else if(input.equals("2")) {
+					Individual.individual();
+				} else if(input.equals("3")) {
+					CourseList.lectureList();
+				} else if(input.equals("4")) {
+					Discount.discount();
+				} else if(input.equals("5")) {
+					Refund.refund();
+				} else {
+				System.out.println("목록에 있는 번호를 입력하세요.");
+				System.out.print("입력: ");
+				input = scan.nextLine();
+
+				
+			}
 		}
-		
+		if(input.equals("0")) {
+	//		Main.mainMent();
+		}
 		
 	}
 
@@ -51,12 +56,12 @@ public class CourseInfo {
 		System.out.println("4. 할인 대상 안내");
 		System.out.println("5. 환불 안내");
 		System.out.println("------------------------");
-		System.out.print("번호 입력: ");
+		System.out.print("입력: ");
 		
 	}
 	
 	private static void goMain() {
-//		Main.mainMent();
+	//	Main.mainMent();
 	}
 		
 	
