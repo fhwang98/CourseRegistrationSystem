@@ -17,7 +17,7 @@ public class NoticeMain {
 	
 	static {
 		page = 0;
-		lastpage =NoticeData.getList().size() / 10 - 1;
+		lastpage =0;
 		mainLoop = true;
 		checkingLoop = true;
 		scan = new Scanner(System.in);
@@ -34,7 +34,9 @@ public class NoticeMain {
 	public static void controlNoticeMain() {
 		NoticeData.load();
 		 //공지사항 전체 루프
+		lastpage = NoticeData.getList().size() / 10;
 		while (mainLoop) {
+			
 			//공지사항 첫화면 출력
 			NoticeView.printNoticePage(page);
 			 // 뒤로가기, 이전페이지, 다음페이지, 확인, 등록
@@ -45,6 +47,7 @@ public class NoticeMain {
 			if (sel1 == -1) {
 				AdminView.printInvalidInputMessage(scan);
 			}  else if (sel1 ==0) { //뒤로가기
+				page = 0;
 				mainLoop = false;
 			} else if (sel1 == 1) {
 				firstSelect1();
@@ -56,9 +59,6 @@ public class NoticeMain {
 				firstSelect4();
 			}
 		}
-		
-		mainLoop = true;
-		checkingLoop = true;
 	}
 
 

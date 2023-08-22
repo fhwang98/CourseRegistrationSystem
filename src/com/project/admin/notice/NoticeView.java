@@ -25,11 +25,11 @@ public class NoticeView {
 	}
 	
 	
-	public static void printNotice(int no) {
+	public static void printNotice(int index) {
 
 		printNoticeHead();
 		
-		Notice n = NoticeData.getList().get(no);
+		Notice n = NoticeData.getList().get(index);
 		System.out.printf("제목\t\t:\t%s\r\n", n.getTitle());
 		System.out.printf("게시일\t:\t%tF\r\n", n.getUploadTime());
 		//TODO DataTeacher 에서 list 를 가져와서 n.getWriter() 와 일치하는 코드를 가진 사람의 이름을 가져온다
@@ -82,7 +82,7 @@ public class NoticeView {
 		if (page == 0 || page == NoticeMain.getLastpage()) {
 			if (page == 0) {
 				System.out.println("1. 다음 페이지");
-			} else {
+			} else if (page == NoticeMain.getLastpage()) {
 				System.out.println("1. 이전 페이지");
 			}
 			System.out.println("2. 공지사항 확인");
