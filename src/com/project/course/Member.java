@@ -1,102 +1,121 @@
 package com.project.course;
 
 public class Member {
-//회원코드, 아이디, 비밀버노, 이름, 전화버노,생년월일, 할인여부, 은행명, 계좌번호, 탈퇴여부
-	private String memberCode;
+
+	private String no;
 	private String id;
-	private String pw;
+	private String pwd;
 	private String name;
 	private String phoneNum;
-	private String birthDay;
+	private String birth;
 	private String discount;
-	private String bankName;
-	private String bankNum;
-	private String out;
-	
-	
-	
-	
-	public Member(String memberCode, String id, String pw, String name, String phoneNum, String birthDay,
-			String discount, String bankName, String bankNum, String out) {
-		super();
-		this.memberCode = memberCode;
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.phoneNum = phoneNum;
-		this.birthDay = birthDay;
-		this.discount = discount;
-		this.bankName = bankName;
-		this.bankNum = bankNum;
-		this.out = out;
-	}
-	
-	public String getMembercode() {
-		return memberCode;
-	}
-	public void setMembercode(String membercode) {
-		this.memberCode = membercode;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
-	public String getPw() {
-		return pw;
-	}
-	public void setPw(String pw) {
-		this.pw = pw;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getPhoneNum() {
-		return phoneNum;
-	}
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
-	}
-	public String getBirthDay() {
-		return birthDay;
-	}
-	public void setBirthDay(String birthDay) {
-		this.birthDay = birthDay;
-	}
-	public String getDiscount() {
-		return discount;
-	}
-	public void setDiscount(String discount) {
-		this.discount = discount;
-	}
-	public String getBankName() {
-		return bankName;
-	}
-	public void setBankName(String bankName) {
-		this.bankName = bankName;
-	}
-	public String getBankNum() {
-		return bankNum;
-	}
-	public void setBankNum(String bankNum) {
-		this.bankNum = bankNum;
-	}
-	public String getOut() {
-		return out;
-	}
-	public void setOut(String out) {
-		this.out = out;
-	}
+	private String bank;
+	private String accountNum;
+	private String delete;
 
 	@Override
 	public String toString() {
-		return "Member [membercode=" + memberCode + ", id=" + id + ", pw=" + pw + ", name=" + name + ", phoneNum="
-				+ phoneNum + ", birthDay=" + birthDay + ", discount=" + discount + ", bankName=" + bankName
-				+ ", bankNum=" + bankNum + ", out=" + out + "]";
+		return "Member [no=" + no + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", phoneNum=" + phoneNum
+				+ ", birth=" + birth + ", discount=" + discount + ", bank=" + bank + ", accountNum=" + accountNum
+				+ ", delete=" + delete + "]";
 	}
+
+	public Member(String no, String id, String pwd, String name, String phoneNum, String birth, String discount,
+			String bank, String accountNum, String delete) {
+		this.no = no;
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.phoneNum = phoneNum;
+		this.birth = birth;
+		this.discount = discount;
+		this.bank = bank;
+		this.accountNum = accountNum;
+		this.delete = delete;
+	}
+	
+	public String getNo() {
+		return no;
+	}
+	
+	public void setNo(String no) {
+		this.no = no;
+	}
+	
+	public String getId() {
+		return id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public String getPwd() {
+		return pwd;
+	}
+	
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+	
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+	
+	public String getBirth() {
+		return birth;
+	}
+	
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+	
+	public String getDiscount() {
+		return discount;
+	}
+	
+	public void setDiscount(String discount) {
+		this.discount = discount;
+	}
+	
+	public String getBank() {
+		return bank;
+	}
+	
+	public void setBank(String bank) {
+		this.bank = bank;
+	}
+	
+	public String getAccountNum() {
+		return accountNum;
+	}
+	
+	public void setAccountNum(String accountNum) {
+		this.accountNum = accountNum;
+	}
+	
+	public String getDelete() {
+		return delete;
+	}
+	
+	public void setDelete(String delete) {
+		this.delete = delete;
+	}
+
+	
+
+	
 	
 }
