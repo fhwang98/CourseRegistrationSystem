@@ -47,7 +47,7 @@ public class LoginMember {
 			System.out.println();
 			
 			System.out.println("로그인이 완료되었습니다.");
-			//로그인 후 화면으로 이동해야함
+			//TODO 로그인 후 화면으로 이동해야함
 			return UserDbms.searchMemberByIdPw(id, password);
 		}else {
 			System.out.println();
