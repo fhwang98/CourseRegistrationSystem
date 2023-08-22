@@ -119,6 +119,8 @@ public class AdminUserService {
 				// 강좌코드를 ArrayList에 저장
 				courseNumList.add(courseHistory.getCourseNum());
 				courseNumSet.add(courseHistory.getCourseNum());
+				
+				// test
 			}
 		}
 
