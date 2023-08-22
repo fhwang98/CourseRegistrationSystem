@@ -2,7 +2,6 @@ package com.project.admin.user;
 
 import java.util.Scanner;
 
-import com.project.admin.user.test.TestCourseData;
 import com.project.course.CourseHistoryData;
 import com.project.courseinfo.CourseData;
 import com.project.user.data.UserDbms;
@@ -45,8 +44,6 @@ public class AdminUserMain {
 	}
 
 	public static void main(String[] args) {
-		//강좌 맵 로드
-//		TestCourseData.allCourse();
 		
 		//모든 사용자 정보 로드 - 일반, 강사, 관리자
 		UserDbms userDbms = new UserDbms();
@@ -55,7 +52,8 @@ public class AdminUserMain {
 		CourseHistoryData.load();
 
 		// 전체 강좌 목록 로드
-		CourseData.everyone();
+//		CourseData.everyone();
+		CourseData.allCourse();
 
 		AdminUserMain.showAdminUserMain();
 
