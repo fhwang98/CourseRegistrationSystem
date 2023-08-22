@@ -157,7 +157,8 @@ public class RoomService {
 				
 				//공백으로 나눠
 				String[] temp = s.split(" ");
-				if (temp[0].contains(dayOfWeek) && temp[1].substring(0, 5).equals(time)) {
+				//인풋 형식 요일 : 월화수목금, 시간 12:00 
+				if (temp[0].contains(dayOfWeek) && isOverlapped(temp[1], time)) {
 					//요일에 있으면서 시간도 일치해? 그럼 이미 사용중
 					isOccupied = true;
 				}
@@ -168,6 +169,28 @@ public class RoomService {
 		}
 
 		showAll(availableRoom);
+	}
+
+
+	private static boolean isOverlapped(String time, String inputTime) {
+		
+		//일단 둘다 숫자, 00시를 기준으로 분단위로 바꿈
+		int timeToMinute = getMinute(time);
+		int inputTimeToMinute = getMinute(inputTime);
+		
+		//두 시간의 차이 절댓값 60(분) 이하면 시간이 겹침
+		int gap = Math.abs(inputTimeToMinute - timeToMinute);
+		if (gap < 60) {
+			return false;
+		}
+		return true;
+	}
+
+	private static int getMinute(String time) {
+		
+		String[] temp = time.split(":");
+		
+		return (Integer.parseInt(time.substring(0, 2)) * 60) + Integer.parseInt(time.substring(3, 4));
 	}
 	
 
