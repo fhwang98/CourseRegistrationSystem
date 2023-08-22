@@ -161,23 +161,15 @@ public class SignUpAdmin {
 
 	// 전화번호 유효성 체크
 	public static boolean telCheck(String tel) {
-		// "-" 제거
-		String temp = tel.replaceAll("-", "");
+		
+		//010으로 시작하여 4자리 4자리 숫자 (-유무 상관 없음)
+		 String pattern = "^010-?\\d{4}-?\\d{4}$|^010\\d{8}$";
+	        Pattern regex = Pattern.compile(pattern);
+	        Matcher matcher = regex.matcher(tel);
 
-		// 길이가 11인지 확인
-		if (temp.length() != 11) {
-			return false;
-		}
-
-		// 모든 문자가 숫자인지 확인
-		for (char t : temp.toCharArray()) {
-			if (!Character.isDigit(t)) {
-				return false;
-			}
-		}
-
-		return true;
+	        return matcher.matches();
 	}
+	
 
 	// 이름 유효성 체크
 	private static boolean nameCheck(String name) {

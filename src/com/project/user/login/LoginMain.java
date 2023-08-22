@@ -37,6 +37,7 @@ public class LoginMain {
 		System.out.println("       로그인      ");
 		System.out.println("======================");
 		System.out.println();
+		System.out.println("0. 뒤로가기");
 		System.out.println("1. 로그인");
 		System.out.println("2. 아이디 찾기");
 		System.out.println("3. 비밀번호 재설정");
@@ -52,7 +53,10 @@ public class LoginMain {
 			System.out.println();
 			System.out.print("번호를 입력하세요: ");
 			num = scan.nextInt();
-		}	
+		}
+//		if(num == 0) {
+//			메인홈페이지로 돌아가기
+//		}
 		if (num == 1) {
 			LoginChoice.login(this);
 		}else if(num==2) {
