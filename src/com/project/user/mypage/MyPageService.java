@@ -14,11 +14,28 @@ public class MyPageService {
 		
 		for (Member m : MyPageData.memberList) {
 			if (m.getId().equals(id)) {
+				
+				String phoneNum = m.getPhoneNum();
+				
+				String p1 = phoneNum.substring(0, 3);
+				String p2 = phoneNum.substring(3, 7);
+				String p3 = phoneNum.substring(7, 11);
+				
+				phoneNum = p1 + "-" + p2 + "-" + p3;
+				
+				String birth = m.getBirth();
+				
+				String b1 = birth.substring(0, 4);
+				String b2 = birth.substring(4, 6);
+				String b3 = birth.substring(6, 8);
+				
+				birth = b1 + "-" + b2 + "-" + b3;
+				
 				System.out.printf("아이디: %s\n\n이름: %s\n\n전화번호: %s\n\n생년월일: %s\n\n할인여부: %s\n\n은행: %s\n\n계좌번호: %s"
 									, m.getId()
 									, m.getName()
-									, m.getPhoneNum()
-									, m.getBirth()
+									, phoneNum
+									, birth
 									, m.getDiscount().equals("1") ? "국가유공자" : 
 									  m.getDiscount().equals("2") ? "국민기초생활보장 수급자" :
 									  m.getDiscount().equals("3") ? "다자녀가정" : "일반회원"
