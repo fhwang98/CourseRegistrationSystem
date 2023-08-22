@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class MyPageMain {
 
-	public static void main(String[] args) {
+	public static void mypage() {
 		
 		MyPageData.load();
 		
