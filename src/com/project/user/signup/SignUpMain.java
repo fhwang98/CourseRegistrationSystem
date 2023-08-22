@@ -14,6 +14,7 @@ public class SignUpMain {
 		System.out.println("======================");
 		System.out.println();
 		System.out.println("가입할 회원 유형을 선택하세요.");
+		System.out.println("0. 뒤로가기");
 		System.out.println("1. 일반회원");
 		System.out.println("2. 강사");
 		System.out.println("3. 관리자");
@@ -29,7 +30,10 @@ public class SignUpMain {
 			System.out.println();
 			System.out.print("번호를 입력하세요: ");
 			num = scan.nextInt();
-		}		
+		}
+//		if(num == 0) {
+//			메인화면으로 돌아가기
+//		}
 		if (num == 1) {
 			SignUpMember.addMember();
 		} else if(num==2) {
