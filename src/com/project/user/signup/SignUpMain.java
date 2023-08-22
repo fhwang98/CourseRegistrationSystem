@@ -3,7 +3,8 @@ package com.project.user.signup;
 import java.util.Scanner;
 
 public class SignUpMain {
-	public static void main(String[] args) {
+	
+	public void SignUpProcess() {
 
 		int num = 0;
 

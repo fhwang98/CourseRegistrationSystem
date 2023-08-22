@@ -41,11 +41,12 @@ public class SignUpMember {
             System.out.println();
          
          // 1. 이미 가입된 id와 새로 입력된 id가 같을시
-         if(isIdTaken(id)) {
+         if(!isIdTaken(id)) {
             System.out.println("이미 사용 중인 아이디입니다. 다시 입력해주세요.");
             continue;
          }
          
+        
          if(!idCheck(id)) {
             System.out.println("유효하지 않은 아이디입니다. 다시 입력해주세요.");
             continue;
