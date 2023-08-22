@@ -51,33 +51,13 @@ public class SignUpMember {
             System.out.println("유효하지 않은 아이디입니다. 다시 입력해주세요.");
             continue;
          }
+         
          break;
-		}
+      }
 		m.setId(id);
 		
-//		
-//		while (!passwordCheck(password) || !checkPassword.equals(password)) {
-//		    if (!passwordCheck(password)) {
-//		        System.out.println("유효하지 않은 비밀번호입니다. 다시 입력해주세요.");
-//		    }
-//		    if (!checkPassword.equals(password)) {
-//		        System.out.println("입력하신 비밀번호와 일치하지 않습니다. 다시 입력해주세요.");
-//		    }
-//
-//		    System.out.print("비밀번호: ");
-//		    password = scan.nextLine();
-//
-//		    System.out.print("비밀번호 확인: ");
-//		    checkPassword = scan.nextLine();
-//		}
-//
-//		m.setPassword(password);
-//		
-//		
-//
-//		
-		// 회원가입 비밀번호입력 로직 start
-		
+	
+		System.out.println();
 		System.out.print("비밀번호: ");
 		password = scan.nextLine();
 		
@@ -98,8 +78,6 @@ public class SignUpMember {
 			
 		}
 		m.setPassword(password);
-		
-		
 		
 		System.out.println();
 		System.out.print("이름: ");
