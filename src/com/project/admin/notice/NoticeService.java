@@ -28,6 +28,7 @@ public class NoticeService {
 		
 		NoticeView.printPosting();
 		
+		//TODO com.project.user.login -> LoginMain -> loginMainList
 		String noticeWriter = "작성자"; //현재 로그인정보에서 가져와야함 추후 수정
 		
 		System.out.println("제목을 입력해 주세요.(20자 이내)");
