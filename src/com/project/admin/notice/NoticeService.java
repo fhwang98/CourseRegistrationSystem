@@ -62,7 +62,7 @@ public class NoticeService {
 		
 		try {
 			
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data//noticedummy.txt", true));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\noticedummy.txt", true));
 			writer.write(newNotice.toString());
 			writer.newLine();
 			writer.close();

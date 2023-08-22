@@ -1,57 +1,36 @@
 package com.project.room;
 
+import java.util.ArrayList;
+
 public class Room {
 	
-	private int no;
-	private String name;
-	private String dayOfWeek;
-	private String occupiedTime;
-	private String courseCode;
+	private String roomNum;
+	private ArrayList<String> schedule;
 	
-	public Room(int no, String name, String dayOfWeek, String occupiedTime, String courseCode) {
-		this.no = no;
-		this.name = name;
-		this.dayOfWeek = dayOfWeek;
-		this.occupiedTime = occupiedTime;
-		this.courseCode = courseCode;
+	
+	public Room(String roomNum, ArrayList<String> schedule) {
+		this.roomNum = roomNum;
+		this.schedule = schedule;
 	}
 	
-	public int getNo() {
-		return no;
+	public String getRoomNum() {
+		return roomNum;
 	}
-	public void setNo(int no) {
-		this.no = no;
+	public void setRoomNum(String roomNum) {
+		this.roomNum = roomNum;
 	}
-	public String getName() {
-		return name;
+
+	public ArrayList<String> getSchedule() {
+		return schedule;
 	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getDayOfWeek() {
-		return dayOfWeek;
-	}
-	public void setDayOfWeek(String dayOfWeek) {
-		this.dayOfWeek = dayOfWeek;
-	}
-	public String getOccupiedTime() {
-		return occupiedTime;
-	}
-	public void setOccupiedTime(String occupiedTime) {
-		this.occupiedTime = occupiedTime;
-	}
-	public String getCourseCode() {
-		return courseCode;
-	}
-	public void setCourseCode(String courseCode) {
-		this.courseCode = courseCode;
+	public void setSchedule(ArrayList<String> schedule) {
+		this.schedule = schedule;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("%03d", no) + "," + name + "," + dayOfWeek + "," + occupiedTime
-				+ "," + courseCode;
+		return roomNum  + "," + schedule;
 	}
 	
-
+	
 }

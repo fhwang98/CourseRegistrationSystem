@@ -21,36 +21,35 @@ public class AdminMain {
 
 		while (loop) {
 			AdminView.printAdminMain();
-			String sel = scan.nextLine();
-			if (!AdminUtil.isValidSel(sel, 1, 7)) {
-				System.out.println("is invalid input");
-				System.out.println("enter a new line to going back");
-				scan.nextLine();
-				continue;
-			}
 
-			if (sel.equals("1")) {
-				// 일반 회원 관리
+			String input = scan.nextLine();
+			int sel = AdminUtil.isValidSel(input, 1, 7);
+			System.out.println();
+			System.out.println(sel);
+			System.out.println();
+			if (sel == -1) {
+				AdminView.printInvalidInputMessage(scan);
+			} else if (sel == 1) {
+				//일반 회원 관리
 				System.out.println("일반 회원 관리");
 //				AdminUserMain.showAdminUserMain();
-			} else if (sel.equals("2")) {
-				// 강사 회원 관리
+			} else if (sel == 2) {
+				//강사 회원 관리
 				System.out.println("강사 회원 관리");
-			} else if (sel.equals("3")) {
-				// 강좌 관리
+			} else if (sel == 3) {
+				//강좌 관리
 				System.out.println("강좌 관리");
-			} else if (sel.equals("4")) {
-				// 강의실 관리
-				System.out.println("강의실 관리");
-				RoomMain.roomControl();
-			} else if (sel.equals("5")) {
-				// 5. 공지사항
-				NoticeData.load();
+			} else if (sel == 4) {
+				//강의실 관리
+				RoomMain.controlRoom();
+			} else if (sel == 5) {
+				//5. 공지사항
 				NoticeMain.controlNoticeMain();
-			} else if (sel.equals("6")) {
-				// 내정보
-			} else if (sel.equals("7")) {
-				// 로그아웃
+			} else if (sel == 6) {
+				//내정보
+			}  else if (sel == 7) {
+				//로그아웃
+
 				System.out.println("log out");
 				loop = false;
 			}

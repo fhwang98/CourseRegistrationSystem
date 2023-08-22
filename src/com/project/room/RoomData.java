@@ -1,37 +1,78 @@
 package com.project.room;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class RoomData {
 
-	private static ArrayList<Room> list;
-
-	static {
-		list = new ArrayList<Room>();
-	}
-
+	private static ArrayList<Room> roomList;
 	
-	public static ArrayList<Room> getList() {
-		return list;
+	static {
+		roomList = new ArrayList<Room>();
+	}
+	
+	
+	public static ArrayList<Room> getRoomList() {
+		return roomList;
 	}
 
 
 	public static void load() {
+		
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader("data\\roomdummy.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("data\\dataRoomSchedule.txt"));
 			String line = null;
-			int n = 1;
+			//강의실 코드, 요일, 시간, 강좌 코드
+			//101,월화수목금,09:00,C001
 			while ((line = reader.readLine()) != null) {
-				String[] temp = line.split(",");
-				RoomData.list.add(new Room(Integer.parseInt(temp[0]), temp[1], temp[2], temp[3], temp[4]));
+				String temp[] = line.split(",");
+				//String roomNum = temp[0];
+				String schedule = temp[1] + " " + temp[2] + " (" + temp[3] + ")";
+
+				int idx = getIdx(temp[0]);
+				
+				if (idx == -1) {
+					ArrayList<String> scheduleList = new ArrayList<String>();
+					scheduleList.add(schedule);
+					roomList.add(new Room(temp[0], scheduleList));
+				} else {
+					roomList.get(idx).getSchedule().add(schedule);
+				}
+			
 			}
 			reader.close();
+			
+			roomList.sort((Room r1, Room r2) -> r1.getRoomNum().compareTo(r2.getRoomNum()));
+
+
+			
+			
+			
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataRoom.txt"));
+			for (Room r : roomList) {
+				writer.write(r.toString());
+				writer.newLine();
+			}
+			writer.close();
+			
 		} catch (Exception e) {
 			System.out.println("at RoomData.load");
 			e.printStackTrace();
 		}
+		
 	}
 
+
+	private static int getIdx(String roomNum) {
+		for (int i =0 ; i < roomList.size(); i++) {
+			if (roomList.get(i).getRoomNum().equals(roomNum)) {
+				return i;
+			}
+		}
+		return -1;
+	}
+	
 }
