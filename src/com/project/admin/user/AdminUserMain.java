@@ -2,6 +2,9 @@ package com.project.admin.user;
 
 import java.util.Scanner;
 
+import com.project.course.CourseHistoryData;
+import com.project.courseinfo.CourseData;
+
 public class AdminUserMain {
 
 	public static void showAdminUserMain() {
@@ -10,9 +13,10 @@ public class AdminUserMain {
 		Scanner scan = new Scanner(System.in);
 
 		// 기본 출력을 view에서 만들고 여기서 호출
-		AdminUserView.printAdminUserMain();
 
+		AdminUserView.printAdminUserMain();
 		while (true) {
+
 			// 번호 입력부터 여기서 시작
 			String sel = scan.nextLine();
 
@@ -20,10 +24,12 @@ public class AdminUserMain {
 				break;
 			} else if (sel.equals("1")) { // 전체 회원 조회 페이지로 이동
 				AdminUserService.showUserList();
-				break;
+				AdminUserView.printAdminUserMain();
+//				break;
 			} else if (sel.equals("2")) { // 회원 검색 페이지로 이동
 				AdminUserService.searchUser();
-				break;
+				AdminUserView.printAdminUserMain();
+//				break;
 			} else { // invalid
 				AdminUserView.printInvalidInput();
 			}
@@ -33,6 +39,11 @@ public class AdminUserMain {
 	}
 
 	public static void main(String[] args) {
+		// 전체 수강 내역 로드
+		CourseHistoryData.load();
+
+		// 전체 강좌 목록 로드
+		CourseData.everyone();
 
 		AdminUserMain.showAdminUserMain();
 

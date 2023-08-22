@@ -18,7 +18,7 @@ public class CourseHistoryData {
 
 		try {
 
-			BufferedReader historyReader = new BufferedReader(new FileReader("data\\courseHistory"));
+			BufferedReader historyReader = new BufferedReader(new FileReader("data\\courseHistory.txt"));
 
 			String line = null;
 

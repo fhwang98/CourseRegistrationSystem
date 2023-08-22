@@ -27,4 +27,23 @@ public class AdminUserView {
 		System.out.print("번호 입력 : ");
 	}
 
+	static void printMemberList(String label) {
+		System.out.println("=====================================");
+		System.out.println("            일반 회원 정보 " + label);
+		System.out.println("=====================================");
+	}
+
+	public static void printSearchUserId() {
+		System.out.println("=====================================");
+		System.out.println("            회원 아이디 검색 ");
+		System.out.println("=====================================");
+		System.out.print("아이디를 입력하세요. : ");
+	}
+
+	public static void printSearchUserName() {
+		System.out.println("=====================================");
+		System.out.println("            회원 이름 검색 ");
+		System.out.println("=====================================");
+		System.out.print("이름을 입력하세요. : ");
+	}
 }
