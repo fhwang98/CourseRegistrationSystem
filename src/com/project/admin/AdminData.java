@@ -1,4 +1,4 @@
-package com.project.admininfo;
+package com.project.admin;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,13 +8,13 @@ import java.util.ArrayList;
 
 public class AdminData {
 
-	public static ArrayList<AdminInfo> adminList; 
+	public static ArrayList<Admin> adminList; 
 		
 	static {
-		adminList = new ArrayList<AdminInfo>();
+		adminList = new ArrayList<Admin>();
 	}
 
-	public static ArrayList<AdminInfo> getAdminList() {
+	public static ArrayList<Admin> getAdminList() {
 		return adminList;
 	}
 	
@@ -30,7 +30,7 @@ public class AdminData {
 				
 				String[] temp = line.split(",");
 				
-				AdminInfo a = new AdminInfo(temp[0],
+				Admin a = new Admin(temp[0],
 											temp[1],
 											temp[2],
 											temp[3],
@@ -57,7 +57,7 @@ public class AdminData {
 			
 			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataAdmin.txt"));
 			
-			for (AdminInfo a : AdminData.adminList) {
+			for (Admin a : AdminData.adminList) {
 				
 				writer.write(String.format("%s,%s,%s,%s,%s,%s,%s\r\n"
 											, a.getAdminNo()

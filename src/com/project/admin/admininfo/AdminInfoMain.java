@@ -3,8 +3,8 @@ package com.project.admin.admininfo;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import com.project.admininfo.AdminData;
-import com.project.admininfo.AdminInfo;
+import com.project.admin.AdminData;
+import com.project.admin.Admin;
 
 public class AdminInfoMain {
 
@@ -91,9 +91,9 @@ public class AdminInfoMain {
 
 		String id = "qjweirowe142";
 		
-		Iterator<AdminInfo> admin = AdminData.adminList.iterator();
+		Iterator<Admin> admin = AdminData.adminList.iterator();
 		while (admin.hasNext()) {
-			AdminInfo a = admin.next();
+			Admin a = admin.next();
 			
 			if (a.getAdminId().equals(id)) {
 				admin.remove();
@@ -111,7 +111,7 @@ public class AdminInfoMain {
 		
 		String name = input;
 		
-		for (AdminInfo a : AdminData.adminList) {
+		for (Admin a : AdminData.adminList) {
 			if (a.getAdminId().equals(id)) {
 				a.setAdminName(name);
 				break;
@@ -128,7 +128,7 @@ public class AdminInfoMain {
 		
 		String phone = input;
 		
-		for (AdminInfo a : AdminData.adminList) {
+		for (Admin a : AdminData.adminList) {
 			if (a.getAdminId().equals(id)) {
 				a.setAdminPhone(phone);
 				break;
