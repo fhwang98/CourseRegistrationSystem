@@ -732,7 +732,7 @@ public class CourseData {
 	public static void everyone() {
 		try {
 			
-			BufferedReader reader = new BufferedReader(new FileReader("data/courseListDummy.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("data//dataCourse.txt"));
 			
 			String line = null;
 			
