@@ -36,10 +36,10 @@ public class MyPageData {
 		
 		try {
 
-			BufferedReader memberReader = new BufferedReader(new FileReader("C:\\class\\code\\java\\Course_registration_system\\src\\com\\project\\user\\mypage\\data\\dataMember.txt"));
-			BufferedReader historyReader = new BufferedReader(new FileReader("C:\\class\\code\\java\\Course_registration_system\\src\\com\\project\\user\\mypage\\data\\courseHistory.txt"));
-			BufferedReader courseReader = new BufferedReader(new FileReader("C:\\class\\code\\java\\Course_registration_system\\src\\com\\project\\user\\mypage\\data\\dataCourse.txt"));			
-			BufferedReader teacherReader = new BufferedReader(new FileReader("C:\\class\\code\\java\\Course_registration_system\\src\\com\\project\\user\\mypage\\data\\dataTeacher.txt"));
+			BufferedReader memberReader = new BufferedReader(new FileReader("data\\dataMember.txt"));
+			BufferedReader historyReader = new BufferedReader(new FileReader("data\\courseHistory.txt"));
+			BufferedReader courseReader = new BufferedReader(new FileReader("data\\dataCourse.txt"));			
+			BufferedReader teacherReader = new BufferedReader(new FileReader("data\\dataTeacher.txt"));
 			
 			
 			String line = null;
@@ -126,8 +126,8 @@ public class MyPageData {
 		
 		try {
 
-			BufferedWriter memberWriter = new BufferedWriter(new FileWriter("C:\\class\\code\\java\\Course_registration_system\\src\\com\\project\\user\\mypage\\data\\dataMember.txt"));
-			BufferedWriter historyWriter = new BufferedWriter(new FileWriter("C:\\class\\code\\java\\Course_registration_system\\src\\com\\project\\user\\mypage\\data\\courseHistory.txt"));
+			BufferedWriter memberWriter = new BufferedWriter(new FileWriter("data\\dataMember.txt"));
+			BufferedWriter historyWriter = new BufferedWriter(new FileWriter("data\\courseHistory.txt"));
 			
 			for (Member m : MyPageData.memberList) {
 				
