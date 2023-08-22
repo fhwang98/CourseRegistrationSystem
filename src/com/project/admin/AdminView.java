@@ -1,17 +1,9 @@
 package com.project.admin;
 
+import java.util.Scanner;
+
 public class AdminView {
-/*
-	================================
-	           관리자 로그인 화면
-================================
-1. 일반 회원 관리		5.  공지사항
-2. 강사 회원 관리		6.  내정보
-3. 강좌 관리			7.  로그아웃
-4. 강의실 관리
-—------------------------------------------------------
-번호 입력: 
-	*/
+
 	public static void printAdminMain() {
 		System.out.println("=====================================");
 		System.out.println("\t\t\t\t관리자 모드");
@@ -24,17 +16,19 @@ public class AdminView {
 		System.out.println("번호 입력:");
 	}
 	
-	public static void printPendingMessage() {
+	public static void printPendingMessage(Scanner scan) {
 		
 		System.out.println("계속하려면 엔터를 입력해 주세요.");
+		scan.nextLine();
 		
 	}
 	
-	public static void printInvalidInputMessage() {
+	public static void printInvalidInputMessage(Scanner scan) {
 		
 		System.out.println("입력이 올바르지 않습니다.");
 		System.out.println("다시 입력해 주세요.");
 		
+		AdminView.printPendingMessage(scan);
 	}
 	
 }
