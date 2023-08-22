@@ -84,21 +84,11 @@ public class MyPageService {
 					boolean loop = true;
 					
 					while (loop) {
-						String phone = scan.nextLine();
-						phone = phone.replace("-", "");
+						String phone = scan.nextLine();		
 						
 						if (phone.matches("^[0-9]{11}$"))  {
 							
 							loop = false;
-							StringBuffer str = new StringBuffer(phone);
-							
-							String s1 = str.substring(0,3);
-							
-							String s2 = str.substring(3,7);
-							
-							String s3 = str.substring(7);
-							
-							phone = s1 + "-" + s2 + "-" + s3;
 							
 							for (Member m : MyPageData.memberList) {
 								if (m.getId().equals(id)) {

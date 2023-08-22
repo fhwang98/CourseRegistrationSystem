@@ -21,7 +21,7 @@ public class MyPageMain {
 			String id = "otqapf7199";
 			
 			if (sel.equals("0")) {
-				
+				loop = false; // 루프 빠져나가고 myPageData.save 후에 메인화면으로 이동
 			} else if (sel.equals("1")) {
 				MyPageService.memCheck();
 			} else if (sel.equals("2")) {
@@ -36,14 +36,13 @@ public class MyPageMain {
 				MyPageService.memDelete();
 			} else {
 				System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
-				loop = false;
 			}
 			
 		}
-		
-		System.out.println("프로그램 종료");
-		
+				
 		MyPageData.save();
+		
+		//???.main(); 메인화면으로 이동
 	}
 	
 }
