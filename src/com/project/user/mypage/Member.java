@@ -1,4 +1,4 @@
-package com.project.course;
+package com.project.user.mypage;
 
 public class Member {
 
@@ -12,13 +12,6 @@ public class Member {
 	private String bank;
 	private String accountNum;
 	private String delete;
-
-	@Override
-	public String toString() {
-		return "Member [no=" + no + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", phoneNum=" + phoneNum
-				+ ", birth=" + birth + ", discount=" + discount + ", bank=" + bank + ", accountNum=" + accountNum
-				+ ", delete=" + delete + "]";
-	}
 
 	public Member(String no, String id, String pwd, String name, String phoneNum, String birth, String discount,
 			String bank, String accountNum, String delete) {
@@ -114,7 +107,12 @@ public class Member {
 		this.delete = delete;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Member [no=" + no + ", id=" + id + ", pwd=" + pwd + ", name=" + name + ", phoneNum=" + phoneNum
+				+ ", birth=" + birth + ", discount=" + discount + ", bank=" + bank + ", accountNum=" + accountNum
+				+ ", delete=" + delete + "]";
+	}
 
 	
 	

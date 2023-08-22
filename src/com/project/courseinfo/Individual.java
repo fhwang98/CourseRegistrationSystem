@@ -11,6 +11,7 @@ public class Individual {
 		individualMent();
 	}
 
+
 	private static void individualMent() {
 
 		System.out.println();
@@ -28,7 +29,7 @@ public class Individual {
 		System.out.println("5. 블록교실");
 		System.out.println("----------------------------------");
 		
-		System.out.print("번호 입력: ");
+		System.out.print("입력: ");
 		String input = scan.nextLine();
 		
 		if(input.equals("0")) {
@@ -137,6 +138,10 @@ public class Individual {
 
 			CourseData.blockRecommend();
 
+			System.out.println();
+			System.out.println("0.뒤로가기");
+			System.out.println("입력: ");
+			
 			input = scan.nextLine();
 
 			if (input.equals("0")) {

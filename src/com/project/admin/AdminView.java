@@ -13,7 +13,7 @@ public class AdminView {
 		System.out.println("\t3.\t강좌 관리\t\t\t7.\t로그아웃");
 		System.out.println("\t4.\t강의실 관리");
 		System.out.println("--------------------------------------------------");
-		System.out.println("번호 입력:");
+		System.out.print("번호 입력:");
 	}
 	
 	public static void printPendingMessage(Scanner scan) {

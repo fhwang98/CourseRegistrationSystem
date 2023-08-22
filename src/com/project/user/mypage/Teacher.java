@@ -1,4 +1,4 @@
-package com.project.course;
+package com.project.user.mypage;
 
 public class Teacher {
 	

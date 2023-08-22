@@ -29,18 +29,17 @@ public class CenterInfo {
 		while (!input.equals("0")) {
 
 			if (input.equals("0")) {
-		//		Main.mainMent();
+	//			Main.mainMent();
 
 			} else {
 				System.out.println("뒤로가려면 0번을 입력하세요.");
 				System.out.print("입력: ");
 				input = scan.nextLine();
-
-				if (input.equals("0")) {
-			//		Main.mainMent();
-				}
-
 			}
+		}
+			
+		if (input.equals("0")) {
+	//		Main.mainMent();
 		}
 
 	}
