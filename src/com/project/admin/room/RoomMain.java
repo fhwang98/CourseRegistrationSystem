@@ -32,7 +32,7 @@ public class RoomMain {
 				loop = false;
 			} else if (sel == 1) {
 				//전체 보기
-				RoomService.showAll();
+				RoomService.showAll(RoomData.getRoomList());
 			} else if (sel == 2) {
 				//검색 하기
 				System.out.println("search room");

@@ -21,7 +21,7 @@ public class NoticeData {
 
 	public static void update(ArrayList<Notice> list) {
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\noticedummy.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data//noticedummy.txt"));
 			
 			for (Notice n : list) {
 				writer.write(n.toString());
@@ -37,7 +37,7 @@ public class NoticeData {
 	public static void load() {
 		
 				try {
-					BufferedReader reader = new BufferedReader(new FileReader("data\\noticedummy.txt"));
+					BufferedReader reader = new BufferedReader(new FileReader("data//noticedummy.txt"));
 					String line = null;
 					while ((line = reader.readLine()) != null) {
 						String[] temp = line.split("✡");

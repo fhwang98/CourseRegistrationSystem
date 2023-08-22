@@ -2,7 +2,7 @@ package com.project.admin.room;
 
 import java.util.ArrayList;
 
-import com.project.room.RoomData;
+import com.project.room.Room;
 
 public class RoomView {
 	
@@ -22,11 +22,11 @@ public class RoomView {
 		System.out.println("번호 입력:");
 	}
 
-	public static void printRoom(int index) {
+	public static void printRoom(int index, ArrayList<Room> list) {
 		
-		System.out.printf("강의실 번호: %s\n", RoomData.getRoomList().get(index).getRoomNum());
+		System.out.printf("강의실 번호: %s\n", list.get(index).getRoomNum());
 		
-		ArrayList<String> schedule = RoomData.getRoomList().get(index).getSchedule();
+		ArrayList<String> schedule = list.get(index).getSchedule();
 		for (int i = 0; i < schedule.size(); i++ ) {
 			
 			if (i == 0) {
@@ -38,11 +38,11 @@ public class RoomView {
 		
 	}
 	
-	public static void printRoomList(int page) {
+	public static void printRoomList(int page, ArrayList<Room> list) {
 		printRoomHead();
 		for (int i = 0; i < 10 ; i++) {
 			System.out.println();
-			printRoom(i + page * 10);
+			printRoom(i + page * 10, list);
 		}
 	}
 	
@@ -64,21 +64,20 @@ public class RoomView {
 	public static void printSearchSelectDay() {
 
 		System.out.println("사용 가능한 강의실을 찾습니다.");
-		System.out.println("요일을 선택해 주세요");
-		System.out.println("--------------------------------------------------");
-		System.out.println("1. 전체");
-		System.out.println("2. 월수금");
-		System.out.println("3. 화목");
+		System.out.println("요일을 입력해 주세요");
+		System.out.println("예시) 월");
+		System.out.println("예시) 월수금");
+		System.out.print("요일 입력: ");
 		
 	}
 	
-	public static void printSearchSelectSlot() {
+	public static void printSearchSelectTime() {
 		
-		System.out.println("시간대를 선택해 주세요");
-		System.out.println("--------------------------------------------------");
-		System.out.println("1. 전체");
-		System.out.println("2. 오전");
-		System.out.println("3. 오후");
+		System.out.println("시작 시간을 입력해 주세요");
+		System.out.println("6시부터 22시 사이, 30분단위로만 입력 가능합니다.");
+		System.out.println("예시) 10:00");
+		System.out.println("예시) 16:30");
+		System.out.println("시간 입력: ");
 		
 	}
 	

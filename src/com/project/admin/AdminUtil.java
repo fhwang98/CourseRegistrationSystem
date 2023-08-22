@@ -15,15 +15,7 @@ public class AdminUtil {
 		return true;
 	}
 	
-//	public static boolean isValidSel(String sel, int min, int max) {
-//		
-//		if (sel.replace(" ", "").equals("")) {
-//			return false;
-//		} else if (!isDigit(sel) ||Integer.parseInt(sel) < min || Integer.parseInt(sel) > max) {
-//			return false;
-//		}
-//		return true;
-//	}
+
 	
 	public static int isValidSel(String input, int min, int max) {
 		
