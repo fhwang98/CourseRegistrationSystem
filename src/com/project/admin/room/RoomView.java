@@ -72,7 +72,7 @@ public class RoomView {
 		
 	}
 	
-	public static void printSearchSelectSlot() {
+	public static void printSearchSelectTime() {
 		
 		System.out.println("시간대를 선택해 주세요");
 		System.out.println("--------------------------------------------------");
