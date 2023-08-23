@@ -273,7 +273,7 @@ public class Management {
 //		try {
 //
 //			BufferedReader reader = new BufferedReader(
-//					new FileReader("data\\dataCourse.txt"));
+//					new FileReader("data/dataCourse.txt"));
 //
 //			String line = null;
 //
@@ -487,7 +487,7 @@ public class Management {
 
 		try {
 			// 강사 파일 읽어오기
-			String path = "data\\dataCourse.txt";
+			String path = "data/dataCourse.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
 			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
@@ -545,7 +545,7 @@ public class Management {
 
 		try {
 			// 강사 파일 읽어오기
-			String path = "data\\dataCourse.txt";
+			String path = "data/dataCourse.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
 			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
@@ -603,7 +603,7 @@ public class Management {
 
 		try {
 			// 강사 파일 읽어오기
-			String path = "data\\dataCourse.txt";
+			String path = "data/dataCourse.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
 			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
@@ -661,7 +661,7 @@ public class Management {
 
 		try {
 			// 강사 파일 읽어오기
-			String path = "data\\dataCourse.txt";
+			String path = "data/dataCourse.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
 			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
@@ -719,7 +719,7 @@ public class Management {
 
 		try {
 			// 강사 파일 읽어오기
-			String path = "data\\dataCourse.txt";
+			String path = "data/dataCourse.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
 			BufferedWriter writer = new BufferedWriter(new FileWriter(path));

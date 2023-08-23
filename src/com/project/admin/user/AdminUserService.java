@@ -454,7 +454,7 @@ public class AdminUserService {
 
 	private static void changeUserUsingFile(String memberCode) {
 		try {
-			String path = "data\\dataMember.txt";
+			String path = "data/dataMember.txt";
 
 			// 파일 읽기
 			BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -590,7 +590,7 @@ public class AdminUserService {
 
 	private static void changeUserAccountFile(String memberCode, String newBank, String newAccount) {
 		try {
-			String path = "data\\dataMember.txt";
+			String path = "data/dataMember.txt";
 
 			// 파일 읽기
 			BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -681,7 +681,7 @@ public class AdminUserService {
 	private static void changeUserDiscountFile(String memberCode, String input) {
 
 		try {
-			String path = "data\\dataMember.txt";
+			String path = "data/dataMember.txt";
 
 			// 파일 읽기
 			BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -763,7 +763,7 @@ public class AdminUserService {
 
 	private static void changeUserTelFile(String memberCode, String input) {
 		try {
-			String path = "data\\dataMember.txt";
+			String path = "data/dataMember.txt";
 
 			// 파일 읽기
 			BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -854,7 +854,7 @@ public class AdminUserService {
 
 		try {
 
-			String path = "data\\dataMember.txt";
+			String path = "data/dataMember.txt";
 
 			// 파일 읽기
 			BufferedReader reader = new BufferedReader(new FileReader(path));

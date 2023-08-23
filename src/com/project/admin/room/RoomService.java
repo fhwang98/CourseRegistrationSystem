@@ -33,7 +33,7 @@ public class RoomService {
 		
 		// 리스트가 정렬이 되어있
 		int page = 0;
-		int lastPage = list.size() / 10 - 1;
+		int lastPage = list.size() / 5 - 1; //5개단위로 페이지 쪼개자
 		
 		System.out.println("강의실 목록을 조회합니다. ");
 		AdminView.printPendingMessage(scan);
@@ -84,7 +84,8 @@ public class RoomService {
 		요일 입력: 
 		
 		시작 시간을 입력해주세요.
-		예시) 12:30
+		예시) 12
+		예시) 09
 		시간 입력:
 		
 		[요일], [시간] 에 사용 가능한 강의실을 찾습니다.
@@ -96,45 +97,25 @@ public class RoomService {
 		//월화수목금 아니면 x
 		RoomView.printSearchSelectTime();
 		String inputTime = scan.nextLine();
-		// 유효성 체크
-		// 시간:분 형식 안맞으면 x 시간이 9시 전, 22시 이후 x
 
-		
-		if ( !isValidDay(inputDay) || !isValidTime(inputTime) ) {
+		//유효하지 않으면 바로 리턴때려
+		if ( !inputDay.matches("[월화수목금]") || !isValidTime(inputTime)/*!inputTime.matches("[0-9]{1,2}")*/ ) {
+			AdminView.printInvalidInputMessage(scan);
 			return;
 		}
+		//숫자가 그냥 8 이렇게만 들어왔을 수도 있으니까 08로 바꾸는 작업 필요함
+		inputTime = String.format("%02d", Integer.parseInt(inputTime));
 		search(inputDay, inputTime);
 	}
 	
-	
+
 	private static boolean isValidTime(String inputTime) {
-		inputTime = inputTime.replaceAll("(\\s||\\t|\\r\\n|\\n)", "");
-		
-		Pattern ptime = Pattern.compile("[0-9]{2}:[0-9]{2}");
-		
-		Matcher mtime = ptime.matcher(inputTime);
-		
-		if (!mtime.matches()) {
+		if (!inputTime.matches("[0-9]{1,2}")) {
 			return false;
 		}
-		if (Integer.parseInt(inputTime.substring(0, 2)) < 6
-				|| Integer.parseInt(inputTime.substring(0, 2)) > 21) {
+		if (Integer.parseInt(inputTime) < 6 || Integer.parseInt(inputTime) > 9) {
 			return false;
-		}
-		return true;
-		
-	}
-
-	private static boolean isValidDay(String inputDay) {
-
-		inputDay = inputDay.replaceAll("(\\s||\\t|\\r\\n|\\n)", "");
-		
-		//월화수목금 이외의 것을 포함하고 있다 -> false 때려
-		for (int i = 0; i < inputDay.length(); i++) {
-			if (inputDay.charAt(i) != '월' && inputDay.charAt(i) != '화' &&
-					inputDay.charAt(i) != '수' && inputDay.charAt(i) != '목' && inputDay.charAt(i) != '금') {
-				return false;
-			}
+			
 		}
 		return true;
 	}
@@ -149,49 +130,34 @@ public class RoomService {
 		//입력받은 스케줄이랑 일치하는지 확인해
 		//일치해 ? 그럼 걔는 제외해
 		
-		boolean isOccupied = false;
 		
 		for (Room r : RoomData.getRoomList()) {
+			
+			boolean isAvailable = true;
 			
 			for (String s : r.getSchedule()) {
 				
 				//공백으로 나눠
 				String[] temp = s.split(" ");
-				//인풋 형식 요일 : 월화수목금, 시간 12:00 
-				if (temp[0].contains(dayOfWeek) && AdminUtil.isOverlappedTime(temp[1], time)) {
+				//인풋 형식 요일 : 월, 시간 : 12
+				if (temp[0].contains(dayOfWeek) && temp[1].contains(time)) {
+					//유효성 검사 이미 했음
+					//12:00 에서 11 찾을거니까 contains로 찾아도 됨
 					//요일에 있으면서 시간도 일치해? 그럼 이미 사용중
-					isOccupied = true;
+					isAvailable = false;
 				}
+			}//스케줄루프
+			
+			if (isAvailable) {
+				availableRoom.add(r);
 			}
-			if (!isOccupied) {
-				availableRoom.add(r);		
-			}
-		}
+			
+		}//강의실 루프
 
 		showAll(availableRoom);
 	}
 
 
-//	private static boolean isOverlappedTime(String time, String inputTime) {
-//		
-//		//일단 둘다 숫자, 00시를 기준으로 분단위로 바꿈
-//		int timeToMinute = getMinute(time);
-//		int inputTimeToMinute = getMinute(inputTime);
-//		
-//		//두 시간의 차이 절댓값 60(분) 이하면 시간이 겹침
-//		int gap = Math.abs(inputTimeToMinute - timeToMinute);
-//		if (gap < 60) {
-//			return false;
-//		}
-//		return true;
-//	}
-//
-//	private static int getMinute(String time) {
-//		
-//		String[] temp = time.split(":");
-//		
-//		return (Integer.parseInt(time.substring(0, 2)) * 60) + Integer.parseInt(time.substring(3, 4));
-//	}
 	
 
 	
