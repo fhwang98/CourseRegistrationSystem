@@ -2,14 +2,57 @@ package com.project.main;
 
 import java.util.Scanner;
 
-public class MainView {
+import com.project.admin.notice.NoticeMain;
+import com.project.centerinfo.CenterInfo;
+import com.project.courseinfo.CourseInfo;
+import com.project.user.login.LoginMain;
+import com.project.user.signup.SignUpMain;
 
+public class MainView {
+	
 	public void MainScreen() {
 		
 		Scanner scan = new Scanner(System.in);
 		
 		int input = 0;
 		
+		mainView();
+		
+		boolean loop = true;
+		
+		while (loop) {
+
+			input = scan.nextInt();
+			
+			if (input == 1) {
+				LoginMain lMain = new LoginMain();
+		        lMain.LoginProcess();
+				mainView();
+			} else if (input == 2) {
+				SignUpMain.main(null);
+				mainView();
+			} else if (input == 3) {
+				CourseInfo.lectureInfo();
+				mainView();
+			} else if (input == 4) {
+				CenterInfo.centerInfo();
+				mainView();
+			} else if (input == 5) {
+				CourseInfo.lectureInfo();
+				mainView();
+			} else if (input == 6) {
+				NoticeMain.controlNoticeMain();
+				mainView();
+			} else {
+				System.out.println("잘못된 입력입니다");
+				System.out.print("재입력: ");
+			}
+			
+		}
+		
+	}
+
+	public static void mainView() {
 		System.out.println("         초기메인화면");
 		System.out.println("—-------------------------------------");
 		System.out.println("1. 로그인");
@@ -20,23 +63,5 @@ public class MainView {
 		System.out.println("6. 공지사항");
 		System.out.println("—-------------------------------------");
 		System.out.print("번호 입력 : ");
-		
-		input = scan.nextInt();
-		
-		if (input == 1) {
-			//연결시켜
-        } else if (input == 2) {
-        	//연결시켜
-        } else if (input == 3) {
-        	//연결시켜
-        } else if (input == 4) {
-        	//연결시켜
-        } else if (input == 5) {
-        	//연결시켜
-        } else if (input == 6) {
-        	//연결시켜
-        } else {
-            System.out.println("잘못된 입력입니다");
-        }
 	}
 }
