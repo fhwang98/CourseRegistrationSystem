@@ -30,8 +30,13 @@ public class UserDbms {
 		teacherAllList = new ArrayList<DataTeacher>();
 		adminAllList = new ArrayList<DataAdmin>();
 	}
+	
+
 
 	public UserDbms() {
+		memberAllList = new ArrayList<DataMember>();
+		teacherAllList = new ArrayList<DataTeacher>();
+		adminAllList = new ArrayList<DataAdmin>();
 		readMemberData();
 		readTeacherData();
 		readAdminData();
