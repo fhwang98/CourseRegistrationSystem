@@ -2,13 +2,15 @@ package com.project.user.mypage;
 
 import java.util.Scanner;
 
+import com.project.user.data.DataMember;
+
 public class MyPageMain {
 	
 	public static void main(String[] args) {
-		mypage();
+		mypage(null);
 	}
 
-	public static void mypage() {
+	public static void mypage(DataMember m) {
 		
 		MyPageData.load();
 		

@@ -5,8 +5,7 @@ import java.util.Scanner;
 import com.project.admin.admininfo.AdminInfoMain;
 import com.project.admin.notice.NoticeMain;
 import com.project.admin.room.RoomMain;
-import com.project.admin.user.AdminUserMain;
-import com.project.notice.NoticeData;
+import com.project.user.data.DataAdmin;
 
 public class AdminMain {
 	
@@ -16,7 +15,7 @@ public class AdminMain {
 		loop = true;
 	}
 
-	public static void controlAdmin() {
+	public static void controlAdmin(DataAdmin a) {
 
 		Scanner scan = new Scanner(System.in);
 
