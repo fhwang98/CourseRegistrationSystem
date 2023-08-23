@@ -16,7 +16,7 @@ public class UserMain {
 		
 		Scanner scan = new Scanner(System.in);
 		
-		int input = 0;
+		String input = "";
 
 		userMainView();
 		
@@ -24,23 +24,23 @@ public class UserMain {
 		
 		while (loop) {
 			
-			input = scan.nextInt();
+			input = scan.nextLine();
 			
-			if (input == 1) {
+			if (input.equals("1")) {
 				loop = false;
-			} else if (input == 2) {
+			} else if (input.equals("2")) {
 				CenterInfo.centerInfo();
 				userMainView();
-			} else if (input == 3) {
+			} else if (input.equals("3")) {
 				CourseInfo.lectureInfo();
 				userMainView();
-			} else if (input == 4) {
+			} else if (input.equals("4")) {
 				CourseApplication.courseApplicationment();
 				userMainView();
-			} else if (input == 5) {
+			} else if (input.equals("5")) {
 				MyPageMain.mypage();
 				userMainView();
-			} else if (input == 6) {
+			} else if (input.equals("6")) {
 				BusStopMain.main(null);
 				userMainView();
 			} else {
