@@ -32,7 +32,7 @@ public class MakeNoticeDummy {
 	public static void writeFile(ArrayList<Notice> list) {
 		try {
 
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\noticedummy.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataNotice.txt"));
 
 			for (Notice n : list) {
 				writer.write(n.toString());

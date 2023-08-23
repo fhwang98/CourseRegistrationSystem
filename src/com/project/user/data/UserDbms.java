@@ -12,9 +12,9 @@ import java.util.HashMap;
 
 public class UserDbms {
 	private final static String CRLF = "\r\n";
-	private final static String dataMemberPath = "../data/dataMember.txt";
-	private final static String dataTeacherPath = "../data/dataTeacher.txt";
-	private final static String dataAdminPath = "../data/dataAdmin.txt";
+	private final static String dataMemberPath = "data\\dataMember.txt";
+	private final static String dataTeacherPath = "data\\dataTeacher.txt";
+	private final static String dataAdminPath = "data\\dataAdmin.txt";
 
 	private static ArrayList<DataMember> memberAllList;
 	private static ArrayList<DataTeacher> teacherAllList;
@@ -458,6 +458,8 @@ public class UserDbms {
 	}
 
 	private static void readMemberData() {
+		memberAllList = new ArrayList<DataMember>(); // 리스트 초기화
+		
 		File f = new File(dataMemberPath);
 		if (f.exists()) {
 			try {
@@ -486,6 +488,8 @@ public class UserDbms {
 	}
 
 	private static void readTeacherData() {
+		teacherAllList = new ArrayList<DataTeacher>(); // 리스트 초기화
+		
 		File f = new File(dataTeacherPath);
 		if (f.exists()) {
 			try {
@@ -514,6 +518,8 @@ public class UserDbms {
 	}
 
 	private static void readAdminData() {
+		adminAllList = new ArrayList<DataAdmin>(); // 리스트 초기화
+		
 		File f = new File(dataAdminPath);
 		if (f.exists()) {
 			try {

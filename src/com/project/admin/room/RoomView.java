@@ -74,7 +74,7 @@ public class RoomView {
 	public static void printSearchSelectTime() {
 		
 		System.out.println("시작 시간을 입력해 주세요");
-		System.out.println("6시부터 22시 사이, 30분단위로만 입력 가능합니다.");
+		System.out.println("6시부터 22시 사이, 10분단위로만 입력 가능합니다.");
 		System.out.println("예시) 10:00");
 		System.out.println("예시) 16:30");
 		System.out.println("시간 입력: ");
