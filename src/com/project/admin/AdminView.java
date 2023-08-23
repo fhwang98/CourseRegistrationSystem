@@ -5,15 +5,17 @@ import java.util.Scanner;
 public class AdminView {
 
 	public static void printAdminMain() {
-		System.out.println("=====================================");
-		System.out.println("\t\t\t\t관리자 모드");
-		System.out.println("=====================================");
-		System.out.println("\t1.\t일반 회원 관리\t\t5.\t공지사항");
-		System.out.println("\t2.\t강사 회원 관리\t\t6.\t내정보");
-		System.out.println("\t3.\t강좌 관리\t\t\t7.\t로그아웃");
-		System.out.println("\t4.\t강의실 관리");
-		System.out.println("--------------------------------------------------");
+		System.out.println("=============================================");
+		System.out.println("\t\t관리자 모드");
+		System.out.println("=============================================");
+		System.out.println("   1.  일반 회원 관리\t5.  공지사항");
+		System.out.println("   2.  강사 회원 관리\t6.  내정보");
+		System.out.println("   3.  강좌 관리\t\t7.  로그아웃");
+		System.out.println("   4.  강의실 관리");
+		System.out.println("---------------------------------------------");
 		System.out.print("번호 입력:");
+		
+		
 	}
 	
 	public static void printPendingMessage(Scanner scan) {

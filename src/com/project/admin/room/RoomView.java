@@ -7,18 +7,18 @@ import com.project.room.Room;
 public class RoomView {
 	
 	public static void printRoomHead() {
-		System.out.println("=====================================");
-		System.out.println("\t\t\t\t강의실 관리");
-		System.out.println("=====================================");
+		System.out.println("=============================================");
+		System.out.println("\t\t강의실 관리");
+		System.out.println("=============================================");
 		
 	}
 
 	public static void printRoomMenu() {
 		printRoomHead();
-		System.out.println("\t0.\t뒤로가기");
-		System.out.println("\t1.\t전체 강의실 조회");
-		System.out.println("\t2.\t강의실 검색");
-		System.out.println("--------------------------------------------------");
+		System.out.println("  0.\t뒤로가기");
+		System.out.println("  1.\t전체 강의실 조회");
+		System.out.println("  2.\t강의실 검색");
+		System.out.println("---------------------------------------------");
 		System.out.println("번호 입력:");
 	}
 
@@ -40,14 +40,14 @@ public class RoomView {
 	
 	public static void printRoomList(int page, ArrayList<Room> list) {
 		printRoomHead();
-		for (int i = 0; i < 10 ; i++) {
+		for (int i = 0; i < 5 ; i++) {
 			System.out.println();
-			printRoom(i + page * 10, list);
+			printRoom(i + page * 5, list);
 		}
 	}
 	
 	public static void printRoomListMenu(int page, int lastpage) {
-		System.out.println("--------------------------------------------------");
+		System.out.println("---------------------------------------------");
 		System.out.println("0. 뒤로가기");
 		if (page == 0) {
 			System.out.println("1. 다음 페이지");
@@ -57,7 +57,7 @@ public class RoomView {
 			System.out.println("1. 이전 페이지");
 			System.out.println("2. 다음 페이지");
 		}
-		System.out.println("--------------------------------------------------");
+		System.out.println("---------------------------------------------");
 		System.out.println("번호 입력:");
 	}
 
@@ -74,9 +74,9 @@ public class RoomView {
 	public static void printSearchSelectTime() {
 		
 		System.out.println("시작 시간을 입력해 주세요");
-		System.out.println("6시부터 22시 사이, 10분단위로만 입력 가능합니다.");
-		System.out.println("예시) 10:00");
-		System.out.println("예시) 16:30");
+		System.out.println("6시부터 22시 사이의 숫자를 입력해주세요.");
+		System.out.println("예시) 6");
+		System.out.println("예시) 12");
 		System.out.println("시간 입력: ");
 		
 	}
