@@ -6,7 +6,7 @@ import com.project.teacher.Teacher;
 
 public class TeacherMain {
 
-	public void LoginTeacher() {
+	public static void LoginTeacher() {
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -28,11 +28,11 @@ public class TeacherMain {
             
         } else if (input == 2) {
         	
-        	//연결시켜
+        	Teacher.mypage();
         	
         } else if(input == 3) {
         	
-        	//연결시켜
+        	Management.courseManagement();
             
         } else {
         	System.out.println("잘못된 입력입니다.");

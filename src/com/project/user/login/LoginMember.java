@@ -31,6 +31,7 @@ public class LoginMember {
 			}else if(UserDbms.searchMemberByIdPw(id, password) == null) {
 				System.out.println("비밀번호가 틀립니다.");
 				PwErrorCnt++;
+				System.out.println();
 			}else {
 				break;
 			}
@@ -47,8 +48,8 @@ public class LoginMember {
 			System.out.println();
 			
 			System.out.println("로그인이 완료되었습니다.");
+			//TODO 로그인 후 화면으로 이동해야함
 			return UserDbms.searchMemberByIdPw(id, password);
-			//로그인 후 회원 로그인 후 화면으로 이동해야함
 		}else {
 			System.out.println();
 			System.out.println("======================");

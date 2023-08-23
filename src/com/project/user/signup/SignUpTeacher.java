@@ -30,43 +30,55 @@ public class SignUpTeacher {
 		System.out.println("======================");
 		System.out.println();
 		
-		System.out.print("아이디: ");
-		id = scan.nextLine();
-		
-		while (!idCheck(id)) {
-			System.out.println("유효하지 않은 아이디입니다. 다시 입력해주세요.");
-			System.out.print("아이디: ");
-			id = scan.nextLine();
-		}
-		
-		while (!isIdTaken(id)) {
-			System.out.println("이미 사용 중인 아이디입니다. 다시 입력해주세요.");
-			System.out.print("아이디: ");
-			id = scan.nextLine();
-		}
+		// 회원가입 id입력 로직 start
+		while(true) {
+            System.out.print("아이디: ");
+            id = scan.nextLine();
+            System.out.println();
+         
+         // 1. 이미 가입된 id와 새로 입력된 id가 같을시
+         if(!isIdTaken(id)) {
+            System.out.println("이미 사용 중인 아이디입니다. 다시 입력해주세요.");
+            continue;
+         }
+         
+        
+         if(!idCheck(id)) {
+            System.out.println("유효하지 않은 아이디입니다. 다시 입력해주세요.");
+            continue;
+         }
+         
+         break;
+      }
 		t.setId(id);
-    
-		System.out.println();
-		System.out.print("비밀번호: ");
-		password = scan.nextLine();
 		
-		while (!passwordCheck(password)) {
-			System.out.println("유효하지 않은 비밀번호입니다. 다시 입력해주세요.");
-			System.out.print("비밀번호: ");
-			password = scan.nextLine();
-		}
-		
-		System.out.println();	//비밀번호 입력하면 무조건 일치하지 않다고 뜸
-		System.out.print("비밀번호 확인: ");
-		checkPassword = scan.nextLine();
-		if(!checkPassword.equals(password)) {
-			System.out.println("입력하신 비밀번호와 일치하지 않습니다. 다시 입력해주세요.");
-			System.out.print("비밀번호 확인: ");
-			password = scan.nextLine();
-		}else {
-			
-		}
-		t.setPassword(password);
+	
+	  //회원가입 비밀번호 입력
+	   while(true) {
+         System.out.print("비밀번호: ");
+         password = scan.nextLine();
+         
+         //유효성 검사
+         if(!passwordCheck(password)) {
+            System.out.println("유효하지 않은 비밀번호입니다. 다시 입력해주세요.");
+             continue;
+         }
+         System.out.println();  
+		 
+         //비밀번호 확인
+         while (true) {
+             System.out.print("비밀번호 확인: ");
+             checkPassword = scan.nextLine();
+
+             if (!checkPassword.equals(password)) {
+                 System.out.println("입력하신 비밀번호와 일치하지 않습니다. 다시 입력해주세요.");
+             } else {
+                 break;
+             }
+         }
+         break;
+      }
+	     t.setPassword(password);
 		
 		System.out.println();
 		System.out.print("이름: ");
