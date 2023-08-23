@@ -10,6 +10,7 @@ public class PendingCourse {
 	private String courseExplanation;
 	private String status;
 	
+	
 	@Override
 	public String toString() {
 		return "PendingCourse [courseName=" + courseName + ", dayOfWeek=" + dayOfWeek + ", startTime=" + startTime
