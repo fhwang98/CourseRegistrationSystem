@@ -25,10 +25,11 @@ public class PendingCourse {
 	private String courseExplanation;
 	private String status;
 	private String teacherNum;
+	private String roomNum;
 	
 	
 	public PendingCourse(String courseName, String dayOfWeek, String startTime, String category, String target,
-			String courseExplanation, String status, String teacherNum) {
+			String courseExplanation, String status, String teacherNum, String roomNum) {
 		this.courseName = courseName;
 		this.dayOfWeek = dayOfWeek;
 		this.startTime = startTime;
@@ -37,6 +38,7 @@ public class PendingCourse {
 		this.courseExplanation = courseExplanation;
 		this.status = status;
 		this.teacherNum = teacherNum;
+		this.roomNum = roomNum;
 	}
 	
 	public String getCourseName() {
@@ -87,11 +89,22 @@ public class PendingCourse {
 	public void setTeacherNum(String teacherNum) {
 		this.teacherNum = teacherNum;
 	}
+	
+	
+	
+	public String getRoomNum() {
+		return roomNum;
+	}
+
+	public void setRoomNum(String roomNum) {
+		this.roomNum = roomNum;
+	}
+
 	@Override
 	public String toString() {
 		return courseName + "," + dayOfWeek + "," + startTime
 				+ "," + category + "," + target + ","
-				+ courseExplanation + "," + status +  "," + teacherNum;
+				+ courseExplanation + "," + status +  "," + teacherNum + "," + roomNum;
 	}
 	
 	

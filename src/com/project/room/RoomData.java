@@ -47,6 +47,7 @@ public class RoomData {
 					roomList.add(new Room(temp[0], scheduleList));
 				} else {
 					roomList.get(idx).getSchedule().add(schedule);
+					sortSchedule(idx);//
 				}
 			
 			}
@@ -70,6 +71,40 @@ public class RoomData {
 			e.printStackTrace();
 		}
 		
+	}
+
+
+	private static void sortSchedule(int idx) {
+//
+		ArrayList<String> schedule = roomList.get(idx).getSchedule();
+		ArrayList<String> sortedList = new ArrayList<String>();
+		
+		for (String s : schedule) {
+			if (s.contains("월")) {
+				sortedList.add(s);
+			}
+		}
+		for (String s : schedule) {
+			if (s.contains("화")) {
+				sortedList.add(s);
+			}
+		}
+		for (String s : schedule) {
+			if (s.contains("수")) {
+				sortedList.add(s);
+			}
+		}
+		for (String s : schedule) {
+			if (s.contains("목")) {
+				sortedList.add(s);
+			}
+		}
+		for (String s : schedule) {
+			if (s.contains("금")) {
+				sortedList.add(s);
+			}
+		}
+		roomList.get(idx).setSchedule(sortedList);
 	}
 
 

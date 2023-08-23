@@ -14,11 +14,10 @@ import com.project.room.RoomData;
 public class PendingCourseService {
 
 	
-
+	
 	public static void acceptCourse(int index) {
 		
 		CourseData.allCourseList();
-		System.out.println(CourseData.courseList);
 		
 		
 		//승인을 진행할 강좌
@@ -33,11 +32,11 @@ public class PendingCourseService {
 		//못찾았으면 -> 바로 반려
 		if (roomNum.equals("")) {
 			System.out.println("강의실을 찾지 못했습니다.");
-			System.out.println("등록이 반려됩니다.");
-			delete(index);
+			rejectCourse(index);
 			return;
 		}
-		//TODO 진짜 강의실 데이터 = project.courseinfo -> course
+		
+		//TODO 진짜 강의실 데이터
 		
 		//찾았다 -> 그럼 등록할거야
 		//등록 과정 -> 일단 지금 강좌의 카테고리를 확인해
@@ -65,30 +64,32 @@ public class PendingCourseService {
 		
 		*/
 		//리스트에 추가
-		CourseData.courseList.add(new Course(courseCode, p.getCategory(), p.getCourseName(),p.getStartTime(), p.getDayOfWeek()
-							, p.getTarget(), "45000", "0", p.getTeacherNum() ,p.getCourseExplanation(), String.format("%d%02d", year, month) ,roomNum));
+		Course pendingToCourse = new Course(courseCode, p.getCategory(), p.getCourseName(),p.getStartTime(), p.getDayOfWeek()
+				, p.getTarget(), "45000", "0", p.getTeacherNum() ,p.getCourseExplanation(), String.format("%d%02d", year, month) ,roomNum);
+		CourseData.courseList.add(pendingToCourse);
 		
 		//파일에 추가
 		//강좌코드, 카테고리, 강좌명, 시작시간, 요일, 대상, 수강료, 현재신청인원, 강좌내용, 수업하는 달, 강의실 넘버
-		updateDataCourseFile();
+		updateDataCourseFile(pendingToCourse);
 		
 		//추가가 끝났으니까 이제 승인 대기중인 강좌 리스트에서 대기 -> 승인으로 상태를 바꾸고 승인대기목록 파일을 업데이트 할거야
 		p.setStatus("승인");
+		p.setRoomNum(roomNum);
 		PendingCourseData.update();
 		
 	}
 
-	private static void updateDataCourseFile() {
+	private static void updateDataCourseFile(Course c) {
 		try {
 			BufferedWriter writer = new BufferedWriter (new FileWriter("data/dataCourse.txt", true));
+			//강좌코드, 카테고리, 강좌명, 시작시간, 요일, 대상, 수강료, 현재신청인원, 강좌내용, 수업하는 달, 강의실 넘버
+			writer.write(c.getNum() + "," + c.getCategory() + "," + c.getCourseName() + "," + c.getTime() +":00"
+			 		+ "," + c.getDay() + "," + c.getTarget() + "," + c.getCourseFee() + "," + c.getPerson() + "," + c.getTeacherNum()
+			 		 + "," + c.getContents() + "," + c.getStartDay() + "," + c.getRoomNum());
 			
-			for (Course course : CourseData.courseList) {
-				//강좌코드, 카테고리, 강좌명, 시작시간, 요일, 대상, 수강료, 현재신청인원, 강좌내용, 수업하는 달, 강의실 넘버
-				writer.write(course.getNum() + "," + course.getCategory() + "," + course.getCourseName() + "," + course.getTime()
-				 		+ "," + course.getDay() + "," + course.getTarget() + "," + course.getCourseFee() + "," + course.getPerson()
-				 		 + "," + course.getContents() + "," + course.getStartDay() + "," + course.getRoomNum());
-				writer.newLine();
-			}
+			
+			writer.newLine();
+			
 			
 			writer.close();
 		} catch (Exception e) {
@@ -98,15 +99,23 @@ public class PendingCourseService {
 	}
 	
 	private static String getCourseCode(String category) {
-		//카테고리에 강좌가 몇개 있냐
-		int count = 0;
+		
+		
+		boolean isAvailable = true;
+		
 		for (int i = 0; i < CourseData.courseList.size(); i++) {
-			if (CourseData.courseList.get(i).getCourseName().contains(category)) {
-				count++;
+			String courseCode = String.format("%s%03d", category, (i + 1));
+			for (Course c : CourseData.courseList) {
+				if (c.getNum().equals(courseCode)) {
+					isAvailable = false;
+				}
+			}
+			if (isAvailable) {
+				return courseCode;
 			}
 		}
-		
-		return category + String.format("%03d", count);
+		return String.format("%s%03d", category, CourseData.courseList.size());
+
 	}
 
 	private static String getCategoryCode(String category) {
@@ -160,26 +169,15 @@ public class PendingCourseService {
 
 	public static void rejectCourse(int index) {
 		
-		System.out.print("강의 등록 신청을 반려하시겠습니까? [y/n]");
-		Scanner scan = new Scanner(System.in);
-		String input = scan.nextLine();
-		if (!input.matches("y")) {
-			System.out.println("반려를 취소합니다.");
-			return;
-		}
-		
-		//반려를 진행합시다.
-		delete(index);
-	}
 
-	private static void delete(int index) {
 		PendingCourseData.getList().get(index).setStatus("반려");
-		System.out.println(PendingCourseData.getList().get(index).getStatus());
 		PendingCourseData.update();
 		
 		System.out.println("등록이 반려되었습니다.");
 		System.out.println();
-	}	
+		//반려를 진행합시다.
+	}
+
 }
 
 

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.project.admin.AdminUtil;
 import com.project.admin.AdminView;
+import com.project.courseinfo.CourseData;
 
 public class PendingCourseMain {
 
@@ -27,7 +28,7 @@ public class PendingCourseMain {
 		while (loop) {
 			//10개를 보여줌
 			//1번부터 보여줌
-			scan.nextLine();
+			PendingCourseView.printPendingCourseHead();
 			PendingCourseView.printPendingCourseList(page);
 			PendingCourseView.printPendingCourseMenu(page, lastpage);
 			String sel = scan.nextLine();
@@ -84,30 +85,33 @@ public class PendingCourseMain {
 		boolean loop = true;
 		
 		while (loop) {
-			System.out.println("loop start");
 			//대기 강좌 하나의 정보를 출력하고 메뉴 0 뒤로가기 1 승인 2 반려
 			PendingCourseView.printPendingCourse(index);
 			
 			String sel = scan.next();
 			
 			if (!sel.matches("[0-2]{1}")) {
-				System.out.println("inv");
 				AdminView.printInvalidInputMessage(scan);
 				continue;
 			} else if (sel.equals("0")) {
-				System.out.println("0");
 				loop = false;
 			} else if (sel.equals("1")) {
-				System.out.println("1");
 				//등록 승인 -> 상태가 바뀌고 다른 데이터들이 업데이트된다
 				PendingCourseService.acceptCourse(index);
 			} else if (sel.equals("2")) {
 				//등록 반려 -> 삭제되지는 않고 상태가 바뀜
+				scan.nextLine(); //얘가 빠지면 안됨
+				System.out.print("강의 등록 신청을 반려하시겠습니까? [y/n]");
+				String input = scan.nextLine();
+				if (!input.matches("y")) {
+					System.out.println("반려를 취소합니다.");
+					continue;
+				}
 				PendingCourseService.rejectCourse(index);
 			}
-			System.out.println("loop end");
-			System.out.println(loop);
 		}
+		PendingCourseData.sortList();
+		scan.nextLine();
 		
 	}
 }

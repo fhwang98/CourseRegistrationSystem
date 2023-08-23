@@ -21,6 +21,29 @@ public class PendingCourseData {
 		return list;
 	}
 	
+	public static void sortList() {
+		
+		ArrayList<PendingCourse> sortedList = new ArrayList<PendingCourse>();
+		
+		for (PendingCourse p : list) {
+			if (p.getStatus().equals("대기")) {
+				sortedList.add(p);
+			}
+		}
+		for (PendingCourse p : list) {
+			if (p.getStatus().equals("반려")) {
+				sortedList.add(p);
+			}
+		}
+		for (PendingCourse p : list) {
+			if (p.getStatus().equals("승인")) {
+				sortedList.add(p);
+			}
+		}
+		list = sortedList;
+		
+	}
+	
 	/*
 		private String courseName;
 		private String dayOfWeek;
@@ -37,6 +60,7 @@ public class PendingCourseData {
 		String[] dow = {"월", "화", "수", "목", "금"};
 		String[] category = {"문화", "블럭교실", "피아노", "체육", "어린이"};
 		String[] target = {"어린이", "청소년", "성인", "누구나"};
+		String[] status = {"승인", "대기", "반려"};
 		
 		Random rnd = new Random();
 		
@@ -53,7 +77,7 @@ public class PendingCourseData {
 				PendingCourse p = new PendingCourse("강좌명" +( i + 1)
 						, dow[rnd.nextInt(4)], String.format("%02d", rnd.nextInt(15) + 6)
 						, category[rnd.nextInt(4)], target[rnd.nextInt(3)]
-						, "강좌내용" + (i + 1), "대기", String.format("T%03d", rnd.nextInt(100) + 1));
+						, "강좌내용" + (i + 1), status[rnd.nextInt(2)] , String.format("T%03d", rnd.nextInt(100) + 1), "없음");
 				writer.write(p.toString());
 				writer.newLine();
 			}
@@ -73,10 +97,11 @@ public class PendingCourseData {
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split(",");
-				list.add(new PendingCourse(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6] ,temp[7]));
+				list.add(new PendingCourse(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6] ,temp[7], temp[8]));
 			}
 			
-			
+			PendingCourseData.sortList();
+
 			reader.close();
 		} catch (Exception e) {
 			System.out.println("at PendingCourseData.load");
@@ -86,7 +111,7 @@ public class PendingCourseData {
 	
 	public static void update() { //덮어쓰기
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data/dataPendingCourse"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data/dataPendingCourse.txt"));
 			for (PendingCourse p : list) {
 				writer.write(p.toString());
 				writer.newLine();

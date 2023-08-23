@@ -32,13 +32,14 @@ public class PendingCourseView {
 		
 		System.out.printf("대기 번호\t:\t%s\n", index + 1);
 		System.out.printf("강좌명\t:\t%s\n", p.getCourseName());
-		System.out.printf("강사명\t:\t%s\n", p.getTeacherNum()); //TODO 강사코드 -> 강사명으로 수정해야함
+		System.out.printf("강사명\t:\t%s\n", p.getTeacherNum()); //TODO 강사코드 -> 강사 데이터 불러와서 강사명 볼 수 있도록 수정해야함
 		System.out.printf("요일\t:\t%s\n", p.getDayOfWeek());
 		System.out.printf("시간\t:\t%02d:00-%02d:00\n", Integer.parseInt(p.getStartTime()), Integer.parseInt(p.getStartTime()) + 1);
 		System.out.printf("카테고리\t:\t%s\n", p.getCategory());
 		System.out.printf("수강 대상\t:\t%s\n", p.getTarget());
 		System.out.printf("강좌 내용\t:\t%s\n", p.getCourseExplanation());
 		System.out.printf("승인 여부\t:\t%s\n", p.getStatus());
+		System.out.printf("강의실\t:\t%s\n", p.getRoomNum());
 		System.out.println("---------------------------------------------");
 		System.out.println("0. 뒤로가기");
 		System.out.println("1. 등록 승인");
