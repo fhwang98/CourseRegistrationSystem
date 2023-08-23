@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import com.project.auth.AuthDbms;
+
 public class MyPageService {
 
 	public static void memCheck() {
@@ -424,7 +426,8 @@ public class MyPageService {
 	public static void logout() {
 		
 		// TODO 로그아웃 후 메인 연결
-		
+		AuthDbms abc = new AuthDbms();
+		abc.selectAuth().clear();
 	}
 	
 	public static void memDelete() {

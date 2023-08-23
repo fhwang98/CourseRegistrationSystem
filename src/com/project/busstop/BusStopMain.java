@@ -36,7 +36,7 @@ public class BusStopMain {
 			}
 		}
 
-		System.out.println("outloop is false"); // 초기 메인화면으로 이동하기
+//		System.out.println("outloop is false"); // 초기 메인화면으로 이동하기
 	}
 
 //	public static void main(String[] args) {

@@ -23,20 +23,24 @@ public class Refund {
 		System.out.println();
 		System.out.println("0.뒤로가기");
 		System.out.print("입력:  ");
+		String input = scan.nextLine();
 
-		boolean loop = true;
-		
-		while (loop) {
-
-			String input = scan.nextLine();
+		while (!input.equals("0")) {
 
 			if (input.equals("0")) {
-				loop = false;
+				CourseInfo.lectureInfo();
+
 			} else {
 				System.out.println("뒤로가려면 0번을 입력하세요.");
 				System.out.print("입력: ");
+				input = scan.nextLine();
+
 			}
-			
+
+		}
+		if (input.equals("0")) {
+			CourseInfo.lectureInfo();
 		}
 	}
+
 }
