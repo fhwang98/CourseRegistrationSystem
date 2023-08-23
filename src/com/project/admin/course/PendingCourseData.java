@@ -41,7 +41,7 @@ public class PendingCourseData {
 		Random rnd = new Random();
 		
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataPendingCourse.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data/dataPendingCourse.txt"));
 
 			
 			for (int i = 0; i < 30; i++) {
@@ -68,7 +68,7 @@ public class PendingCourseData {
 	public static void load() {
 		
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader("data\\dataPendingCourse.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("data/dataPendingCourse.txt"));
 			
 			String line = null;
 			while ((line = reader.readLine()) != null) {
@@ -86,7 +86,7 @@ public class PendingCourseData {
 	
 	public static void update() { //덮어쓰기
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataPendingCourse"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data/dataPendingCourse"));
 			for (PendingCourse p : list) {
 				writer.write(p.toString());
 				writer.newLine();

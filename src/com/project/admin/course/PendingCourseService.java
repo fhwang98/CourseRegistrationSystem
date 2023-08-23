@@ -80,7 +80,7 @@ public class PendingCourseService {
 
 	private static void updateDataCourseFile() {
 		try {
-			BufferedWriter writer = new BufferedWriter (new FileWriter("data\\dataCourse.txt", true));
+			BufferedWriter writer = new BufferedWriter (new FileWriter("data/dataCourse.txt", true));
 			
 			for (Course course : CourseData.courseList) {
 				//강좌코드, 카테고리, 강좌명, 시작시간, 요일, 대상, 수강료, 현재신청인원, 강좌내용, 수업하는 달, 강의실 넘버

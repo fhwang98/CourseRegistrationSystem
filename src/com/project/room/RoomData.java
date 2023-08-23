@@ -23,7 +23,7 @@ public class RoomData {
 	public static void load() {
 		
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader("data\\dataRoomSchedule.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("data/dataRoomSchedule.txt"));
 			
 			
 			String line = null;
@@ -58,7 +58,7 @@ public class RoomData {
 			
 			
 			
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataRoom.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data/dataRoom.txt"));
 			for (Room r : roomList) {
 				writer.write(r.toString());
 				writer.newLine();
