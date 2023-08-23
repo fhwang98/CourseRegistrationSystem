@@ -3,6 +3,7 @@ package com.project.admin;
 import java.util.Scanner;
 
 import com.project.admin.admininfo.AdminInfoMain;
+import com.project.admin.course.AdminCourseMain;
 import com.project.admin.notice.NoticeMain;
 import com.project.admin.room.RoomMain;
 import com.project.admin.user.AdminUserMain;
@@ -38,6 +39,7 @@ public class AdminMain {
 			} else if (sel == 3) {
 				//강좌 관리
 				System.out.println("강좌 관리");
+				AdminCourseMain.controlCourse();
 			} else if (sel == 4) {
 				//강의실 관리
 				RoomMain.controlRoom();
