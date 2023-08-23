@@ -3,9 +3,8 @@ package com.project.admin.course;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Calendar;
-import java.util.Scanner;
+import java.util.Random;
 
-import com.project.admin.AdminView;
 import com.project.courseinfo.Course;
 import com.project.courseinfo.CourseData;
 import com.project.room.Room;
@@ -36,7 +35,6 @@ public class PendingCourseService {
 			return;
 		}
 		
-		//TODO 진짜 강의실 데이터
 		
 		//찾았다 -> 그럼 등록할거야
 		//등록 과정 -> 일단 지금 강좌의 카테고리를 확인해
@@ -64,8 +62,11 @@ public class PendingCourseService {
 		
 		*/
 		//리스트에 추가
+		Random rnd = new Random();
+		
+		
 		Course pendingToCourse = new Course(courseCode, p.getCategory(), p.getCourseName(),p.getStartTime(), p.getDayOfWeek()
-				, p.getTarget(), "45000", "0", p.getTeacherNum() ,p.getCourseExplanation(), String.format("%d%02d", year, month) ,roomNum);
+				, p.getTarget(), String.format("%d", (rnd.nextInt(20) + 45000)), "0", p.getTeacherNum() ,p.getCourseExplanation(), String.format("%d%02d", year, month) ,roomNum);
 		CourseData.courseList.add(pendingToCourse);
 		
 		//파일에 추가

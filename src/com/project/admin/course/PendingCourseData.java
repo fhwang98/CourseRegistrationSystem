@@ -123,5 +123,18 @@ public class PendingCourseData {
 		}
 	}
 	
-	
+	public static void update(PendingCourse p) { //이어쓰기
+	      try {
+	         BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataPendingCourse.txt", true));
+	         
+	         writer.write(p.toString());
+	         
+	         writer.newLine();
+	         
+	         writer.close();
+	      } catch (Exception e) {
+	         System.out.println("at PendingCourseData.update");
+	         e.printStackTrace();
+	      }
+	   }
 }
