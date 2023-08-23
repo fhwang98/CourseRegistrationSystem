@@ -55,9 +55,8 @@ public class SignUpTeacher {
 	
 	  //회원가입 비밀번호 입력
 	   while(true) {
-         System.out.println("비밀번호: ");
+         System.out.print("비밀번호: ");
          password = scan.nextLine();
-         System.out.println();
          
          //유효성 검사
          if(!passwordCheck(password)) {
@@ -70,7 +69,6 @@ public class SignUpTeacher {
          while (true) {
              System.out.print("비밀번호 확인: ");
              checkPassword = scan.nextLine();
-             System.out.println();
 
              if (!checkPassword.equals(password)) {
                  System.out.println("입력하신 비밀번호와 일치하지 않습니다. 다시 입력해주세요.");

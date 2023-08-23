@@ -31,6 +31,7 @@ public class LoginMember {
 			}else if(UserDbms.searchMemberByIdPw(id, password) == null) {
 				System.out.println("비밀번호가 틀립니다.");
 				PwErrorCnt++;
+				System.out.println();
 			}else {
 				break;
 			}
