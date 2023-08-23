@@ -9,7 +9,7 @@ public class MyPageMain {
 	public static void main(String[] args) {
 		mypage(null);
 	}
-
+	
 	public static void mypage(DataMember m) {
 		
 		MyPageData.load();
@@ -24,7 +24,7 @@ public class MyPageMain {
 			
 			String sel = scan.nextLine();
 			
-			String id = "otqapf7199"; // TODO 로그인 연동
+			String id = m.getId(); // TODO 로그인 연동
 			
 			if (sel.equals("0")) {
 				loop = false; // 루프 빠져나가고 myPageData.save 후에 메인화면으로 이동

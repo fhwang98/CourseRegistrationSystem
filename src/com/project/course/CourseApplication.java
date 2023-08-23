@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 import com.project.courseinfo.Course;
+import com.project.user.UserMain;
 
 public class CourseApplication {
 
@@ -29,7 +30,12 @@ public class CourseApplication {
 	}
 
 
+	public static void courseApplication() {
 
+		courseApplicationment();
+
+		
+	}
 	
 	public static void courseApplicationment() {
 		
@@ -165,7 +171,7 @@ public class CourseApplication {
 										System.out.println("\"이미 신청이 마감된 강좌 입니다.\"");
 										System.out.println("\"처음으로 이동합니다.\"");
 										System.out.println();
-									//	Main.mainMent();
+										UserMain.LoginGeneralMember();
 										
 										loop = false;
 										break;
@@ -196,14 +202,14 @@ public class CourseApplication {
 										System.out.println("수강신청이 완료되었습니다.");
 										System.out.println("처음으로 이동합니다.");
 										System.out.println();
-						//				Main.mainMent();
+										UserMain.LoginGeneralMember();
 									}
 
 								} else if (input.equals("n")) {
 									System.out.println();
 									System.out.println("\"처음으로 이동합니다.\"");
 									System.out.println();
-							//		Main.mainMent();
+									UserMain.LoginGeneralMember();
 									break;
 
 								} else {
@@ -211,7 +217,7 @@ public class CourseApplication {
 									System.out.println("y 혹은 n을 입력하세요.");
 									System.out.println("처음으로 이동합니다.");
 									System.out.println();
-							//		Main.mainMent();
+									UserMain.LoginGeneralMember();
 
 								}
 							}
@@ -223,17 +229,14 @@ public class CourseApplication {
 				}
 			}
 			
-			if (code.equals("0")) {
-				System.out.println("다시 돌아갑니다.");
-				loop = false;
-			} else if (!courseFound && !code.equals("0")) {
+			if (!courseFound) {
 				System.out.println();
 				System.out.println("\"잘못된 강좌코드 입니다.\"");
 				System.out.println("\"강좌코드를 확인해 주세요.\"");
-				System.out.println();			
-				loop = false;
+				System.out.println();
+				UserMain.LoginGeneralMember();
+				
 			}
-			
 //			for (Course c : TestApplication.courseList) {
 //
 //			}
@@ -260,7 +263,7 @@ public class CourseApplication {
 			System.out.println();
 			System.out.printf("수강료: %s원\n", c.getCourseFee());
 			System.out.println();
-			System.out.printf("정원: %s\n", c.getPerson());
+			System.out.printf("신청인원: %s\n", c.getPerson());
 			System.out.println();
 			System.out.printf("강좌내용: %s\n", c.getContents());
 			System.out.println();

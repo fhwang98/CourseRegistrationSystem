@@ -3,7 +3,6 @@ package com.project.user.login;
 import java.util.Scanner;
 
 import com.project.admin.AdminMain;
-import com.project.admin.user.AdminUserMain;
 import com.project.auth.Auth;
 import com.project.auth.AuthDbms;
 import com.project.teacher.TeacherMain;
@@ -75,6 +74,7 @@ public class LoginChoice {
 				auth.setId(a.getId());
 				auth.setName(a.getName());
 				main.getLoginAList().add(a);
+				
 				AdminMain.controlAdmin(a);
 			}
 		}

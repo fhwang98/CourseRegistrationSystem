@@ -307,7 +307,7 @@ public class Management {
 		// System.out.println(loginList.get(0).getTeacherCode());
 
 		// 현재 로그인 한 강사 코드
-		String curTeacherCode = loginList.get(0).getTeacherCode();
+		String curTeacherCode = loginList.get(0).toString();
 
 		for (Course c : CourseData.courseList) {
 			System.out.println(c.getCourseName());

@@ -1,4 +1,5 @@
 package com.project.teacher;
+
 import com.project.user.login.LoginMain;
 import com.project.user.login.LoginTeacher;
 import com.project.user.data.DataTeacher;
@@ -31,7 +32,7 @@ public class Teacher {
 
 		if (input == 0) {
 
-			// 연결시켜
+			TeacherMain.LoginTeacher();
 
 		} else if (input == 1) {
 
@@ -49,25 +50,32 @@ public class Teacher {
 
 	public static void checkInformation() {
 
+		String id = "aldfjsk0425";
+		String code = "T001";
+		
 		Scanner scan = new Scanner(System.in);
 
-		ArrayList<DataTeacher> list = UserDbms.getTeacherAllList();
-		
-		//강사 로그인 데이터 가져오기
-		LoginMain lista = new LoginMain();
-		ArrayList<DataTeacher> loginList = lista.getLoginTList();
-		System.out.println(lista.getLoginTList());
-		
-	
-		System.out.println(loginList.get(0).getId());
-		// 향상된 for 문은 writer 과정에서 오류가 날 수 있으므로 오류 발생 시 for문으로 수정해야함
-		for (DataTeacher data : list) {
+		UserDbms list = new UserDbms();
+		ArrayList<DataTeacher> allTeacherList = UserDbms.getTeacherAllList();
 
-			if (data.getId().equals(loginList.get(0).getId())) {
+//		//강사 로그인 데이터 가져오기
+//		LoginMain lista = new LoginMain();
+//		ArrayList<DataTeacher> loginList = lista.getLoginTList();
+//		System.out.println(lista.getLoginTList());
+
+//		System.out.println(loginList.get(0).getId());
+		// 향상된 for 문은 writer 과정에서 오류가 날 수 있으므로 오류 발생 시 for문으로 수정해야함
+
+//		LoginMain lista = new LoginMain();
+//		lista.getLoginTList().get(0);
+
+		for (DataTeacher data : allTeacherList) {
+
+			if (data.getId().equals(id)) {
 				int input = 0;
 				String name = "";
 				String phone = "";
-				
+
 				System.out.println("    강사 마이페이지 > 내 정보 조회 및 수정");
 				System.out.println("—-------------------------------------");
 				System.out.println("아이디: " + data.getId());
@@ -92,7 +100,7 @@ public class Teacher {
 
 					name = scan.nextLine();
 
-					modifyByName(loginList.get(0), name);
+					modifyByName(code, name);
 
 				} else if (input == 2) {
 
@@ -100,7 +108,7 @@ public class Teacher {
 
 					phone = scan.nextLine();
 
-					modifyByPhone(loginList.get(0), phone);
+					modifyByPhone(code, phone);
 
 				} else {
 
@@ -114,7 +122,7 @@ public class Teacher {
 
 	}
 
-	private static void modifyByName(DataTeacher dataTeacher, String name) {
+	private static void modifyByName(String code, String name) {
 
 		try {
 			// 강사 파일 읽어오기
@@ -140,7 +148,7 @@ public class Teacher {
 				String curWithdrawal = temp[6];
 
 				// 현재 줄의 강사 코드와 현재 강사 코드가 같은지 비교
-				if (curCode.equals(dataTeacher)) {
+				if (curCode.equals(code)) {
 					// 같으면 현재 줄의 이름을 입력받은 이름으로 변경
 					curName = name;
 				}
@@ -164,7 +172,7 @@ public class Teacher {
 
 	}
 
-	private static void modifyByPhone(DataTeacher dataTeacher, String phone) {
+	private static void modifyByPhone(String code, String phone) {
 
 		// 실제 데이터 파일을 수정하여 파일을 작성하고, 다시 리스트를 만들자
 
@@ -192,7 +200,7 @@ public class Teacher {
 				String curWithdrawal = temp[6];
 
 				// 현재 줄의 강사 코드와 현재 강사 코드가 같은지 비교
-				if (curCode.equals(dataTeacher)) {
+				if (curCode.equals(code)) {
 					// 같으면 현재 줄의 이름을 입력받은 이름으로 변경
 					curTel = phone;
 				}

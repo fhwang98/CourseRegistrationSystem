@@ -8,7 +8,7 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class AuthDbms {
-	private final static String dataAuthPath = "../data/authData.txt"; // 상대경로 설정
+	private final static String dataAuthPath = System.getProperty("user.dir") + File.separator+ "data"+File.separator+"authData.txt"; // 상대경로 설정
 
 	public ArrayList<Auth> selectAuth() {
 		

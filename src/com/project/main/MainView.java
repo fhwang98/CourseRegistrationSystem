@@ -3,6 +3,7 @@ package com.project.main;
 import java.util.Scanner;
 
 import com.project.admin.notice.NoticeMain;
+import com.project.busstop.BusStopMain;
 import com.project.centerinfo.CenterInfo;
 import com.project.courseinfo.CourseInfo;
 import com.project.user.login.LoginMain;
@@ -10,7 +11,7 @@ import com.project.user.signup.SignUpMain;
 
 public class MainView {
 	
-	public void MainScreen() {
+	public static void MainScreen() {
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -38,7 +39,7 @@ public class MainView {
 				CenterInfo.centerInfo();
 				mainView();
 			} else if (input.equals("5")) {
-				CourseInfo.lectureInfo();
+				BusStopMain.busStopMain();
 				mainView();
 			} else if (input.equals("6")) {
 				NoticeMain.controlNoticeMain();
@@ -63,5 +64,6 @@ public class MainView {
 		System.out.println("6. 공지사항");
 		System.out.println("—-------------------------------------");
 		System.out.print("번호 입력 : ");
+		System.out.println();
 	}
 }

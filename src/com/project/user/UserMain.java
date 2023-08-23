@@ -12,7 +12,7 @@ import com.project.user.mypage.MyPageMain;
 public class UserMain {
 
 	
-	public void LoginGeneralMember() {
+	public static void LoginGeneralMember() {
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -41,8 +41,11 @@ public class UserMain {
 				MyPageMain.mypage();
 				userMainView();
 			} else if (input.equals("6")) {
-				BusStopMain.main(null);
+				BusStopMain.busStopMain();
 				userMainView();
+			} else if (input.equals("7")) {
+				//추가해야함
+
 			} else {
 				System.out.println("잘못된 입력입니다.");
 				System.out.print("재입력: ");
@@ -62,6 +65,7 @@ public class UserMain {
 		System.out.println("4. 수강신청");
 		System.out.println("5. 마이페이지");
 		System.out.println("6. 셔틀");
+		System.out.println("7. 공지사항");
 		System.out.println("—-------------------------------------");
 		System.out.print("번호 입력 : ");
 	}
