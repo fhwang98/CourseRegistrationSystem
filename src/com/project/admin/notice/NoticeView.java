@@ -1,7 +1,14 @@
 package com.project.admin.notice;
 
+import java.util.ArrayList;
+
+import com.project.admin.Admin;
+import com.project.admin.AdminData;
+import com.project.authentication.Authentication;
 import com.project.notice.Notice;
 import com.project.notice.NoticeData;
+import com.project.user.data.DataTeacher;
+import com.project.user.data.UserDbms;
 
 public class NoticeView {
 
@@ -32,8 +39,7 @@ public class NoticeView {
 		Notice n = NoticeData.getList().get(index);
 		System.out.printf("제목\t:\t%s\r\n", n.getTitle());
 		System.out.printf("게시일\t:\t%tF\r\n", n.getUploadTime());
-		//TODO DataTeacher 에서 list 를 가져와서 n.getWriter() 와 일치하는 코드를 가진 사람의 이름을 가져온다
-		System.out.printf("게시자\t:\t%s\r\n", n.getWriter()); 
+		System.out.printf("게시자\t:\t%s\r\n", getWriterName(n.getWriterCode())); 
 		// 여러줄일 경우 앞에 탭 3개 후 출력
 		String[] lines = n.getContent().split("\\\\r\\\\n"); // 개행 \r\n이면 \\\\r\\\\n
 
@@ -47,6 +53,31 @@ public class NoticeView {
 
 	}
 
+	private static String getWriterName(String writerCode) {
+		if (writerCode.contains("A")) {
+			
+			AdminData.load();
+			for (Admin a : AdminData.getAdminList()) {
+				if (a.getAdminNo().equals(Authentication.loginUserCode)) {
+					return a.getAdminName();
+				}
+			}
+		}
+		else {
+			
+			UserDbms list = new UserDbms();
+			ArrayList<DataTeacher> allTeacherList = UserDbms.getTeacherAllList();
+			for (DataTeacher t : allTeacherList) {
+				if (t.getTeacherCode().equals(Authentication.loginUserCode)) {
+					return t.getName();
+				}
+			}
+			
+		}
+	
+		return null;
+	}
+	
 
 	public static void printOpenedNoticeMenu() {
 		System.out.println("=============================================");

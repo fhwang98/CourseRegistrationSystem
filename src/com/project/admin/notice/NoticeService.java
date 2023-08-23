@@ -1,14 +1,17 @@
 package com.project.admin.notice;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Calendar;
 import java.util.Scanner;
 
+import com.project.admin.Admin;
+import com.project.admin.AdminData;
+import com.project.authentication.Authentication;
 import com.project.notice.Notice;
 import com.project.notice.NoticeData;
+import com.project.user.data.DataTeacher;
+import com.project.user.data.UserDbms;
 
 public class NoticeService {
 	
@@ -29,7 +32,7 @@ public class NoticeService {
 		NoticeView.printPosting();
 		
 		//TODO com.project.user.login -> LoginMain -> loginMainList
-		String noticeWriter = "작성자"; //현재 로그인정보에서 가져와야함 추후 수정
+		//String noticeWriter = getWriter(Authentication.loginUserCode); //현재 로그인정보에서 가져와야함 추후 수정
 		
 		System.out.println("제목을 입력해 주세요.(20자 이내)");
 		System.out.print("제목 입력: ");
@@ -57,7 +60,7 @@ public class NoticeService {
 		int no = NoticeData.getList().size() + 1;
 		Calendar uploadTime = Calendar.getInstance();
 		
-		Notice newNotice = new Notice(no, uploadTime, noticeWriter, inputTitle, inputContent);
+		Notice newNotice = new Notice(no, uploadTime, Authentication.loginUserCode, inputTitle, inputContent);
 		
 		NoticeData.getList().add(newNotice);
 		
@@ -75,6 +78,8 @@ public class NoticeService {
 		
 	}
 	
+
+
 	private static boolean isValidTitle(String inputTitle) {
 		//화이트 스페이스 잡아야됨
 		inputTitle = inputTitle.replace(" ", "").replace("\t", "").replace("\r\n", "");

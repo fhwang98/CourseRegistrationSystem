@@ -97,7 +97,7 @@ public class NoticeService {
 		System.out.println("제목: " + n.getTitle());
 		System.out.println("게시일: " + String.format("%tF-%tT", n.getUploadTime(), n.getUploadTime()));
 
-		String writer = makeWriter(n.getWriter());
+		String writer = makeWriter(n.getWriterCode());
 		System.out.println("게시자: " + writer); // 관리자 황은하 이런 식으로 출력
 		System.out.println("내용: ");
 		System.out.println(n.getContent());
