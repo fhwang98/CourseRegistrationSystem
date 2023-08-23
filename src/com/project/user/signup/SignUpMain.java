@@ -3,7 +3,8 @@ package com.project.user.signup;
 import java.util.Scanner;
 
 public class SignUpMain {
-	public static void main(String[] args) {
+	
+	public void SignUpProcess() {
 
 		int num = 0;
 
@@ -31,10 +32,10 @@ public class SignUpMain {
 			System.out.print("번호를 입력하세요: ");
 			num = scan.nextInt();
 		}
-//		if(num == 0) {
-//			메인화면으로 돌아가기
-//		}
-		if (num == 1) {
+		if(num == 0) {
+			System.out.println("메인화면으로 돌아갑니다.");
+			System.out.println();
+		}else if (num == 1) {
 			SignUpMember.addMember();
 		} else if(num==2) {
 			SignUpTeacher.addTeacher();

@@ -55,63 +55,64 @@ public class Teacher {
 		
 		//강사 로그인 데이터 가져오기
 		LoginMain lista = new LoginMain();
-		
 		ArrayList<DataTeacher> loginList = lista.getLoginTList();
+		System.out.println(lista.getLoginTList());
 		
-
-		// 향상된 for 문은 writer 과정에서 오류가 날 수 있으므로 오류 발생 시 for문으로 수정해야함
-		for (DataTeacher data : list) {
-
-			if (data.getId().equals(loginList.get(1))) {
-				int input = 0;
-				String name = "";
-				String phone = "";
-				
-				System.out.println("    강사 마이페이지 > 내 정보 조회 및 수정");
-				System.out.println("—-------------------------------------");
-				System.out.println("아이디: " + data.getId());
-				System.out.println("이름: " + data.getName());
-				System.out.println("전화번호: " + data.getTel());
-				System.out.println("강사코드: " + data.getTeacherCode());
-				System.out.println("0. 마이페이지 돌아가기");
-				System.out.println("1. 이름");
-				System.out.println("2. 전화번호");
-				System.out.println("—-------------------------------------");
-				System.out.print("번호 입력 : ");
-
-				input = scan.nextInt();
-
-				if (input == 0) {
-
-					Teacher.mypage();
-
-				} else if (input == 1) {
-
-					System.out.print("수정할 이름을 입력하세요: ");
-
-					name = scan.nextLine();
-
-					modifyByName(loginList.get(0), name);
-
-				} else if (input == 2) {
-
-					System.out.print("수정할 전화번호를 입력하세요: ");
-
-					phone = scan.nextLine();
-
-					modifyByPhone(loginList.get(0), phone);
-
-				} else {
-
-					System.out.println("잘못된 입력입니다.");
-
-				}
-
-			}
-
-		}
-
 	}
+//		System.out.println(loginList.get(0).getId());
+//		// 향상된 for 문은 writer 과정에서 오류가 날 수 있으므로 오류 발생 시 for문으로 수정해야함
+//		for (DataTeacher data : list) {
+//
+//			if (data.getId().equals(loginList.get(0).getId())) {
+//				int input = 0;
+//				String name = "";
+//				String phone = "";
+//				
+//				System.out.println("    강사 마이페이지 > 내 정보 조회 및 수정");
+//				System.out.println("—-------------------------------------");
+//				System.out.println("아이디: " + data.getId());
+//				System.out.println("이름: " + data.getName());
+//				System.out.println("전화번호: " + data.getTel());
+//				System.out.println("강사코드: " + data.getTeacherCode());
+//				System.out.println("0. 마이페이지 돌아가기");
+//				System.out.println("1. 이름");
+//				System.out.println("2. 전화번호");
+//				System.out.println("—-------------------------------------");
+//				System.out.print("번호 입력 : ");
+//
+//				input = scan.nextInt();
+//
+//				if (input == 0) {
+//
+//					Teacher.mypage();
+//
+//				} else if (input == 1) {
+//
+//					System.out.print("수정할 이름을 입력하세요: ");
+//
+//					name = scan.nextLine();
+//
+//					modifyByName(loginList.get(0), name);
+//
+//				} else if (input == 2) {
+//
+//					System.out.print("수정할 전화번호를 입력하세요: ");
+//
+//					phone = scan.nextLine();
+//
+//					modifyByPhone(loginList.get(0), phone);
+//
+//				} else {
+//
+//					System.out.println("잘못된 입력입니다.");
+//
+//				}
+//
+//			}
+//
+//		}
+//
+//	}
 
 	private static void modifyByName(DataTeacher dataTeacher, String name) {
 

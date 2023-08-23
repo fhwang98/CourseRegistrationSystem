@@ -17,6 +17,7 @@ public class LoginTeacher {
 		System.out.println();
 		
 		int PwErrorCnt =  0;
+		
 		while(true) {
 			System.out.print("아이디: ");
 			id = scan.nextLine();
@@ -29,6 +30,7 @@ public class LoginTeacher {
 			}else if(UserDbms.searchTeacherByIdPw(id, password) == null) {
 				System.out.println("비밀번호가 틀립니다.");
 				PwErrorCnt++;
+				System.out.println();
 			}else {
 				break;
 			}
@@ -44,8 +46,8 @@ public class LoginTeacher {
 			System.out.println();
 			
 			System.out.println("로그인이 완료되었습니다.");
+			//TODO 로그인 후 화면으로 이동해야함
 			return UserDbms.searchTeacherByIdPw(id, password);
-			//로그인 후 화면으로 이동해야함
 		}else {
 			System.out.println();
 			System.out.println("======================");
