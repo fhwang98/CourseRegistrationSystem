@@ -10,9 +10,9 @@ import com.project.user.login.LoginMain;
 public class Main {
 	public static void main(String[] args) {
 
-//		//초기화면
-//		MainView lMain = new MainView();
-//        lMain.MainScreen();
+		//초기화면
+		MainView lMain = new MainView();
+        lMain.MainScreen();
 
 		// 로그인
 //        LoginMain abc = new LoginMain();
@@ -29,13 +29,13 @@ public class Main {
 //		// 현재 로그인 한 강사 코드
 //		System.out.println(lista.getLoginTList().get(0).getTeacherCode());
 		
-		 LoginMain main = new LoginMain();
-         main.LoginProcess();
-         main.getLoginTList();
-         for(int i =0; i<main.getLoginTList().size(); i++) {
-            System.out.println(main.getLoginTList().get(i).toString());
-         }
-		
+//		 LoginMain main = new LoginMain();
+//         main.LoginProcess();
+//         main.getLoginTList();
+//         for(int i =0; i<main.getLoginTList().size(); i++) {
+//            System.out.println(main.getLoginTList().get(i).toString());
+//         }
+//		
 		
 
 	}
