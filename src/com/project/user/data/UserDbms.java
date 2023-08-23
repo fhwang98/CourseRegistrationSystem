@@ -12,9 +12,9 @@ import java.util.HashMap;
 
 public class UserDbms {
 	private final static String CRLF = "\r\n";
-	private final static String dataMemberPath = "../data/dataMember.txt";
-	private final static String dataTeacherPath = "../data/dataTeacher.txt";
-	private final static String dataAdminPath = "../data/dataAdmin.txt";
+	private final static String dataMemberPath = "data\\dataMember.txt";
+	private final static String dataTeacherPath = "data\\dataTeacher.txt";
+	private final static String dataAdminPath = "data\\dataAdmin.txt";
 
 	private static ArrayList<DataMember> memberAllList;
 	private static ArrayList<DataTeacher> teacherAllList;
