@@ -33,11 +33,9 @@ public class AdminCourseMain {
 				//강좌 분류별 조회
 			} else if ( sel == 3) {
 				//강좌 검색
-				//TODO 구현해야함
 				AdminCourseService.searchCourse();
 			} else if ( sel == 4) {
 				//승인 대기 강좌
-				System.out.println("승인대기강좌");
 				PendingCourseMain.controlPendingCourse();
 			}
 			
