@@ -11,7 +11,7 @@ import com.project.user.signup.SignUpMain;
 
 public class MainView {
 	
-	public void MainScreen() {
+	public static void MainScreen() {
 		
 		Scanner scan = new Scanner(System.in);
 		

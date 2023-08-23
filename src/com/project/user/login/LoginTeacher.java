@@ -2,6 +2,7 @@ package com.project.user.login;
 
 import java.util.Scanner;
 
+import com.project.teacher.TeacherMain;
 import com.project.user.data.DataTeacher;
 import com.project.user.data.UserDbms;
 
@@ -47,6 +48,8 @@ public class LoginTeacher {
 			
 			System.out.println("로그인이 완료되었습니다.");
 			//TODO 로그인 후 화면으로 이동해야함
+			TeacherMain.LoginTeacher();
+			
 			return UserDbms.searchTeacherByIdPw(id, password);
 		}else {
 			System.out.println();
