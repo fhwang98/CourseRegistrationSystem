@@ -3,8 +3,7 @@ package com.project.user.signup;
 import java.util.Scanner;
 
 public class SignUpMain {
-	
-	public void SignUpProcess() {
+	public static void main(String[] args) {
 
 		int num = 0;
 
@@ -24,7 +23,7 @@ public class SignUpMain {
 		System.out.print("번호를 입력하세요: ");
 
 		num = scan.nextInt();
-		
+		System.out.println();
 		
 		while(num > 3) {
 			System.out.println("유효하지 않은 번호입니다. 다시 입력해주세요.");
@@ -32,14 +31,15 @@ public class SignUpMain {
 			System.out.print("번호를 입력하세요: ");
 			num = scan.nextInt();
 		}
+		//
 		if(num == 0) {
 			System.out.println("메인화면으로 돌아갑니다.");
 			System.out.println();
-		}else if (num == 1) {
+		} else if (num == 1) {
 			SignUpMember.addMember();
-		} else if(num==2) {
+		} else if (num == 2) {
 			SignUpTeacher.addTeacher();
-		}else {
+		} else {
 			SignUpAdmin.addAdmin();
 		}
 		

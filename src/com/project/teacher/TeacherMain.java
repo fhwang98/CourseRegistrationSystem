@@ -10,7 +10,7 @@ public class TeacherMain {
 		
 		Scanner scan = new Scanner(System.in);
 		
-		int input = 0;
+		String input = "";
 
 		System.out.println("         강사회원 로그인 후 화면");
 		System.out.println("—-------------------------------------");
@@ -20,17 +20,17 @@ public class TeacherMain {
 		System.out.println("—-------------------------------------");
 		System.out.print("번호 입력 : ");
 		
-		input = scan.nextInt();
+		input = scan.nextLine();
 		
-		if (input == 1) {
+		if (input.equals("1")) {
 			
 			//로그인 한 정보 null로 전환 후 초기 메인 화면 
             
-        } else if (input == 2) {
+        } else if (input.equals("2")) {
         	
         	Teacher.mypage();
         	
-        } else if(input == 3) {
+        } else if(input.equals("3")) {
         	
         	Management.courseManagement();
             
