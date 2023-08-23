@@ -22,7 +22,7 @@ public class AdminData {
 		
 		try {
 			
-			BufferedReader reader = new BufferedReader(new FileReader("data\\dataAdmin.txt"));
+			BufferedReader reader = new BufferedReader(new FileReader("data/dataAdmin.txt"));
 			
 			String line = null;
 			
@@ -55,7 +55,7 @@ public class AdminData {
 		
 		try {
 			
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataAdmin.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data/dataAdmin.txt"));
 			
 			for (Admin a : AdminData.adminList) {
 				
