@@ -12,7 +12,7 @@ public class TeacherMain {
 		
 		String input = "";
 
-		System.out.println("         강사회원 로그인 후 화면");
+		System.out.println("         강사회원 로그인상태");
 		System.out.println("—-------------------------------------");
 		System.out.println("1. 로그아웃");
 		System.out.println("2. 마이페이지");

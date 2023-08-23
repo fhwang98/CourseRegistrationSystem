@@ -1,4 +1,5 @@
 package com.project.teacher;
+
 import com.project.user.login.LoginMain;
 import com.project.user.login.LoginTeacher;
 import com.project.user.data.DataTeacher;
@@ -31,7 +32,7 @@ public class Teacher {
 
 		if (input == 0) {
 
-			// 연결시켜
+			TeacherMain.LoginTeacher();
 
 		} else if (input == 1) {
 
@@ -51,23 +52,27 @@ public class Teacher {
 
 		Scanner scan = new Scanner(System.in);
 
-		ArrayList<DataTeacher> list = UserDbms.getTeacherAllList();
-		
-		//강사 로그인 데이터 가져오기
-		LoginMain lista = new LoginMain();
-		ArrayList<DataTeacher> loginList = lista.getLoginTList();
-		System.out.println(lista.getLoginTList());
-		
-	
-		System.out.println(loginList.get(0).getId());
-		// 향상된 for 문은 writer 과정에서 오류가 날 수 있으므로 오류 발생 시 for문으로 수정해야함
-		for (DataTeacher data : list) {
+		UserDbms list = new UserDbms();
+		ArrayList<DataTeacher> allTeacherList = UserDbms.getTeacherAllList();
 
-			if (data.getId().equals(loginList.get(0).getId())) {
+//		//강사 로그인 데이터 가져오기
+//		LoginMain lista = new LoginMain();
+//		ArrayList<DataTeacher> loginList = lista.getLoginTList();
+//		System.out.println(lista.getLoginTList());
+
+//		System.out.println(loginList.get(0).getId());
+		// 향상된 for 문은 writer 과정에서 오류가 날 수 있으므로 오류 발생 시 for문으로 수정해야함
+
+		LoginMain lista = new LoginMain();
+		lista.getLoginTList().get(0);
+
+		for (DataTeacher data : allTeacherList) {
+
+			if (data.getId().equals(lista.getLoginTList().get(0).getId())) {
 				int input = 0;
 				String name = "";
 				String phone = "";
-				
+
 				System.out.println("    강사 마이페이지 > 내 정보 조회 및 수정");
 				System.out.println("—-------------------------------------");
 				System.out.println("아이디: " + data.getId());
@@ -92,7 +97,7 @@ public class Teacher {
 
 					name = scan.nextLine();
 
-					modifyByName(loginList.get(0), name);
+					modifyByName(lista.getLoginTList().get(0), name);
 
 				} else if (input == 2) {
 
@@ -100,7 +105,7 @@ public class Teacher {
 
 					phone = scan.nextLine();
 
-					modifyByPhone(loginList.get(0), phone);
+					modifyByPhone(lista.getLoginTList().get(0), phone);
 
 				} else {
 
