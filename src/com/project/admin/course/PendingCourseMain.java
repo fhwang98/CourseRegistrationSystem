@@ -40,6 +40,7 @@ public class PendingCourseMain {
 			} else if (sel.equals("2")) {
 				if (page == 0 || page == lastpage) {
 					//강좌 확인
+					checkingControl(page);
 				} else {
 					page++;
 				}
@@ -56,7 +57,7 @@ public class PendingCourseMain {
 	
 	public static void checkingControl(int page) {
 	
-		System.out.println("확인할 대기강좌 정보");
+		System.out.println("확인할 대기강좌 번호 입력");
 		String no = scan.nextLine();
 		if (!no.matches("[1-9]{1}")) {
 			System.out.println("invalid input");
