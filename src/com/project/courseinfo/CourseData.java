@@ -145,6 +145,7 @@ public class CourseData {
 			for (Teacher t : CourseData.teacherList) {
 				if (t.getTeacherNum().equals(c.getTeacherNum())) {
 					courseMent(c,t);
+					break;
 				}
 			}
 //			ment(rnd, reader);
@@ -216,6 +217,7 @@ public class CourseData {
 			for (Teacher t : CourseData.teacherList) {
 				if (t.getTeacherNum().equals(c.getTeacherNum())) {
 					courseMent(c,t);
+					break;
 				}
 			}
 			//courseMent(c);
@@ -291,6 +293,7 @@ public class CourseData {
 			for (Teacher t : CourseData.teacherList) {
 				if (t.getTeacherNum().equals(c.getTeacherNum())) {
 					courseMent(c,t);
+					break;
 				}
 			}
 			//courseMent(c);
@@ -440,6 +443,7 @@ public class CourseData {
 			for (Teacher t : CourseData.teacherList) {
 				if (t.getTeacherNum().equals(c.getTeacherNum())) {
 					courseMent(c,t);
+					break;
 				}
 			}
 			//courseMent(c);
@@ -491,6 +495,7 @@ public class CourseData {
 				for (Teacher t : CourseData.teacherList) {
 					if (t.getTeacherNum().equals(c.getTeacherNum())) {
 						courseMent(c,t);
+						break;
 					}
 				}
 			}
@@ -548,6 +553,7 @@ public class CourseData {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 //					courseMent(c);
@@ -602,6 +608,7 @@ public class CourseData {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 //					courseMent(c);
@@ -657,6 +664,7 @@ public class CourseData {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 //					courseMent(c);
@@ -711,6 +719,7 @@ public class CourseData {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 //					courseMent(c);
@@ -764,6 +773,7 @@ while ((line = reader2.readLine()) != null) {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 //					courseMent(c);
@@ -818,6 +828,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -873,6 +884,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -924,6 +936,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -978,6 +991,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1031,6 +1045,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1084,6 +1099,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1137,6 +1153,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1190,6 +1207,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1242,6 +1260,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1295,6 +1314,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1344,6 +1364,7 @@ while ((line = reader2.readLine()) != null) {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 					//courseMent(c);
@@ -1392,6 +1413,7 @@ while ((line = reader2.readLine()) != null) {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 					//courseMent(c);
@@ -1440,6 +1462,7 @@ while ((line = reader2.readLine()) != null) {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 					//courseMent(c);
@@ -1489,6 +1512,7 @@ while ((line = reader2.readLine()) != null) {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 					//courseMent(c);

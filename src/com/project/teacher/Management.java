@@ -9,6 +9,8 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.project.admin.course.PendingCourse;
+import com.project.admin.course.PendingCourseData;
 import com.project.courseinfo.Course;
 import com.project.courseinfo.CourseData;
 import com.project.user.data.DataTeacher;
@@ -156,6 +158,8 @@ public class Management {
 
 					PendingCourse pendingCourse = new PendingCourse(name, date, time, category, age, content, status/*, 강사 코드*/);//TODO 로그인한 강사 코드 넣는부분 수정
 					courseList.add(pendingCourse);
+					
+					PendingCourseData.update();
 
 					break;
 
