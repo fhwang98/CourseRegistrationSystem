@@ -5,7 +5,6 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 import com.project.course.CourseHistory;
@@ -207,16 +206,22 @@ public class AdminUserService {
 //					System.out.println("searchUser innerLoop - 1 입력");
 
 					searchById();
+
 					AdminUserView.printLine();
+					AdminUserView.printMemberList("검색"); // View에 추출하기
 					AdminUserView.printUserSearchBy();
 
 				} else if (sel.equals("2")) {
 //					System.out.println("searchUser innerLoop - 2 입력");
+
 					searchByName();
+
 					AdminUserView.printLine();
+					AdminUserView.printMemberList("검색"); // View에 추출하기
 					AdminUserView.printUserSearchBy();
 				} else if (sel.equals("3")) {
 //					System.out.println("searchUser innerLoop - 3 입력");
+
 					searchByPhone();
 
 					AdminUserView.printLine();
@@ -281,20 +286,24 @@ public class AdminUserService {
 		Scanner scan = new Scanner(System.in);
 
 		String inputId = scan.nextLine();
+
 		AdminUserView.printLine();
 
 		// 입력받은 회원 아이디를 회원 리스트에서 검색하기
-		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
 
-		DataMember curMember = null;
+		DataMember curMember = AdminUserService.getMemberObjectById(inputId);
 
-		for (DataMember m : userList) {
-			// 있다면 - 해당 회원 객체 뽑아오기
-			if (m.getId().equals(inputId)) {
-				curMember = m;
-				break;
-			}
-		}
+//		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
+//
+//		DataMember curMember = null;
+//
+//		for (DataMember m : userList) {
+//			// 있다면 - 해당 회원 객체 뽑아오기
+//			if (m.getId().equals(inputId)) {
+//				curMember = m;
+//				break;
+//			}
+//		}
 
 		// 없다면 - 검색결과가 없습니다. 계속하려면 엔터를 입력해주세요. -> 회원 검색 화면(이전 화면)으로 돌아가기
 		if (curMember == null) {
@@ -319,10 +328,16 @@ public class AdminUserService {
 				return;
 			} else if (inputSearch.equals("1")) {
 				AdminUserService.modifyMember(curMember);
+
+				// 바뀐 일반 회원의 정보 보여줌
 				AdminUserView.printLine();
+				DataMember changedMember = AdminUserService.getMemberObjectById(inputId);
+				AdminUserService.printMemberData(changedMember);
+
 				AdminUserView.printUserSearch();
 			} else if (inputSearch.equals("2")) {
 				AdminUserService.deleteMember(curMember);
+
 				AdminUserView.printLine();
 				AdminUserView.printUserSearch();
 			} else {
@@ -330,6 +345,22 @@ public class AdminUserService {
 			}
 		}
 
+	}
+
+	private static DataMember getMemberObjectById(String inputId) {
+		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
+
+		DataMember curMember = null;
+
+		for (DataMember m : userList) {
+			// 있다면 - 해당 회원 객체 뽑아오기
+			if (m.getId().equals(inputId)) {
+				curMember = m;
+				break;
+			}
+		}
+
+		return curMember;
 	}
 
 	private static void deleteMember(DataMember m) {
@@ -342,53 +373,61 @@ public class AdminUserService {
 
 		Scanner scan = new Scanner(System.in);
 
-		String sel = scan.nextLine();
+		while (true) {
 
-		if (sel.equals("0")) {
+			String sel = scan.nextLine();
 
-		} else if (sel.equals("1")) { // 이름 수정
-			System.out.print("아이디(" + m.getId() + ") 회원의 이름을 수정하시겠습니까? (y/n) : ");
-			sel = scan.nextLine();
-			sel = changeValidInput(sel); // trim + upperCase
-
-			if (sel.equals("Y")) { // 수정할 경우
-				AdminUserView.printLine();
-				System.out.println("새로운 이름을 입력해주세요.");
-				System.out.print("이름: ");
+			if (sel.equals("0")) {
+				break;
+			} else if (sel.equals("1")) { // 이름 수정
+				System.out.print("아이디(" + m.getId() + ") 회원의 이름을 수정하시겠습니까? (y/n) : ");
 				sel = scan.nextLine();
-				System.out.println(sel);
-				sel = changeInputTrim(sel); // trim + 추가 한글인지 유효성 검사 하는 작업 필요
-				System.out.println("changed name: " + sel);
+				sel = changeValidInput(sel); // trim + upperCase
 
-				// 파일 수정 -> 저장 -> 바뀐 데이터로 리로드
-				AdminUserService.changeUserNameFile(m.getMemberCode(), sel);
+				if (sel.equals("Y")) { // 수정할 경우
+					AdminUserView.printLine();
 
-				System.out.println();
-				System.out.println("수정이 완료되었습니다.");
-				System.out.println("계속하려면 엔터를 입력해주세요.");
-				scan.nextLine();
+					System.out.println("새로운 이름을 입력해주세요.");
+					System.out.print("이름: ");
 
-			} else { // 수정하지 않을 경우
-				// 회원 아이디 검색 화면으로 이동 (이전 페이지)
+					sel = scan.nextLine();
+//				System.out.println(sel);
+
+					sel = changeInputTrim(sel); // trim + 추가 한글인지 유효성 검사 하는 작업 필요
+//				System.out.println("changed name: " + sel);
+
+					// 파일 수정 -> 저장 -> 바뀐 데이터로 리로드
+					AdminUserService.changeUserNameFile(m.getMemberCode(), sel);
+
+					System.out.println();
+					System.out.println("수정이 완료되었습니다.");
+					System.out.println("계속하려면 엔터를 입력해주세요.");
+					scan.nextLine();
+
+				} else { // 수정하지 않을 경우
+					// 회원 아이디 검색 화면으로 이동 (이전 페이지)
+					AdminUserView.printInvalidInput();
+				}
+
+				break;
+			} else if (sel.equals("2")) { // 전화번호
+
+			} else if (sel.equals("3")) { // 할인대상 여부
+
+			} else if (sel.equals("4")) { // 계좌번호
+
+			} else {
 				AdminUserView.printInvalidInput();
 			}
-
-		} else if (sel.equals("2")) { // 전화번호
-
-		} else if (sel.equals("3")) { // 할인대상 여부
-
-		} else if (sel.equals("4")) { // 계좌번호
-
-		} else {
-
 		}
+
 	}
 
 	private static void changeUserNameFile(String memberCode, String newName) {
 
-		System.out.println("changeUserNameFile 시작");
+//		System.out.println("changeUserNameFile 시작");
 		try {
-			System.out.println("changeUserNameFile try 시작");
+//			System.out.println("changeUserNameFile try 시작");
 
 			String path = "data\\dataMember.txt";
 
@@ -397,70 +436,52 @@ public class AdminUserService {
 
 			String line = null;
 			StringBuffer sb = new StringBuffer();
-			System.out.println("sb: " + sb);
 
 			// 한 줄씩 읽기
 			while ((line = reader.readLine()) != null) {
-//				System.out.println("read line");
-//				System.out.println(line);
-//
-//				// 해당 유저 코드 찾기
+
+				// 해당 유저 코드 찾기
 				String[] temp = line.split(",");
-//				System.out.println(Arrays.toString(temp));
 //
 				String curMemberCode = temp[0];
-//				System.out.println(curMemberCode);
-//
-//				// 찾았다면
-				if (curMemberCode.equals(memberCode)) {
 
-//					System.out.println(temp[3]);
+				// 찾았다면
+				if (curMemberCode.equals(memberCode)) {
 
 					// 찾으면 유저의 이름을 새 이름으로 바꾸기
 					temp[3] = newName;
-//					System.out.println("temp[3]: " + temp[3]);
-
-//					System.out.println(Arrays.toString(temp));
 				}
 
-				DataMember changeMember = new DataMember();
+				DataMember changeMember = new DataMember(); // 새로운 객체 생성
 
-				changeMember.setDataMemeber(temp);
+				changeMember.setDataMemeber(temp); // 클래스 내의 toString 메소드 사용 - 저장할 파일 내용의 양식
 
-				System.out.println(changeMember.toString());
-
-				sb.append(changeMember.toString() + "\r\n");
-				
-//				System.out.println(sb.toString()); 
+				sb.append(changeMember.toString() + "\r\n"); // 한 줄씩 읽은 내용을 StringBuilder에 계속 추가 저장
 
 			}
 
-//			System.out.println(sb.toString());
+			reader.close(); // reader 끝
 
-			reader.close();
-
-			System.out.println();
-			
 			// 파일에 작성하기
 			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
 
-			writer.write(sb.toString());
+			writer.write(sb.toString()); // 읽어온 모든 데이터를 파일에 쓰기
 
-			writer.close();
+			writer.close(); // writer 끝
 
-			System.out.println("old UserDbms\r\n" + UserDbms.getMemberAllList());
-			System.out.println();
+//			System.out.println("old UserDbms\r\n" + UserDbms.getMemberAllList());
+//			System.out.println();
 
 			// 데이터를 리로드하기
 			UserDbms reLoadMember = new UserDbms();
-			
-			System.out.println("new UserDbms\r\n" + UserDbms.getMemberAllList());
+
+//			System.out.println("new UserDbms\r\n" + UserDbms.getMemberAllList());
 
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
 
-		System.out.println("changeUserNameFile 끝");
+//		System.out.println("changeUserNameFile 끝");
 	}
 
 	private static String changeValidInput(String sel) {

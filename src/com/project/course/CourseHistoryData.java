@@ -46,7 +46,7 @@ public class CourseHistoryData {
 		try {
 
 			BufferedWriter historyWriter = new BufferedWriter(
-					new FileWriter("C:\\class\\code\\java\\JavaTest\\data\\courseHistory.txt"));
+					new FileWriter("data\\courseHistory.txt"));
 
 			for (CourseHistory m : CourseHistoryData.historyList) {
 

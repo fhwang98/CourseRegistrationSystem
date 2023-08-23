@@ -72,7 +72,7 @@ public class CourseData {
 					map.put(temp[0], c);
 
 				}
-				System.out.println(map);
+//				System.out.println(map);
 
 			} catch (IOException e) {
 

@@ -44,7 +44,7 @@ public class LoginChoice {
 		}
 		
 		if(num == 0) {
-			//로그인 메인페이지로 이동
+			//TODO 로그인 메인페이지로 이동
 			LoginMain lMain = new LoginMain();
 			lMain.LoginProcess();
 		}

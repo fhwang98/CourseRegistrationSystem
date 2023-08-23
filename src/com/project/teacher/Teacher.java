@@ -55,14 +55,15 @@ public class Teacher {
 		
 		//강사 로그인 데이터 가져오기
 		LoginMain lista = new LoginMain();
-		
 		ArrayList<DataTeacher> loginList = lista.getLoginTList();
+		System.out.println(lista.getLoginTList());
 		
-
+	
+		System.out.println(loginList.get(0).getId());
 		// 향상된 for 문은 writer 과정에서 오류가 날 수 있으므로 오류 발생 시 for문으로 수정해야함
 		for (DataTeacher data : list) {
 
-			if (data.getId().equals(loginList.get(1))) {
+			if (data.getId().equals(loginList.get(0).getId())) {
 				int input = 0;
 				String name = "";
 				String phone = "";
