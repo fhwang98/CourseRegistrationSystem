@@ -31,6 +31,7 @@ public class LoginAdmin {
 			}else if(UserDbms.searchAdminByIdPw(id, password) == null) {
 				System.out.println("비밀번호가 틀립니다.");
 				PwErrorCnt++;
+				System.out.println();
 			}else {
 				break;
 			}
@@ -47,8 +48,8 @@ public class LoginAdmin {
 			System.out.println();
 			
 			System.out.println("로그인이 완료되었습니다.");
+			//TODO 로그인 후 화면으로 이동해야함
 			return UserDbms.searchAdminByIdPw(id, password);
-			//로그인 후 화면으로 이동해야함
 		}else {
 			System.out.println();
 			System.out.println("======================");
