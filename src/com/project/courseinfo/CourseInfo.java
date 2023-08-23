@@ -23,14 +23,19 @@ public class CourseInfo {
 				loop = false;
 			} else if (input.equals("1")) {
 				Popularity.popularity();
+				lectureInfoList();
 			} else if (input.equals("2")) {
 				Individual.individual();
+				lectureInfoList();
 			} else if (input.equals("3")) {
 				CourseList.lectureListMent();
+				lectureInfoList();
 			} else if (input.equals("4")) {
 				Discount.discount();
+				lectureInfoList();
 			} else if (input.equals("5")) {
 				Refund.refund();
+				lectureInfoList();
 			} else {
 				System.out.println("목록에 있는 번호를 입력하세요.");
 				System.out.print("입력: ");
