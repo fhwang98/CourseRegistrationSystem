@@ -41,13 +41,19 @@ public class PendingCourseData {
 		Random rnd = new Random();
 		
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataPendingCourse"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataPendingCourse.txt"));
 
+			
 			for (int i = 0; i < 30; i++) {
+				
+				//강좌명, 요일, 시작 시간, 카테고리, 대상, 강좌내용, 상태
+				//강좌명1,목,13,블럭교실,청소년,강좌내용1,승인
+				//시간은 두자리 숫자 문자열로 받음
+				//수강 정원 없음
 				PendingCourse p = new PendingCourse("강좌명" +( i + 1)
-						, dow[rnd.nextInt(4)], String.format("%02d", rnd.nextInt(16) + 6)
+						, dow[rnd.nextInt(4)], String.format("%02d", rnd.nextInt(15) + 6)
 						, category[rnd.nextInt(4)], target[rnd.nextInt(3)]
-						, String.format("%d", rnd.nextInt(20)+10), "강좌내용" + (i + 1), status[rnd.nextInt(3)]);
+						, "강좌내용" + (i + 1), status[rnd.nextInt(3)], String.format("T%03d", rnd.nextInt(100) + 1));
 				writer.write(p.toString());
 				writer.newLine();
 			}
@@ -67,7 +73,7 @@ public class PendingCourseData {
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split(",");
-				list.add(new PendingCourse(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7]));
+				list.add(new PendingCourse(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6] ,temp[7]));
 			}
 			reader.close();
 		} catch (Exception e) {

@@ -8,7 +8,7 @@ public class PendingCourse {
 	클래스가 어떻게 생겼는지 
 	String 강좌명 -> 이름
 	String 요일 -> ‘월’
-	String 시작 시간 -> 12 (06~22)
+	String 시작 시간 -> (06~22)
 	카테고리 -> 문화, 블럭교실, 피아노, 체육, 어린이
 	수강대상 ->. 어린이, 청소년, 성인, 누구나
 	수강인원 -> 최대 30 걸러서 들어옴
@@ -21,22 +21,22 @@ public class PendingCourse {
 	private String startTime;
 	private String category;
 	private String target;
-	private String capacity;
 	private String courseExplanation;
 	private String status;
+	private String teacherNum;
+	
 	
 	public PendingCourse(String courseName, String dayOfWeek, String startTime, String category, String target,
-			String capacity, String courseExplanation, String status) {
+			String courseExplanation, String status, String teacherNum) {
 		this.courseName = courseName;
 		this.dayOfWeek = dayOfWeek;
 		this.startTime = startTime;
 		this.category = category;
 		this.target = target;
-		this.capacity = capacity;
 		this.courseExplanation = courseExplanation;
 		this.status = status;
+		this.teacherNum = teacherNum;
 	}
-	
 	
 	public String getCourseName() {
 		return courseName;
@@ -68,12 +68,6 @@ public class PendingCourse {
 	public void setTarget(String target) {
 		this.target = target;
 	}
-	public String getCapacity() {
-		return capacity;
-	}
-	public void setCapacity(String capacity) {
-		this.capacity = capacity;
-	}
 	public String getCourseExplanation() {
 		return courseExplanation;
 	}
@@ -86,11 +80,17 @@ public class PendingCourse {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public String getTeacherNum() {
+		return teacherNum;
+	}
+	public void setTeacherNum(String teacherNum) {
+		this.teacherNum = teacherNum;
+	}
 	@Override
 	public String toString() {
 		return courseName + "," + dayOfWeek + "," + startTime
-				+ "," + category + "," + target + "," + capacity + ","
-				+ courseExplanation + "," + status;
+				+ "," + category + "," + target + ","
+				+ courseExplanation + "," + status +  "," + teacherNum;
 	}
 	
 	

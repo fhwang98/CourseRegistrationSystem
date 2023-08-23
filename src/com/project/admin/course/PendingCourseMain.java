@@ -2,6 +2,8 @@ package com.project.admin.course;
 
 import java.util.Scanner;
 
+import com.project.admin.AdminUtil;
+
 public class PendingCourseMain {
 
 	private static Scanner scan;
@@ -66,6 +68,22 @@ public class PendingCourseMain {
 		boolean loop = true;
 		
 		while (loop) {
+			
+			//0 뒤로가기 1 등록 승인 2 등록 반려
+			System.out.println("input");
+			String sel = scan.next();
+			if (!sel.matches("[0-2]{1}")) {
+				System.out.println("invalid input");
+				continue;
+			} else if (sel.equals("0")) {
+				loop = false;
+			} else if (sel.equals("1")) {
+				//등록 승인 -> 상태가 바뀌고 다른 데이터들이 업데이트된다
+				PendingCourseService.acceptCourse(index);
+			} else if (sel.equals("2")) {
+				//등록 반려 -> 삭제되지는 않고 상태가 바뀜
+				PendingCourseService.rejectCourse(index);
+			}
 			
 		}
 		
