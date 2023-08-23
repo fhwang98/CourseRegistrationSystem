@@ -54,6 +54,7 @@ public class LoginMain {
 			System.out.print("번호를 입력하세요: ");
 			num = scan.nextInt();
 		}
+		//
 		if(num == 0) {
 			System.out.println("메인화면으로 돌아갑니다.");
 			System.out.println();
