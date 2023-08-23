@@ -62,7 +62,6 @@ public class AdminUserView {
 		System.out.println("0. 뒤로가기");
 		System.out.println("1. 아이디로 검색");
 		System.out.println("2. 이름으로 검색");
-		System.out.println("3. 전화번호로 검색");
 		System.out.println("-------------------------------------");
 		System.out.print("번호를 입력하세요 : ");
 	}

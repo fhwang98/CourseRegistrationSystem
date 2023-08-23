@@ -41,7 +41,7 @@ public class AdminUserMain {
 
 		}
 
-		System.out.println("AdminUserMain Out");
+//		System.out.println("AdminUserMain Out");
 	}
 
 	public static void main(String[] args) {
