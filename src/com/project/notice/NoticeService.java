@@ -66,13 +66,13 @@ public class NoticeService {
 					System.out.print("확인할 공지사항 번호를 입력해주세요. : ");
 					sel = NoticeMain.scan.nextLine();
 
-					// 적합한 공지사항 인덱스인지 확인
-					System.out.println(index + " " + index);
-					if (index - 10 <= Integer.parseInt(sel) && Integer.parseInt(sel) <= index - 1) {
-
-					}
-
-					// 적합하다면 해당 공지사항 객체 뽑아오기
+//					// 적합한 공지사항 인덱스인지 확인
+//					System.out.println(index + " " + index);
+//					if (index - 10 <= Integer.parseInt(sel) && Integer.parseInt(sel) <= index - 1) {
+//
+//					}
+//
+//					// 적합하다면 해당 공지사항 객체 뽑아오기
 					Notice curNotice = NoticeData.getList().get(Integer.parseInt(sel));
 
 					// 공지사항 보여주기
