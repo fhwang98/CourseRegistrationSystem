@@ -7,6 +7,7 @@ import com.project.admin.course.AdminCourseMain;
 import com.project.admin.notice.NoticeMain;
 import com.project.admin.room.RoomMain;
 import com.project.admin.user.AdminUserMain;
+import com.project.authentication.Authentication;
 import com.project.notice.NoticeData;
 import com.project.user.data.DataAdmin;
 
@@ -51,8 +52,17 @@ public class AdminMain {
 				AdminInfoMain.myInfoMain();
 			}  else if (sel == 7) {
 				//로그아웃
-
-				System.out.println("log out");
+				System.out.print("로그아웃하시겠습니까? [y/n] ");
+				String answer = scan.nextLine();
+				if (!answer.equals("y")) {
+					System.out.println("로그아웃을 취소합니다. ");
+					System.out.println("계속하려면 엔터를 입력해 주세요.");
+					scan.nextLine();
+					continue;
+				}
+				System.out.println("로그아웃합니다.");
+				Authentication.loginUserCode = null;
+				
 				loop = false;
 			}
 		}
