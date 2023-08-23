@@ -54,10 +54,10 @@ public class LoginMain {
 			System.out.print("번호를 입력하세요: ");
 			num = scan.nextInt();
 		}
-//		if(num == 0) {
-//			메인홈페이지로 돌아가기
-//		}
-		if (num == 1) {
+		if(num == 0) {
+			System.out.println("메인화면으로 돌아갑니다.");
+			System.out.println();
+		} else if (num == 1) {
 			LoginChoice.login(this);
 		}else if(num==2) {
 			//idList와 회원정보가 일치할시 아이디를 찾아준다.

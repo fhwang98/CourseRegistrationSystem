@@ -12,33 +12,31 @@ public class CourseInfo {
 		Scanner scan = new Scanner(System.in);
 		
 		lectureInfoList();
+				
+		boolean loop = true;
 		
-		String input = scan.nextLine();
-		
-		//
-		while (!input.equals("0")) {
+		while (loop) {
+			
+			String input = scan.nextLine();
 
-				if (input.equals("1")) {
-					Popularity.popularity();
-				} else if(input.equals("2")) {
-					Individual.individual();
-				} else if(input.equals("3")) {
-					CourseList.lectureList();
-				} else if(input.equals("4")) {
-					Discount.discount();
-				} else if(input.equals("5")) {
-					Refund.refund();
-				} else {
+			if (input.equals("0")) {
+				loop = false;
+			} else if (input.equals("1")) {
+				Popularity.popularity();
+			} else if (input.equals("2")) {
+				Individual.individual();
+			} else if (input.equals("3")) {
+				CourseList.lectureListMent();
+			} else if (input.equals("4")) {
+				Discount.discount();
+			} else if (input.equals("5")) {
+				Refund.refund();
+			} else {
 				System.out.println("목록에 있는 번호를 입력하세요.");
 				System.out.print("입력: ");
-				input = scan.nextLine();
-
-				
 			}
 		}
-		if(input.equals("0")) {
-	//		Main.mainMent();
-		}
+		
 		
 	}
 

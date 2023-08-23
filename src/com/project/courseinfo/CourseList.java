@@ -6,13 +6,8 @@ public class CourseList {
 
 	static Scanner scan = new Scanner(System.in);
 
-	public static void lectureList() {
-
-		lectureListMent();
-	}
-
 	//강좌 목록 선택시 출력 멘트
-	private static void lectureListMent() {
+	public static void lectureListMent() {
 
 		System.out.println();
 		System.out.println();
@@ -30,7 +25,7 @@ public class CourseList {
 		String input = scan.nextLine();
 
 		if (input.equals("0")) {
-			CourseInfo.lectureInfo();
+			
 		}
 
 		while (!input.equals("0")) {

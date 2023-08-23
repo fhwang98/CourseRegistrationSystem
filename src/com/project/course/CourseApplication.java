@@ -29,14 +29,9 @@ public class CourseApplication {
 	}
 
 
-	public static void courseApplication() {
 
-		courseApplicationment();
-
-		
-	}
 	
-	private static void courseApplicationment() {
+	public static void courseApplicationment() {
 		
 		Scanner scan = new Scanner(System.in);
 
@@ -228,14 +223,17 @@ public class CourseApplication {
 				}
 			}
 			
-			if (!courseFound) {
+			if (code.equals("0")) {
+				System.out.println("다시 돌아갑니다.");
+				loop = false;
+			} else if (!courseFound && !code.equals("0")) {
 				System.out.println();
 				System.out.println("\"잘못된 강좌코드 입니다.\"");
 				System.out.println("\"강좌코드를 확인해 주세요.\"");
-				System.out.println();
-			//	Main.mainMent();
-				
+				System.out.println();			
+				loop = false;
 			}
+			
 //			for (Course c : TestApplication.courseList) {
 //
 //			}
