@@ -25,6 +25,7 @@ public class RoomScheduleData {
 			
 			//강좌코드, 카테고리, 강좌명, 강좌시작시간, 요일, 대상, 수강료, 정원, 강사코드, 강좌내용, 강좌시작일, 강의실
 			
+			//얘가 지금 강좌 목록에서 강의실 스케줄 리스트를 만드는 애
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split(",");
@@ -36,7 +37,8 @@ public class RoomScheduleData {
 				list.add(new RoomSchedule(roomNum, dayOfWeek, time, courseNum));
 			}
 			
-			for (int i = 1; i < 1000; i++) {
+			//만든 스케줄 목록에 없는 강의실들(1~50) 스케줄 없는 상태 만들어서 집어넣어
+			for (int i = 1; i <= 50; i++) {
 				String num = String.format("%03d", i);
 				if (!listContains(num)) {
 					list.add(new RoomSchedule(num, "_", "_", "_"));
