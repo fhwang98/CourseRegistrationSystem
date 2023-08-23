@@ -80,4 +80,11 @@ public class AdminTeacherView {
 		System.out.print("이름을 입력하세요. : ");
 	}
 
+	public static void printTeacherDeleteLabel() {
+		System.out.println("=====================================");
+		System.out.println("              회원 탈퇴");
+		System.out.println("=====================================");
+	}
+
+
 }
