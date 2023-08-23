@@ -6,6 +6,7 @@ public class Refund {
 
 	static Scanner scan = new Scanner(System.in);
 
+	//환불 안내 출력 멘트
 	public static void refund() {
 
 		System.out.println();

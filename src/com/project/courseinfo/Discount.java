@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Discount {
 	static Scanner scan = new Scanner(System.in);
 	
-
+	//할인 안내 출력 멘트
 	public static void discount() {
 		
 		System.out.println();
