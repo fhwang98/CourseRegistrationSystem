@@ -2,8 +2,10 @@ package com.project.user.login;
 
 import java.util.Scanner;
 
+import com.project.authentication.Authentication;
 import com.project.user.UserMain;
 import com.project.user.data.DataMember;
+import com.project.user.data.DataTeacher;
 import com.project.user.data.UserDbms;
 
 public class LoginMember {
@@ -47,6 +49,11 @@ public class LoginMember {
 			System.out.println();
 			System.out.println("======================");
 			System.out.println();
+			
+			// 검증, 세 줄 추가
+			DataMember curMember = UserDbms.searchMemberByIdPw(id, password);
+			Authentication.loginUserCode = curMember.getMemberCode();
+			System.out.println(Authentication.loginUserCode);
 			
 			System.out.println("로그인이 완료되었습니다.");
 			
