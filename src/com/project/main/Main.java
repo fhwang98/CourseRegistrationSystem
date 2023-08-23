@@ -11,8 +11,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		//초기화면
-		MainView lMain = new MainView();
-        lMain.MainScreen();
+		MainView.MainScreen();
 
 		// 로그인
 //        LoginMain abc = new LoginMain();

@@ -9,6 +9,7 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 import com.project.courseinfo.Course;
+import com.project.user.UserMain;
 
 public class CourseApplication {
 
@@ -170,7 +171,7 @@ public class CourseApplication {
 										System.out.println("\"이미 신청이 마감된 강좌 입니다.\"");
 										System.out.println("\"처음으로 이동합니다.\"");
 										System.out.println();
-									//	Main.mainMent();
+										UserMain.LoginGeneralMember();
 										
 										loop = false;
 										break;
@@ -201,14 +202,14 @@ public class CourseApplication {
 										System.out.println("수강신청이 완료되었습니다.");
 										System.out.println("처음으로 이동합니다.");
 										System.out.println();
-						//				Main.mainMent();
+										UserMain.LoginGeneralMember();
 									}
 
 								} else if (input.equals("n")) {
 									System.out.println();
 									System.out.println("\"처음으로 이동합니다.\"");
 									System.out.println();
-							//		Main.mainMent();
+									UserMain.LoginGeneralMember();
 									break;
 
 								} else {
@@ -216,7 +217,7 @@ public class CourseApplication {
 									System.out.println("y 혹은 n을 입력하세요.");
 									System.out.println("처음으로 이동합니다.");
 									System.out.println();
-							//		Main.mainMent();
+									UserMain.LoginGeneralMember();
 
 								}
 							}
@@ -233,7 +234,7 @@ public class CourseApplication {
 				System.out.println("\"잘못된 강좌코드 입니다.\"");
 				System.out.println("\"강좌코드를 확인해 주세요.\"");
 				System.out.println();
-			//	Main.mainMent();
+				UserMain.LoginGeneralMember();
 				
 			}
 //			for (Course c : TestApplication.courseList) {

@@ -11,9 +11,9 @@ public class CourseList {
 		lectureListMent();
 	}
 
-	//강좌 목록 선택시 출력 멘트
 	private static void lectureListMent() {
 
+		
 		System.out.println();
 		System.out.println();
 		System.out.println("============================");
@@ -26,14 +26,11 @@ public class CourseList {
 		System.out.println("4. 연령층별 보기");
 		System.out.println("----------------------------------");
 
-		System.out.print("번호 입력: ");
+		System.out.print("입력: ");
 		String input = scan.nextLine();
 
-		if (input.equals("0")) {
-			CourseInfo.lectureInfo();
-		}
-
 		while (!input.equals("0")) {
+
 
 			if (input.equals("1")) {
 				System.out.println("======================");
@@ -73,6 +70,8 @@ public class CourseList {
 				} else if (input.equals("1")) {
 					CourseData.cultureList();
 
+					System.out.println("0.뒤로가기");
+					System.out.println("입력: ");
 
 					input = scan.nextLine();
 
@@ -84,6 +83,8 @@ public class CourseList {
 				} else if (input.equals("2")) {
 					CourseData.pianoList();
 
+					System.out.println("0.뒤로가기");
+					System.out.println("입력: ");
 					input = scan.nextLine();
 
 					if (input.equals("0")) {
@@ -93,6 +94,8 @@ public class CourseList {
 				} else if (input.equals("3")) {
 					CourseData.sportsList();
 
+					System.out.println("0.뒤로가기");
+					System.out.println("입력: ");
 					input = scan.nextLine();
 
 					if (input.equals("0")) {
@@ -102,6 +105,8 @@ public class CourseList {
 				} else if (input.equals("4")) {
 					CourseData.kidsList();
 
+					System.out.println("0.뒤로가기");
+					System.out.println("입력: ");
 					input = scan.nextLine();
 					if (input.equals("0")) {
 						lectureListMent();
@@ -110,6 +115,8 @@ public class CourseList {
 				} else if (input.equals("5")) {
 					CourseData.blockList();
 
+					System.out.println("0.뒤로가기");
+					System.out.println("입력: ");
 					input = scan.nextLine();
 					if (input.equals("0")) {
 						lectureListMent();
@@ -152,6 +159,7 @@ public class CourseList {
 						System.out.println("0. 뒤로가기");
 						System.out.println("1.오전");
 						System.out.println("2.오후");
+						System.out.println("입력: ");
 						input = scan.nextLine();
 
 						if (input.equals("0")) {
@@ -160,6 +168,7 @@ public class CourseList {
 							CourseData.mondayAmTime();
 
 							System.out.println("0. 뒤로가기");
+							System.out.println("입력: ");
 							input = scan.nextLine();
 							if (input.equals("0")) {
 								lectureListMent();
@@ -169,6 +178,7 @@ public class CourseList {
 							CourseData.mondayPmTime();
 
 							System.out.println("0. 뒤로가기");
+							System.out.println("입력: ");
 							input = scan.nextLine();
 							if (input.equals("0")) {
 								lectureListMent();
@@ -180,6 +190,7 @@ public class CourseList {
 						System.out.println("0. 뒤로가기");
 						System.out.println("1.오전");
 						System.out.println("2.오후");
+						System.out.println("입력: ");
 						input = scan.nextLine();
 
 						if (input.equals("0")) {
@@ -188,6 +199,7 @@ public class CourseList {
 							CourseData.tuesdayAmTime();
 
 							System.out.println("0. 뒤로가기");
+							System.out.println("입력: ");
 							input = scan.nextLine();
 							if (input.equals("0")) {
 								lectureListMent();
@@ -197,6 +209,7 @@ public class CourseList {
 							CourseData.tuesdayPmTime();
 
 							System.out.println("0. 뒤로가기");
+							System.out.println("입력: ");
 							input = scan.nextLine();
 							if (input.equals("0")) {
 								lectureListMent();
@@ -208,6 +221,8 @@ public class CourseList {
 						System.out.println("0. 뒤로가기");
 						System.out.println("1.오전");
 						System.out.println("2.오후");
+						System.out.println("입력: ");
+						
 						input = scan.nextLine();
 
 						if (input.equals("0")) {
@@ -216,6 +231,7 @@ public class CourseList {
 							CourseData.wednesdayAmTime();
 
 							System.out.println("0. 뒤로가기");
+							System.out.println("입력: ");
 							input = scan.nextLine();
 							if (input.equals("0")) {
 								lectureListMent();
@@ -225,6 +241,7 @@ public class CourseList {
 							CourseData.wednesdayPmTime();
 
 							System.out.println("0. 뒤로가기");
+							System.out.println("입력: ");
 							input = scan.nextLine();
 							if (input.equals("0")) {
 								lectureListMent();
@@ -236,6 +253,8 @@ public class CourseList {
 						System.out.println("0. 뒤로가기");
 						System.out.println("1.오전");
 						System.out.println("2.오후");
+						System.out.println("입력: ");
+						
 						input = scan.nextLine();
 
 						if (input.equals("0")) {
@@ -244,6 +263,7 @@ public class CourseList {
 							CourseData.thursdayAmTime();
 
 							System.out.println("0. 뒤로가기");
+							System.out.println("입력: ");
 							input = scan.nextLine();
 							if (input.equals("0")) {
 								lectureListMent();
@@ -253,6 +273,7 @@ public class CourseList {
 							CourseData.thursdayPmTime();
 
 							System.out.println("0. 뒤로가기");
+							System.out.println("입력: ");
 							input = scan.nextLine();
 							if (input.equals("0")) {
 								lectureListMent();
@@ -264,6 +285,7 @@ public class CourseList {
 						System.out.println("0. 뒤로가기");
 						System.out.println("1.오전");
 						System.out.println("2.오후");
+						System.out.println("입력: ");
 						input = scan.nextLine();
 
 						if (input.equals("0")) {
@@ -273,6 +295,7 @@ public class CourseList {
 							CourseData.fridayAmTime();
 
 							System.out.println("0. 뒤로가기");
+							System.out.println("입력: ");
 							input = scan.nextLine();
 
 							if (input.equals("0")) {
@@ -283,6 +306,7 @@ public class CourseList {
 							CourseData.fridayPmTime();
 
 							System.out.println("0. 뒤로가기");
+							System.out.println("입력: ");
 							input = scan.nextLine();
 
 							if (input.equals("0")) {
@@ -314,6 +338,7 @@ public class CourseList {
 					CourseData.child();
 
 					System.out.println("0. 뒤로가기");
+					System.out.println("입력: ");
 					input = scan.nextLine();
 
 					if (input.equals("0")) {
@@ -324,6 +349,7 @@ public class CourseList {
 					CourseData.teenager();
 
 					System.out.println("0. 뒤로가기");
+					System.out.println("입력: ");
 					input = scan.nextLine();
 
 					if (input.equals("0")) {
@@ -335,6 +361,7 @@ public class CourseList {
 					CourseData.adult();
 
 					System.out.println("0. 뒤로가기");
+					System.out.println("입력: ");
 					input = scan.nextLine();
 
 					if (input.equals("0")) {
@@ -346,21 +373,27 @@ public class CourseList {
 					CourseData.everyone();
 
 					System.out.println("0. 뒤로가기");
+					System.out.println("입력: ");
 					input = scan.nextLine();
 
 					if (input.equals("0")) {
 						lectureListMent();
 
+					} else if(!input.equals("0")){
+						System.out.println("목록에 있는 번호를 입력하세요.");
+						System.out.print("입력: ");
+						input = scan.nextLine();
 					}
+				} 
 
+
+					}else if(!input.equals("0")) {	
+						System.out.println("목록에 있는 번호를 입력하세요.");
+						System.out.print("입력: ");
+						input = scan.nextLine();
 				}
-			} else {
-				System.out.println("목록에 있는 번호를 입력하세요.");
-				System.out.print("입력: ");
-				input = scan.nextLine();
 			}
-
-		}
+		
 		if (input.equals("0")) {
 			CourseInfo.lectureInfo();
 		}

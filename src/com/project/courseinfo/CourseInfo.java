@@ -2,6 +2,8 @@ package com.project.courseinfo;
 
 import java.util.Scanner;
 
+import com.project.user.UserMain;
+
 public class CourseInfo {
 	
 	//수강 안내 페이지 출력 멘트
@@ -37,7 +39,7 @@ public class CourseInfo {
 			}
 		}
 		if(input.equals("0")) {
-	//		Main.mainMent();
+		UserMain.LoginGeneralMember();
 		}
 		
 	}

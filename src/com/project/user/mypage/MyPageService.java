@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 import com.project.auth.AuthDbms;
+import com.project.main.MainView;
 
 public class MyPageService {
 
@@ -426,8 +427,11 @@ public class MyPageService {
 	public static void logout() {
 		
 		// TODO 로그아웃 후 메인 연결
-		AuthDbms abc = new AuthDbms();
-		abc.selectAuth().clear();
+//		AuthDbms abc = new AuthDbms();
+//		abc.selectAuth().clear();
+		
+		MainView.MainScreen();
+		
 	}
 	
 	public static void memDelete() {
