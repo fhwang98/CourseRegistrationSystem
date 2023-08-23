@@ -226,33 +226,89 @@ public class AdminUserService {
 	}
 
 	private static void searchByName() {
-		boolean hasData = false;
+		// 회원 이름 검색 문자열 출력
+		AdminUserView.printSearchUserName();
 
 		Scanner scan = new Scanner(System.in);
 
-		AdminUserView.printSearchUserName();
-
 		String inputName = scan.nextLine();
 
-		// 입력받은 회원 아이디를 회원 리스트에서 검색하기
-		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
+		AdminUserView.printLine();
 
-		for (DataMember m : userList) {
+		// 입력받은 회원 이름을 회원 리스트에서 검색하기
 
-			// 있다면 - 회원 정보 보여주기
-			if (m.getName().equals(inputName)) {
-				AdminUserService.printMemberData(m); // 찾은 회원 객체 데이터 출력
-				hasData = true;
-			}
-		}
+		DataMember curMember = AdminUserService.getMemberObjectByName(inputName);
 
 		// 없다면 - 검색결과가 없습니다. 계속하려면 엔터를 입력해주세요. -> 회원 검색 화면(이전 화면)으로 돌아가기
-		if (!hasData) {
+		if (curMember == null) {
 			System.out.println("검색 결과가 없습니다.");
 			System.out.println("계속 하려면 엔터를 입력해주세요.");
 			scan.nextLine();
+			AdminUserView.printLine();
+			return;
 		}
 
+		// 찾은 회원 객체 데이터 출력
+		AdminUserService.printMemberData(curMember);
+
+		// 페이지 이동 라벨 출력
+		AdminUserView.printUserSearch();
+
+		while (true) {
+
+			String inputSearch = scan.nextLine();
+
+			if (inputSearch.equals("0")) { // 이전 메인 화면으로 이동
+				return;
+			} else if (inputSearch.equals("1")) { // 수정
+				AdminUserService.modifyMember(curMember);
+
+				// 바뀐 일반 회원의 정보 보여줌
+				AdminUserView.printMemberListLabel("조회");
+				DataMember changedMember = AdminUserService.getMemberObjectById(inputName);
+				AdminUserService.printMemberData(changedMember);
+
+				AdminUserView.printUserSearch();
+
+			} else if (inputSearch.equals("2")) { // 삭제
+				curMember = AdminUserService.getMemberObjectByName(inputName); // 변경된 데이터 리로드
+
+				if (curMember.getUsing() == 1) { // 이미 탈퇴한 회원인 경우
+					System.out.println("이미 탈퇴한 회원입니다.");
+					System.out.print("번호를 다시 입력해주세요. : ");
+					continue;
+				}
+
+				// 탈퇴하지 않은 회원인 경우
+				AdminUserService.deleteMember(curMember);
+
+				AdminUserView.printMemberListLabel("조회");
+				DataMember changedMember = AdminUserService.getMemberObjectByName(inputName);
+				AdminUserService.printMemberData(changedMember);
+
+				AdminUserView.printUserSearch();
+
+			} else {
+				AdminUserView.printInvalidInput(); // 다시 입력받기
+			}
+		}
+
+	}
+
+	private static DataMember getMemberObjectByName(String inputName) {
+		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
+
+		DataMember curMember = null;
+
+		for (DataMember m : userList) {
+			// 있다면 - 해당 회원 객체 뽑아오기
+			if (m.getName().equals(inputName)) {
+				curMember = m;
+				break;
+			}
+		}
+
+		return curMember;
 	}
 
 	private static void searchById() {
