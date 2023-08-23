@@ -73,8 +73,6 @@ public class CourseList {
 				} else if (input.equals("1")) {
 					CourseData.cultureList();
 
-					System.out.println("0.뒤로가기");
-					System.out.println("입력: ");
 
 					input = scan.nextLine();
 
@@ -86,8 +84,6 @@ public class CourseList {
 				} else if (input.equals("2")) {
 					CourseData.pianoList();
 
-					System.out.println("0.뒤로가기");
-					System.out.println("입력: ");
 					input = scan.nextLine();
 
 					if (input.equals("0")) {
@@ -97,8 +93,6 @@ public class CourseList {
 				} else if (input.equals("3")) {
 					CourseData.sportsList();
 
-					System.out.println("0.뒤로가기");
-					System.out.println("입력: ");
 					input = scan.nextLine();
 
 					if (input.equals("0")) {
@@ -108,8 +102,6 @@ public class CourseList {
 				} else if (input.equals("4")) {
 					CourseData.kidsList();
 
-					System.out.println("0.뒤로가기");
-					System.out.println("입력: ");
 					input = scan.nextLine();
 					if (input.equals("0")) {
 						lectureListMent();
@@ -118,8 +110,6 @@ public class CourseList {
 				} else if (input.equals("5")) {
 					CourseData.blockList();
 
-					System.out.println("0.뒤로가기");
-					System.out.println("입력: ");
 					input = scan.nextLine();
 					if (input.equals("0")) {
 						lectureListMent();

@@ -2,6 +2,7 @@ package com.project.user.login;
 
 import java.util.Scanner;
 
+import com.project.user.UserMain;
 import com.project.user.data.DataMember;
 import com.project.user.data.UserDbms;
 
@@ -48,8 +49,13 @@ public class LoginMember {
 			System.out.println();
 			
 			System.out.println("로그인이 완료되었습니다.");
-			//TODO 로그인 후 화면으로 이동해야함
+			
+			UserMain.LoginGeneralMember();
+			
 			return UserDbms.searchMemberByIdPw(id, password);
+			
+			
+			
 		}else {
 			System.out.println();
 			System.out.println("======================");

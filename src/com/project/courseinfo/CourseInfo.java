@@ -15,7 +15,7 @@ public class CourseInfo {
 		
 		String input = scan.nextLine();
 		
-		//
+		
 		while (!input.equals("0")) {
 
 				if (input.equals("1")) {

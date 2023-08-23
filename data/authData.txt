@@ -11,3 +11,5 @@ A009,3,nvwdmby2669,이순규
 N033,1,likbskp464,김훈훈
 T033,2,gjjrtry937,정동혜
 A019,3,nplfcrx659,신길은
+N001,1,otqapf7199,최승철
+N007,1,vhawtj7448,이지훈

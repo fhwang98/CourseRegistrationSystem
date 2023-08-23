@@ -36,7 +36,7 @@ public class CourseApplication {
 		
 	}
 	
-	private static void courseApplicationment() {
+	public static void courseApplicationment() {
 		
 		Scanner scan = new Scanner(System.in);
 
@@ -262,7 +262,7 @@ public class CourseApplication {
 			System.out.println();
 			System.out.printf("수강료: %s원\n", c.getCourseFee());
 			System.out.println();
-			System.out.printf("정원: %s\n", c.getPerson());
+			System.out.printf("신청인원: %s\n", c.getPerson());
 			System.out.println();
 			System.out.printf("강좌내용: %s\n", c.getContents());
 			System.out.println();

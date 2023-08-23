@@ -21,10 +21,8 @@ public class Discount {
 		System.out.println();
 		System.out.println("회원가입 시 받은 자료로 구분");
 		System.out.println("국가유공자(본인) - 50%");
-		System.out.println("장애인 - 50%");
 		System.out.println("국민기초생활보장수급자 - 30%");
 		System.out.println("다자녀부모와 자녀(세자녀 이상의 다둥이 카드 소지자) - 20%");
-		System.out.println("만 65세 이상 - 20%");
 		
 		System.out.println();
 		System.out.println("0.뒤로가기");

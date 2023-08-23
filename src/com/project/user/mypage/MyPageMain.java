@@ -2,10 +2,15 @@ package com.project.user.mypage;
 
 import java.util.Scanner;
 
+import com.project.user.login.LoginMain;
+
 public class MyPageMain {
 	
 	public static void main(String[] args) {
 		mypage();
+		
+		LoginMain abc = new LoginMain();
+		abc.getLoginMList();
 	}
 
 	public static void mypage() {

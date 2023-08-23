@@ -72,7 +72,7 @@ public class CourseData {
 					map.put(temp[0], c);
 
 				}
-//				System.out.println(map);
+				System.out.println(map);
 
 			} catch (IOException e) {
 
@@ -1552,7 +1552,7 @@ while ((line = reader2.readLine()) != null) {
 			System.out.println();
 			System.out.printf("수강료: %s\n", c.getCourseFee());
 			System.out.println();
-			System.out.printf("정원: %s\n", c.getPerson());
+			System.out.printf("신청인원: %s\n", c.getPerson());
 			System.out.println();
 			System.out.printf("강좌내용: %s\n", c.getContents());
 			System.out.println();
@@ -1567,35 +1567,5 @@ while ((line = reader2.readLine()) != null) {
 	}
 
 
-	//강좌 목록 출력 메소드
-//	private static void courseMent(Course c ) {
-//		if (c != null) {
-//			System.out.printf("[%s] 프로그램명 : %s\n", c.getCategory(), c.getCourseName());
-//			System.out.println();
-//			System.out.printf("강좌코드: %s\n", c.getNum());
-//			System.out.println();
-//			System.out.printf("강사코드: %s\n", c.getTeacherNum());
-//			System.out.println();
-//			System.out.printf("시간: %s\n", c.getTime());
-//			System.out.println();
-//			System.out.printf("요일: %s\n", c.getDay());
-//			System.out.println();
-//			System.out.printf("대상: %s\n", c.getTarget());
-//			System.out.println();
-//			System.out.printf("수강료: %s\n", c.getCourseFee());
-//			System.out.println();
-//			System.out.printf("정원: %s\n", c.getPerson());
-//			System.out.println();
-//			System.out.printf("강좌내용: %s\n", c.getContents());
-//			System.out.println();
-//			System.out.printf("강좌시작일: %s\n", c.getStartDay());
-//			System.out.println();
-//			System.out.printf("강의실 : %s\n", c.getRoomNum());
-//			System.out.println("-----------------------------------------");
-//			System.out.println();
-//		}
-//		
-//		CourseData.courseList.clear();
-//	}
 
 }

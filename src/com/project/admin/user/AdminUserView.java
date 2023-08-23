@@ -30,7 +30,7 @@ public class AdminUserView {
 		System.out.print("번호 입력 : ");
 	}
 
-	static void printMemberList(String label) {
+	static void printMemberListLabel(String label) {
 		System.out.println("=====================================");
 		System.out.println("            일반 회원 정보 " + label);
 		System.out.println("=====================================");
@@ -38,14 +38,14 @@ public class AdminUserView {
 
 	public static void printSearchUserId() {
 		System.out.println("=====================================");
-		System.out.println("            회원 아이디 검색 ");
+		System.out.println("            회원 아이디 검색");
 		System.out.println("=====================================");
 		System.out.print("아이디를 입력하세요. : ");
 	}
 
 	public static void printSearchUserName() {
 		System.out.println("=====================================");
-		System.out.println("            회원 이름 검색 ");
+		System.out.println("            회원 이름 검색");
 		System.out.println("=====================================");
 		System.out.print("이름을 입력하세요. : ");
 	}
@@ -69,18 +69,23 @@ public class AdminUserView {
 
 	public static void printUserDataModify() {
 		System.out.println("=====================================");
-		System.out.println("            회원 정보 수정 ");
+		System.out.println("            회원 정보 수정");
 		System.out.println("=====================================");
 		System.out.println("0. 뒤로가기");
 		System.out.println("1. 이름");
 		System.out.println("2. 전화번호");
 		System.out.println("3. 할인대상 여부");
 		System.out.println("4. 계좌번호");
-		System.out.println("5. 수강신청 취소");
 		System.out.println("-------------------------------------");
 		System.out.println("회원 정보를 수정합니다.");
 		System.out.println("수정하고 싶은 항목 번호를 입력해주세요.");
 		System.out.println("-------------------------------------");
 		System.out.print("번호 입력: ");
+	}
+
+	public static void printUserDeleteLabel() {
+		System.out.println("=====================================");
+		System.out.println("              회원 탈퇴");
+		System.out.println("=====================================");
 	}
 }
