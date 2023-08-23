@@ -3,10 +3,11 @@ package com.project.teacher;
 import java.util.Scanner;
 
 import com.project.teacher.Teacher;
+import com.project.user.data.DataTeacher;
 
 public class TeacherMain {
 
-	public static void LoginTeacher() {
+	public static void LoginTeacher(DataTeacher t) {
 		
 		Scanner scan = new Scanner(System.in);
 		
