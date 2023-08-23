@@ -33,7 +33,6 @@ public class DataMember {
 	}
 
 	public void setDataMemeber(String[] memberLine) {
-		System.out.println(Arrays.toString(memberLine));
 		this.memberCode = memberLine[0];
 		this.id = memberLine[1];
 		this.password = memberLine[2];
