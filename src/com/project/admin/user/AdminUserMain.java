@@ -9,7 +9,6 @@ import com.project.user.data.UserDbms;
 public class AdminUserMain {
 
 	public static void showAdminUserMain() {
-//		System.out.println("showAdminUserMain 시작");
 		// 관리자 로그인 후 보이는 메인화면에서 1. 일반 회원 관리를 눌렀을 때 나오는 페이지.
 
 		Scanner scan = new Scanner(System.in);
@@ -19,35 +18,27 @@ public class AdminUserMain {
 		AdminUserView.printAdminUserMain();
 
 		while (true) {
-//			System.out.println("showAdminUserMain loop 시작");
-
 			// 번호 입력부터 여기서 시작
 			String sel = scan.nextLine();
 
 			if (sel.equals("0")) { // 이전 페이지인 관리자 로그인 후 화면으로 돌아간다.
-//				System.out.println("showAdminUserMain - 0 입력");
 
 				break;
 			} else if (sel.equals("1")) { // 전체 회원 조회 페이지로 이동
-//				System.out.println("showAdminUserMain - 1 입력");
 				// 기능
 				AdminUserService.showUserList();
 
-				System.out.println("-------------------------------------");
 				AdminUserView.printAdminUserMain();
 			} else if (sel.equals("2")) { // 회원 검색 페이지로 이동
-//				System.out.println("showAdminUserMain - 2 입력");
 				// 기능
 				AdminUserService.searchUser();
 
-				System.out.println("-------------------------------------");
+				AdminUserView.printLine();
 				AdminUserView.printAdminUserMain();
 			} else { // invalid
-//				System.out.println("showAdminUserMain - invalid 입력");
 				AdminUserView.printInvalidInput();
 			}
 
-//			System.out.println("showAdminUserMain loop 끝");
 		}
 
 		System.out.println("AdminUserMain Out");
