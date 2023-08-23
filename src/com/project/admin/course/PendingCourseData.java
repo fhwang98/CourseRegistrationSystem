@@ -10,14 +10,15 @@ import java.util.Random;
 public class PendingCourseData {
 
 	
-	public static ArrayList<PendingCourse> getList() {
-		return list;
-	}
-
 	private static ArrayList<PendingCourse> list;
 	
 	static {
 		list = new ArrayList<PendingCourse>();
+	}
+	
+
+	public static ArrayList<PendingCourse> getList() {
+		return list;
 	}
 	
 	/*
@@ -36,7 +37,6 @@ public class PendingCourseData {
 		String[] dow = {"월", "화", "수", "목", "금"};
 		String[] category = {"문화", "블럭교실", "피아노", "체육", "어린이"};
 		String[] target = {"어린이", "청소년", "성인", "누구나"};
-		String[] status = {"대기", "반려", "승인", "취소"};
 		
 		Random rnd = new Random();
 		
@@ -53,7 +53,7 @@ public class PendingCourseData {
 				PendingCourse p = new PendingCourse("강좌명" +( i + 1)
 						, dow[rnd.nextInt(4)], String.format("%02d", rnd.nextInt(15) + 6)
 						, category[rnd.nextInt(4)], target[rnd.nextInt(3)]
-						, "강좌내용" + (i + 1), status[rnd.nextInt(3)], String.format("T%03d", rnd.nextInt(100) + 1));
+						, "강좌내용" + (i + 1), "대기", String.format("T%03d", rnd.nextInt(100) + 1));
 				writer.write(p.toString());
 				writer.newLine();
 			}
@@ -68,13 +68,15 @@ public class PendingCourseData {
 	public static void load() {
 		
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader("data\\dataPendingCourse"));
+			BufferedReader reader = new BufferedReader(new FileReader("data\\dataPendingCourse.txt"));
 			
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split(",");
 				list.add(new PendingCourse(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6] ,temp[7]));
 			}
+			
+			
 			reader.close();
 		} catch (Exception e) {
 			System.out.println("at PendingCourseData.load");

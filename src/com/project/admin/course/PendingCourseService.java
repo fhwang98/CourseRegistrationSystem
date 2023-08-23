@@ -3,7 +3,9 @@ package com.project.admin.course;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Calendar;
+import java.util.Scanner;
 
+import com.project.admin.AdminView;
 import com.project.courseinfo.Course;
 import com.project.courseinfo.CourseData;
 import com.project.room.Room;
@@ -14,6 +16,9 @@ public class PendingCourseService {
 	
 
 	public static void acceptCourse(int index) {
+		
+		CourseData.allCourseList();
+		System.out.println(CourseData.courseList);
 		
 		
 		//승인을 진행할 강좌
@@ -27,7 +32,10 @@ public class PendingCourseService {
 		String roomNum = searchRoom(dow, startTime);
 		//못찾았으면 -> 바로 반려
 		if (roomNum.equals("")) {
-			rejectCourse(index);
+			System.out.println("강의실을 찾지 못했습니다.");
+			System.out.println("등록이 반려됩니다.");
+			delete(index);
+			return;
 		}
 		//TODO 진짜 강의실 데이터 = project.courseinfo -> course
 		
@@ -72,7 +80,7 @@ public class PendingCourseService {
 
 	private static void updateDataCourseFile() {
 		try {
-			BufferedWriter writer = new BufferedWriter (new FileWriter("data\\dataCourse.txt"));
+			BufferedWriter writer = new BufferedWriter (new FileWriter("data\\dataCourse.txt", true));
 			
 			for (Course course : CourseData.courseList) {
 				//강좌코드, 카테고리, 강좌명, 시작시간, 요일, 대상, 수강료, 현재신청인원, 강좌내용, 수업하는 달, 강의실 넘버
@@ -91,9 +99,14 @@ public class PendingCourseService {
 	
 	private static String getCourseCode(String category) {
 		//카테고리에 강좌가 몇개 있냐
-		int count = (int) CourseData.courseList.stream().filter(c -> c.getNum().contains(category)).count();
+		int count = 0;
+		for (int i = 0; i < CourseData.courseList.size(); i++) {
+			if (CourseData.courseList.get(i).getCourseName().contains(category)) {
+				count++;
+			}
+		}
 		
-		return category + String.format("%02d", count + 1);
+		return category + String.format("%03d", count);
 	}
 
 	private static String getCategoryCode(String category) {
@@ -113,6 +126,7 @@ public class PendingCourseService {
 
 	private static String searchRoom(String dow, String startTime) { //월 12 이런식으로 들어옴
 		
+		RoomData.load();
 		boolean isAvailable = true;
 		
 		//전체 강의실을 돌면서 처음 만난 비어있는 강의실의 강의실 넘버를 반환할거야
@@ -123,6 +137,8 @@ public class PendingCourseService {
 				//만약에 스케줄이 겹쳐 그럼 false
 				//schedule : '월 12:00'
 				if (schedule.substring(0, 4).equals(dow + " " + startTime)) {
+					System.out.println(schedule.substring(0, 4));
+					System.out.println(dow + " " + startTime);
 					isAvailable = false;
 				}
 				
@@ -144,9 +160,25 @@ public class PendingCourseService {
 
 	public static void rejectCourse(int index) {
 		
+		System.out.print("강의 등록 신청을 반려하시겠습니까? [y/n]");
+		Scanner scan = new Scanner(System.in);
+		String input = scan.nextLine();
+		if (!input.matches("y")) {
+			System.out.println("반려를 취소합니다.");
+			return;
+		}
+		
+		//반려를 진행합시다.
+		delete(index);
+	}
+
+	private static void delete(int index) {
 		PendingCourseData.getList().get(index).setStatus("반려");
+		System.out.println(PendingCourseData.getList().get(index).getStatus());
 		PendingCourseData.update();
 		
+		System.out.println("등록이 반려되었습니다.");
+		System.out.println();
 	}	
 }
 

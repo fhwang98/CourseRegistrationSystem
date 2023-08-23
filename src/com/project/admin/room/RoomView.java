@@ -24,15 +24,15 @@ public class RoomView {
 
 	public static void printRoom(int index, ArrayList<Room> list) {
 		
-		System.out.printf("강의실 번호: %s\n", list.get(index).getRoomNum());
+		System.out.printf("강의실 번호:\t%s\n", list.get(index).getRoomNum());
 		
 		ArrayList<String> schedule = list.get(index).getSchedule();
 		for (int i = 0; i < schedule.size(); i++ ) {
 			
 			if (i == 0) {
-				System.out.printf("강의 일정:\t%s\n",schedule.get(i).replace("_ _ (_)", "없음").replace("-오전", "").replace("-오후", ""));
+				System.out.printf("강의 일정:\t%s\n",schedule.get(i).replace("_ _ (_)", "없음"));
 			} else {
-				System.out.printf("\t\t%s\n",schedule.get(i).replace("-오전", "").replace("-오후", ""));
+				System.out.printf("\t\t%s\n",schedule.get(i));
 			}
 		}
 		
