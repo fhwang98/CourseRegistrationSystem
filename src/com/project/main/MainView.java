@@ -2,10 +2,10 @@ package com.project.main;
 
 import java.util.Scanner;
 
-import com.project.admin.notice.NoticeMain;
 import com.project.busstop.BusStopMain;
 import com.project.centerinfo.CenterInfo;
 import com.project.courseinfo.CourseInfo;
+import com.project.notice.NoticeMain;
 import com.project.user.login.LoginMain;
 import com.project.user.signup.SignUpMain;
 
@@ -42,7 +42,7 @@ public class MainView {
 				BusStopMain.busStopMain();
 				mainView();
 			} else if (input.equals("6")) {
-				NoticeMain.controlNoticeMain();
+				NoticeMain.noticeMainPage();
 				mainView();
 			} else {
 				System.out.println("잘못된 입력입니다");
