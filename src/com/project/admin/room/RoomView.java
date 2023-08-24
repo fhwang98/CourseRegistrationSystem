@@ -19,7 +19,7 @@ public class RoomView {
 		System.out.println("  1.\t전체 강의실 조회");
 		System.out.println("  2.\t강의실 검색");
 		System.out.println("---------------------------------------------");
-		System.out.println("번호 입력:");
+		System.out.print("번호 입력:");
 	}
 
 	public static void printRoom(int index, ArrayList<Room> list) {
@@ -30,7 +30,7 @@ public class RoomView {
 		for (int i = 0; i < schedule.size(); i++ ) {
 			
 			if (i == 0) {
-				System.out.printf("강의 일정:\t%s\n",schedule.get(i).replace("_ _ (_)", "없음"));
+				System.out.printf("강의 일정\t:\t%s\n",schedule.get(i).replace("_ _ (_)", "없음"));
 			} else {
 				System.out.printf("\t\t%s\n",schedule.get(i));
 			}
@@ -58,7 +58,7 @@ public class RoomView {
 			System.out.println("2. 다음 페이지");
 		}
 		System.out.println("---------------------------------------------");
-		System.out.println("번호 입력:");
+		System.out.print("번호 입력:");
 	}
 
 	public static void printSearchSelectDay() {

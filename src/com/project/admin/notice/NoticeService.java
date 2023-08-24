@@ -141,6 +141,7 @@ public class NoticeService {
 	}
 	
 	public static void deleteNotice(int noticeNo) {
+		System.out.println();
 		System.out.println("공지사항을 삭제합니다.");
 		System.out.println("삭제 후 되돌릴 수 없습니다.");
 		System.out.print("공지사항을 삭제하시겠습니까? [y/n]: ");
@@ -154,6 +155,9 @@ public class NoticeService {
 		NoticeData.getList().remove(noticeNo);
 		NoticeData.update(NoticeData.getList());
 		
+		System.out.println();
+		System.out.println("공지사항 목록으로 돌아갑니다.");
+		System.out.println("계속하려면 엔터를 입력해 주세요.");
 	}
 
 

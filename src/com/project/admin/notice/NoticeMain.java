@@ -108,7 +108,7 @@ public class NoticeMain {
 	private static void checkingControl() {
 		
 		System.out.println("확인하고 싶은 공지사항의 번호를 입력해 주세요.");
-		System.out.println("번호 입력: ");
+		System.out.print("번호 입력: ");
 		String input = scan.nextLine(); //유효성 검사
 
 		int selNotice = AdminUtil.isValidSel(input, 1, 10);
@@ -116,7 +116,7 @@ public class NoticeMain {
 			AdminView.printInvalidInputMessage(scan);
 			return;
 		}
-		
+		System.out.println(selNotice+"번 공지사항의 내용을 확인합니다.");
 		
 		//공지사항의 진짜 인덱스 = 리스트 총길이 - 입력받은 번호 - 페이지*10 
 		int noticeNo = NoticeData.getList().size() - selNotice - page*10;

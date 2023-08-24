@@ -58,7 +58,7 @@ public class NoticeView {
 			
 			AdminData.load();
 			for (Admin a : AdminData.getAdminList()) {
-				if (a.getAdminNo().equals(Authentication.loginUserCode)) {
+				if (a.getAdminNo().equals(writerCode)) {
 					return a.getAdminName();
 				}
 			}
@@ -68,7 +68,7 @@ public class NoticeView {
 			UserDbms list = new UserDbms();
 			ArrayList<DataTeacher> allTeacherList = UserDbms.getTeacherAllList();
 			for (DataTeacher t : allTeacherList) {
-				if (t.getTeacherCode().equals(Authentication.loginUserCode)) {
+				if (t.getTeacherCode().equals(writerCode)) {
 					return t.getName();
 				}
 			}
@@ -87,7 +87,7 @@ public class NoticeView {
 		System.out.println("2. 내용 수정");
 		System.out.println("3. 삭제");
 		System.out.println("---------------------------------------------");
-		System.out.println("번호: ");
+		System.out.print("번호 입력: ");
 	}
 
 	public static void printNoticePage(int page) {
