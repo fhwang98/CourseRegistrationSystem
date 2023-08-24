@@ -4,6 +4,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.Calendar;
 import java.util.Random;
+import java.util.Scanner;
 
 import com.project.courseinfo.Course;
 import com.project.courseinfo.CourseData;
@@ -16,8 +17,10 @@ public class PendingCourseService {
 	
 	public static void acceptCourse(int index) {
 		
+		Scanner scan = new Scanner(System.in);
 		CourseData.allCourseList();
-		
+		System.out.println("사용 가능한 강의실을 찾습니다.");
+		scan.nextLine();
 		
 		//승인을 진행할 강좌
 		PendingCourse p = PendingCourseData.getList().get(index);
@@ -79,6 +82,10 @@ public class PendingCourseService {
 		p.setCourseCode(courseCode);
 		PendingCourseData.update();
 		
+		
+		System.out.println("강의실 배정이 완료되었습니다.");
+		System.out.println("계속하려면 엔터를 입력해 주세요.");
+		scan.nextLine();
 	}
 
 	private static void updateDataCourseFile(Course c) {
@@ -147,9 +154,7 @@ public class PendingCourseService {
 				
 				//만약에 스케줄이 겹쳐 그럼 false
 				//schedule : '월 12:00'
-				if (schedule.substring(0, 4).equals(dow + " " + startTime)) {
-					System.out.println(schedule.substring(0, 4));
-					System.out.println(dow + " " + startTime);
+				if (schedule.substring(0, 5).equals(dow + " " + startTime)) {
 					isAvailable = false;
 				}
 				

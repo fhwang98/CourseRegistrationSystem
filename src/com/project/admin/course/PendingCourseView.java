@@ -10,7 +10,7 @@ public class PendingCourseView {
 	
 	public static void printPendingCourseHead() {
 		System.out.println("=============================================");
-		System.out.println("\t승인 대기 강좌");
+		System.out.println("\t\t승인 대기 강좌");
 		System.out.println("=============================================");
 	}
 	
@@ -71,14 +71,18 @@ public class PendingCourseView {
 		
 		//처음부터 10개씩 보여줌
 
-		System.out.println("[번호]\t[강좌명]\t[승인 여부]");
+		System.out.println("[번호]\t[강좌명]\t\t\t[승인 여부]");
 		int size = PendingCourseData.getList().size();
 		
-		for (int i = 0; i < ((size / 10 == 0) ? size % 10 : 10); i++) {
-				
-			System.out.printf("%4d.\t", i + 1);
-			System.out.print(PendingCourseData.getList().get(i + 10 * page).getCourseName() + "\t ");
-			System.out.println(PendingCourseData.getList().get(i + 10 * page).getStatus());
+		for (int i = 0; i < ((size % 10 == 0) ? 10 : (size % 10) + 1); i++) {
+			String courseName = PendingCourseData.getList().get(i + 10 * page).getCourseName();
+			if (courseName.length() < 6) {
+				courseName += "\t\t";
+			} else if (courseName.length() < 12) {
+				courseName += "\t";
+			}
+			String status = PendingCourseData.getList().get(i + 10 * page).getStatus();
+			System.out.printf("%4d.\t%s\t%s\n", i + 1, courseName, status);
 		}
 	}
 	

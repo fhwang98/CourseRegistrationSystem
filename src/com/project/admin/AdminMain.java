@@ -39,7 +39,6 @@ public class AdminMain {
 				System.out.println("강사 회원 관리");
 			} else if (sel == 3) {
 				//강좌 관리
-				System.out.println("강좌 관리");
 				AdminCourseMain.controlCourse();
 			} else if (sel == 4) {
 				//강의실 관리
