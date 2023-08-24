@@ -2,6 +2,8 @@ package com.project.centerinfo;
 
 import java.util.Scanner;
 
+import com.project.main.MainView;
+
 public class CenterInfo {
 
 	static Scanner scan = new Scanner(System.in);
@@ -29,7 +31,7 @@ public class CenterInfo {
 		while (!input.equals("0")) {
 
 			if (input.equals("0")) {
-	//			Main.mainMent();
+				MainView.MainScreen();
 
 			} else {
 				System.out.println("뒤로가려면 0번을 입력하세요.");
@@ -39,7 +41,7 @@ public class CenterInfo {
 		}
 			
 		if (input.equals("0")) {
-	//		Main.mainMent();
+			MainView.MainScreen();
 		}
 
 	}

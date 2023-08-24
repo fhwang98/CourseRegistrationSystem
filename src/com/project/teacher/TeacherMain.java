@@ -1,12 +1,26 @@
 package com.project.teacher;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.project.teacher.Teacher;
+import com.project.user.data.DataTeacher;
+import com.project.user.data.UserDbms;
+import com.project.user.login.LoginMain;
 
 public class TeacherMain {
 
-	public static void LoginTeacher() {
+	public static void LoginTeacher(DataTeacher t) {
+		
+		LoginMain lista = new LoginMain();
+		ArrayList<DataTeacher> loginList = lista.getLoginTList();
+		
+		UserDbms listb = new UserDbms();
+		ArrayList<DataTeacher> TeacherList = listb.getTeacherAllList();
+		
+		DataTeacher a = listb.getTeacherAllList().get(0);
+		
+		loginList.add(a);
 		
 		Scanner scan = new Scanner(System.in);
 		

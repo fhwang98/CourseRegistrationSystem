@@ -32,7 +32,7 @@ public class Teacher {
 
 		if (input == 0) {
 
-			TeacherMain.LoginTeacher();
+			TeacherMain.LoginTeacher(null);
 
 		} else if (input == 1) {
 
@@ -40,7 +40,7 @@ public class Teacher {
 
 		} else if (input == 2) {
 
-			// 방법 통일 해야함 다시 의논
+			
 
 		} else {
 
@@ -58,7 +58,7 @@ public class Teacher {
 		UserDbms list = new UserDbms();
 		ArrayList<DataTeacher> allTeacherList = UserDbms.getTeacherAllList();
 
-//		//강사 로그인 데이터 가져오기
+		//강사 로그인 데이터 가져오기
 //		LoginMain lista = new LoginMain();
 //		ArrayList<DataTeacher> loginList = lista.getLoginTList();
 //		System.out.println(lista.getLoginTList());
@@ -75,7 +75,7 @@ public class Teacher {
 				int input = 0;
 				String name = "";
 				String phone = "";
-
+				
 				System.out.println("    강사 마이페이지 > 내 정보 조회 및 수정");
 				System.out.println("—-------------------------------------");
 				System.out.println("아이디: " + data.getId());
@@ -89,6 +89,7 @@ public class Teacher {
 				System.out.print("번호 입력 : ");
 
 				input = scan.nextInt();
+				scan.nextLine();
 
 				if (input == 0) {
 
@@ -129,7 +130,6 @@ public class Teacher {
 			String path = "data\\dataTeacher.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
-			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
 
 			String line = null;
 
@@ -160,9 +160,10 @@ public class Teacher {
 			}
 
 			// 파일 작성
-			writer.write(sb.toString());
 
 			reader.close();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+			writer.write(sb.toString());
 			writer.close();
 
 		} catch (Exception e) {

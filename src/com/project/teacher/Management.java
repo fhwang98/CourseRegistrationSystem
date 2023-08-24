@@ -11,12 +11,19 @@ import java.util.regex.Pattern;
 
 import com.project.admin.course.PendingCourse;
 import com.project.admin.course.PendingCourseData;
+import com.project.authentication.Authentication;
 import com.project.courseinfo.Course;
 import com.project.courseinfo.CourseData;
 import com.project.user.data.DataTeacher;
 import com.project.user.login.LoginMain;
 
 public class Management {
+
+	public static ArrayList<Course> teacherCourseList;
+
+	static {
+		Management.teacherCourseList = new ArrayList<>();
+	}
 
 	public static void main(String[] args) {
 		CourseData.allCourseList();
@@ -32,10 +39,9 @@ public class Management {
 		System.out.println("          강좌 관리");
 		System.out.println("—-------------------------------------");
 		System.out.println("0. 메인화면 돌아가기");
-		System.out.println("1. 공지사항 등록");
-		System.out.println("2. 강좌 등록 신청");
-		System.out.println("3. 강좌 등록 조회");
-		System.out.println("4. 강좌 등록 수정");
+		System.out.println("1. 강좌 등록 신청");
+		System.out.println("2. 강좌 등록 조회");
+		System.out.println("3. 강좌 등록 수정");
 		System.out.println("—-------------------------------------");
 		System.out.print("번호 입력 : ");
 
@@ -43,21 +49,17 @@ public class Management {
 
 		if (input == 0) {
 
-			TeacherMain.LoginTeacher();
+			TeacherMain.LoginTeacher(null);
 
 		} else if (input == 1) {
 
-			Management.notice();
+			Management.registration();
 
 		} else if (input == 2) {
 
-			Management.registration();
-
-		} else if (input == 3) {
-
 			Management.information();
 
-		} else if (input == 4) {
+		} else if (input == 3) {
 
 			Management.modify();
 
@@ -66,41 +68,6 @@ public class Management {
 			System.out.println("유효하지 않는 입력값입니다.");
 
 		}
-	}
-
-	// 유진이 공지사항 가져오기
-	public static void notice() {
-
-		Scanner scan = new Scanner(System.in);
-
-		int input = 0;
-		String notice = "";
-
-		System.out.println("          공지사항 등록");
-		System.out.println("—-------------------------------------");
-		System.out.println("0. 강좌관리 화면 돌아가기");
-		System.out.println("======================================");
-		loadCourseList();
-		System.out.println("======================================");
-		System.out.println("—-------------------------------------");
-		System.out.print("번호 입력 : ");
-		input = scan.nextInt();
-
-		if (input == 0) {
-
-			Management.courseManagement();
-
-		} else if (input <= CourseData.courseList.size()) {
-
-		} else {
-
-			System.out.println("유효하지 않는 입력값입니다.");
-
-		}
-
-		System.out.print("공지사항 입력 : ");
-		notice = scan.nextLine();
-
 	}
 
 	public static void registration() {
@@ -152,16 +119,17 @@ public class Management {
 				System.out.println("—-------------------------------------");
 				// System.out.print("번호 입력 : ");
 
-				if (isValid(time, date, name, category, age, content)) { 
+				if (isValid(time, date, name, category, age, content)) {
 
 					System.out.println("가입 완료");
 
 					LoginMain lista = new LoginMain();
 					ArrayList<DataTeacher> loginList = lista.getLoginTList();
-					
-					PendingCourse pendingCourse = new PendingCourse(name, date, time, category, age, content, status, loginList.get(0).getTeacherCode());//TODO 로그인한 강사 코드 넣는부분 수정
+
+					PendingCourse pendingCourse = new PendingCourse(name, date, time, category, age, content, status,
+							loginList.get(0).getTeacherCode(), "없음");// TODO 로그인한 강사 코드 넣는부분 수정
 					courseList.add(pendingCourse);
-					
+
 					PendingCourseData.update();
 
 					break;
@@ -264,56 +232,17 @@ public class Management {
 		return true;
 	}
 
-	public static void loadCourseList() {
-
-//		ArrayList<DataTeacher> list = new ArrayList<>();
-//
-//		String teacherCode = "강사의 코드";
-//
-//		try {
-//
-//			BufferedReader reader = new BufferedReader(
-//					new FileReader("data\\dataCourse.txt"));
-//
-//			String line = null;
-//
-//			line = reader.readLine();
-//
-//			while ((line = reader.readLine()) != null) {
-//
-//				String[] temp = line.split(",");
-//
-//				// 강좌조회시 보여줄 항목들 모두 담아야함 temp[2]말고 추가로 더
-//				Data data = new Data(temp[2], temp[3], temp[4], temp[5], temp[6]);
-//
-//				list.add(data);
-//
-//			}
-//
-//			reader.close();
-//
-//		} catch (Exception e) {
-//
-//		}
+	public static int loadCourseList() {
 
 		int n = 1;
 
-		ArrayList<Course> courseList = new ArrayList<>();
-
-		// 강사 로그인 데이터 가져오기
-		LoginMain lista = new LoginMain();
-		ArrayList<DataTeacher> loginList = lista.getLoginTList();
-
-		// System.out.println(loginList.get(0).getTeacherCode());
-
-		// 현재 로그인 한 강사 코드
-		String curTeacherCode = loginList.get(0).toString();
+		String a = Authentication.loginUserCode;
 
 		for (Course c : CourseData.courseList) {
-			System.out.println(c.getCourseName());
-			if (curTeacherCode.equals(c.getNum())) {
 
-				courseList.add(c);
+			if (a.equals(c.getTeacherNum())) {
+
+				teacherCourseList.add(c);
 
 				System.out.println(n + ". " + c.getCourseName());
 
@@ -321,31 +250,34 @@ public class Management {
 
 			}
 		}
+		return teacherCourseList.size();
 	}
 
 	public static void information() {
 
 		Scanner scan = new Scanner(System.in);
 
-		int input = 0;
+		int input = -1;
 
 		System.out.println("        강사관리 > 강좌 정보 조회");
 		System.out.println("—-------------------------------------");
 		System.out.println("0. 강좌관리 화면 돌아가기");
 		System.out.println("======================================");
-		loadCourseList();
+		int curSize = loadCourseList();
 		System.out.println("======================================");
 		System.out.println("—-------------------------------------");
 		System.out.print("번호 입력: ");
-		scan.nextInt();
+
+		input = scan.nextInt();
+		scan.nextLine();
 
 		if (input == 0) {
 
 			Management.courseManagement();
 
-		} else if (input <= CourseData.courseList.size()) {
+		} else if (input <= curSize) {
 
-			Course c = CourseData.courseList.get(input - 1);
+			Course c = teacherCourseList.get(input - 1);
 
 			System.out.println("       강좌 정보 조회");
 			System.out.println("—-------------------------------------");
@@ -353,17 +285,19 @@ public class Management {
 			System.out.println("카테고리: " + c.getCategory());
 			System.out.println("시간: " + c.getTime());
 			System.out.println("대상 연령: " + c.getTarget());
-			System.out.println("수강 인원: " + c.getPerson());
+			System.out.println("신청 인원: " + c.getPerson());
 			System.out.println("강좌 내용: " + c.getContents());
+			System.out.println("시작 날짜: " + c.getStartDay());
 			System.out.println("—-------------------------------------");
 			System.out.println("0. 마이페이지 돌아가기");
 			System.out.print("번호 입력 : ");
 
 			input = scan.nextInt();
+			scan.nextLine();
 
 			if (input == 0) {
 
-				Teacher.mypage();
+				Management.courseManagement();
 
 			}
 
@@ -387,20 +321,21 @@ public class Management {
 		System.out.println("—-------------------------------------");
 		System.out.println("0. 강좌관리 화면 돌아가기");
 		System.out.println("======================================");
-		loadCourseList();
+		int curSize = loadCourseList();
 		System.out.println("======================================");
 		System.out.println("—-------------------------------------");
 		System.out.print("번호 입력 : ");
 
 		input = scan.nextInt();
+		scan.nextLine();
 
 		if (input == 0) {
 
 			Management.courseManagement();
 
-		} else if (input <= CourseData.courseList.size()) {
+		} else if (input <= curSize) {
 
-			Course c = CourseData.courseList.get(input - 1);
+			Course c = teacherCourseList.get(input - 1);
 
 			String newName = "";
 			String newTime = "";
@@ -411,16 +346,17 @@ public class Management {
 
 			System.out.println("          강좌정보수정");
 			System.out.println("—-------------------------------------");
-			System.out.print("0. 강좌관리 돌아가기");
-			System.out.print("1. 강좌명");
-			System.out.print("2. 시간");
-			System.out.print("3. 수강대상");
-			System.out.print("4. 수강인원");
-			System.out.print("5. 강좌내용");
+			System.out.println("0. 강좌관리 돌아가기");
+			System.out.println("1. 강좌명");
+			System.out.println("2. 시간");
+			System.out.println("3. 수강대상");
+			System.out.println("4. 수강인원");
+			System.out.println("5. 강좌내용");
 			System.out.println("—-------------------------------------");
 			System.out.print("수정할 정보의 번호를 입력 : ");
 
 			input = scan.nextInt();
+			scan.nextLine();
 
 			if (input == 0) {
 
@@ -432,6 +368,8 @@ public class Management {
 
 				newName = scan.nextLine();
 
+				Management.isValidName(newName);
+
 				modifyCourseByName(c.getCourseName(), newName);
 
 			} else if (input == 2) {
@@ -439,14 +377,25 @@ public class Management {
 				System.out.print("수정할 시간을 입력하세요: ");
 
 				newTime = scan.nextLine();
+				
+				if(Management.isValidTime(newTime)) {
+					
+					modifyCourseByTime(c.getTime(), newTime);
+					
+					System.out.println("수정을 완료했습니다.");
+				} else {
+					
+					System.out.println("수정할 수 없습니다.");
+				}
 
-				modifyCourseByTime(c.getTime(), newTime);
 
 			} else if (input == 3) {
 
 				System.out.print("수정할 수강대상을 입력하세요: ");
 
 				newTarget = scan.nextLine();
+				
+				Management.isValidAge(newTarget);
 
 				modifyCourseByTarget(c.getTarget(), newTarget);
 
@@ -455,6 +404,8 @@ public class Management {
 				System.out.print("수강인원을 입력하세요: ");
 
 				newNum = scan.nextLine();
+				
+				Management.isValidNum(newNum);
 
 				modifyCourseByNum(c.getPerson(), newNum);
 
@@ -463,6 +414,8 @@ public class Management {
 				System.out.print("수정할 강좌내용을 입력하세요: ");
 
 				newContent = scan.nextLine();
+				
+				Management.isValidContent(newContent);
 
 				modifyCourseByContent(c.getContents(), newContent);
 
@@ -472,11 +425,6 @@ public class Management {
 
 			}
 
-			if (isValid1(newName, newTime, newTarget, newNum, newContent)) {
-				System.out.println("가입 완료");
-			} else {
-				System.out.println("가입 실패");
-			}
 		}
 
 	}
@@ -487,10 +435,9 @@ public class Management {
 
 		try {
 			// 강사 파일 읽어오기
-			String path = "data\\dataCourse.txt";
+			String path = "data/dataCourse.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
-			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
 
 			String line = null;
 
@@ -514,7 +461,7 @@ public class Management {
 				String roomNum = temp[11];
 
 				// 현재 줄의 강좌 코드와 현재 강좌 코드가 같은지 비교
-				if (CourseData.courseList.get(0).equals(courseNum)) {
+				if (num.equals(courseNum)) {
 					// 같으면 현재 줄의 이름을 입력받은 이름으로 변경
 					courseName = newName;
 				}
@@ -527,9 +474,10 @@ public class Management {
 			}
 
 			// 파일 작성
-			writer.write(sb.toString());
 
 			reader.close();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+			writer.write(sb.toString());
 			writer.close();
 
 		} catch (Exception e) {
@@ -545,10 +493,9 @@ public class Management {
 
 		try {
 			// 강사 파일 읽어오기
-			String path = "data\\dataCourse.txt";
+			String path = "data/dataCourse.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
-			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
 
 			String line = null;
 
@@ -572,9 +519,9 @@ public class Management {
 				String roomNum = temp[11];
 
 				// 현재 줄의 강좌 코드와 현재 강좌 코드가 같은지 비교
-				if (CourseData.courseList.get(0).equals(courseNum)) {
+				if (num.equals(courseNum)) {
 					// 같으면 현재 줄의 이름을 입력받은 이름으로 변경
-					courseName = newTime;
+					time = newTime;
 				}
 
 				// 다르다면 그 줄 그대로 파일에 작성
@@ -585,9 +532,13 @@ public class Management {
 			}
 
 			// 파일 작성
-			writer.write(sb.toString());
 
 			reader.close();
+			
+			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+			
+			writer.write(sb.toString());
+			
 			writer.close();
 
 		} catch (Exception e) {
@@ -603,10 +554,9 @@ public class Management {
 
 		try {
 			// 강사 파일 읽어오기
-			String path = "data\\dataCourse.txt";
+			String path = "data/dataCourse.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
-			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
 
 			String line = null;
 
@@ -630,9 +580,9 @@ public class Management {
 				String roomNum = temp[11];
 
 				// 현재 줄의 강좌 코드와 현재 강좌 코드가 같은지 비교
-				if (CourseData.courseList.get(0).equals(courseNum)) {
+				if (num.equals(courseNum)) {
 					// 같으면 현재 줄의 이름을 입력받은 이름으로 변경
-					courseName = newTarget;
+					target = newTarget;
 				}
 
 				// 다르다면 그 줄 그대로 파일에 작성
@@ -643,9 +593,10 @@ public class Management {
 			}
 
 			// 파일 작성
-			writer.write(sb.toString());
 
 			reader.close();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+			writer.write(sb.toString());
 			writer.close();
 
 		} catch (Exception e) {
@@ -661,10 +612,9 @@ public class Management {
 
 		try {
 			// 강사 파일 읽어오기
-			String path = "data\\dataCourse.txt";
+			String path = "data/dataCourse.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
-			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
 
 			String line = null;
 
@@ -688,9 +638,9 @@ public class Management {
 				String roomNum = temp[11];
 
 				// 현재 줄의 강좌 코드와 현재 강좌 코드가 같은지 비교
-				if (CourseData.courseList.get(0).equals(courseNum)) {
+				if (num.equals(courseNum)) {
 					// 같으면 현재 줄의 이름을 입력받은 이름으로 변경
-					courseName = newNum;
+					person = newNum;
 				}
 
 				// 다르다면 그 줄 그대로 파일에 작성
@@ -701,9 +651,10 @@ public class Management {
 			}
 
 			// 파일 작성
-			writer.write(sb.toString());
 
 			reader.close();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+			writer.write(sb.toString());
 			writer.close();
 
 		} catch (Exception e) {
@@ -719,10 +670,9 @@ public class Management {
 
 		try {
 			// 강사 파일 읽어오기
-			String path = "data\\dataCourse.txt";
+			String path = "data/dataCourse.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
-			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
 
 			String line = null;
 
@@ -746,9 +696,9 @@ public class Management {
 				String roomNum = temp[11];
 
 				// 현재 줄의 강좌 코드와 현재 강좌 코드가 같은지 비교
-				if (CourseData.courseList.get(0).equals(courseNum)) {
+				if (num.equals(courseNum)) {
 					// 같으면 현재 줄의 이름을 입력받은 이름으로 변경
-					courseName = newContets;
+					contents = newContets;
 				}
 
 				// 다르다면 그 줄 그대로 파일에 작성
@@ -759,9 +709,10 @@ public class Management {
 			}
 
 			// 파일 작성
-			writer.write(sb.toString());
 
 			reader.close();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+			writer.write(sb.toString());
 			writer.close();
 
 		} catch (Exception e) {
@@ -771,7 +722,7 @@ public class Management {
 
 	}
 
-	private static boolean isValid1(String courseName, String time, String age, String num, String content) {
+	private static boolean isValidName(String courseName) {
 
 		String regex = ""; // 정규식
 		Pattern p1 = null; // 정규식 객체
@@ -784,8 +735,15 @@ public class Management {
 
 		if (!m1.find()) {
 			System.out.println("2~14자리 한글,영어,숫자만 가능합니다");
-			return false;
 		}
+		return false;
+	}
+
+	private static boolean isValidTime(String time) {
+
+		String regex = ""; // 정규식
+		Pattern p1 = null; // 정규식 객체
+		Matcher m1 = null; // 결과 객체
 
 		// 2. time > 시간 > 06시 ~ 22시 운영시간내에 입력하시오 (두자리 숫자 입력 ex: 06)
 		regex = "^[0-9]{2}$";
@@ -796,53 +754,60 @@ public class Management {
 			System.out.println("06시 ~ 22시 운영시간내에 입력하시오 (두자리 숫자 입력 ex: 06)");
 			return false;
 		}
+		return true;
+	}
 
-//		// 3. teacherName > 강사명 > 2~4자리 한글만 가능합니다
-//		regex = "^[가-힣]{2,4}$";
-//		p1 = Pattern.compile(regex);
-//		m1 = p1.matcher(teacherName); // 사용자가 입력한 이름에서 패턴 검색
-//
-//		if (!m1.find()) {
-//			System.out.println("2~4자리 한글만 가능합니다");
-//			return false;
-//		}
+	private static boolean isValidAge(String age) {
+		// 3. age > 수강대상 > 어린이, 청소년, 성인, 누구나 중에 입력해주세요
 
-		// 4. age > 수강대상 > 어린이, 청소년, 성인, 누구나 중에 입력해주세요
-
-		regex = "^[0-9]{2,3}$";
-		p1 = Pattern.compile(regex);
-		m1 = p1.matcher(age);
+		String regex = ""; // 정규식
+		Pattern p1 = null; // 정규식 객체
+		Matcher m1 = null; // 결과 객체
 
 		regex = "^[가-힣]{2,3}$";
 		p1 = Pattern.compile(regex);
 		m1 = p1.matcher(age); // 사용자가 입력한 이름에서 패턴 검색
 
 		if (!m1.find() || age.equals("어린이") || age.equals("청소년") || age.equals("성인") || age.equals("누구나")) {
+
 			System.out.println("어린이, 청소년, 성인, 누구나 중에 입력해주세요");
-			return false;
 		}
+		return false;
+	}
+
+	private static boolean isValidNum(String num) {
 
 		// 5. num > 수강인원 > 10명 이상 ~30명 이하만 가능합니다
+
+		String regex = ""; // 정규식
+		Pattern p1 = null; // 정규식 객체
+		Matcher m1 = null; // 결과 객체
 		regex = "^[0-9]{2}$";
 		p1 = Pattern.compile(regex);
-		m1 = p1.matcher(age);
+		m1 = p1.matcher(num);
 
-		if (!m1.find() || (Integer.parseInt(age) < 10 || Integer.parseInt(age) > 30)) {
+		if (!m1.find() || (Integer.parseInt(num) < 10 || Integer.parseInt(num) > 30)) {
 			System.out.println("10명 이상 ~30명 이하만 가능합니다");
-			return false;
 		}
+		return false;
+	}
+
+	private static boolean isValidContent(String content) {
 
 		// 6. content > 강좌내용 > 100자 이내로 입력하시오
+
+		String regex = ""; // 정규식
+		Pattern p1 = null; // 정규식 객체
+		Matcher m1 = null; // 결과 객체
+
 		regex = "[A-Za-z0-9가-힣_]{0,100}";
 		p1 = Pattern.compile(regex);
 		m1 = p1.matcher(content);
 
 		if (!m1.find()) {
 			System.out.println("100자 이내로 입력하시오");
-			return false;
 		}
-
-		return true;
+		return false;
 	}
 
 }// class

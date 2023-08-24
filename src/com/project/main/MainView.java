@@ -33,7 +33,7 @@ public class MainView {
 				SignUpMain.main(null);
 				mainView();
 			} else if (input.equals("3")) {
-				CourseInfo.lectureInfo();
+				CourseInfo.courseInfo();
 				mainView();
 			} else if (input.equals("4")) {
 				CenterInfo.centerInfo();

@@ -32,13 +32,13 @@ public class UserMain {
 				CenterInfo.centerInfo();
 				userMainView();
 			} else if (input.equals("3")) {
-				CourseInfo.lectureInfo();
+				CourseInfo.courseInfo();
 				userMainView();
 			} else if (input.equals("4")) {
 				CourseApplication.courseApplicationment();
 				userMainView();
 			} else if (input.equals("5")) {
-				MyPageMain.mypage();
+				MyPageMain.mypage(null); // null 추가
 				userMainView();
 			} else if (input.equals("6")) {
 				BusStopMain.busStopMain();
