@@ -1,6 +1,7 @@
 package com.project.admin.admininfo;
 
 import com.project.admin.AdminData;
+import com.project.authentication.Authentication;
 import com.project.admin.Admin;
 
 public class AdminInfoService {
@@ -9,7 +10,7 @@ public class AdminInfoService {
 		
 		AdminData.load();
 		
-		String id = "qjweirowe142";
+		String id = AdminInfoMain.getId(Authentication.loginUserCode);
 		
 		for (Admin a : AdminData.adminList) {
 			if (a.getAdminId().equals(id)) {
