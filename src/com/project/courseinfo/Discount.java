@@ -31,7 +31,7 @@ public class Discount {
 		while (!input.equals("0")) {
 
 			if (input.equals("0")) {
-				CourseInfo.lectureInfo();
+				CourseInfo.courseInfo();
 
 			} else {
 				System.out.println("뒤로가려면 0번을 입력하세요.");
@@ -42,7 +42,7 @@ public class Discount {
 
 		}
 		if (input.equals("0")) {
-			CourseInfo.lectureInfo();
+			CourseInfo.courseInfo();
 		}
 	}
 }
