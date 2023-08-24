@@ -79,7 +79,8 @@ public class PendingCourseMain {
 			AdminView.printInvalidInputMessage(scan);
 			return;
 		}
-		
+		System.out.println(selCourse + "번 강좌의 정보를 확인합니다.");
+		scan.nextLine();
 		//실제 확인할 대기강좌의 인덱스를 구함
 		int index = selCourse - 1 + page * 10;
 		boolean loop = true;

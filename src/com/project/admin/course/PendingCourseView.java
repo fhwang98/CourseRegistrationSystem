@@ -28,6 +28,7 @@ public class PendingCourseView {
 		강좌 내용
 		현재 상태
 		강사코드
+		강좌ㅏ 코드
 		*/
 		printPendingCourseHead();
 		
@@ -43,12 +44,13 @@ public class PendingCourseView {
 		System.out.printf("강좌 내용\t:\t%s\n", p.getCourseExplanation());
 		System.out.printf("승인 여부\t:\t%s\n", p.getStatus());
 		System.out.printf("강의실\t:\t%s\n", p.getRoomNum());
+		System.out.printf("강좌 코드\t:\t%s\n", p.getCourseCode());
 		System.out.println("---------------------------------------------");
 		System.out.println("0. 뒤로가기");
 		System.out.println("1. 등록 승인");
 		System.out.println("2. 등록 반려");
 		System.out.println("---------------------------------------------");
-		System.out.println("번호 입력: ");
+		System.out.print("번호 입력: ");
 	}
 	
 	private static String getTeacherName(String teacherNum) {

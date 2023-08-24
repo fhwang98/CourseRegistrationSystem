@@ -76,6 +76,7 @@ public class PendingCourseService {
 		//추가가 끝났으니까 이제 승인 대기중인 강좌 리스트에서 대기 -> 승인으로 상태를 바꾸고 승인대기목록 파일을 업데이트 할거야
 		p.setStatus("승인");
 		p.setRoomNum(roomNum);
+		p.setCourseCode(courseCode);
 		PendingCourseData.update();
 		
 	}

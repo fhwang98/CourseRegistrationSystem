@@ -60,7 +60,7 @@ public class PendingCourseData {
 		String[] dow = {"월", "화", "수", "목", "금"};
 		String[] category = {"문화", "블럭교실", "피아노", "체육", "어린이"};
 		String[] target = {"어린이", "청소년", "성인", "누구나"};
-		String[] status = {"승인", "대기", "반려"};
+		String[] status = {"대기", "반려"};
 		
 		Random rnd = new Random();
 		
@@ -77,7 +77,7 @@ public class PendingCourseData {
 				PendingCourse p = new PendingCourse("강좌명" +( i + 1)
 						, dow[rnd.nextInt(4)], String.format("%02d", rnd.nextInt(15) + 6)
 						, category[rnd.nextInt(4)], target[rnd.nextInt(3)]
-						, "강좌내용" + (i + 1), status[rnd.nextInt(2)] , String.format("T%03d", rnd.nextInt(100) + 1), "없음");
+						, "강좌내용" + (i + 1), status[rnd.nextInt(2)] , String.format("T%03d", rnd.nextInt(100) + 1), "없음", "없음");
 				writer.write(p.toString());
 				writer.newLine();
 			}
@@ -97,7 +97,7 @@ public class PendingCourseData {
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split(",");
-				list.add(new PendingCourse(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6] ,temp[7], temp[8]));
+				list.add(new PendingCourse(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6] ,temp[7], temp[8], temp[9]));
 			}
 			
 			PendingCourseData.sortList();
