@@ -2,24 +2,21 @@ package com.project.user.login;
 
 import java.util.Scanner;
 
+import com.project.admin.AdminMain;
 import com.project.auth.Auth;
 import com.project.auth.AuthDbms;
+import com.project.teacher.TeacherMain;
 import com.project.user.data.DataAdmin;
 import com.project.user.data.DataMember;
 import com.project.user.data.DataTeacher;
+import com.project.user.mypage.MyPageMain;
 
 public class LoginChoice {
 	static AuthDbms authDbms = new AuthDbms();
-	
 	public static void login(LoginMain main) {
-		
 		Auth auth = new Auth();
-		
-		 
 		int num = 0;
-
 		Scanner scan = new Scanner(System.in);
-
 		System.out.println("======================");
 		System.out.println("       로그인      ");
 		System.out.println("======================");
@@ -56,8 +53,8 @@ public class LoginChoice {
 				auth.setChoiceCode("1");
 				auth.setId(m.getId());
 				auth.setName(m.getName());
-				
 				main.getLoginMList().add(m);
+				MyPageMain.mypage(m);
 			}
 		} else if (num == 2) {
 			DataTeacher t = LoginTeacher.login();
@@ -66,8 +63,8 @@ public class LoginChoice {
 				auth.setChoiceCode("2");
 				auth.setId(t.getId());
 				auth.setName(t.getName());
-				
 				main.getLoginTList().add(t);
+				TeacherMain.LoginTeacher(t);
 			}	
 		} else if (num == 3) {
 			DataAdmin a = LoginAdmin.login();
@@ -76,8 +73,9 @@ public class LoginChoice {
 				auth.setChoiceCode("3");
 				auth.setId(a.getId());
 				auth.setName(a.getName());
-				
 				main.getLoginAList().add(a);
+				
+				AdminMain.controlAdmin(a);
 			}
 		}
 		

@@ -1,4 +1,4 @@
-package com.project.admin.user;
+package com.project.admin.teacher;
 
 import java.util.Scanner;
 
@@ -6,16 +6,16 @@ import com.project.course.CourseHistoryData;
 import com.project.courseinfo.CourseData;
 import com.project.user.data.UserDbms;
 
-public class AdminUserMain {
+public class AdminTeacherMain {
 
-	public static void showAdminUserMain() {
-		// 관리자 로그인 후 보이는 메인화면에서 1. 일반 회원 관리를 눌렀을 때 나오는 페이지.
+	public static void showAdminTeacherMain() {
+		// 관리자 로그인 후 보이는 메인화면에서 2. 강사 회원 관리를 눌렀을 때 나오는 페이지.
 
 		Scanner scan = new Scanner(System.in);
 
 		// 기본 출력을 view에서 만들고 여기서 호출
 
-		AdminUserView.printAdminUserMain();
+		AdminTeacherView.printAdminTeacherMain();
 
 		while (true) {
 			// 번호 입력부터 여기서 시작
@@ -26,22 +26,22 @@ public class AdminUserMain {
 				break;
 			} else if (sel.equals("1")) { // 전체 회원 조회 페이지로 이동
 				// 기능
-				AdminUserService.showUserList();
+				AdminTeacherService.showTeacherList();
 
-				AdminUserView.printAdminUserMain();
+				AdminTeacherView.printAdminTeacherMain();
 			} else if (sel.equals("2")) { // 회원 검색 페이지로 이동
 				// 기능
-				AdminUserService.searchUser();
+				AdminTeacherService.searchTeacher();
 
-				AdminUserView.printLine();
-				AdminUserView.printAdminUserMain();
+				AdminTeacherView.printLine();
+				AdminTeacherView.printAdminTeacherMain();
 			} else { // invalid
-				AdminUserView.printInvalidInput();
+				AdminTeacherView.printInvalidInput();
 			}
 
 		}
 
-//		System.out.println("AdminUserMain Out");
+//				System.out.println("AdminUserMain Out");
 	}
 
 	public static void main(String[] args) {
@@ -54,10 +54,11 @@ public class AdminUserMain {
 
 		// 전체 강좌 목록 로드
 		CourseData.allCourseMap();
+		CourseData.allCourseList();
 
 		// 관리자 로그인 후 보이는 메인화면에서 1. 일반 회원 관리를 눌렀을 때 나오는 페이지.
 		// 기능
-		AdminUserMain.showAdminUserMain();
+		AdminTeacherMain.showAdminTeacherMain();
 
 	}
 }

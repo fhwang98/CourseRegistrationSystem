@@ -127,7 +127,7 @@ public class Teacher {
 
 		try {
 			// 강사 파일 읽어오기
-			String path = "data\\dataTeacher.txt";
+			String path = "data/dataTeacher.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
 
@@ -179,7 +179,7 @@ public class Teacher {
 
 		try {
 			// 강사 파일 읽어오기
-			String path = "data\\dataTeacher.txt";
+			String path = "data/dataTeacher.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
 			BufferedWriter writer = new BufferedWriter(new FileWriter(path));

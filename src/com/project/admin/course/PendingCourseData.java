@@ -10,14 +10,38 @@ import java.util.Random;
 public class PendingCourseData {
 
 	
-	public static ArrayList<PendingCourse> getList() {
-		return list;
-	}
-
 	private static ArrayList<PendingCourse> list;
 	
 	static {
 		list = new ArrayList<PendingCourse>();
+	}
+	
+
+	public static ArrayList<PendingCourse> getList() {
+		return list;
+	}
+	
+	public static void sortList() {
+		
+		ArrayList<PendingCourse> sortedList = new ArrayList<PendingCourse>();
+		
+		for (PendingCourse p : list) {
+			if (p.getStatus().equals("대기")) {
+				sortedList.add(p);
+			}
+		}
+		for (PendingCourse p : list) {
+			if (p.getStatus().equals("반려")) {
+				sortedList.add(p);
+			}
+		}
+		for (PendingCourse p : list) {
+			if (p.getStatus().equals("승인")) {
+				sortedList.add(p);
+			}
+		}
+		list = sortedList;
+		
 	}
 	
 	/*
@@ -36,12 +60,12 @@ public class PendingCourseData {
 		String[] dow = {"월", "화", "수", "목", "금"};
 		String[] category = {"문화", "블럭교실", "피아노", "체육", "어린이"};
 		String[] target = {"어린이", "청소년", "성인", "누구나"};
-		String[] status = {"대기", "반려", "승인", "취소"};
+		String[] status = {"대기", "반려"};
 		
 		Random rnd = new Random();
 		
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataPendingCourse.txt"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data/dataPendingCourse.txt"));
 
 			
 			for (int i = 0; i < 30; i++) {
@@ -53,7 +77,7 @@ public class PendingCourseData {
 				PendingCourse p = new PendingCourse("강좌명" +( i + 1)
 						, dow[rnd.nextInt(4)], String.format("%02d", rnd.nextInt(15) + 6)
 						, category[rnd.nextInt(4)], target[rnd.nextInt(3)]
-						, "강좌내용" + (i + 1), status[rnd.nextInt(3)], String.format("T%03d", rnd.nextInt(100) + 1));
+						, "강좌내용" + (i + 1), status[rnd.nextInt(2)] , String.format("T%03d", rnd.nextInt(100) + 1), "없음", "없음");
 				writer.write(p.toString());
 				writer.newLine();
 			}
@@ -68,13 +92,16 @@ public class PendingCourseData {
 	public static void load() {
 		
 		try {
-			BufferedReader reader = new BufferedReader(new FileReader("data\\dataPendingCourse"));
+			BufferedReader reader = new BufferedReader(new FileReader("data/dataPendingCourse.txt"));
 			
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split(",");
-				list.add(new PendingCourse(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6] ,temp[7]));
+				list.add(new PendingCourse(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6] ,temp[7], temp[8], temp[9]));
 			}
+			
+			PendingCourseData.sortList();
+
 			reader.close();
 		} catch (Exception e) {
 			System.out.println("at PendingCourseData.load");
@@ -84,7 +111,7 @@ public class PendingCourseData {
 	
 	public static void update() { //덮어쓰기
 		try {
-			BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataPendingCourse"));
+			BufferedWriter writer = new BufferedWriter(new FileWriter("data/dataPendingCourse.txt"));
 			for (PendingCourse p : list) {
 				writer.write(p.toString());
 				writer.newLine();
@@ -96,5 +123,18 @@ public class PendingCourseData {
 		}
 	}
 	
-	
+	public static void update(PendingCourse p) { //이어쓰기
+	      try {
+	         BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataPendingCourse.txt", true));
+	         
+	         writer.write(p.toString());
+	         
+	         writer.newLine();
+	         
+	         writer.close();
+	      } catch (Exception e) {
+	         System.out.println("at PendingCourseData.update");
+	         e.printStackTrace();
+	      }
+	   }
 }

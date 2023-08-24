@@ -40,7 +40,7 @@ public class Notice {
 	}
 
 
-	public String getWriter() {
+	public String getWriterCode() {
 		return writerCode;
 	}
 

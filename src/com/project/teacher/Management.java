@@ -234,6 +234,7 @@ public class Management {
 
 	public static int loadCourseList() {
 
+
 		int n = 1;
 
 		String a = Authentication.loginUserCode;

@@ -11,8 +11,9 @@ public class PendingCourse {
 	String 시작 시간 -> (06~22)
 	카테고리 -> 문화, 블럭교실, 피아노, 체육, 어린이
 	수강대상 ->. 어린이, 청소년, 성인, 누구나
-	수강인원 -> 최대 30 걸러서 들어옴
-	강좌내용 -> ?
+	강좌 내용
+	현재 상태
+	강사코드
 	
 	*/
 	
@@ -24,10 +25,12 @@ public class PendingCourse {
 	private String courseExplanation;
 	private String status;
 	private String teacherNum;
+	private String roomNum;
+	private String courseCode;
 	
 	
 	public PendingCourse(String courseName, String dayOfWeek, String startTime, String category, String target,
-			String courseExplanation, String status, String teacherNum) {
+			String courseExplanation, String status, String teacherNum, String roomNum, String courseCode) {
 		this.courseName = courseName;
 		this.dayOfWeek = dayOfWeek;
 		this.startTime = startTime;
@@ -36,6 +39,8 @@ public class PendingCourse {
 		this.courseExplanation = courseExplanation;
 		this.status = status;
 		this.teacherNum = teacherNum;
+		this.roomNum = roomNum;
+		this.courseCode = courseCode;
 	}
 	
 	public String getCourseName() {
@@ -86,11 +91,31 @@ public class PendingCourse {
 	public void setTeacherNum(String teacherNum) {
 		this.teacherNum = teacherNum;
 	}
+	
+	
+
+	public String getRoomNum() {
+		return roomNum;
+	}
+
+	public void setRoomNum(String roomNum) {
+		this.roomNum = roomNum;
+	}
+	
+	public String getCourseCode() {
+		return courseCode;
+	}
+	
+	public void setCourseCode(String courseCode) {
+		this.courseCode = courseCode;
+	}
+
 	@Override
 	public String toString() {
 		return courseName + "," + dayOfWeek + "," + startTime
 				+ "," + category + "," + target + ","
-				+ courseExplanation + "," + status +  "," + teacherNum;
+				+ courseExplanation + "," + status +  "," + teacherNum
+				+ "," + roomNum + "," + courseCode;
 	}
 	
 	
