@@ -59,6 +59,10 @@ public class AdminUserService {
 				System.out.println();
 
 				if (sel.equals("0")) {
+					System.out.println("이전 화면으로 이동합니다.");
+					System.out.println("계속 하시려면 엔터키를 입력해주세요.");
+					scan.nextLine();
+					
 					inLoop = false;
 					outLoop = false;
 
@@ -185,7 +189,10 @@ public class AdminUserService {
 				System.out.println();
 
 				if (sel.equals("0")) { // 뒤로가기
-
+					System.out.println("이전 화면으로 이동합니다.");
+					System.out.println("계속 하시려면 엔터키를 입력해주세요.");
+					scan.nextLine();
+					
 					// 이전 화면으로 이동
 					innerLoop = false;
 				} else if (sel.equals("1")) { // 아이디로 검색
@@ -331,6 +338,10 @@ public class AdminUserService {
 			String inputSearch = scan.nextLine();
 
 			if (inputSearch.equals("0")) { // 이전 메인 화면으로 이동
+				System.out.println("이전 화면으로 이동합니다.");
+				System.out.println("계속 하시려면 엔터키를 입력해주세요.");
+				scan.nextLine();
+				
 				return;
 			} else if (inputSearch.equals("1")) { // 수정
 				AdminUserService.modifyMember(curMember);
