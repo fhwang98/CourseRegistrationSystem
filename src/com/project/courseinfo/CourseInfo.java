@@ -2,22 +2,22 @@ package com.project.courseinfo;
 
 import java.util.Scanner;
 
+import com.project.main.MainView;
 import com.project.user.UserMain;
 
 public class CourseInfo {
 	
 	//수강 안내 페이지 출력 멘트
-	public static void lectureInfo() {
+	public static void courseInfo() {
 		
 		
 		
 		Scanner scan = new Scanner(System.in);
 		
-		lectureInfoList();
+		courseInfoList();
 		
 		String input = scan.nextLine();
-		
-		
+
 		while (!input.equals("0")) {
 
 				if (input.equals("1")) {
@@ -25,7 +25,7 @@ public class CourseInfo {
 				} else if(input.equals("2")) {
 					Individual.individual();
 				} else if(input.equals("3")) {
-					CourseList.lectureList();
+					CourseList.courseList();
 				} else if(input.equals("4")) {
 					Discount.discount();
 				} else if(input.equals("5")) {
@@ -39,13 +39,14 @@ public class CourseInfo {
 			}
 		}
 		if(input.equals("0")) {
-		UserMain.LoginGeneralMember();
+
+			MainView.MainScreen();
 		}
 		
 	}
 
 
-	public static void lectureInfoList() {
+	public static void courseInfoList() {
 	
 		System.out.println();
 		System.out.println("========================");

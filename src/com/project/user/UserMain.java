@@ -32,7 +32,7 @@ public class UserMain {
 				CenterInfo.centerInfo();
 				userMainView();
 			} else if (input.equals("3")) {
-				CourseInfo.lectureInfo();
+				CourseInfo.courseInfo();
 				userMainView();
 			} else if (input.equals("4")) {
 				CourseApplication.courseApplicationment();

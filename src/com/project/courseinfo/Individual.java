@@ -33,7 +33,7 @@ public class Individual {
 		String input = scan.nextLine();
 		
 		if(input.equals("0")) {
-			CourseInfo.lectureInfo();
+			CourseInfo.courseInfo();
 		}
 		//
 		while (!input.equals("0")) {
@@ -50,15 +50,25 @@ public class Individual {
 
 			CourseData.cultureRecommend();
 
-			System.out.println();
+	
 			System.out.println("0.뒤로가기");
 			System.out.print("입력: ");
 
-			input = scan.nextLine();
 
 			if (input.equals("0")) {
 				individualMent();
 				}
+			
+			boolean loop = true;
+			while(loop) {
+				input = scan.nextLine();
+				if (input.equals("0")) {
+					CourseInfo.courseInfo();
+					System.out.println("\r\n");
+				}else {
+					System.out.println("뒤로가려면 0번을 입력하세요.");
+				}
+			}
 
 		} else if (input.equals("2")) {
 			System.out.println();
@@ -72,15 +82,26 @@ public class Individual {
 			
 			CourseData.pianoRecommend();
 
-			System.out.println();
+			
 			System.out.println("0.뒤로가기");
 			System.out.println("입력: ");
-
-			input = scan.nextLine();
-
+			
 			if (input.equals("0")) {
 				individualMent();
 				}
+			
+			boolean loop = true;
+			while(loop) {
+				input = scan.nextLine();
+				if (input.equals("0")) {
+					CourseInfo.courseInfo();
+					System.out.println("\r\n");
+					
+				}else {
+					System.out.println("뒤로가려면 0번을 입력하세요.");
+				}
+			}
+				
 
 		} else if (input.equals("3")) {
 			System.out.println();
@@ -94,15 +115,25 @@ public class Individual {
 
 			CourseData.sportsRecommend();
 
-			System.out.println();
+			
 			System.out.println("0.뒤로가기");
 			System.out.println("입력: ");
-
-			input = scan.nextLine();
 
 			if (input.equals("0")) {
 				individualMent();
 				}
+			
+			boolean loop = true;
+			while(loop) {
+				input = scan.nextLine();
+				if (input.equals("0")) {
+					CourseInfo.courseInfo();
+					System.out.println("\r\n");
+				}else {
+					System.out.println("뒤로가려면 0번을 입력하세요.");
+				}
+			}
+
 
 		} else if (input.equals("4")) {
 			System.out.println();
@@ -116,15 +147,24 @@ public class Individual {
 
 			CourseData.kidsRecommend();
 
-			System.out.println();
+		
 			System.out.println("0.뒤로가기");
 			System.out.println("입력: ");
-
-			input = scan.nextLine();
 
 			if (input.equals("0")) {
 				individualMent();
 				}
+			
+			boolean loop = true;
+			while(loop) {
+				input = scan.nextLine();
+				if (input.equals("0")) {
+					CourseInfo.courseInfo();
+					System.out.println("\r\n");
+				}else {
+					System.out.println("뒤로가려면 0번을 입력하세요.");
+				}
+			}
 
 		} else if (input.equals("5")) {
 			System.out.println();
@@ -138,17 +178,36 @@ public class Individual {
 
 			CourseData.blockRecommend();
 
-			System.out.println();
+			
 			System.out.println("0.뒤로가기");
 			System.out.println("입력: ");
 			
-			input = scan.nextLine();
-
 			if (input.equals("0")) {
 				individualMent();
 				}
+			
+			boolean loop = true;
+			while(loop) {
+				input = scan.nextLine();
+				if (input.equals("0")) {
+					CourseInfo.courseInfo();
+					System.out.println("\r\n");
+				}else {
+					System.out.println("뒤로가려면 0번을 입력하세요.");
+				}
+			}
+			
 			} else {
+				System.out.println("==============================");
 				System.out.println("목록에 있는 번호를 입력하세요.");
+				System.out.println("------------------------------");
+				System.out.println();
+				System.out.println("0.뒤로가기");
+				System.out.println("1.문화 추천");
+				System.out.println("2.피아노 추천");
+				System.out.println("3.체육 추천");
+				System.out.println("4.어린이 추천");
+				System.out.println("5.블럭교실 추천");
 				System.out.print("입력: ");
 				input = scan.nextLine();
 
@@ -156,7 +215,7 @@ public class Individual {
 			}
 		}
 		if(input.equals("0")) {
-			CourseInfo.lectureInfo();
+			CourseInfo.courseInfo();
 		}
 
 	}

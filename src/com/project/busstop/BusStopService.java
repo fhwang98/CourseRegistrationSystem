@@ -49,6 +49,10 @@ public class BusStopService {
 				BusStopMain.inLoop = false;
 				break;
 			} else if (input.equals("N")) { // 검색 안한다면 outloop도 빠져나와 초기 메인화면으로 돌아가기
+				System.out.println("초기 메인화면으로 돌아갑니다.");
+				System.out.println("계속 하려면 엔터를 입력하세요.");
+				scan.nextLine();
+				
 				BusStopMain.inLoop = false;
 				BusStopMain.outLoop = false;
 				break;

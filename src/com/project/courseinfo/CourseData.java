@@ -13,6 +13,7 @@ import java.util.Scanner;
 import com.project.course.Teacher;
 
 
+
 public class CourseData {
 
 	static Scanner scan = new Scanner(System.in);
@@ -72,7 +73,7 @@ public class CourseData {
 					map.put(temp[0], c);
 
 				}
-				System.out.println(map);
+				//System.out.println(map);
 
 			} catch (IOException e) {
 
@@ -145,12 +146,15 @@ public class CourseData {
 			for (Teacher t : CourseData.teacherList) {
 				if (t.getTeacherNum().equals(c.getTeacherNum())) {
 					courseMent(c,t);
+					
+					
+					reader.close();
+					reader2.close();
+					
 				}
 			}
 //			ment(rnd, reader);
 
-			reader.close();
-			reader2.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -216,13 +220,15 @@ public class CourseData {
 			for (Teacher t : CourseData.teacherList) {
 				if (t.getTeacherNum().equals(c.getTeacherNum())) {
 					courseMent(c,t);
+					
+					reader.close();
+					reader2.close();
+					break;
 				}
 			}
 			//courseMent(c);
 			//ment(rnd, reader);
-			
-			reader.close();
-			reader2.close();
+	
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -291,13 +297,15 @@ public class CourseData {
 			for (Teacher t : CourseData.teacherList) {
 				if (t.getTeacherNum().equals(c.getTeacherNum())) {
 					courseMent(c,t);
+					
+					reader.close();
+					reader2.close();
+					break;
 				}
 			}
 			//courseMent(c);
 			//ment(rnd, reader);
 
-			reader.close();
-			reader2.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -365,6 +373,10 @@ public class CourseData {
 			for (Teacher t : CourseData.teacherList) {
 				if (t.getTeacherNum().equals(c.getTeacherNum())) {
 					courseMent(c,t);
+					
+					reader.close();
+					reader2.close();
+					break;
 				}
 			}
 			//courseMent(c);
@@ -440,14 +452,15 @@ public class CourseData {
 			for (Teacher t : CourseData.teacherList) {
 				if (t.getTeacherNum().equals(c.getTeacherNum())) {
 					courseMent(c,t);
+					
+					reader.close();
+					reader2.close();
+					break;
 				}
 			}
 			//courseMent(c);
 			//ment(rnd, reader);
 			
-
-			reader.close();
-			reader2.close();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -495,10 +508,10 @@ public class CourseData {
 				}
 			}
 			
-//			line = null;
-			
 			reader.close();
 			reader2.close();
+//			line = null;
+			
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -548,6 +561,7 @@ public class CourseData {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							
 						}
 					}
 //					courseMent(c);
@@ -1504,37 +1518,6 @@ while ((line = reader2.readLine()) != null) {
 		
 	}
 	
-	//오전 시간 메소드
-//	private static void amMethod(String[] temp) {
-//		String startTime = temp[3].substring(0, 5);
-//		
-//		int startHour = Integer.parseInt(startTime.substring(0, 2));
-//		
-//		if (startHour >= 1 && startHour < 12) {
-//			
-//			Course c = new Course(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7],
-//					temp[8], temp[9], temp[10], temp[11]);
-//			
-//			CourseData.courseList.add(c);
-//			courseMent(c);
-//		}
-//	}
-	
-	//오후 시간 메소드
-//	private static void pmMethod(String[] temp) {
-//		String startTime = temp[3].substring(0, 5);
-//		
-//		int startHour = Integer.parseInt(startTime.substring(0, 2));
-//		
-//		if (startHour >= 12 && startHour < 24) {
-//			
-//		    Course c = new Course(temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6], temp[7],
-//		            temp[8], temp[9], temp[10], temp[11]);
-//
-//		    CourseData.courseList.add(c);
-//		    courseMent(c);
-//		}
-//	}
 	
 	private static void courseMent(Course c, Teacher t) {
 		if (c != null) {
@@ -1560,12 +1543,9 @@ while ((line = reader2.readLine()) != null) {
 			System.out.println();
 			System.out.printf("강의실 : %s\n", c.getRoomNum());
 			System.out.println("-----------------------------------------");
-			System.out.println();
-		}
-		
+		}		
 		CourseData.courseList.clear();
 	}
-
 
 
 }

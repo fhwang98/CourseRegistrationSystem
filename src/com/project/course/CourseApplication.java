@@ -9,16 +9,16 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 import com.project.courseinfo.Course;
-import com.project.user.UserMain;
+import com.project.main.MainView;
 
 public class CourseApplication {
 
 	public static ArrayList<Course> courseList;
-	
+
 	public static ArrayList<Member> memberList;
-	
+
 	public static ArrayList<Teacher> teacherList;
-	
+
 	public static ArrayList<History> historyList;
 	static {
 
@@ -29,16 +29,14 @@ public class CourseApplication {
 
 	}
 
-
 	public static void courseApplication() {
 
 		courseApplicationment();
 
-		
 	}
-	
+
 	public static void courseApplicationment() {
-		
+
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println();
@@ -54,7 +52,6 @@ public class CourseApplication {
 //전체 수강 내역에서 회원 코드가 같을 경우 해당 강좌 코드를 확인하고 해당 강좌의 시간을 비교하여 같을경우 수강 시간 겹친다고 멘트출력
 		// 일반회원코드 > temp[0]
 		// 강사회원코드 > temp[0]
-
 
 		String id = "otqapf7199";
 
@@ -98,15 +95,6 @@ public class CourseApplication {
 				courseList.add(c);
 			}
 
-			while ((line = readerHistory.readLine()) != null) {
-
-				String[] temp = line.split(",");
-
-				History h = new History(temp[0], temp[1], temp[2]);
-
-				historyList.add(h);
-			}
-
 			readerCourse.close();
 			readerMember.close();
 			readerTeacher.close();
@@ -118,134 +106,105 @@ public class CourseApplication {
 		}
 
 		boolean courseFound = false;
-		boolean loop = true;
-
-		while (loop) {
-
-			String code = scan.nextLine();
-
-			for (Course c : CourseApplication.courseList) {
-
-				if (c.getNum().equalsIgnoreCase(code)) {
-
-					for (Teacher t : CourseApplication.teacherList) {
-
-						if (t.getTeacherNum().equals(c.getTeacherNum())) {
-
-							courseMent(c, t);
-							loop = false;
-							
-							for (Member m : CourseApplication.memberList) {
-								if (m.getId().equals(id)) {
-									String lastNum = historyList.size() + 1 + "";
-									History h = new History(lastNum, m.getNo(), code);
-									historyList.add(h);
-								}
-							}
-							String input = scan.nextLine();
-
-							if (courseFound = true) {
-
-								if (input.equals("y")) {
-									// 여기부터
-
-									String tempValue = c.getStartDay();
-
-									int year = Integer.parseInt(tempValue.substring(0, 4));
-									int month = Integer.parseInt(tempValue.substring(4, 6));
-
-									Calendar nowTime = Calendar.getInstance();
-									Calendar courseTime = Calendar.getInstance();
-
-									courseTime.set(year, month - 1, 1);
-
-									long courseTimeTick = courseTime.getTimeInMillis();
-									long nowTimeTick = nowTime.getTimeInMillis();
-
-									long gap = nowTimeTick - courseTimeTick;
-
-									// 여기까지
-
-									if (gap > 0) {
-										System.out.println();
-										System.out.println("\"이미 신청이 마감된 강좌 입니다.\"");
-										System.out.println("\"처음으로 이동합니다.\"");
-										System.out.println();
-										UserMain.LoginGeneralMember();
-										
-										loop = false;
-										break;
-										
-								
-										} else {
-
-										loop = false;
-														
-										try {
-											BufferedWriter writerHistory = new BufferedWriter(new FileWriter("data/courseHistory.txt"));
-															
-											for (History h1 : CourseApplication.historyList) {
-																
-												writerHistory.write(String.format("%s,%s,%s\n"
-																		, h1.getHistoryNum()
-																		, h1.getMemberNum()
-																		, h1.getCourseNum()));
-															}
-															
-															writerHistory.close();
-															
-											} catch (Exception e) {
-												System.out.println("at CourseApplication.courseApplicationment");
-												e.printStackTrace();
-										}
-									
-										System.out.println("수강신청이 완료되었습니다.");
-										System.out.println("처음으로 이동합니다.");
-										System.out.println();
-										UserMain.LoginGeneralMember();
-									}
-
-								} else if (input.equals("n")) {
-									System.out.println();
-									System.out.println("\"처음으로 이동합니다.\"");
-									System.out.println();
-									UserMain.LoginGeneralMember();
-									break;
-
-								} else {
-									System.out.println();
-									System.out.println("y 혹은 n을 입력하세요.");
-									System.out.println("처음으로 이동합니다.");
-									System.out.println();
-									UserMain.LoginGeneralMember();
-
-								}
-							}
-
-						}
-
-					}
-
-				}
+		String code = scan.nextLine();
+		for(History history : historyList) {
+			if(history.getCourseNum().equals(code)) {
+				System.out.println("중복된 강좌입니다.");
+				System.out.println();
+				MainView.MainScreen();
 			}
 			
-			if (!courseFound) {
-				System.out.println();
-				System.out.println("\"잘못된 강좌코드 입니다.\"");
-				System.out.println("\"강좌코드를 확인해 주세요.\"");
-				System.out.println();
-				UserMain.LoginGeneralMember();
-				
-			}
-//			for (Course c : TestApplication.courseList) {
-//
-//			}
+		}
+		
+		String startDay = null;
 
+		loop: for (Course c : courseList) {
+			if (c.getNum().equalsIgnoreCase(code)) {
+				for (Teacher t : teacherList) {
+					if (t.getTeacherNum().equals(c.getTeacherNum())) {
+						startDay = c.getStartDay();
+						courseFound = true;
+						courseMent(c, t);
+						break loop;//강좌 여러개 찍혀서 하나만 뽑으려고 브레이크 씀. 포문 두개라 이중포문 빠져나오는 루프 사용
+					}
+				}
+			}
+		}
+		
+		if (!courseFound) {
+			System.out.println();
+			System.out.println("\"잘못된 강좌코드 입니다.\"");
+			System.out.println("\"강좌코드를 확인해 주세요.\"");
+			System.out.println();
+			MainView.MainScreen();
+		}
+
+		String input = scan.nextLine();
+
+		if (input.equals("n")) {
+			System.out.println("처음으로 돌아갑니다. ");
+			MainView.MainScreen();
+		}
+
+		String tempValue = startDay;
+
+		int year = Integer.parseInt(tempValue.substring(0, 4));
+		int month = Integer.parseInt(tempValue.substring(4, 6));
+
+		Calendar nowTime = Calendar.getInstance();
+		Calendar courseTime = Calendar.getInstance();
+
+		courseTime.set(year, month - 1, 1);
+
+		long courseTimeTick = courseTime.getTimeInMillis();
+		long nowTimeTick = nowTime.getTimeInMillis();
+
+		long gap = nowTimeTick - courseTimeTick;
+
+		if (gap > 0) {
+			System.out.println();
+			System.out.println("\"이미 신청이 마감된 강좌 입니다.\"");
+			System.out.println("\"처음으로 이동합니다.\"");
+			System.out.println();
+			MainView.MainScreen();
+			
+		} else {
+//			int num = 0;
+			for (Member m : CourseApplication.memberList) {
+				
+				if (m.getId().equals(id)) {
+//					num += 1;
+					String lastNum = historyList.size() + 1 + "";
+					History h = new History(lastNum, m.getNo(), code);
+					historyList.add(h);
+					break;// 파일 저장이 여러번씩 되어서 하나씩만 저장되도록 하려고 쓴 코드 / 왜 여러번 된지는 정확히 모르는데 id int num으로 받아서 몇번찍히는지 확인하면서 구현하다가 에라이 브레이크 했는데 성공 
+				}
+			}
+//			System.out.println(num);
+			
+			try {
+				BufferedWriter writerHistory = new BufferedWriter(new FileWriter("data/courseHistory.txt"));
+
+				for (History h1 : CourseApplication.historyList) {
+
+					writerHistory.write(
+							String.format("%s,%s,%s\n", h1.getHistoryNum(), h1.getMemberNum(), h1.getCourseNum()));
+				}
+
+				writerHistory.close();
+
+			} catch (Exception e) {
+				System.out.println("at CourseApplication.courseApplicationment");
+				e.printStackTrace();
+			}
+
+			System.out.println("수강신청이 완료되었습니다.");
+			System.out.println("처음으로 이동합니다.");
+			System.out.println();
+			MainView.MainScreen();
 		}
 
 	}
-
-			
 
 	private static void courseMent(Course c, Teacher t) {
 		if (c != null) {
