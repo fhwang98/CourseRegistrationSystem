@@ -22,7 +22,10 @@ public class AdminUserMain {
 			String sel = scan.nextLine();
 
 			if (sel.equals("0")) { // 이전 페이지인 관리자 로그인 후 화면으로 돌아간다.
-
+				System.out.println("이전 화면으로 이동합니다.");
+				System.out.println("계속 하시려면 엔터키를 입력해주세요.");
+				scan.nextLine();
+				
 				break;
 			} else if (sel.equals("1")) { // 전체 회원 조회 페이지로 이동
 				// 기능
