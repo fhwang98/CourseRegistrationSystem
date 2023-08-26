@@ -36,30 +36,65 @@ public class BusStop {
 		this.time5 = time5;
 	}
 
+	/**
+	 * 셔틀 버스 정류장의 이름을 가져오는 메소드입니다.
+	 * 
+	 * @return 정류장명
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * 셔틀 버스 정류장의 연번을 가져오는 메소드입니다.
+	 * 
+	 * @return 정류장 연번
+	 */
 	public String getNum() {
 		return num;
 	}
 
+	/**
+	 * 셔틀 버스 정류장의 1회차 시간을 가져오는 메소드입니다.
+	 * 
+	 * @return 1회차 시간
+	 */
 	public String getTime1() {
 		return time1;
 	}
 
+	/**
+	 * 셔틀 버스 정류장의 2회차 시간을 가져오는 메소드입니다.
+	 * 
+	 * @return 2회차 시간
+	 */
 	public String getTime2() {
 		return time2;
 	}
 
+	/**
+	 * 셔틀 버스 정류장의 3회차 시간을 가져오는 메소드입니다.
+	 * 
+	 * @return 3회차 시간
+	 */
 	public String getTime3() {
 		return time3;
 	}
 
+	/**
+	 * 셔틀 버스 정류장의 4회차 시간을 가져오는 메소드입니다.
+	 * 
+	 * @return 4회차 시간
+	 */
 	public String getTime4() {
 		return time4;
 	}
 
+	/**
+	 * 셔틀 버스 정류장의 5회차 시간을 가져오는 메소드입니다.
+	 * 
+	 * @return 5회차 시간
+	 */
 	public String getTime5() {
 		return time5;
 	}

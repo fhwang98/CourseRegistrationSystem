@@ -49,8 +49,4 @@ public class BusStopMain {
 		}
 	}
 
-	// 테스트용. 최종에서는 지우고 올리기
-	public static void main(String[] args) {
-		busStopMain();
-	}
 }
