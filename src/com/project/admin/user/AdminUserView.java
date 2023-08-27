@@ -49,7 +49,7 @@ public class AdminUserView {
 
 	/**
 	 * 라벨에 따른 제목을 출력하는 메소드입니다.
-	 * @param label
+	 * @param label 출력할 라벨
 	 */
 	static void printMemberListLabel(String label) {
 		System.out.println("=====================================");

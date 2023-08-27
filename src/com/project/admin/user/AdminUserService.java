@@ -524,7 +524,7 @@ public class AdminUserService {
 	/**
 	 * 일반 회원을 지우는 기능을 하는 메소드입니다.
 	 * 
-	 * @param m
+	 * @param m 일반 회원 객체
 	 */
 	private static void deleteMember(DataMember m) {
 		Scanner scan = new Scanner(System.in);
@@ -554,6 +554,7 @@ public class AdminUserService {
 
 				break;
 			} else if (input.equals("N")) {
+				System.out.println("취소를 선택했습니다.");
 				printGoToBeforePage(scan);
 
 				break;
