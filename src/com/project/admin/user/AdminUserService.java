@@ -554,7 +554,7 @@ public class AdminUserService {
 
 				break;
 			} else if (input.equals("N")) {
-				printBackToBeforePage(scan);
+				printGoToBeforePage(scan);
 
 				break;
 			} else {
@@ -709,7 +709,8 @@ public class AdminUserService {
 		} else if (input.equals("N")) {// 수정하지 않을 경우
 			// 회원 아이디 검색 화면으로 이동 (이전 페이지)
 			// 작성하기
-			printBackToBeforePage(scan);
+			System.out.println("취소를 선택했습니다.");
+			printGoToBeforePage(scan);
 		} else { // 유효하지 않은 입력
 			AdminUserView.printInvalidInput();
 			invalid = true;
@@ -812,7 +813,8 @@ public class AdminUserService {
 		} else if (input.equals("N")) {// 수정하지 않을 경우
 			// 회원 아이디 검색 화면으로 이동 (이전 페이지)
 			// 작성하기
-			printBackToBeforePage(scan);
+			System.out.println("취소를 선택했습니다.");
+			printGoToBeforePage(scan);
 
 		} else { // 유효하지 않은 입력
 			AdminUserView.printInvalidInput();
@@ -908,7 +910,8 @@ public class AdminUserService {
 		} else if (input.equals("N")) {// 수정하지 않을 경우
 			// 회원 아이디 검색 화면으로 이동 (이전 페이지)
 			// 작성하기
-			printBackToBeforePage(scan);
+			System.out.println("취소를 선택했습니다.");
+			printGoToBeforePage(scan);
 
 		} else { // 유효하지 않은 입력
 			AdminUserView.printInvalidInput();
@@ -1003,25 +1006,14 @@ public class AdminUserService {
 		} else if (sel.equals("N")) {// 수정하지 않을 경우
 			// 회원 아이디 검색 화면으로 이동 (이전 페이지)
 			// 작성하기
-			printBackToBeforePage(scan);
+			System.out.println("취소를 선택했습니다.");
+			printGoToBeforePage(scan);
 
 		} else { // 유효하지 않은 입력
 			AdminUserView.printInvalidInput();
 			invalid = true;
 		}
 		return invalid;
-	}
-
-	/**
-	 * 이전으로 돌아감을 출력하고 엔터를 입력받는 메소드입니다.
-	 * 
-	 * @param scan
-	 */
-	private static void printBackToBeforePage(Scanner scan) {
-		System.out.println("취소를 선택했습니다.");
-		System.out.println("이전 화면으로 돌아갑니다.");
-		System.out.println("계속 하려면 엔터를 입력해주세요.");
-		scan.nextLine();
 	}
 
 	/**

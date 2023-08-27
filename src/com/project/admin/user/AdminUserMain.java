@@ -2,10 +2,6 @@ package com.project.admin.user;
 
 import java.util.Scanner;
 
-import com.project.course.CourseHistoryData;
-import com.project.courseinfo.CourseData;
-import com.project.user.data.UserDbms;
-
 /**
  * 관리자 로그인 후 일반 회원 관리를 담당하는 메인 클래스입니다.
  * 
