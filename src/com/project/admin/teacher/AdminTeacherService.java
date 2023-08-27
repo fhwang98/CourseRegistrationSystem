@@ -7,11 +7,8 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import com.project.admin.user.AdminUserService;
-import com.project.admin.user.AdminUserView;
 import com.project.courseinfo.Course;
 import com.project.courseinfo.CourseData;
-import com.project.user.data.DataMember;
 import com.project.user.data.DataTeacher;
 import com.project.user.data.UserDbms;
 
@@ -134,7 +131,7 @@ public class AdminTeacherService {
 	}
 
 	/**
-	 * 현재 강ㅇ사 회원이 개설하거나 개설했던 강좌를 출력하는 메소드입니다.
+	 * 현재 강사 회원이 개설하거나 개설했던 강좌를 출력하는 메소드입니다.
 	 * 
 	 * @param teacherCode 강사 회원 번호
 	 */
