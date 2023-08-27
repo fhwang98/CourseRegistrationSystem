@@ -23,9 +23,6 @@ public class NoticeMain {
 		// 회원 데이터 로드
 		UserDbms u = new UserDbms();
 		
-		// 공지사항 초기 화면 출력
-//		NoticeView.printNoticeLabel();
-		
 		// 기능
 		NoticeService.showNoticeList();
 	}
