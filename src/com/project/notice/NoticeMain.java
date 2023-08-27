@@ -11,10 +11,6 @@ public class NoticeMain {
 		NoticeMain.scan = new Scanner(System.in);
 	}
 
-	public static void main(String[] args) {
-		noticeMainPage();
-	}
-
 	public static void noticeMainPage() {
 
 		// 공지사항 데이터 로드
