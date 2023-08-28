@@ -77,7 +77,7 @@ public class RoomView {
 		System.out.println("6시부터 22시 사이의 숫자를 입력해주세요.");
 		System.out.println("예시) 6");
 		System.out.println("예시) 12");
-		System.out.println("시간 입력: ");
+		System.out.print("시간 입력: ");
 		
 	}
 	

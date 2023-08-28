@@ -1,9 +1,0 @@
-diff a/src/com/project/admin/user/AdminUserMain.java b/src/com/project/admin/user/AdminUserMain.java	(rejected hunks)
-@@ -4,6 +4,7 @@
- 
- import com.project.course.CourseHistoryData;
- import com.project.courseinfo.CourseData;
-+import com.project.user.data.UserDbms;
- 
- public class AdminUserMain {
- 

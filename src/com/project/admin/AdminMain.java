@@ -6,6 +6,7 @@ import com.project.admin.admininfo.AdminInfoMain;
 import com.project.admin.course.AdminCourseMain;
 import com.project.admin.notice.NoticeMain;
 import com.project.admin.room.RoomMain;
+import com.project.admin.teacher.AdminTeacherMain;
 import com.project.admin.user.AdminUserMain;
 import com.project.authentication.Authentication;
 import com.project.notice.NoticeData;
@@ -32,14 +33,12 @@ public class AdminMain {
 				AdminView.printInvalidInputMessage(scan);
 			} else if (sel == 1) {
 				//일반 회원 관리
-				System.out.println("일반 회원 관리");
-//				AdminUserMain.showAdminUserMain();
+				AdminUserMain.showAdminUserMain();
 			} else if (sel == 2) {
 				//강사 회원 관리
-				System.out.println("강사 회원 관리");
+				AdminTeacherMain.showAdminTeacherMain();
 			} else if (sel == 3) {
 				//강좌 관리
-				System.out.println("강좌 관리");
 				AdminCourseMain.controlCourse();
 			} else if (sel == 4) {
 				//강의실 관리

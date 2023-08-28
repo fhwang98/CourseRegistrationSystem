@@ -14,8 +14,17 @@ import com.project.courseinfo.CourseData;
 import com.project.user.data.DataMember;
 import com.project.user.data.UserDbms;
 
+/**
+ * 관리자의 일반 회원 관리 기능을 담당하는 클래스입니다.
+ * 
+ * @author 황은하
+ *
+ */
 public class AdminUserService {
 
+	/**
+	 * 일반 회원의 리스트를 보여주는 메소드입니다.
+	 */
 	public static void showUserList() {
 
 		// 페이지 출력
@@ -59,6 +68,8 @@ public class AdminUserService {
 				System.out.println();
 
 				if (sel.equals("0")) {
+					printGoToBeforePage(scan);
+
 					inLoop = false;
 					outLoop = false;
 
@@ -83,10 +94,14 @@ public class AdminUserService {
 			}
 
 		}
-
 		AdminUserView.printLine();
 	}
 
+	/**
+	 * 일반 회원 세부정보를 보여주는 메소드입니다.
+	 * 
+	 * @param m 일반 회원 객체
+	 */
 	public static void printMemberData(DataMember m) {
 		System.out.println("회원번호: " + m.getMemberCode());
 		System.out.println("이름: " + m.getName());
@@ -111,6 +126,11 @@ public class AdminUserService {
 		AdminUserView.printLine();
 	}
 
+	/**
+	 * 현재 일반 회원이 수강중인 강좌를 출력하는 메소드입니다.
+	 * 
+	 * @param memberCode 일반 회원 번호
+	 */
 	private static void printUserCourse(String memberCode) {
 
 		// 현재 유저가 수강중인 강좌 코드들을 담은 리스트
@@ -150,6 +170,12 @@ public class AdminUserService {
 		}
 	}
 
+	/**
+	 * 일반 회원의 할인 코드를 문자열로 변환하여 반환하는 메소드입니다.
+	 * 
+	 * @param m 일반 회원 객체
+	 * @return 해당 코드에 맞는 문자열
+	 */
 	private static String checkDiscountType(DataMember m) {
 		String discountType = "";
 
@@ -166,6 +192,9 @@ public class AdminUserService {
 		return discountType;
 	}
 
+	/**
+	 * 일반 회원 검색 기능을 구현하는 메소드입니다.
+	 */
 	public static void searchUser() {
 
 		Scanner scan = new Scanner(System.in);
@@ -185,28 +214,19 @@ public class AdminUserService {
 				System.out.println();
 
 				if (sel.equals("0")) { // 뒤로가기
+					printGoToBeforePage(scan);
 
 					// 이전 화면으로 이동
 					innerLoop = false;
 				} else if (sel.equals("1")) { // 아이디로 검색
-
 					searchById();
-
-//					AdminUserView.printLine();
-//					AdminUserView.printMemberListLabel("검색"); // View에 추출하기
-//					AdminUserView.printUserSearchBy();
 
 					innerLoop = false;
 					outLoop = false;
 
 				} else if (sel.equals("2")) { // 이름으로 검색
-
 					searchByName();
 
-//					AdminUserView.printLine();
-//					AdminUserView.printMemberListLabel("검색"); // View에 추출하기
-//					AdminUserView.printUserSearchBy();
-					
 					innerLoop = false;
 					outLoop = false;
 				} else {
@@ -220,6 +240,9 @@ public class AdminUserService {
 		}
 	}
 
+	/**
+	 * 일반 회원을 이름으로 검색하는 기능을 하는 메소드입니다.
+	 */
 	private static void searchByName() {
 
 		// 회원 이름 검색 문자열 출력
@@ -231,12 +254,11 @@ public class AdminUserService {
 
 		AdminUserView.printLine();
 
-		// 입력받은 회원 이름을 회원 리스트에서 검색하기
-
-		DataMember curMember = AdminUserService.getMemberObjectByName(inputName);
+		// 이름과 동일한 일반 회원 객체가 담겨있는 리스트 가져오기
+		ArrayList<DataMember> curMemberList = AdminUserService.getMemberObjectByName(inputName);
 
 		// 없다면 - 검색결과가 없습니다. 계속하려면 엔터를 입력해주세요. -> 회원 검색 화면(이전 화면)으로 돌아가기
-		if (curMember == null) {
+		if (curMemberList.size() == 0) {
 			System.out.println("검색 결과가 없습니다.");
 			System.out.println("계속 하려면 엔터를 입력해주세요.");
 			scan.nextLine();
@@ -244,50 +266,108 @@ public class AdminUserService {
 			return;
 		}
 
-		// 찾은 회원 객체 데이터 출력
-		AdminUserService.printMemberData(curMember);
+		for (DataMember m : curMemberList) {
+			// 찾은 회원 객체 데이터 출력
+			printMemberData(m);
+		}
 
 		// 페이지 이동 라벨 출력
 		AdminUserView.printUserSearch();
 
 		while (true) {
-			// 새 이름 입력
+			boolean inLoop = true;
 			String inputSearch = scan.nextLine();
 
 			if (inputSearch.equals("0")) { // 이전 메인 화면으로 이동
+				printGoToBeforePage(scan);
+
 				return;
 			} else if (inputSearch.equals("1")) { // 수정
-				AdminUserService.modifyMember(curMember);
 
-				// 바뀐 일반 회원의 정보 보여줌
-				AdminUserView.printMemberListLabel("조회");
-//				System.out.println("inputName: "+inputName);
+				if (curMemberList.size() == 1) {
+					// 동명이인이 없을 경우
+					modifyMember(curMemberList.get(0)); // 첫 번째인 유일한 회원 객체 바로 수정
+				} else {
+					// 동명이인이 있을 경우
+					// 해당 유저의 코드 받기
+					System.out.print("수정할 회원번호를 입력해주세요. : ");
 
-//				DataMember changedMember = AdminUserService.getMemberObjectByName(inputName);
-//				AdminUserService.printMemberData(changedMember);
+					while (inLoop) {
+						String curMemberNum = scan.nextLine();
 
-//						AdminUserView.printUserSearch();
+						DataMember modifyMember = getMemberByNum(curMemberList, curMemberNum);
 
-				// 추가
+						// 코드가 일치하는지 검사
+						if (modifyMember != null) {
+							// 코드가 일치하는 경우 수정하기
+							modifyMember(modifyMember);
+
+							inLoop = false;
+						} else {
+							// 코드가 일치하지 않는 경우 다시 입력받기
+							System.out.print("해당 회원이 존재하지 않습니다. 다시 입력해주세요. : ");
+						}
+					}
+				}
+
+//				// 바뀐 일반 회원의 정보 보여줌
+//				AdminUserView.printMemberListLabel("조회");
+//				ArrayList<DataMember> changedMemberList = getMemberObjectByName(inputName);
+//
+//				for (DataMember m : changedMemberList) {
+//					printMemberData(m);
+//				}
+
 				return;
-				
-			} else if (inputSearch.equals("2")) { // 삭제
-				curMember = AdminUserService.getMemberObjectByName(inputName); // 변경된 데이터 리로드
 
-				if (curMember.getUsing() == 1) { // 이미 탈퇴한 회원인 경우
+			} else if (inputSearch.equals("2")) { // 삭제
+
+				curMemberList = AdminUserService.getMemberObjectByName(inputName); // 변경된 데이터 리로드
+				DataMember deleteMember = null;
+
+				if (curMemberList.size() == 1) {
+					// 동명이인이 없을 경우
+					deleteMember = curMemberList.get(0);
+				} else {
+					// 동명이인이 있을 경우
+					// 해당 유저의 코드 받기
+					System.out.print("수정할 회원번호를 입력해주세요. : ");
+
+					while (inLoop) {
+						String curMemberNum = scan.nextLine();
+
+						deleteMember = getMemberByNum(curMemberList, curMemberNum);
+
+						// 코드가 일치하는지 검사
+						if (deleteMember != null) {
+							// 코드가 일치하는 경우 객체를 찾아 나오기
+
+							inLoop = false;
+						} else {
+							// 코드가 일치하지 않는 경우 다시 입력받기
+							System.out.print("해당 회원이 존재하지 않습니다. 다시 입력해주세요. : ");
+						}
+					}
+				}
+
+				// 회원 객체 찾아오기
+				// 해당 회원이 탈퇴한 경우
+				if (deleteMember.getUsing() == 1) { // 이미 탈퇴한 회원인 경우
 					System.out.println("이미 탈퇴한 회원입니다.");
 					System.out.print("번호를 다시 입력해주세요. : ");
 					continue;
 				}
 
+				// 해당 회원이 탈퇴하지 않은 경우
 				// 탈퇴하지 않은 회원인 경우
-				AdminUserService.deleteMember(curMember);
+				deleteMember(deleteMember);
 
-				AdminUserView.printMemberListLabel("조회");
-				DataMember changedMember = AdminUserService.getMemberObjectByName(inputName);
-				AdminUserService.printMemberData(changedMember);
-
-//						AdminUserView.printUserSearch();
+//				AdminUserView.printMemberListLabel("조회");
+//				ArrayList<DataMember> changedMemberList = getMemberObjectByName(inputName);
+//
+//				for (DataMember m : changedMemberList) {
+//					printMemberData(m);
+//				}
 
 				return;
 
@@ -297,6 +377,36 @@ public class AdminUserService {
 		}
 	}
 
+	/**
+	 * 이전 화면으로 이동한다는 안내를 출력하고 엔터를 입력받는 메소드입니다.
+	 * 
+	 * @param scan
+	 */
+	private static void printGoToBeforePage(Scanner scan) {
+		System.out.println("이전 화면으로 이동합니다.");
+		System.out.println("계속 하시려면 엔터키를 입력해주세요.");
+		scan.nextLine();
+	}
+
+	/**
+	 * 같은 이름의 일반 회원 리스트에서 회원 번호를 검색하여 해당 회원번호를 가진 회원 객체를 반환하는 메소드입니다.
+	 * 
+	 * @param curMemberList 같은 이름을 가진 일반 회원 리스트
+	 * @param curMemberNum  일반 회원 번호
+	 * @return 해당 번호를 가진 일반 회원 객체
+	 */
+	private static DataMember getMemberByNum(ArrayList<DataMember> curMemberList, String curMemberNum) {
+		for (DataMember m : curMemberList) {
+			if (m.getMemberCode().equals(curMemberNum)) {
+				return m;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 일반 회원을 아이디로 검색하는 기능을 하는 메소드입니다.
+	 */
 	private static void searchById() {
 		// 회원 아이디 검색 문자열 출력
 		AdminUserView.printSearchUserId();
@@ -331,6 +441,8 @@ public class AdminUserService {
 			String inputSearch = scan.nextLine();
 
 			if (inputSearch.equals("0")) { // 이전 메인 화면으로 이동
+				printGoToBeforePage(scan);
+
 				return;
 			} else if (inputSearch.equals("1")) { // 수정
 				AdminUserService.modifyMember(curMember);
@@ -340,9 +452,6 @@ public class AdminUserService {
 				DataMember changedMember = AdminUserService.getMemberObjectById(inputId);
 				AdminUserService.printMemberData(changedMember);
 
-//				AdminUserView.printUserSearch();
-
-				// 추가
 				return;
 			} else if (inputSearch.equals("2")) { // 삭제
 				curMember = AdminUserService.getMemberObjectById(inputId); // 변경된 데이터 리로드
@@ -360,8 +469,6 @@ public class AdminUserService {
 				DataMember changedMember = AdminUserService.getMemberObjectById(inputId);
 				AdminUserService.printMemberData(changedMember);
 
-//				AdminUserView.printUserSearch();
-
 				return;
 
 			} else {
@@ -371,22 +478,33 @@ public class AdminUserService {
 
 	}
 
-	private static DataMember getMemberObjectByName(String inputName) {
+	/**
+	 * 이름으로 일반 회원 객체를 찾아 리스트에 넣고 반환하는 메소드입니다.
+	 * 
+	 * @param inputName 일반 회원 이름
+	 * @return 해당 이름을 가진 일반 회원들의 객체가 담긴 리스트
+	 */
+	private static ArrayList<DataMember> getMemberObjectByName(String inputName) {
 		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
 
-		DataMember curMember = null;
+		ArrayList<DataMember> sameNameMemberList = new ArrayList<>();
 
 		for (DataMember m : userList) {
 			// 있다면 - 해당 회원 객체 뽑아오기
 			if (m.getName().equals(inputName)) {
-				curMember = m;
-				break;
+				sameNameMemberList.add(m);
 			}
 		}
 
-		return curMember;
+		return sameNameMemberList;
 	}
 
+	/**
+	 * 아이디로 일반 회원 객체를 찾아 반환하는 메소드입니다.
+	 * 
+	 * @param inputId 일반 회원 아이디
+	 * @return 해당 아이디를 가진 일반 회원 객체
+	 */
 	private static DataMember getMemberObjectById(String inputId) {
 		ArrayList<DataMember> userList = UserDbms.getMemberAllList();
 
@@ -403,6 +521,11 @@ public class AdminUserService {
 		return curMember;
 	}
 
+	/**
+	 * 일반 회원을 지우는 기능을 하는 메소드입니다.
+	 * 
+	 * @param m 일반 회원 객체
+	 */
 	private static void deleteMember(DataMember m) {
 		Scanner scan = new Scanner(System.in);
 
@@ -421,17 +544,6 @@ public class AdminUserService {
 			input = changeValidInput(input);
 
 			if (input.equals("Y")) {
-				// 삭제
-				// 파일 읽기
-				// 해당하는 회원 번호를 list에서 조회
-				// 마지막 값인 Using 값을 1로 변경한다.
-				// 해당 파일들을 합쳐 하나의 문자열로 변경한다.
-				// stringbuilder에 붙인다.
-				// 파일 읽기가 끝난다
-				// 파일 쓰기
-				// stringbuilder로 파일을 작성한다
-				// 데이터를 리로드한다.
-
 				// 파일 수정 -> 저장 -> 바뀐 데이터로 리로드
 				AdminUserService.changeUserUsingFile(m.getMemberCode());
 
@@ -442,7 +554,8 @@ public class AdminUserService {
 
 				break;
 			} else if (input.equals("N")) {
-				printBackToBeforePage(scan);
+				System.out.println("취소를 선택했습니다.");
+				printGoToBeforePage(scan);
 
 				break;
 			} else {
@@ -452,6 +565,11 @@ public class AdminUserService {
 
 	}
 
+	/**
+	 * 일반 회원이 탈퇴처리 되었을 때 파일에 변경하여 저장하는 메소드입니다.
+	 * 
+	 * @param memberCode 일반회원번호
+	 */
 	private static void changeUserUsingFile(String memberCode) {
 		try {
 			String path = "data/dataMember.txt";
@@ -503,6 +621,11 @@ public class AdminUserService {
 
 	}
 
+	/**
+	 * 일반 회원의 정보를 수정하는 메소드입니다.
+	 * 
+	 * @param m 변경할 일반 회원 객체
+	 */
 	private static void modifyMember(DataMember m) {
 		AdminUserView.printUserDataModify();
 
@@ -550,6 +673,13 @@ public class AdminUserService {
 
 	}
 
+	/**
+	 * 일반 회원의 계좌번호를 변경하는 메소드입니다.
+	 * 
+	 * @param m    변경할 일반 회원 객체
+	 * @param scan 스캐너
+	 * @return 메소드 실행 성공 여부
+	 */
 	private static boolean modifyMemberAccount(DataMember m, Scanner scan) {
 		boolean invalid = false;
 
@@ -580,7 +710,8 @@ public class AdminUserService {
 		} else if (input.equals("N")) {// 수정하지 않을 경우
 			// 회원 아이디 검색 화면으로 이동 (이전 페이지)
 			// 작성하기
-			printBackToBeforePage(scan);
+			System.out.println("취소를 선택했습니다.");
+			printGoToBeforePage(scan);
 		} else { // 유효하지 않은 입력
 			AdminUserView.printInvalidInput();
 			invalid = true;
@@ -588,6 +719,13 @@ public class AdminUserService {
 		return invalid;
 	}
 
+	/**
+	 * 일반 회원의 계좌 정보가 변경되었을 때 파일에 저장하는 메소드입니다.
+	 * 
+	 * @param memberCode 일반회원번호
+	 * @param newBank    새로운 은행
+	 * @param newAccount 새로운 계좌번호
+	 */
 	private static void changeUserAccountFile(String memberCode, String newBank, String newAccount) {
 		try {
 			String path = "data/dataMember.txt";
@@ -633,6 +771,13 @@ public class AdminUserService {
 		}
 	}
 
+	/**
+	 * 일반 회원의 할인 정보를 수정하는 메소드입니다.
+	 * 
+	 * @param m    변경할 일반 회원 객체
+	 * @param scan 스캐너
+	 * @return 성공 여부
+	 */
 	private static boolean modifyMemberDiscount(DataMember m, Scanner scan) {
 		boolean invalid = false;
 
@@ -669,7 +814,8 @@ public class AdminUserService {
 		} else if (input.equals("N")) {// 수정하지 않을 경우
 			// 회원 아이디 검색 화면으로 이동 (이전 페이지)
 			// 작성하기
-			printBackToBeforePage(scan);
+			System.out.println("취소를 선택했습니다.");
+			printGoToBeforePage(scan);
 
 		} else { // 유효하지 않은 입력
 			AdminUserView.printInvalidInput();
@@ -678,6 +824,12 @@ public class AdminUserService {
 		return invalid;
 	}
 
+	/**
+	 * 일반 회원의 할인 정보가 바뀌었을 때 파일에 수정하여 저장하는 메소드입니다.
+	 * 
+	 * @param memberCode 일반회원번호
+	 * @param input      새로운 할인
+	 */
 	private static void changeUserDiscountFile(String memberCode, String input) {
 
 		try {
@@ -723,6 +875,13 @@ public class AdminUserService {
 		}
 	}
 
+	/**
+	 * 일반 회원의 전화번호를 수정하는 메소드입니다.
+	 * 
+	 * @param m    변경할 일반 회원 객체
+	 * @param scan 스캐너
+	 * @return 성공 여부
+	 */
 	private static boolean modifyMemberTel(DataMember m, Scanner scan) {
 		boolean invalid = false;
 
@@ -752,7 +911,8 @@ public class AdminUserService {
 		} else if (input.equals("N")) {// 수정하지 않을 경우
 			// 회원 아이디 검색 화면으로 이동 (이전 페이지)
 			// 작성하기
-			printBackToBeforePage(scan);
+			System.out.println("취소를 선택했습니다.");
+			printGoToBeforePage(scan);
 
 		} else { // 유효하지 않은 입력
 			AdminUserView.printInvalidInput();
@@ -761,6 +921,12 @@ public class AdminUserService {
 		return invalid;
 	}
 
+	/**
+	 * 일반 회원의 전화번호가 바뀌었을 때 파일에 저장하는 메소드입니다.
+	 * 
+	 * @param memberCode 일반회원번호
+	 * @param input      새 전화번호
+	 */
 	private static void changeUserTelFile(String memberCode, String input) {
 		try {
 			String path = "data/dataMember.txt";
@@ -805,6 +971,13 @@ public class AdminUserService {
 		}
 	}
 
+	/**
+	 * 일반 회원의 이름을 변경하는 메소드입니다.
+	 * 
+	 * @param m    변경할 일반 회원 객체
+	 * @param scan 스캐너
+	 * @return 성공 여부
+	 */
 	private static boolean modifyMemberName(DataMember m, Scanner scan) {
 		boolean invalid = false;
 
@@ -834,7 +1007,8 @@ public class AdminUserService {
 		} else if (sel.equals("N")) {// 수정하지 않을 경우
 			// 회원 아이디 검색 화면으로 이동 (이전 페이지)
 			// 작성하기
-			printBackToBeforePage(scan);
+			System.out.println("취소를 선택했습니다.");
+			printGoToBeforePage(scan);
 
 		} else { // 유효하지 않은 입력
 			AdminUserView.printInvalidInput();
@@ -843,17 +1017,15 @@ public class AdminUserService {
 		return invalid;
 	}
 
-	private static void printBackToBeforePage(Scanner scan) {
-		System.out.println("취소를 선택했습니다.");
-		System.out.println("이전 화면으로 돌아갑니다.");
-		System.out.println("계속 하려면 엔터를 입력해주세요.");
-		scan.nextLine();
-	}
-
+	/**
+	 * 일반 회원의 이름이 변경되었을 때 파일을 변경하여 저장하는 메소드입니다.
+	 * 
+	 * @param memberCode 일반 회원 번호
+	 * @param newName    새 이름
+	 */
 	private static void changeUserNameFile(String memberCode, String newName) {
 
 		try {
-
 			String path = "data/dataMember.txt";
 
 			// 파일 읽기
@@ -882,7 +1054,6 @@ public class AdminUserService {
 				changeMember.setDataMemeber(temp); // 클래스 내의 toString 메소드 사용 - 저장할 파일 내용의 양식
 
 				sb.append(changeMember.toString() + "\r\n"); // 한 줄씩 읽은 내용을 StringBuilder에 계속 추가 저장
-
 			}
 
 			reader.close(); // reader 끝
@@ -903,15 +1074,33 @@ public class AdminUserService {
 
 	}
 
+	/**
+	 * 적합한 입력값으로 변경하는 메소드입니다.
+	 * 
+	 * @param sel 입력값
+	 * @return 변경된 입력값
+	 */
 	private static String changeValidInput(String sel) {
 		sel = changeInputTrim(sel);
 		return changeInputUpper(sel);
 	}
 
+	/**
+	 * 입력값을 대문자로 변경하는 메소드입니다.
+	 * 
+	 * @param sel 입력값
+	 * @return 대문자로 변경된 입력값
+	 */
 	private static String changeInputUpper(String sel) {
 		return sel.toUpperCase();
 	}
 
+	/**
+	 * 입력값의 공백문자를 제거해주는 메소드입니다.
+	 * 
+	 * @param sel 입력값
+	 * @return 공백이 사라진 입력값
+	 */
 	private static String changeInputTrim(String sel) {
 		return sel.trim();
 	}

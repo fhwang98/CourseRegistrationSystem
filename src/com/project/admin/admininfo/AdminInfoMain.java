@@ -1,13 +1,23 @@
 package com.project.admin.admininfo;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-import com.project.admin.AdminData;
 import com.project.admin.Admin;
+import com.project.admin.AdminData;
+import com.project.authentication.Authentication;
+import com.project.user.data.DataAdmin;
+import com.project.user.data.DataTeacher;
+import com.project.user.data.UserDbms;
 
 public class AdminInfoMain {
 
+	UserDbms list = new UserDbms();
+	ArrayList<DataAdmin> allAdminList = UserDbms.getAdminAllList();
+	ArrayList<DataTeacher> allTeacherList = UserDbms.getTeacherAllList();
+	
+	
 	public static void myInfoMain() {
 		AdminInfoView.adminInfoTitle();
 				
@@ -89,7 +99,7 @@ public class AdminInfoMain {
 
 	private static void deleteMember() {
 
-		String id = "qjweirowe142";
+		String id = getId(Authentication.loginUserCode);
 		
 		Iterator<Admin> admin = AdminData.adminList.iterator();
 		while (admin.hasNext()) {
@@ -105,9 +115,19 @@ public class AdminInfoMain {
 		
 	}
 
+	public static String getId(String loginUserCode) {
+		for (DataAdmin a : UserDbms.getAdminAllList()) {
+			if (a.getAdminCode().equals(loginUserCode)) {
+				return a.getId();
+			}
+			
+		}
+		return null;
+	}
+
 	private static void updateName(String input) {	
 		
-		String id = "qjweirowe142";
+		String id = getId(Authentication.loginUserCode);
 		
 		String name = input;
 		
@@ -124,7 +144,7 @@ public class AdminInfoMain {
 
 	private static void updatePhone(String input) {	
 		
-		String id = "qjweirowe142";
+		String id = getId(Authentication.loginUserCode);
 		
 		String phone = input;
 		

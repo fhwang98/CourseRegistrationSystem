@@ -35,7 +35,6 @@ public class RoomMain {
 				RoomService.showAll(RoomData.getRoomList());
 			} else if (sel == 2) {
 				//검색 하기
-				System.out.println("search room");
 				RoomService.searchRoom();
 			}
 			
