@@ -6,8 +6,17 @@ import java.util.Scanner;
 
 import com.project.user.data.UserDbms;
 
+/**
+ * 
+ * 아이디 찾기와 비밀번호 재설정 클래스
+ *
+ */
 public class FindData {
-
+	
+	/**
+	 * 아이디를 찾는 메소드
+	 * @return idList
+	 */
 	public static ArrayList<String> findId() {
 		
 		String name = "";
@@ -32,7 +41,11 @@ public class FindData {
 		
 		
 	}
-
+	
+	/**
+	 * 비밀번호 재설정 메소드
+	 * @return pwMap
+	 */
 	public static HashMap<String, String> resetPw() {
 		
 		String name = "";
@@ -129,7 +142,11 @@ public class FindData {
 		return pwMap;
 	}
 	
-	//새 비밀번호 유효성 체크
+	/**
+	 * 새 비밀번호 유효성 체크
+	 * @param newPassword
+	 * 
+	 */
 	private static boolean newPasswordCheck(String newPassword) {
 		//길이 제한 10-16자
 		 if (newPassword.length() < 10 || newPassword.length() > 16) {

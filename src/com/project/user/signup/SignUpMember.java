@@ -10,8 +10,17 @@ import java.util.regex.Pattern;
 import com.project.user.data.DataMember;
 import com.project.user.data.UserDbms;
 
+/**
+ * 
+ * 일반회원 회원가입 클래스
+ *
+ */
 public class SignUpMember {
 
+	/**
+	 * 일반회원 회원가입에 필요한 정보를 사용자로부터 입력 받는 메소드
+	 */
+	
 	public static void addMember() {
 		
 		String memberCode = "";
@@ -172,9 +181,14 @@ public class SignUpMember {
 	}//addMember
 
 	
-	
-	//계좌번호 유효성 체크 - 숫자만 들어가도록 설정
-	 private static boolean refundAccountNumCheck(String refundAccountNum) {
+	/**
+	 * 계좌번호 유효성 검사 메소드
+	 * @param refundAccountNum
+	 *
+	 * 
+	 * */
+	//숫자만 들어가도록 설정
+	 public static boolean refundAccountNumCheck(String refundAccountNum) {
 		for (int i = 0; i < refundAccountNum.length(); i++) {
             if (!Character.isDigit(refundAccountNum.charAt(i))) {
                 return false;
@@ -185,8 +199,11 @@ public class SignUpMember {
 
        
 
-
-	//생일 유효성 검사
+	 /**
+	  * 생년월일 유효성 검사 메소드
+	  * @param birth
+	  * 
+	  */
 	 public static boolean birthCheck(String birth) {
 	        if (birth.length() != 8) {
 	            return false; // 8자리 출력 (YYYYMMDD)
@@ -227,14 +244,23 @@ public class SignUpMember {
 	            return false;
 	        }
 	    }
-
+	 
+	 	/**
+	 	 * 생년월일 유효성 윤년 검사 메소드
+	 	 * @param year
+	 	 * @return
+	 	 */
 		public static boolean isLeapYear(int year) {
 		    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 		}
 	
 	
 	
-	//전화번호 유효성 체크
+	/**
+	 * 전화번호 유효성 검사 메소드
+	 * @param tel
+	 * 
+	 */
 	public static boolean telCheck(String tel) {
 		//010으로 시작하여 4자리 4자리 숫자 (-유무 상관 없음)
 		 String pattern = "^010-?\\d{4}-?\\d{4}$|^010\\d{8}$";
@@ -245,10 +271,12 @@ public class SignUpMember {
 	    }
         
 
-
-
-	//이름 유효성 체크
-	private static boolean nameCheck(String name) {
+	/**
+	 * 이름 유효성 검사 메소드
+	 * @param name
+	 * 
+	 */
+	public static boolean nameCheck(String name) {
 		
 		 if (name.isEmpty()) {
 	            return false; // 빈 문자열인 경우 유효하지 않음
@@ -263,9 +291,12 @@ public class SignUpMember {
 	    }
         
 
-
-	//비밀번호 유효성 체크
-	private static boolean passwordCheck(String password) {
+	/**
+	 * 비밀번호 유효성 검사 메소드
+	 * @param password
+	 * 
+	 */
+	public static boolean passwordCheck(String password) {
 		
 		//길이 제한 10-16자
 		 if (password.length() < 10 || password.length() > 16) {
@@ -292,8 +323,12 @@ public class SignUpMember {
 	        return hasUppercase && hasLowercase && hasDigit;
 	    }
 	
-	//아이디 중복체크
-	private static boolean isIdTaken(String id) {
+	/**
+	 * 아이디 중복 검사 메소드
+	 * @param id
+	 * 
+	 */
+	public static boolean isIdTaken(String id) {
 		
 		//모든 데이터에 중복이 있는지 체크
 		if(UserDbms.searchMemberById(id) == null && UserDbms.searchTeacherById(id) == null && UserDbms.searchAdminById(id) == null) {
@@ -305,8 +340,11 @@ public class SignUpMember {
 		
 	}
 
-	//아이디 유효성 체크
-	private static boolean idCheck(String id) {
+	/**
+	 * 
+	 *아이디 유효성 검사 메소드
+	 */
+	public static boolean idCheck(String id) {
 		
 		//길이 제한 4-16
 		int length = id.length();

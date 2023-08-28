@@ -5,42 +5,60 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
-
+/**
+ * 데이터를 불러오고 저장하기 위한 클래스입니다.
+ * @author 이연섭
+ *
+ */
 public class MyPageData {
-
+	/**
+	 * 회원 데이터를 저장하기 위한 배열입니다.
+	 */
 	public static ArrayList<Member> memberList;
 	
 	static {
 		MyPageData.memberList = new ArrayList<Member>();
 	}
-
+	/**
+	 * 수강 내역을 저장하기 위한 배열입니다.
+	 */
 	public static ArrayList<History> historyList;
 	
 	static {
 		MyPageData.historyList = new ArrayList<History>();
 	}
-
+	/**
+	 * 강좌 데이터를 저장하기 위한 배열입니다.
+	 */
 	public static ArrayList<Course> courseList;
 	
 	static {
 		MyPageData.courseList = new ArrayList<Course>();
 	}
-	
+	/**
+	 * 강사 데이터를 저장하기 위한 배열입니다.
+	 */
 	public static ArrayList<Teacher> teacherList;
 	
 	static {
 		MyPageData.teacherList = new ArrayList<Teacher>();
 	}
-	
+	/**
+	 * 데이터를 각 배열에 저장하기 위한 메서드입니다.
+	 */
 	public static void load() {
 		
 		try {
-
+			
 			BufferedReader memberReader = new BufferedReader(new FileReader("data/dataMember.txt"));
 			BufferedReader historyReader = new BufferedReader(new FileReader("data/courseHistory.txt"));
 			BufferedReader courseReader = new BufferedReader(new FileReader("data/dataCourse.txt"));			
 			BufferedReader teacherReader = new BufferedReader(new FileReader("data/dataTeacher.txt"));
 			
+			memberList.clear();
+			historyList.clear();
+			courseList.clear();
+			teacherList.clear();
 			
 			String line = null;
 			
@@ -120,7 +138,9 @@ public class MyPageData {
 		
 	}
 
-
+	/**
+	 * 배열의 값을 데이터에 다시 덮어쓰기 위한 메서드입니다.
+	 */
 	public static void save() {
 
 		

@@ -9,15 +9,8 @@ import com.project.notice.NoticeMain;
 import com.project.user.login.LoginMain;
 import com.project.user.signup.SignUpMain;
 
-/**
- * 초기메인화면을 담당하는 클래스입니다.
- *
- */
 public class MainView {
 	
-	/**
-	 * 초기메인화면에서 선택하는 선택지에 따라 달라지는 화면을 연결시켜주는 메소드입니다.
-	 */
 	public static void MainScreen() {
 		
 		Scanner scan = new Scanner(System.in);
@@ -37,7 +30,7 @@ public class MainView {
 		        lMain.LoginProcess();
 				mainView();
 			} else if (input.equals("2")) {
-				SignUpMain.main(null);
+				SignUpMain.signUpProcess();
 				mainView();
 			} else if (input.equals("3")) {
 				CourseInfo.courseInfo();
@@ -60,11 +53,8 @@ public class MainView {
 		
 	}
 
-	/**
-	 * 초기메인화면을 출력하는 메소드입니다.
-	 */
 	public static void mainView() {
-		System.out.println("              초기메인화면");
+		System.out.println("         초기메인화면");
 		System.out.println("—-------------------------------------");
 		System.out.println("1. 로그인");
 		System.out.println("2. 회원가입");
@@ -74,5 +64,6 @@ public class MainView {
 		System.out.println("6. 공지사항");
 		System.out.println("—-------------------------------------");
 		System.out.print("번호 입력 : ");
+		System.out.println();
 	}
 }

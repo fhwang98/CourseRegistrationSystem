@@ -18,7 +18,7 @@ public class LoginChoice {
 		int num = 0;
 		Scanner scan = new Scanner(System.in);
 		System.out.println("======================");
-		System.out.println("         로그인      ");
+		System.out.println("       로그인      ");
 		System.out.println("======================");
 		System.out.println();
 		System.out.println("로그인 할 회원 유형을 선택하세요.");
@@ -54,7 +54,6 @@ public class LoginChoice {
 				auth.setId(m.getId());
 				auth.setName(m.getName());
 				main.getLoginMList().add(m);
-				MyPageMain.mypage(m);
 			}
 		} else if (num == 2) {
 			DataTeacher t = LoginTeacher.login();

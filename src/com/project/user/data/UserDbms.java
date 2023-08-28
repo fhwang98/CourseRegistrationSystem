@@ -10,6 +10,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * 
+ * 회원 유형별 정보가 담긴 클래스
+ *
+ */
+
 public class UserDbms {
 	private final static String CRLF = "\r\n";
 	private final static String dataMemberPath = "data/dataMember.txt";

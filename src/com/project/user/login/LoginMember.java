@@ -8,8 +8,17 @@ import com.project.user.data.DataMember;
 import com.project.user.data.DataTeacher;
 import com.project.user.data.UserDbms;
 
+/**
+ * 
+ * 일반회원 로그인 클래스
+ *
+ */
 public class LoginMember {
 	
+	/**
+	 * 일반회원의 로그인을 위한 정보를 입력받는 메소드
+	 * 
+	 */
 	public static DataMember login() {
 		String id = "";
 		String password = "";

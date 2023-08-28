@@ -8,6 +8,11 @@ import com.project.user.data.DataAdmin;
 import com.project.user.data.DataMember;
 import com.project.user.data.DataTeacher;
 
+/**
+ * 
+ * 로그인 메인화면 클래스
+ *
+ */
 public class LoginMain {
 	
 	private ArrayList<DataMember> loginMList = new ArrayList<DataMember>();
@@ -26,7 +31,9 @@ public class LoginMain {
 		return loginAList;
 	}
 	
-
+	/**
+	 * 로그인 메뉴 선택 클래스
+	 */
 	public void LoginProcess() {
 			
 		int num = 0;
@@ -34,7 +41,7 @@ public class LoginMain {
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println("======================");
-		System.out.println("         로그인      ");
+		System.out.println("       로그인      ");
 		System.out.println("======================");
 		System.out.println();
 		System.out.println("0. 뒤로가기");

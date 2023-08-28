@@ -1,5 +1,9 @@
 package com.project.user.mypage;
-
+/**
+ * 강좌 생성자 클래스입니다.
+ * @author 이연섭
+ *
+ */
 public class Course {
 	
 	private String courseNum;
@@ -14,7 +18,21 @@ public class Course {
 	private String content;
 	private String startDate;
 	private String roomNum;
-
+	/**
+	 * 강좌 생성자입니다.
+	 * @param courseNum 강좌번호
+	 * @param category 카테고리
+	 * @param courseName 강좌명
+	 * @param time 시간
+	 * @param dayOfWeek 요일
+	 * @param target 대상
+	 * @param tuition 가격
+	 * @param numberOfPeople 수강인원	
+	 * @param teacherNum 강사명
+	 * @param content 강좌내용
+	 * @param startDate 시작날짜
+	 * @param roomNum 강의실번호
+	 */
 	public Course(String courseNum, String category, String courseName, String time, String dayOfWeek, String target,
 			String tuition, String numberOfPeople, String teacherNum, String content, String startDate,
 			String roomNum) {

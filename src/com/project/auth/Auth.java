@@ -1,5 +1,10 @@
 package com.project.auth;
 
+/**
+ * 
+ * 모든 회원유형의 코드, 유형번호, id, 이름 데이터가 담긴 클래스
+ *
+ */
 public class Auth {
 
 	private String allCode;

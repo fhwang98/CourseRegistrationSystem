@@ -1,5 +1,12 @@
 package com.project.user.data;
 
+/**
+ * 
+ * 관리자 회원 데이터가 담긴 클래스
+ *
+ */
+
+
 public class DataAdmin {
 	
 	private String adminCode; 

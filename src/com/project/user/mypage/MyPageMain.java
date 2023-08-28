@@ -2,15 +2,22 @@ package com.project.user.mypage;
 
 import java.util.Scanner;
 
+import com.project.authentication.Authentication;
 import com.project.user.data.DataMember;
-
+/**
+ * 
+ *	회원 마이페이지 메인 클래스입니다.	
+ * 	@author 이연섭	
+ *
+ */
 public class MyPageMain {
-	
-	public static void main(String[] args) {
-		mypage(null);
-	}
-	
-	public static void mypage(DataMember m) {
+	/**
+	 * 
+	 * 마이페이지 첫 화면의 동작을 위한 메서드입니다.
+	 * 
+	 */
+	public static void mypage() {
+		
 		
 		MyPageData.load();
 		
@@ -21,35 +28,35 @@ public class MyPageMain {
 		while (loop) {
 			
 			MyPageView.mainMenu();
-			
+
+			String loginCode = Authentication.loginUserCode; 
+
 			String sel = scan.nextLine();
 			
-			String id = m.getId(); // TODO 로그인 연동
 			
 			if (sel.equals("0")) {
-				loop = false; // 루프 빠져나가고 myPageData.save 후에 메인화면으로 이동
+				loop = false; 
 			} else if (sel.equals("1")) {
-				MyPageService.memCheck();
+				MyPageService.memCheck(loginCode);
 			} else if (sel.equals("2")) {
-				MyPageService.memChange();
+				MyPageService.memChange(loginCode);
 			} else if (sel.equals("3")) {
-				MyPageService.classCheck();
+				MyPageService.classCheck(loginCode);
 			} else if (sel.equals("4")) {
-				MyPageService.classDelete();
+				MyPageService.classDelete(loginCode);
 			} else if (sel.equals("5")) {
 				MyPageService.logout();
+				loop = false;
 			} else if (sel.equals("6")) {
-				MyPageService.memDelete();
+				MyPageService.memDelete(loginCode);
 				loop = false;
 			} else {
 				System.out.println("잘못된 번호입니다. 다시 입력해주세요.");
 			}
 			
 		}
-				
-		MyPageData.save();
 		
-		// TODO ???.???(); 메인화면으로 이동 
+		
 	}
 	
 }

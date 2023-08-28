@@ -1,5 +1,9 @@
 package com.project.user.mypage;
-
+/**
+ * 회원 생성자 클래스입니다.
+ * @author 이연섭
+ *
+ */
 public class Member {
 
 	private String no;
@@ -12,7 +16,19 @@ public class Member {
 	private String bank;
 	private String accountNum;
 	private String delete;
-
+	/**
+	 * 회원 생성자입니다.
+	 * @param no 회원번호
+	 * @param id 아이디
+	 * @param pwd 비밀번호
+	 * @param name 이름
+	 * @param phoneNum 전화번호
+	 * @param birth 생년월일
+	 * @param discount 할인여부
+	 * @param bank 은행
+	 * @param accountNum 계좌번호
+	 * @param delete 탈퇴여부
+	 */
 	public Member(String no, String id, String pwd, String name, String phoneNum, String birth, String discount,
 			String bank, String accountNum, String delete) {
 		this.no = no;

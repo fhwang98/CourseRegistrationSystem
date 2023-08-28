@@ -1,5 +1,12 @@
 package com.project.user.data;
 
+
+/**
+ * 
+ * 강사 회원 데이터가 담긴 클래스
+ *
+ */
+
 public class DataTeacher {
 	private String teacherCode; 
 	private String id; 

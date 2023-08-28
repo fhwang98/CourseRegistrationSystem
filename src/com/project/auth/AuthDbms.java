@@ -7,6 +7,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+/**
+ * 통합관리 클래스
+ */
 public class AuthDbms {
 	private final static String dataAuthPath = System.getProperty("user.dir") + File.separator+ "data"+File.separator+"authData.txt"; // 상대경로 설정
 
