@@ -50,9 +50,10 @@ public class LoginTeacher {
 			//세 줄 추가
 			DataTeacher curTeacher = UserDbms.searchTeacherByIdPw(id, password);
 			Authentication.loginUserCode = curTeacher.getTeacherCode();
-			System.out.println(Authentication.loginUserCode);
+			//System.out.println(Authentication.loginUserCode);
 
 			System.out.println("로그인이 완료되었습니다.");
+			System.out.println();
 
 			// TODO 로그인 후 화면으로 이동해야함
 			TeacherMain.LoginTeacher(null); //null 추가

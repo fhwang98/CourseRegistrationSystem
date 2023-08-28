@@ -17,8 +17,12 @@ import com.project.courseinfo.CourseData;
 import com.project.user.data.DataTeacher;
 import com.project.user.login.LoginMain;
 
+/**
+ * 강사의 강좌관리를 담당하는 클래스입니다.
+ */
 public class Management {
 
+	
 	public static ArrayList<Course> teacherCourseList;
 
 	static {
@@ -30,19 +34,22 @@ public class Management {
 		System.out.println(CourseData.courseList);
 	}
 
+	/**
+	 * 강사관리 화면을 출력하는 메소드입니다.
+	 */
 	public static void courseManagement() {
 
 		Scanner scan = new Scanner(System.in);
 
 		int input = 0;
 
-		System.out.println("          강좌 관리");
-		System.out.println("—-------------------------------------");
+		System.out.println("            강좌 관리");
+		System.out.println("—-------------------------------");
 		System.out.println("0. 메인화면 돌아가기");
 		System.out.println("1. 강좌 등록 신청");
 		System.out.println("2. 강좌 등록 조회");
 		System.out.println("3. 강좌 등록 수정");
-		System.out.println("—-------------------------------------");
+		System.out.println("—--------------------------------");
 		System.out.print("번호 입력 : ");
 
 		input = scan.nextInt();
@@ -70,6 +77,9 @@ public class Management {
 		}
 	}
 
+	/**
+	 * 강사의 강좌등록 신청을 담당하고 있는 메소드입니다.
+	 */
 	public static void registration() {
 
 		Scanner scan = new Scanner(System.in);
@@ -84,13 +94,14 @@ public class Management {
 		String content = "";
 		String status = "대기";
 
-		System.out.println("          강좌등록신청");
-		System.out.println("—-------------------------------------");
+		System.out.println("            강좌등록신청");
+		System.out.println("—----------------------------------");
 		System.out.println("0. 강좌관리 화면 돌아가기");
 		System.out.println("신청을 계속하려면 아무번호를 입력하세요");
 
 		input = scan.nextInt();
-
+		scan.nextLine();
+		
 		if (input == 0) {
 
 			Management.courseManagement();
@@ -101,7 +112,7 @@ public class Management {
 
 			while (true) {
 
-				System.out.println("—-------------------------------------");
+				System.out.println("—-------------------------------------------------------------");
 				System.out.print("시작 시간\r\n06시 ~ 22시 운영시간내에 입력하시오 (두자리 숫자 입력 ex: 06): ");
 				time = scan.nextLine();
 				System.out.print("요일\r\n평일만 등록 가능합니다(월,화,수,목,금 중 입력): ");
@@ -116,27 +127,25 @@ public class Management {
 //		num = scan.nextLine();
 				System.out.print("강좌내용\r\n100자 이내로 입력하시오: ");
 				content = scan.nextLine();
-				System.out.println("—-------------------------------------");
+				System.out.println("—-------------------------------------------------------------");
 				// System.out.print("번호 입력 : ");
 
 				if (isValid(time, date, name, category, age, content)) {
 
-					System.out.println("가입 완료");
+					System.out.println("신청 완료");
 
-					LoginMain lista = new LoginMain();
-					ArrayList<DataTeacher> loginList = lista.getLoginTList();
-
+					
 					PendingCourse pendingCourse = new PendingCourse(name, date, time, category, age, content, status,
-							loginList.get(0).getTeacherCode(), "없음");// TODO 로그인한 강사 코드 넣는부분 수정
+							Authentication.loginUserCode, "없음", "없음");
 					courseList.add(pendingCourse);
 
-					PendingCourseData.update();
+					PendingCourseData.update(pendingCourse);
 
 					break;
 
 				} else {
 
-					System.out.println("가입 실패");
+					System.out.println("신청 실패");
 
 				}
 			}
@@ -163,7 +172,7 @@ public class Management {
 
 		// 중복되는 요일 유효성 검사 필요함
 		// 2. date > 요일 > 평일만 등록 가능합니다(월,화,수,목,금 중 입력)
-		regex = "^[가-힣]{1,5}$";
+		regex = "^[가-힣]{1}$";
 		p1 = Pattern.compile(regex);
 		m1 = p1.matcher(date); // 사용자가 입력한 이름에서 패턴 검색
 
@@ -174,7 +183,7 @@ public class Management {
 		}
 
 		// 3. name > 강좌명 > 2~14자리 한글,영어,숫자만 가능합니다
-		regex = "^[A-Za-z0-9가-힣_]{2,14}$";
+		regex = "^[A-Za-z0-9가-힣\s]{2,14}$";
 		p1 = Pattern.compile(regex);
 		m1 = p1.matcher(name);
 
@@ -196,10 +205,6 @@ public class Management {
 
 		// 5. age > 수강대상 > 어린이, 청소년, 성인, 누구나 중에 입력해주세요
 
-		regex = "^[0-9]{2,3}$";
-		p1 = Pattern.compile(regex);
-		m1 = p1.matcher(age);
-
 		regex = "^[가-힣]{2,3}$";
 		p1 = Pattern.compile(regex);
 		m1 = p1.matcher(age); // 사용자가 입력한 이름에서 패턴 검색
@@ -220,7 +225,7 @@ public class Management {
 //		}
 
 		// 6. content > 강좌내용 > 100자 이내로 입력하시오
-		regex = "^[A-Za-z0-9가-힣_]{0,100}$";
+		regex = "^[A-Za-z0-9가-힣_\s.]{0,100}$";
 		p1 = Pattern.compile(regex);
 		m1 = p1.matcher(content);
 
@@ -232,6 +237,10 @@ public class Management {
 		return true;
 	}
 
+	/**
+	 * 로그인 한 강사의 담당 강좌 이름을 출력하는 메소드입니다.
+	 * @return 담당 강사의 강좌 리스트 크기
+	 */
 	public static int loadCourseList() {
 
 
@@ -254,13 +263,16 @@ public class Management {
 		return teacherCourseList.size();
 	}
 
+	/**
+	 * 로그인 한 강사의 강좌 정보를 조회할 수 있는 메소드입니다.
+	 */
 	public static void information() {
 
 		Scanner scan = new Scanner(System.in);
 
 		int input = -1;
 
-		System.out.println("        강사관리 > 강좌 정보 조회");
+		System.out.println("             강좌 정보 조회");
 		System.out.println("—-------------------------------------");
 		System.out.println("0. 강좌관리 화면 돌아가기");
 		System.out.println("======================================");
@@ -312,19 +324,21 @@ public class Management {
 
 	}
 
+	/**
+	 * 로그인 한 강사의 강좌에 대한 정보를 수정할 수 있는 메소드입니다.
+	 */
 	public static void modify() {
 
 		Scanner scan = new Scanner(System.in);
 
 		int input = 0;
 
-		System.out.println("        강사관리 > 강좌 정보 수정");
+		System.out.println("              강좌 정보 수정");
 		System.out.println("—-------------------------------------");
 		System.out.println("0. 강좌관리 화면 돌아가기");
 		System.out.println("======================================");
 		int curSize = loadCourseList();
 		System.out.println("======================================");
-		System.out.println("—-------------------------------------");
 		System.out.print("번호 입력 : ");
 
 		input = scan.nextInt();
@@ -345,7 +359,7 @@ public class Management {
 			String newNum = "";
 			String newContent = "";
 
-			System.out.println("          강좌정보수정");
+			System.out.println("               강좌정보수정");
 			System.out.println("—-------------------------------------");
 			System.out.println("0. 강좌관리 돌아가기");
 			System.out.println("1. 강좌명");
@@ -369,9 +383,18 @@ public class Management {
 
 				newName = scan.nextLine();
 
-				Management.isValidName(newName);
+				if(Management.isValidName(newName)) {
+					
+					modifyCourseByName(c.getNum(), newName);
+					
+					System.out.println("수정을 완료했습니다.");
+					
+				} else {
+					
+					System.out.println("수정할 수 없습니다.");
+				}
 
-				modifyCourseByName(c.getCourseName(), newName);
+				Management.courseManagement();
 
 			} else if (input == 2) {
 
@@ -381,14 +404,16 @@ public class Management {
 				
 				if(Management.isValidTime(newTime)) {
 					
-					modifyCourseByTime(c.getTime(), newTime);
+					modifyCourseByTime(c.getNum(), newTime);
 					
 					System.out.println("수정을 완료했습니다.");
+					
 				} else {
 					
 					System.out.println("수정할 수 없습니다.");
 				}
 
+				Management.courseManagement();
 
 			} else if (input == 3) {
 
@@ -396,9 +421,19 @@ public class Management {
 
 				newTarget = scan.nextLine();
 				
-				Management.isValidAge(newTarget);
+				if(Management.isValidAge(newTarget)) {
+					
+					modifyCourseByTarget(c.getNum(), newTarget);
+					
+					System.out.println("수정을 완료했습니다.");
+					
+				} else {
+					
+					System.out.println("수정할 수 없습니다.");
+					
+				}
 
-				modifyCourseByTarget(c.getTarget(), newTarget);
+				Management.courseManagement();
 
 			} else if (input == 4) {
 
@@ -406,9 +441,19 @@ public class Management {
 
 				newNum = scan.nextLine();
 				
-				Management.isValidNum(newNum);
-
-				modifyCourseByNum(c.getPerson(), newNum);
+				if(Management.isValidNum(newNum)) {
+					
+					modifyCourseByNum(c.getNum(), newNum);
+					
+					System.out.println("수정을 완료했습니다.");
+					
+				} else {
+					
+					System.out.println("수정할 수 없습니다.");
+					
+				}
+				
+				Management.courseManagement();
 
 			} else if (input == 5) {
 
@@ -416,9 +461,19 @@ public class Management {
 
 				newContent = scan.nextLine();
 				
-				Management.isValidContent(newContent);
+				if(Management.isValidContent(newContent)) {
+					
+					modifyCourseByContent(c.getNum(), newContent);
+					
+					System.out.println("수정을 완료했습니다.");
+					
+				} else {
+					
+					System.out.println("수정할 수 없습니다.");
+					
+				}
 
-				modifyCourseByContent(c.getContents(), newContent);
+				Management.courseManagement();
 
 			} else {
 
@@ -430,7 +485,7 @@ public class Management {
 
 	}
 
-	private static void modifyCourseByName(String courseNum, String newName) {
+	private static void modifyCourseByName(String code, String newName) {
 
 		// 실제 데이터 파일을 수정하여 파일을 작성하고, 다시 리스트를 만들자
 
@@ -462,7 +517,7 @@ public class Management {
 				String roomNum = temp[11];
 
 				// 현재 줄의 강좌 코드와 현재 강좌 코드가 같은지 비교
-				if (num.equals(courseNum)) {
+				if (num.equals(code)) {
 					// 같으면 현재 줄의 이름을 입력받은 이름으로 변경
 					courseName = newName;
 				}

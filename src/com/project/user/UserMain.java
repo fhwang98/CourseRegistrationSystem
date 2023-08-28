@@ -9,9 +9,15 @@ import com.project.courseinfo.CourseInfo;
 import com.project.main.MainView;
 import com.project.user.mypage.MyPageMain;
 
+/**
+ * 일반회원의 로그인 후 화면을 담당하는 클래스입니다.
+ *
+ */
 public class UserMain {
 
-	
+	/**
+	 * 일반회원의 로그인 후 화면 선택에 따라 다른 화면을 연결시키는 메소드입니다.
+	 */
 	public static void LoginGeneralMember() {
 		
 		Scanner scan = new Scanner(System.in);
@@ -56,6 +62,9 @@ public class UserMain {
 		
 	}
 
+	/**
+	 * 일반회원의 로그인 후 화면 선택지를 출력하는 메소드입니다.
+	 */
 	public static void userMainView() {
 		System.out.println("         일반회원 로그인 후 화면");
 		System.out.println("—-------------------------------------");

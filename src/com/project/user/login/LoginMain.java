@@ -34,7 +34,7 @@ public class LoginMain {
 		Scanner scan = new Scanner(System.in);
 
 		System.out.println("======================");
-		System.out.println("       로그인      ");
+		System.out.println("         로그인      ");
 		System.out.println("======================");
 		System.out.println();
 		System.out.println("0. 뒤로가기");
