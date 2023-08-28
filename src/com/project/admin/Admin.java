@@ -15,6 +15,16 @@ public class Admin {
 	private String adminbirth;
 	private String adminDelete;
 	
+	/**
+	 * 관리자 클래스를 만드는 생성자입니다.
+	 * @param adminNo
+	 * @param adminId
+	 * @param adminPwd
+	 * @param adminName
+	 * @param adminPhone
+	 * @param adminbirth
+	 * @param adminDelete
+	 */
 	public Admin(String adminNo, String adminId, String adminPwd, String adminName, String adminPhone,
 			String adminbirth, String adminDelete) {
 		this.adminNo = adminNo;

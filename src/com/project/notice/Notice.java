@@ -15,7 +15,14 @@ public class Notice {
 	private String title;
 	private String content;
 	
-	
+	/**
+	 * 공지사항 클래스를 만드는 생성자입니다.
+	 * @param no
+	 * @param writeDateAndTime
+	 * @param writer
+	 * @param title
+	 * @param content
+	 */
 	public Notice(int no, Calendar writeDateAndTime, String writer, String title, String content) {
 		this.no = no;
 		this.uploadTime = writeDateAndTime;

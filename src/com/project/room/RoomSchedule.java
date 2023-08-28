@@ -12,7 +12,13 @@ public class RoomSchedule {
 	private String time;
 	private String courseNum;
 	
-	
+	/**
+	 *강의실 스케줄 클래스를 만드는 생성자입니다.
+	 * @param roomNum
+	 * @param dayOfWeek
+	 * @param time
+	 * @param courseNum
+	 */
 	public RoomSchedule(String roomNum, String dayOfWeek, String time, String courseNum) {
 		this.roomNum = roomNum;
 		this.dayOfWeek = dayOfWeek;

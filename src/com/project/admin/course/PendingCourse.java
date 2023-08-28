@@ -33,7 +33,19 @@ public class PendingCourse {
 	private String roomNum;
 	private String courseCode;
 	
-	
+	/**
+	 * 승인대기강좌 클래스를 만드는 생성자입니다.
+	 * @param courseName
+	 * @param dayOfWeek
+	 * @param startTime
+	 * @param category
+	 * @param target
+	 * @param courseExplanation
+	 * @param status
+	 * @param teacherNum
+	 * @param roomNum
+	 * @param courseCode
+	 */
 	public PendingCourse(String courseName, String dayOfWeek, String startTime, String category, String target,
 			String courseExplanation, String status, String teacherNum, String roomNum, String courseCode) {
 		this.courseName = courseName;

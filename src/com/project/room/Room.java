@@ -12,7 +12,11 @@ public class Room {
 	private String roomNum;
 	private ArrayList<String> schedule;
 	
-	
+	/**
+	 * 강의실 클래스를 만드는 생성자입니다.
+	 * @param roomNum
+	 * @param schedule
+	 */
 	public Room(String roomNum, ArrayList<String> schedule) {
 		this.roomNum = roomNum;
 		this.schedule = schedule;
