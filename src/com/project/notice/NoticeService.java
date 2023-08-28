@@ -6,11 +6,19 @@ import com.project.user.data.DataAdmin;
 import com.project.user.data.DataTeacher;
 import com.project.user.data.UserDbms;
 
+/**
+ * 공지사항 기능 역할을 하는 클래스입니다.
+ * 
+ * @author 황은하
+ *
+ */
 public class NoticeService {
 
+	/**
+	 * 공지사항 목록을 출력하는 메소드입니다.
+	 */
 	public static void showNoticeList() {
 
-//		int index = 0;
 		int index = NoticeData.getList().size();
 		boolean outLoop = true;
 		boolean inLoop = true;
@@ -24,13 +32,11 @@ public class NoticeService {
 			NoticeView.printNoticeLabel();
 
 			for (int i = 0; i < 10; i++) { // 10개씩 출력
-//				if (index == NoticeData.getList().size()) { // 멈춰야 한다! 다 출력함
 				if (index == 0) { // 멈춰야 한다! 다 출력함
 					break;
 				}
 
 				// 공지사항 객체 가져오기
-//				Notice n = NoticeData.getList().get(index);
 				Notice n = NoticeData.getList().get(index - 1);
 
 				// 공지사항 제목 출력
@@ -52,22 +58,19 @@ public class NoticeService {
 					System.out.println("화면을 이동하시려면 엔터를 입력해주세요.");
 					Scanner scan = new Scanner(System.in);
 					scan.nextLine();
-					
+
 					inLoop = false;
 					outLoop = false;
 
 				} else if (sel.equals("1")) { // 이전 페이지로 이동
-//					if (index == 10) {
 					if (index == NoticeData.getList().size() - 10) {
 						System.out.print("첫번째 페이지 입니다. 다시 입력하세요. : ");
 						continue;
 					}
-//					index = (((index - 1) / 10) - 1) * 10; // 보여줄 일반 회원의 시작 인덱스를 변경
 					index += 20; // 보여줄 일반 회원의 시작 인덱스를 변경
 					inLoop = false;
 
 				} else if (sel.equals("2")) { // 다음 페이지로 이동
-//					if (index == NoticeData.getList().size()) {
 					if (index == 0) {
 						System.out.print("마지막 페이지 입니다. 다시 입력하세요. : ");
 						continue;
@@ -79,13 +82,7 @@ public class NoticeService {
 					System.out.print("확인할 공지사항 번호를 입력해주세요. : ");
 					sel = NoticeMain.scan.nextLine();
 
-//					// 적합한 공지사항 인덱스인지 확인
-//					System.out.println(index + " " + index);
-//					if (index - 10 <= Integer.parseInt(sel) && Integer.parseInt(sel) <= index - 1) {
-//
-//					}
-//
-//					// 적합하다면 해당 공지사항 객체 뽑아오기
+					// 적합하다면 해당 공지사항 객체 뽑아오기
 					Notice curNotice = NoticeData.getList().get(Integer.parseInt(sel));
 
 					// 공지사항 보여주기
@@ -101,7 +98,6 @@ public class NoticeService {
 
 		}
 
-		NoticeView.printLine();
 	}
 
 	private static void PrintNoticeData(Notice n) {

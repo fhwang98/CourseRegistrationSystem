@@ -2,6 +2,12 @@ package com.project.user.data;
 
 import java.util.Arrays;
 
+/**
+ * 
+ * 일반 회원 데이터가 담긴 클래스
+ *
+ */
+
 public class DataMember {
 
 	private String memberCode;
@@ -15,6 +21,7 @@ public class DataMember {
 	private String refundAccountNum;
 	private int using;
 
+	
 	public DataMember() {
 		this.memberCode = "";
 		this.id = "";
@@ -32,6 +39,7 @@ public class DataMember {
 		this.setDataMemeber(memberLine);
 	}
 
+	
 	public void setDataMemeber(String[] memberLine) {
 		this.memberCode = memberLine[0];
 		this.id = memberLine[1];

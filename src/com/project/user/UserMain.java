@@ -38,7 +38,8 @@ public class UserMain {
 				CourseApplication.courseApplicationment();
 				userMainView();
 			} else if (input.equals("5")) {
-				MyPageMain.mypage(null); // null 추가
+				MyPageMain.mypage();
+				loop = false;
 				userMainView();
 			} else if (input.equals("6")) {
 				BusStopMain.busStopMain();

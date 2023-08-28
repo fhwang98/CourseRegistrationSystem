@@ -7,8 +7,17 @@ import com.project.teacher.TeacherMain;
 import com.project.user.data.DataTeacher;
 import com.project.user.data.UserDbms;
 
+/**
+ * 
+ * 강사회원 로그인 클래스
+ *
+ */
 public class LoginTeacher {
 
+	/**
+	 * 강사회원의 로그인을 위한 정보를 입력받는 메소드
+	 * 
+	 */
 	public static DataTeacher login() {
 		String id = "";
 		String password = "";

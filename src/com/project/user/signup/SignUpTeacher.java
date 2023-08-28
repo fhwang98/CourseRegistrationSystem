@@ -10,8 +10,16 @@ import java.util.regex.Pattern;
 import com.project.user.data.DataTeacher;
 import com.project.user.data.UserDbms;
 
+/**
+ * 
+ * 강사 회원가입 클래스
+ *
+ */
 public class SignUpTeacher {
-
+	
+	/**
+	 * 강사 회원 회원가입에 필요한 정보를 사용자로부터 입력 받는 메소드
+	 */
 	public static void addTeacher() {
 
 		String teacherCode = "";
@@ -127,70 +135,85 @@ public class SignUpTeacher {
 	
 
 
-	//생일 유효성 검사
+
+	 /**
+	  * 생년월일 유효성 검사 메소드
+	  * @param birth
+	  * 
+	  */
 	 public static boolean birthCheck(String birth) {
-        if (birth.length() != 8) {
-            return false; 
-        }
+	        if (birth.length() != 8) {
+	            return false; // 8자리 출력 (YYYYMMDD)
+	        }
 
-        try {
-            int year = Integer.parseInt(birth.substring(0, 4));
-            int month = Integer.parseInt(birth.substring(4, 6));
-            int day = Integer.parseInt(birth.substring(6, 8));
+	        try {
+	            int year = Integer.parseInt(birth.substring(0, 4));
+	            int month = Integer.parseInt(birth.substring(4, 6));
+	            int day = Integer.parseInt(birth.substring(6, 8));
 
-            
-            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-            if (year < 1903 || year > currentYear) {
-                return false;
-            }
+	           
+	            int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+	            if (year < 1903 || year > currentYear) {
+	                return false;
+	            }
 
-           
-            if (month < 1 || month > 12 || day < 1 || day > 31) {
-                return false;
-            }
+	            
+	            if (month < 1 || month > 12 || day < 1 || day > 31) {
+	                return false;
+	            }
 
-            
-            if ((month == 2 && day > 29) ||
-                ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) ||
-                (month == 2 && day == 29 && !isLeapYear(year))) {
-                return false;
-            }
+	            
+	            if ((month == 2 && day > 29) ||
+	                ((month == 4 || month == 6 || month == 9 || month == 11) && day > 30) ||
+	                (month == 2 && day == 29 && !isLeapYear(year))) {
+	                return false;
+	            }
 
-         
-            Date date = Calendar.getInstance().getTime();
-            int currentDate = Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(date));
-            if (Integer.parseInt(birth) > currentDate) {
-                return false;
-            }
+	           
+	            Date date = Calendar.getInstance().getTime();
+	            int currentDate = Integer.parseInt(new SimpleDateFormat("yyyyMMdd").format(date));
+	            if (Integer.parseInt(birth) > currentDate) {
+	                return false;
+	            }
 
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-	}
-
+	            return true;
+	        } catch (NumberFormatException e) {
+	            return false;
+	        }
+	    }
+	 
+	 	/**
+	 	 * 생년월일 유효성 윤년 검사 메소드
+	 	 * @param year
+	 	 * @return
+	 	 */
 		public static boolean isLeapYear(int year) {
 		    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 		}
 	
 	
 	
-	// 전화번호 유효성 체크
+	/**
+	 * 전화번호 유효성 검사 메소드
+	 * @param tel
+	 * 
+	 */
 	public static boolean telCheck(String tel) {
-		
 		//010으로 시작하여 4자리 4자리 숫자 (-유무 상관 없음)
 		 String pattern = "^010-?\\d{4}-?\\d{4}$|^010\\d{8}$";
 	        Pattern regex = Pattern.compile(pattern);
 	        Matcher matcher = regex.matcher(tel);
 
 	        return matcher.matches();
-	}
-	
+	    }
+       
 
-
-
-	//이름 유효성 체크
-	private static boolean nameCheck(String name) {
+	/**
+	 * 이름 유효성 검사 메소드
+	 * @param name
+	 * 
+	 */
+	public static boolean nameCheck(String name) {
 		
 		 if (name.isEmpty()) {
 	            return false; // 빈 문자열인 경우 유효하지 않음
@@ -203,11 +226,14 @@ public class SignUpTeacher {
 	        
 	        return matcher.matches();
 	    }
-        
+       
 
-
-	//비밀번호 유효성 체크
-	private static boolean passwordCheck(String password) {
+	/**
+	 * 비밀번호 유효성 검사 메소드
+	 * @param password
+	 * 
+	 */
+	public static boolean passwordCheck(String password) {
 		
 		//길이 제한 10-16자
 		 if (password.length() < 10 || password.length() > 16) {
@@ -234,8 +260,12 @@ public class SignUpTeacher {
 	        return hasUppercase && hasLowercase && hasDigit;
 	    }
 	
-	//아이디 중복체크
-	private static boolean isIdTaken(String id) {
+	/**
+	 * 아이디 중복 검사 메소드
+	 * @param id
+	 * 
+	 */
+	public static boolean isIdTaken(String id) {
 		
 		//모든 데이터에 중복이 있는지 체크
 		if(UserDbms.searchMemberById(id) == null && UserDbms.searchTeacherById(id) == null && UserDbms.searchAdminById(id) == null) {
@@ -247,23 +277,26 @@ public class SignUpTeacher {
 		
 	}
 
-	//아이디 유효성 체크
-	private static boolean idCheck(String id) {
+	/**
+	 * 
+	 *아이디 유효성 검사 메소드
+	 */
+	public static boolean idCheck(String id) {
 		
 		//길이 제한 4-16
 		int length = id.length();
-        if (length < 4 || length > 16) {
-            return false;
-        }
-        
-        //영어 소문자 숫자만 포함되는가
-        for (char i : id.toCharArray()) {
-            if (!Character.isLowerCase(i) && !Character.isDigit(i)) {
-                return false;
-            }
-        }
-        
-        return true;
+       if (length < 4 || length > 16) {
+           return false;
+       }
+       
+       //영어 소문자 숫자만 포함되는가
+       for (char i : id.toCharArray()) {
+           if (!Character.isLowerCase(i) && !Character.isDigit(i)) {
+               return false;
+           }
+       }
+       
+       return true;
 		
 		
 	       

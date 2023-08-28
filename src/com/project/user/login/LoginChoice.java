@@ -54,7 +54,6 @@ public class LoginChoice {
 				auth.setId(m.getId());
 				auth.setName(m.getName());
 				main.getLoginMList().add(m);
-				MyPageMain.mypage(m);
 			}
 		} else if (num == 2) {
 			DataTeacher t = LoginTeacher.login();

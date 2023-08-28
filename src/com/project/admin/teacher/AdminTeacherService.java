@@ -12,8 +12,17 @@ import com.project.courseinfo.CourseData;
 import com.project.user.data.DataTeacher;
 import com.project.user.data.UserDbms;
 
+/**
+ * 관리자의 강사 회원 관리 기능을 담당하는 클래스입니다.
+ * 
+ * @author 황은하
+ *
+ */
 public class AdminTeacherService {
 
+	/**
+	 * 강사 회원의 리스트를 보여주는 메소드입니다.
+	 */
 	public static void showTeacherList() {
 
 		// 페이지 출력
@@ -39,10 +48,10 @@ public class AdminTeacherService {
 					break;
 				}
 
-				// 일반 회원 객체 가져오기
+				// 강사 회원 객체 가져오기
 				DataTeacher t = UserDbms.getTeacherAllList().get(index);
 
-				// 회원 데이터 출력
+				// 강사 회원 데이터 출력
 				AdminTeacherService.printTeacherData(t);
 
 				index++;
@@ -57,6 +66,8 @@ public class AdminTeacherService {
 				System.out.println();
 
 				if (sel.equals("0")) {
+					printGoToBeforePage(scan);
+
 					inLoop = false;
 					outLoop = false;
 
@@ -85,6 +96,22 @@ public class AdminTeacherService {
 		AdminTeacherView.printLine();
 	}
 
+	/**
+	 * 이전 화면으로 이동한다는 안내를 출력하고 엔터를 입력받는 메소드입니다.
+	 * 
+	 * @param scan
+	 */
+	private static void printGoToBeforePage(Scanner scan) {
+		System.out.println("이전 화면으로 이동합니다.");
+		System.out.println("계속 하시려면 엔터키를 입력해주세요.");
+		scan.nextLine();
+	}
+
+	/**
+	 * 강사 회원 세부 정보를 보여주는 메소드입니다.
+	 * 
+	 * @param t 강사 회원 객체
+	 */
 	private static void printTeacherData(DataTeacher t) {
 		System.out.println("회원번호: " + t.getTeacherCode());
 		System.out.println("이름: " + t.getName());
@@ -103,6 +130,11 @@ public class AdminTeacherService {
 		AdminTeacherView.printLine();
 	}
 
+	/**
+	 * 현재 강사 회원이 개설하거나 개설했던 강좌를 출력하는 메소드입니다.
+	 * 
+	 * @param teacherCode 강사 회원 번호
+	 */
 	private static void printTeacherCourse(String teacherCode) {
 
 		// 현재 강사가 열었던 강좌 코드들을 담은 리스트
@@ -142,6 +174,9 @@ public class AdminTeacherService {
 
 	}
 
+	/**
+	 * 강사 회원 검색 기능을 구현하는 메소드입니다.
+	 */
 	public static void searchTeacher() {
 
 		Scanner scan = new Scanner(System.in);
@@ -161,18 +196,17 @@ public class AdminTeacherService {
 				System.out.println();
 
 				if (sel.equals("0")) { // 뒤로가기
+					printGoToBeforePage(scan);
 
 					// 이전 화면으로 이동
 					innerLoop = false;
 				} else if (sel.equals("1")) { // 아이디로 검색
-
 					searchById();
 
 					innerLoop = false;
 					outLoop = false;
 
 				} else if (sel.equals("2")) { // 이름으로 검색
-
 					searchByName();
 
 					innerLoop = false;
@@ -188,6 +222,9 @@ public class AdminTeacherService {
 		}
 	}
 
+	/**
+	 * 강사 회원을 이름으로 검색하는 기능을 하는 메소드입니다.
+	 */
 	private static void searchByName() {
 		// 회원 이름 검색 문자열 출력
 		AdminTeacherView.printSearchTeacherName();
@@ -198,12 +235,11 @@ public class AdminTeacherService {
 
 		AdminTeacherView.printLine();
 
-		// 입력받은 회원 이름을 회원 리스트에서 검색하기
-
-		DataTeacher curTeacher = AdminTeacherService.getTeacherObjectByName(inputName);
+		// 이름과 동일한 일반 회원 객체가 담겨있는 리스트 가져오기
+		ArrayList<DataTeacher> curTeacherList = getTeacherObjectByName(inputName);
 
 		// 없다면 - 검색결과가 없습니다. 계속하려면 엔터를 입력해주세요. -> 회원 검색 화면(이전 화면)으로 돌아가기
-		if (curTeacher == null) {
+		if (curTeacherList.size() == 0) {
 			System.out.println("검색 결과가 없습니다.");
 			System.out.println("계속 하려면 엔터를 입력해주세요.");
 			scan.nextLine();
@@ -211,67 +247,140 @@ public class AdminTeacherService {
 			return;
 		}
 
-		// 찾은 회원 객체 데이터 출력
-		AdminTeacherService.printTeacherData(curTeacher);
+		for (DataTeacher t : curTeacherList) {
+			// 찾은 회원 객체 데이터 출력
+			printTeacherData(t);
+		}
 
 		// 페이지 이동 라벨 출력
 		AdminTeacherView.printTeacherSearch();
 
 		while (true) {
+			boolean inLoop = true;
 			// 새 이름 입력
 			String inputSearch = scan.nextLine();
 
 			if (inputSearch.equals("0")) { // 이전 메인 화면으로 이동
+				printGoToBeforePage(scan);
 				return;
 			} else if (inputSearch.equals("1")) { // 수정
-				AdminTeacherService.modifyTeacher(curTeacher);
+				if (curTeacherList.size() == 1) {
+					// 동명이인이 없을 경우
+					modifyTeacher(curTeacherList.get(0)); // 첫 번째인 유일한 회원 객체 바로 수정
+				} else {
+					// 동명이인이 있을 경우
+					// 해당 유저의 코드 받기
+					System.out.print("수정할 회원번호를 입력해주세요. : ");
 
-				// 바뀐 일반 회원의 정보 보여줌
-				AdminTeacherView.printTeacherListLabel("조회");
+					while (inLoop) {
+						String curTeacherNum = scan.nextLine();
 
-				// 추가
+						DataTeacher modifyTeacher = getTeacherByNum(curTeacherList, curTeacherNum);
+
+						// 코드가 일치하는지 검사
+						if (modifyTeacher != null) {
+							// 코드가 일치하는 경우 수정하기
+							modifyTeacher(modifyTeacher);
+
+							inLoop = false;
+						} else {
+							// 코드가 일치하지 않는 경우 다시 입력받기
+							System.out.print("해당 회원이 존재하지 않습니다. 다시 입력해주세요. : ");
+						}
+					}
+				}
+
 				return;
 
 			} else if (inputSearch.equals("2")) { // 삭제
-				curTeacher = AdminTeacherService.getTeacherObjectByName(inputName); // 변경된 데이터 리로드
 
-				if (curTeacher.getUsing() == 1) { // 이미 탈퇴한 회원인 경우
+				curTeacherList = getTeacherObjectByName(inputName); // 변경된 데이터 리로드
+				DataTeacher deleteTeacher = null;
+
+				if (curTeacherList.size() == 1) {
+					// 동명이인이 없을 경우
+					deleteTeacher = curTeacherList.get(0);
+				} else {
+					// 동명이인이 있을 경우
+					// 해당 유저의 코드 받기
+					System.out.print("수정할 회원번호를 입력해주세요. : ");
+
+					while (inLoop) {
+						String curTeacherNum = scan.nextLine();
+
+						deleteTeacher = getTeacherByNum(curTeacherList, curTeacherNum);
+
+						// 코드가 일치하는지 검사
+						if (deleteTeacher != null) {
+							// 코드가 일치하는 경우 객체를 찾아 나오기
+
+							inLoop = false;
+						} else {
+							// 코드가 일치하지 않는 경우 다시 입력받기
+							System.out.print("해당 회원이 존재하지 않습니다. 다시 입력해주세요. : ");
+						}
+					}
+				}
+
+				// 회원 객체 찾아오기
+				// 해당 회원이 탈퇴한 경우
+				if (deleteTeacher.getUsing() == 1) { // 이미 탈퇴한 회원인 경우
 					System.out.println("이미 탈퇴한 회원입니다.");
 					System.out.print("번호를 다시 입력해주세요. : ");
 					continue;
 				}
 
+				// 해당 회원이 탈퇴하지 않은 경우
 				// 탈퇴하지 않은 회원인 경우
-				AdminTeacherService.deleteTeacher(curTeacher);
-
-				AdminTeacherView.printTeacherListLabel("조회");
-				DataTeacher changedTeacher = AdminTeacherService.getTeacherObjectByName(inputName);
-				AdminTeacherService.printTeacherData(changedTeacher);
+				deleteTeacher(deleteTeacher);
 
 				return;
-
 			} else {
 				AdminTeacherView.printInvalidInput(); // 다시 입력받기
 			}
 		}
 	}
 
-	private static DataTeacher getTeacherObjectByName(String inputName) {
+	/**
+	 * 같은 이름의 강사 회원 리스트에서 회원 번호를 검색하여 해당 회원 번호를 가진 회원 객체를 반환하는 메소드입니다.
+	 * 
+	 * @param curTeacherList 같은 이름을 가진 강사 회원 리스트
+	 * @param curTeacherNum  강사 회원 번호
+	 * @return 해당 번호를 가진 강사 회원 객체
+	 */
+	private static DataTeacher getTeacherByNum(ArrayList<DataTeacher> curTeacherList, String curTeacherNum) {
+		for (DataTeacher t : curTeacherList) {
+			if (t.getTeacherCode().equals(curTeacherNum)) {
+				return t;
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * 이름으로 강사 회원 객체를 찾아 리스트에 넣고 반환하는 메소드입니다.
+	 * 
+	 * @param inputName 강사 회원 이름
+	 * @return 해당 이름을 가진 강사 회원들의 객체가 담긴 리스트
+	 */
+	private static ArrayList<DataTeacher> getTeacherObjectByName(String inputName) {
 		ArrayList<DataTeacher> teacherList = UserDbms.getTeacherAllList();
 
-		DataTeacher curTeacher = null;
+		ArrayList<DataTeacher> sameNameTeacherList = new ArrayList<>();
 
 		for (DataTeacher t : teacherList) {
 			// 있다면 - 해당 회원 객체 뽑아오기
 			if (t.getName().equals(inputName)) {
-				curTeacher = t;
-				break;
+				sameNameTeacherList.add(t);
 			}
 		}
 
-		return curTeacher;
+		return sameNameTeacherList;
 	}
 
+	/**
+	 * 강사 회원을 아이디로 검색하는 기능을 하는 메소드입니다.
+	 */
 	private static void searchById() {
 		// 회원 아이디 검색 문자열 출력
 		AdminTeacherView.printSearchTeacherId();
@@ -306,20 +415,20 @@ public class AdminTeacherService {
 			String inputSearch = scan.nextLine();
 
 			if (inputSearch.equals("0")) { // 이전 메인 화면으로 이동
+				printGoToBeforePage(scan);
 				return;
 			} else if (inputSearch.equals("1")) { // 수정
 				AdminTeacherService.modifyTeacher(curTeacher);
 
 				// 바뀐 일반 회원의 정보 보여줌
 				AdminTeacherView.printTeacherListLabel("조회");
-				DataTeacher changedTeacher = AdminTeacherService.getTeacherObjectById(inputId);
-				AdminTeacherService.printTeacherData(changedTeacher);
+				DataTeacher changedTeacher = getTeacherObjectById(inputId);
+				printTeacherData(changedTeacher);
 
-				// 추가
 				return;
 
 			} else if (inputSearch.equals("2")) { // 삭제
-				curTeacher = AdminTeacherService.getTeacherObjectById(inputId); // 변경된 데이터 리로드
+				curTeacher = getTeacherObjectById(inputId); // 변경된 데이터 리로드
 
 				if (curTeacher.getUsing() == 1) { // 이미 탈퇴한 회원인 경우
 					System.out.println("이미 탈퇴한 회원입니다.");
@@ -328,13 +437,11 @@ public class AdminTeacherService {
 				}
 
 				// 탈퇴하지 않은 회원인 경우
-				AdminTeacherService.deleteTeacher(curTeacher);
+				deleteTeacher(curTeacher);
 
 				AdminTeacherView.printTeacherListLabel("조회");
-				DataTeacher changedTeacher = AdminTeacherService.getTeacherObjectById(inputId);
-				AdminTeacherService.printTeacherData(changedTeacher);
-
-//						AdminUserView.printUserSearch();
+				DataTeacher changedTeacher = getTeacherObjectById(inputId);
+				printTeacherData(changedTeacher);
 
 				return;
 
@@ -344,6 +451,11 @@ public class AdminTeacherService {
 		}
 	}
 
+	/**
+	 * 강사 회원을 지우는 기능을 하는 메소드입니다.
+	 * 
+	 * @param t 강사 회원 객체
+	 */
 	private static void deleteTeacher(DataTeacher t) {
 		Scanner scan = new Scanner(System.in);
 
@@ -362,19 +474,8 @@ public class AdminTeacherService {
 			input = changeValidInput(input);
 
 			if (input.equals("Y")) {
-				// 삭제
-				// 파일 읽기
-				// 해당하는 회원 번호를 list에서 조회
-				// 마지막 값인 Using 값을 1로 변경한다.
-				// 해당 파일들을 합쳐 하나의 문자열로 변경한다.
-				// stringbuilder에 붙인다.
-				// 파일 읽기가 끝난다
-				// 파일 쓰기
-				// stringbuilder로 파일을 작성한다
-				// 데이터를 리로드한다.
-
 				// 파일 수정 -> 저장 -> 바뀐 데이터로 리로드
-				AdminTeacherService.changeTeacherUsingFile(t.getTeacherCode());
+				changeTeacherUsingFile(t.getTeacherCode());
 
 				System.out.println();
 				System.out.println("수정이 완료되었습니다.");
@@ -383,7 +484,8 @@ public class AdminTeacherService {
 
 				break;
 			} else if (input.equals("N")) {
-				printBackToBeforePage(scan);
+				System.out.println("취소를 선택했습니다.");
+				printGoToBeforePage(scan);
 
 				break;
 			} else {
@@ -392,13 +494,11 @@ public class AdminTeacherService {
 		}
 	}
 
-	private static void printBackToBeforePage(Scanner scan) {
-		System.out.println("취소를 선택했습니다.");
-		System.out.println("이전 화면으로 돌아갑니다.");
-		System.out.println("계속 하려면 엔터를 입력해주세요.");
-		scan.nextLine();
-	}
-
+	/**
+	 * 강사 회원이 탈퇴처리 되었을 때 파일에 변경하여 저장하는 메소드입니다.
+	 * 
+	 * @param teacherCode 강사 회원 번호
+	 */
 	private static void changeTeacherUsingFile(String teacherCode) {
 		try {
 			String path = "data/dataTeacher.txt";
@@ -450,6 +550,11 @@ public class AdminTeacherService {
 
 	}
 
+	/**
+	 * 강사 회원의 정보를 수정하는 메소드입니다.
+	 * 
+	 * @param t 변경할 강사 회원 객체
+	 */
 	private static void modifyTeacher(DataTeacher t) {
 		AdminTeacherView.printTeacherDataModify();
 
@@ -483,6 +588,13 @@ public class AdminTeacherService {
 
 	}
 
+	/**
+	 * 강사 회원의 전화번호를 변경하는 메소드입니다.
+	 * 
+	 * @param t    변경할 강사 회원 객체
+	 * @param scan 스캐너
+	 * @return 메소드 실행 성공 여부
+	 */
 	private static boolean modifyTeacherTel(DataTeacher t, Scanner scan) {
 		boolean invalid = false;
 
@@ -512,7 +624,8 @@ public class AdminTeacherService {
 		} else if (input.equals("N")) {// 수정하지 않을 경우
 			// 회원 아이디 검색 화면으로 이동 (이전 페이지)
 			// 작성하기
-			printBackToBeforePage(scan);
+			System.out.println("취소를 선택했습니다.");
+			printGoToBeforePage(scan);
 
 		} else { // 유효하지 않은 입력
 			AdminTeacherView.printInvalidInput();
@@ -521,6 +634,12 @@ public class AdminTeacherService {
 		return invalid;
 	}
 
+	/**
+	 * 강사 회원의 전화번호가 바뀌었을 때 파일에 저장하는 메소드입니다.
+	 * 
+	 * @param teacherCode 강사 회원 번호
+	 * @param input       새 전화번호
+	 */
 	private static void changeTeacherTelFile(String teacherCode, String input) {
 		try {
 			String path = "data/dataTeacher.txt";
@@ -565,6 +684,13 @@ public class AdminTeacherService {
 		}
 	}
 
+	/**
+	 * 강사 회원의 이름을 변경하는 메소드입니다.
+	 * 
+	 * @param t    변경할 강사 회원 객체
+	 * @param scan 스캐너
+	 * @return 성공 여부
+	 */
 	private static boolean modifyTeacherName(DataTeacher t, Scanner scan) {
 		boolean invalid = false;
 
@@ -594,7 +720,8 @@ public class AdminTeacherService {
 		} else if (sel.equals("N")) {// 수정하지 않을 경우
 			// 회원 아이디 검색 화면으로 이동 (이전 페이지)
 			// 작성하기
-			printBackToBeforePage(scan);
+			System.out.println("취소를 선택했습니다.");
+			printGoToBeforePage(scan);
 
 		} else { // 유효하지 않은 입력
 			AdminTeacherView.printInvalidInput();
@@ -603,6 +730,12 @@ public class AdminTeacherService {
 		return invalid;
 	}
 
+	/**
+	 * 강사 회원의 이름이 변경되었을 때 파일을 변경하여 저장하는 메소드입니다.
+	 * 
+	 * @param teacherCode 강사 회원 번호
+	 * @param newName     새 이름
+	 */
 	private static void changeTeacherNameFile(String teacherCode, String newName) {
 
 		try {
@@ -655,19 +788,43 @@ public class AdminTeacherService {
 		}
 	}
 
+	/**
+	 * 적합한 입력값으로 변경하는 메소드입니다.
+	 * 
+	 * @param sel 입력값
+	 * @return 변경된 입력값
+	 */
 	private static String changeValidInput(String sel) {
 		sel = changeInputTrim(sel);
 		return changeInputUpper(sel);
 	}
 
+	/**
+	 * 입력값을 대문자로 변경하는 메소드입니다.
+	 * 
+	 * @param sel 입력값
+	 * @return 대문자로 변경된 입력값
+	 */
 	private static String changeInputUpper(String sel) {
 		return sel.toUpperCase();
 	}
 
+	/**
+	 * 입력값의 공백문자를 제거해주는 메소드입니다.
+	 * 
+	 * @param sel 입력값
+	 * @return 공백이 사라진 입력값
+	 */
 	private static String changeInputTrim(String sel) {
 		return sel.trim();
 	}
 
+	/**
+	 * 아이디로 강사 회원 객체를 찾아 반환하는 메소드입니다.
+	 * 
+	 * @param inputId 강사 회원 아이디
+	 * @return 해당 아이디를 가진 강사 회원 객체
+	 */
 	private static DataTeacher getTeacherObjectById(String inputId) {
 		ArrayList<DataTeacher> teacherList = UserDbms.getTeacherAllList();
 

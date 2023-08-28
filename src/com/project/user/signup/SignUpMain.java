@@ -2,8 +2,17 @@ package com.project.user.signup;
 
 import java.util.Scanner;
 
+/**
+ * 
+ * 회원가입 메인화면 클래스
+ *
+ */
 public class SignUpMain {
-	public static void main(String[] args) {
+	
+	/**
+	 * 회원가입 유형 선택 메소드
+	 */
+	public static void signUpProcess() {
 
 		int num = 0;
 

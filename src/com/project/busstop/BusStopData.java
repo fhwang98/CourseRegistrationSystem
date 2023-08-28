@@ -12,6 +12,12 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+/**
+ * Open API를 사용하여 셔틀 버스 정류장의 데이터를 가져오고 저장하는 클래스 입니다.
+ * 
+ * @author 황은하
+ *
+ */
 public class BusStopData {
 	public final static String KEY = "CyGDxLq3m558%2BnuTh5ZIGVs1ZsV%2FJYNhvoIKPq4gnApUrtPtRi8tUaWziDwY%2BCrYVF%2BimSzN7lTocuLE0kVDzQ%3D%3D";
 
@@ -24,7 +30,9 @@ public class BusStopData {
 		BusStopData.busStopNameSet = new HashSet<>();
 	}
 
-	// 버스정류장 데이터를 open api를 이용하여 가져온 후 list에 저장
+	/**
+	 * open api를 이용하여 버스정류장 데이터를 가져온 후 list에 저장하는 메소드입니다.
+	 */
 	public static void load() {
 
 		// 1. 요청 URL 만들기
@@ -86,7 +94,12 @@ public class BusStopData {
 		}
 	}
 
-	// 버스정류장 이름이 같은 것이 있는지 확인하기.
+	/**
+	 * 버스정류장 이름이 같은 것이 있는지 확인하는 메소드입니다.
+	 * 
+	 * @param bName 정류장명
+	 * @return 중복이면 true, 아니면 false
+	 */
 	private static boolean hasBusStopName(String bName) {
 		if (BusStopData.busStopNameSet.contains(bName)) {
 			return true;
@@ -96,7 +109,12 @@ public class BusStopData {
 		}
 	}
 
-	// 가져온 값이 null이면 null을 반환하고, null이 아닌 값이 들어있다면 문자열로 형변환하여 반환한다.
+	/**
+	 * 가져온 시간 값이 null이면 null을 반환하고, null이 아닌 값이 들어있다면 문자열로 형변환하여 반환하는 메소드입니다.
+	 * 
+	 * @param data 시간이 담겨있는 객체
+	 * @return 담겨있다면 객체를 문자열로 변환한 것, 없다면 그대로 null
+	 */
 	private static String timeValueToValidString(Object data) {
 		if (data == null) {
 			return null;

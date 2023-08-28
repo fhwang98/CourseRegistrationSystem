@@ -6,17 +6,26 @@ import java.util.Scanner;
 
 import com.project.auth.AuthDbms;
 import com.project.main.MainView;
-
+/**
+ * 
+ * 회원 마이페이지의 기능동작을 담당하는 클래스입니다.
+ * @author 이연섭
+ *
+ */
 public class MyPageService {
-
-	public static void memCheck() {
+	/**
+	 * 
+	 * 회원 정보 조회 메서드입니다.
+	 * @param loginCode 회원의 정보를 식별하기위한 인자입니다.
+	 */
+	public static void memCheck(String loginCode) {
 		
 		MyPageView.subTitle("내 정보 조회");
 		
-		String id = "otqapf7199"; // TODO 로그인 연동
+		String no = loginCode;
 		
 		for (Member m : MyPageData.memberList) {
-			if (m.getId().equals(id)) {
+			if (m.getNo().equals(no)) {
 				
 				String phoneNum = m.getPhoneNum();
 				
@@ -51,13 +60,17 @@ public class MyPageService {
 		MyPageView.pause();
 		
 	}
-
-	public static void memChange() {
+	/**
+	 * 
+	 * 회원 정보 수정 메서드입니다.
+	 * @param loginCode 회원의 정보를 식별하기위한 인자입니다.
+	 */
+	public static void memChange(String loginCode) {
 		
 		MyPageView.subTitle("내 정보 수정");
 		MyPageView.changeList();
 		
-		String id = "otqapf7199"; // TODO 로그인 연동
+		String no = loginCode; 
 		
 		Scanner scan = new Scanner(System.in);
 		
@@ -84,17 +97,16 @@ public class MyPageService {
 							
 							loop = false;
 							for (Member m : MyPageData.memberList) {
-								if (m.getId().equals(id)) {
+								if (no.equals(m.getNo())) {
 									m.setName(name);
+									break;
 								}
-								break;
 							}
 							
 						} else {
 							System.out.print("잘못된 이름입니다. 다시 입력해주세요. ");
 						}
 					}
-					
 					
 					MyPageView.changeComplete();
 					
@@ -111,10 +123,10 @@ public class MyPageService {
 							loop = false;
 							
 							for (Member m : MyPageData.memberList) {
-								if (m.getId().equals(id)) {
+								if (m.getNo().equals(no)) {
 									m.setPhoneNum(phone);
+									break;
 								}
-								break;
 							}
 							
 						} else {
@@ -137,7 +149,7 @@ public class MyPageService {
 						if (discount.matches("[1-4]"))  {
 							loop = false;
 							for (Member m : MyPageData.memberList) {
-								if (m.getId().equals(id)) {
+								if (m.getNo().equals(no)) {
 									m.setDiscount(discount);
 									break;
 								}
@@ -167,12 +179,12 @@ public class MyPageService {
 						
 						if (accountNum.matches("[0-9]+")) {
 							for (Member m : MyPageData.memberList) {
-								if (m.getId().equals(id)) {
+								loop = false;
+								if (m.getNo().equals(no)) {
 									m.setBank(bank);
 									m.setAccountNum(accountNum);
+									break;
 								}
-								loop = false;
-								break;
 							}
 						} else {
 							System.out.print("잘못된 계좌번호입니다. 다시 입력해주세요. ");
@@ -211,10 +223,10 @@ public class MyPageService {
 								} else {
 									loop = false;
 									for (Member m : MyPageData.memberList) {
-										if (m.getId().equals(id)) {
+										if (m.getNo().equals(no)) {
 											m.setBirth(birth);
+											break;
 										}
-										break;
 									}
 								}
 							} else {
@@ -224,10 +236,10 @@ public class MyPageService {
 								} else {
 									loop = false;
 									for (Member m : MyPageData.memberList) {
-										if (m.getId().equals(id)) {
+										if (m.getNo().equals(no)) {
 											m.setBirth(birth);
+											break;
 										}
-										break;
 									}
 								}
 							}
@@ -239,22 +251,26 @@ public class MyPageService {
 					MyPageView.changeComplete();
 				}
 				MyPageView.pause();
+				MyPageData.save();
 				break;
 			}
 		}
 		
 		
-		
 	}
-
-	public static void classCheck() {
+	/**
+	 * 
+	 * 수강 내역 조회 메서드입니다.
+	 * @param loginCode 회원의 정보를 식별하기위한 인자입니다.
+	 */
+	public static void classCheck(String loginCode) {
 		
 		MyPageView.subTitle("수강 내역 조회");
 		
-		String id = "otqapf7199"; // TODO 로그인 연동
+		String no = loginCode;
 		
 		for (Member m : MyPageData.memberList) {
-			if (m.getId().equals(id)) {
+			if (m.getNo().equals(no)) {
 				for (History h : MyPageData.historyList) {
 					if (m.getNo().equals(h.getMemberNum())) {
 						for (Course c : MyPageData.courseList) {
@@ -328,16 +344,19 @@ public class MyPageService {
 				}
 			}
 		}
-		
 		MyPageView.pause();
 		
 	}
-
-	public static void classDelete() {
+	/**
+	 * 
+	 * 수강 신청 취소 메서드입니다. 수강 내역 데이터의 값을 삭제합니다.
+	 * @param loginCode 회원의 정보를 식별하기위한 인자입니다.
+	 */
+	public static void classDelete(String loginCode) {
 		
 		MyPageView.subTitle("수강 신청 취소");
 		
-		String id = "otqapf7199"; // TODO 로그인 연동
+		String no = loginCode; 
 		
 		System.out.println("0. 마이페이지");
 		System.out.println("===========================");
@@ -345,7 +364,7 @@ public class MyPageService {
 		int num = 0;
 		
 		for (Member m : MyPageData.memberList) {
-			if (m.getId().equals(id)) {
+			if (m.getNo().equals(no)) {
 				for (History h : MyPageData.historyList) {
 					if (m.getNo().equals(h.getMemberNum())) {
 						for (Course c : MyPageData.courseList) {
@@ -381,16 +400,15 @@ public class MyPageService {
 		System.out.print("취소하고 싶은 강좌 번호를 입력하세요: ");
 		int deleteSelect = sc.nextInt();
 
-		int num1 = 0;
 		num = 0;
 		if (deleteSelect == 0) {
 		} else {
 			for (Member m : MyPageData.memberList) {
-			    if (m.getId().equals(id)) {
+			    if (m.getNo().equals(no)) {
 			    	Iterator<History> history = MyPageData.historyList.iterator();
 			    	while (history.hasNext()) {
 			    	    History h = history.next();
-			    	    num1++;
+			    	    
 			    	    if (m.getNo().equals(h.getMemberNum())) {
 			    	        for (Course c : MyPageData.courseList) {
 			    	            if (h.getCourseNum().equals(c.getCourseNum())) {
@@ -421,24 +439,29 @@ public class MyPageService {
 			    }
 			}
 		}
+		MyPageData.save();
 		MyPageView.pause();
 	}
-	
+	/**
+	 * 
+	 * 로그아웃을 하기 위한 메서드입니다.
+	 * 로그아웃이 되었다는 문구를 출력합니다.
+	 */
 	public static void logout() {
 		
-		// TODO 로그아웃 후 메인 연결
-//		AuthDbms abc = new AuthDbms();
-//		abc.selectAuth().clear();
-		
-		MainView.MainScreen();
+		System.out.println("로그아웃합니다.");
 		
 	}
-	
-	public static void memDelete() {
+	/**
+	 * 
+	 * 회원 탈퇴 메서드입니다. 회원의 정보를 삭제합니다.
+	 * @param loginCode 회원의 정보를 식별하기위한 인자입니다.
+	 */
+	public static void memDelete(String loginCode) {
 		
 		MyPageView.subTitle("회원 영구 탈퇴");
 		
-		String id = "otqapf7199"; // TODO 로그인 연동
+		String no = loginCode; 
 		
 		System.out.println();
 		System.out.println("탈퇴한 계정은 절대 복구되지 않습니다.\n"
@@ -459,10 +482,11 @@ public class MyPageService {
 				while (member.hasNext()) {
 					Member m = member.next();
 					
-					if (m.getId().equals(id)) {
+					if (m.getNo().equals(no)) {
 						member.remove();
 						System.out.println("회원을 탈퇴하였습니다.");
 						loop = false;
+						break;
 					}
 				}
 				
@@ -472,6 +496,9 @@ public class MyPageService {
 			} else {
 				System.out.println("잘못 입력하였습니다. 다시 입력해주세요.");
 			}	
-		}	
+		}
+		MyPageData.save();
 	}
+	
+	
 }

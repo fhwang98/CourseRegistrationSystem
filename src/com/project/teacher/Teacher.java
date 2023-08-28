@@ -5,6 +5,9 @@ import com.project.user.login.LoginTeacher;
 import com.project.user.data.DataTeacher;
 import com.project.user.data.UserDbms;
 import com.project.auth.Auth;
+import com.project.authentication.Authentication;
+import com.project.main.MainView;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -12,23 +15,33 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * 강사 마이페이지의 기능을 담당하는 클래스입니다.
+ *
+ */
 public class Teacher {
+
+	/**
+	 * 강사 마이페이지를 출력하고 선택지에 따라 출력하는 화면을 연결시켜주는 메소드입니다.
+	 */
 
 	public static void mypage() {
 
 		Scanner scan = new Scanner(System.in);
 
 		int input = 0;
+		String input2 = "";
 
-		System.out.println("          강사 마이페이지");
-		System.out.println("—-------------------------------------");
+		System.out.println("         강사 마이페이지");
+		System.out.println("—----------------------------");
 		System.out.println("0. 메인화면 돌아가기");
 		System.out.println("1. 내 정보 조회/수정");
 		System.out.println("2. 회원 탈퇴");
-		System.out.println("—-------------------------------------");
+		System.out.println("—----------------------------");
 		System.out.print("번호 입력 : ");
 
 		input = scan.nextInt();
+		scan.nextLine();
 
 		if (input == 0) {
 
@@ -39,8 +52,24 @@ public class Teacher {
 			Teacher.checkInformation();
 
 		} else if (input == 2) {
-
 			
+			System.out.println("정말로 회원 탈퇴하시겠습니까? (Y/N)");
+			System.out.println("Y 또는 N 입력: ");
+			input2 =scan.nextLine();
+			
+			if(input2.equals("Y")) {
+				
+				Authentication.loginUserCode = null;
+				
+				System.out.println("회원 탈퇴되었습니다.");
+				
+			} else {
+				
+				TeacherMain.LoginTeacher(null);
+				
+			}
+			
+			MainView.MainScreen();
 
 		} else {
 
@@ -48,11 +77,14 @@ public class Teacher {
 		}
 	}
 
+	/**
+	 * 강사 마이페이지 기능 중 내 정보 조회를 담당하는 메소드 입니다.
+	 */
 	public static void checkInformation() {
 
-		String id = "aldfjsk0425";
-		String code = "T001";
-		
+		//String id = "aldfjsk0425";
+		String code = Authentication.loginUserCode;
+		 
 		Scanner scan = new Scanner(System.in);
 
 		UserDbms list = new UserDbms();
@@ -71,18 +103,20 @@ public class Teacher {
 
 		for (DataTeacher data : allTeacherList) {
 
-			if (data.getId().equals(id)) {
+			if (data.getTeacherCode().equals(code)) {
 				int input = 0;
 				String name = "";
 				String phone = "";
 				
-				System.out.println("    강사 마이페이지 > 내 정보 조회 및 수정");
+				System.out.println("            내 정보 조회 및 수정");
 				System.out.println("—-------------------------------------");
 				System.out.println("아이디: " + data.getId());
 				System.out.println("이름: " + data.getName());
 				System.out.println("전화번호: " + data.getTel());
 				System.out.println("강사코드: " + data.getTeacherCode());
 				System.out.println("0. 마이페이지 돌아가기");
+				System.out.println();
+				System.out.println("수정가능한 항목");
 				System.out.println("1. 이름");
 				System.out.println("2. 전화번호");
 				System.out.println("—-------------------------------------");
@@ -182,7 +216,6 @@ public class Teacher {
 			String path = "data/dataTeacher.txt";
 
 			BufferedReader reader = new BufferedReader(new FileReader(path));
-			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
 
 			String line = null;
 
@@ -213,9 +246,10 @@ public class Teacher {
 			}
 
 			// 파일 작성
-			writer.write(sb.toString());
 
 			reader.close();
+			BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+			writer.write(sb.toString());
 			writer.close();
 
 		} catch (Exception e) {

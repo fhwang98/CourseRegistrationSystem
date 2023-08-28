@@ -30,7 +30,7 @@ public class MainView {
 		        lMain.LoginProcess();
 				mainView();
 			} else if (input.equals("2")) {
-				SignUpMain.main(null);
+				SignUpMain.signUpProcess();
 				mainView();
 			} else if (input.equals("3")) {
 				CourseInfo.courseInfo();

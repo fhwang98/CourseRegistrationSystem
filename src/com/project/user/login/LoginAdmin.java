@@ -6,8 +6,17 @@ import com.project.authentication.Authentication;
 import com.project.user.data.DataAdmin;
 import com.project.user.data.UserDbms;
 
+/**
+ * 
+ * 관리자 회원 로그인 클래스
+ *
+ */
 public class LoginAdmin {
-
+	
+	/**
+	 * 
+	 * 관리자 회원의 로그인을 위한 정보를 입력받는 메소드
+	 */
 	public static DataAdmin login() {
 		String id = "";
 		String password = "";
