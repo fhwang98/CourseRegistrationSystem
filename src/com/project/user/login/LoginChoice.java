@@ -75,7 +75,7 @@ public class LoginChoice {
 				auth.setName(a.getName());
 				main.getLoginAList().add(a);
 				
-				AdminMain.controlAdmin(a);
+				AdminMain.controlAdmin();
 			}
 		}
 		

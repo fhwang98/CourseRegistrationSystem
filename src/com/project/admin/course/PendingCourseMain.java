@@ -6,6 +6,11 @@ import com.project.admin.AdminUtil;
 import com.project.admin.AdminView;
 import com.project.courseinfo.CourseData;
 
+/**
+ * 승인 대기 강좌를 관리하는 클래스입니다.
+ * @author eugene
+ *
+ */
 public class PendingCourseMain {
 
 	private static Scanner scan;
@@ -15,7 +20,9 @@ public class PendingCourseMain {
 		scan = new Scanner(System.in);
 	}
 
-	
+	/**
+	 * 승인 대기 강좌 메뉴의 루프와 페이지 컨트롤을 담당하는 메소드 입니다.
+	 */
 	public static void controlPendingCourse() {
 		
 		PendingCourseData.load();
@@ -67,6 +74,10 @@ public class PendingCourseMain {
 		}
 	}
 	
+	/**
+	 * 승인대기강좌 하나를 선택해 할 수 있는 행동을 컨트롤하는 메소드 입니다.
+	 * @param page
+	 */
 	public static void checkingControl(int page) {
 	
 		System.out.println("내용을 확인하고 싶은 대기 강좌의 번호를 입력하세요.");

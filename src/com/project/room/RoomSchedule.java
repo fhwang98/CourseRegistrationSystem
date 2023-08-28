@@ -1,5 +1,10 @@
 package com.project.room;
 
+/**
+ * 강의실 스케줄 데이터를 저장할 클래스입니다.
+ * @author eugene
+ *
+ */
 public class RoomSchedule {
 
 	private String roomNum;

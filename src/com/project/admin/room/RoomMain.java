@@ -7,9 +7,16 @@ import com.project.admin.AdminView;
 import com.project.room.RoomData;
 import com.project.room.RoomScheduleData;
 
+/**
+ * 관리자의 강의실 관련 기능을 컨트롤하는 클래스 입니다.
+ * @author eugene
+ *
+ */
 public class RoomMain {
 	
-
+	/**
+	 * 관리자의 강의실 관련 메뉴를 컨트롤하는 메소드 입니다.
+	 */
 	public static void controlRoom() {
 		
 		RoomScheduleData.load();

@@ -9,6 +9,11 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Random;
 
+/** 
+ * 공지사항 데이터를 관리하는 클래스입니다.
+ * @author eugene
+ *
+ */
 public class NoticeData {
 	
 	private static ArrayList<Notice> list;
@@ -21,6 +26,10 @@ public class NoticeData {
 		return list;
 	}
 
+	/**
+	 * ArrayList에 저장된 공지사항 데이터를 파일에 저장하는 메소드입니다.
+	 * @param list
+	 */
 	public static void update(ArrayList<Notice> list) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter("data/dataNotice.txt"));
@@ -36,6 +45,9 @@ public class NoticeData {
 		}
 	}
 
+	/** 
+	 * 공지사항 데이터 파일을 불러와 ArrayList에 저장하는 메소드 입니다.
+	 */
 	public static void load() {
 		
 				try {
@@ -60,7 +72,9 @@ public class NoticeData {
 				}
 	}
 	
-
+	/**
+	 * 공지사항 더미파일을 만드는 메소드 입니다.
+	 */
 	public void getDummy() {
 		ArrayList<Notice> list = new ArrayList<Notice>();
 

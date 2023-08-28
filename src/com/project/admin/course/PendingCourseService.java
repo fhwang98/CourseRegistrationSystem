@@ -11,10 +11,20 @@ import com.project.courseinfo.CourseData;
 import com.project.room.Room;
 import com.project.room.RoomData;
 
+/**
+ * 승인 대기 강좌 메뉴에서 할 수 있는 기능들을 모아놓은 클래스입니다.
+ * @author eugene
+ *
+ */
 public class PendingCourseService {
 
 	
-	
+	/**
+	 * 승인 대기중인 강좌의 강의실과 강좌코드를 배정하고
+	 * 전체 강좌리스트에 추가한 뒤
+	 * 상태를 승인으로 변경하는 메소드 입니다.
+	 * @param index
+	 */
 	public static void acceptCourse(int index) {
 		
 		Scanner scan = new Scanner(System.in);
@@ -88,6 +98,7 @@ public class PendingCourseService {
 		scan.nextLine();
 	}
 
+	
 	private static void updateDataCourseFile(Course c) {
 		try {
 			BufferedWriter writer = new BufferedWriter (new FileWriter("data/dataCourse.txt", true));
@@ -174,6 +185,10 @@ public class PendingCourseService {
 		
 	}
 
+	/**
+	 * 승인 대기 강좌를 반려상태로 변경하는 메소드 입니다.
+	 * @param index
+	 */
 	public static void rejectCourse(int index) {
 		
 

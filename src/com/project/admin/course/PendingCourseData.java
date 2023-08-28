@@ -7,20 +7,31 @@ import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * 승인 대기 중인 강좌의 데이터를 관리하는 클래스 입니다.
+ * @author eugene
+ *
+ */
 public class PendingCourseData {
 
-	
+
 	private static ArrayList<PendingCourse> list;
 	
 	static {
 		list = new ArrayList<PendingCourse>();
 	}
 	
-
+	/**
+	 * 승인 대기중 강좌 데이터를 저장한 리스트를 불러올 getter입니다.
+	 * @return
+	 */
 	public static ArrayList<PendingCourse> getList() {
 		return list;
 	}
-	
+
+	/**
+	 * 승인 대기중 강좌를 승인상태에 따라 정렬하는 메소드 입니다.
+	 */
 	public static void sortList() {
 		
 		ArrayList<PendingCourse> sortedList = new ArrayList<PendingCourse>();
@@ -44,17 +55,10 @@ public class PendingCourseData {
 		
 	}
 	
-	/*
-		private String courseName;
-		private String dayOfWeek;
-		private String startTime; 숫자 2개만 받음 06~22
-		private String category;
-		private String target;
-		private String capacity; 수강정원 ... 안하기로했는데.... 신청인원...?
-		private String courseExplanation;
-	
-	*/
-	
+
+	/**
+	 * 승인대기 강좌의 더미데이터를 생성하는 메소드입니다.
+	 */
 	public static void getDummy() {
 		
 		String[] dow = {"월", "화", "수", "목", "금"};
@@ -89,6 +93,9 @@ public class PendingCourseData {
 		}
 	}
 	
+	/**
+	 * 승인대기 강좌의 데이터를 파일에서 불러와 ArrayList에 저장하는 메소드 입니다.
+	 */
 	public static void load() {
 		
 		try {
@@ -109,6 +116,9 @@ public class PendingCourseData {
 		}
 	}
 	
+	/**
+	 * 승인 대기 강좌의 ArrayList를 파일에 저장하는 메소드 입니다.
+	 */
 	public static void update() { //덮어쓰기
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter("data/dataPendingCourse.txt"));
@@ -123,6 +133,10 @@ public class PendingCourseData {
 		}
 	}
 	
+	/**
+	 * 승인대기 강좌 하나를 파일에 추가하는 메소드입니다.
+	 * @param p
+	 */
 	public static void update(PendingCourse p) { //이어쓰기
 	      try {
 	         BufferedWriter writer = new BufferedWriter(new FileWriter("data\\dataPendingCourse.txt", true));

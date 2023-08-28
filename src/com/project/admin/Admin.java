@@ -1,5 +1,10 @@
 package com.project.admin;
 
+/**
+ * 관리자의 회원정보를 저장할 클래스입니다.
+ * @author eugene
+ *
+ */
 public class Admin {
 
 	private String adminNo;

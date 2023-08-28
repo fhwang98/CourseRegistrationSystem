@@ -6,8 +6,16 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+/**
+ * 관리자의 회원정보를 관리하는 클래스입니다.
+ * @author eugene
+ *
+ */
 public class AdminData {
 
+	/**
+	 * 관리자의 회원정보가 담긴 리스트입니다.
+	 */
 	public static ArrayList<Admin> adminList; 
 		
 	static {
@@ -18,6 +26,9 @@ public class AdminData {
 		return adminList;
 	}
 	
+	/**
+	 * 관리자의 회원정보가 담긴 파일을 불러와 리스트에 저장합니다.
+	 */
 	public static void load() {
 		
 		try {
@@ -51,6 +62,9 @@ public class AdminData {
 		
 	}
 	
+	/**
+	 * 리스트에 있는 관리자의 정보를 파일에 저장합니다.
+	 */
 	public static void update() {
 		
 		try {

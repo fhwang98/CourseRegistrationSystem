@@ -1,5 +1,10 @@
 package com.project.admin.course;
 
+/**
+ * 승인 대기중인 강좌의 데이터를 담을 클래스 입니다.
+ * @author eugene
+ *
+ */
 public class PendingCourse {
 
 	/*

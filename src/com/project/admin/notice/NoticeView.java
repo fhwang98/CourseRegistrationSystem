@@ -24,9 +24,9 @@ public class NoticeView {
 	
 	public static void printPosting() {
 		
-		System.out.println("=============================================");
-		System.out.println("\t\t공지사항 등록");
-		System.out.println("=============================================");
+		System.out.println("===========================");
+		System.out.println("\t\t\t공지사항 등록");
+		System.out.println("===========================");
 		
 		System.out.println("새로운 공지사항을 작성합니다.");
 	}
@@ -80,13 +80,13 @@ public class NoticeView {
 	
 
 	public static void printOpenedNoticeMenu() {
-		System.out.println("=============================================");
-		System.out.println("---------------------------------------------");
+		System.out.println("===========================");
+		System.out.println("------------------------------------");
 		System.out.println("0. 뒤로가기");
 		System.out.println("1. 제목 수정");
 		System.out.println("2. 내용 수정");
 		System.out.println("3. 삭제");
-		System.out.println("---------------------------------------------");
+		System.out.println("------------------------------------");
 		System.out.print("번호 입력: ");
 	}
 
@@ -98,7 +98,7 @@ public class NoticeView {
 		
 		System.out.println("[번호]\t[제목]");
 		for (int i = 0; i < ((lastindex / 10 == 0) ? lastindex % 10 + 1 : 10); i++) {
-			System.out.printf("%4d.\t", i + 1);
+			System.out.printf("%4d.\t\t", i + 1);
 			System.out.println(NoticeData.getList().get(lastindex - i).getTitle());
 		}
 		
@@ -107,7 +107,7 @@ public class NoticeView {
 	}
 
 	private static void printNoticeListMenu(int page) {
-		System.out.println("---------------------------------------------");
+		System.out.println("------------------------------------");
 
 				
 		System.out.println("0. 뒤로가기");
@@ -127,14 +127,14 @@ public class NoticeView {
 			
 		}
 
-		System.out.println("---------------------------------------------");
+		System.out.println("------------------------------------");
 
 	}
 
 	private static void printNoticeHead() {
-		System.out.println("=============================================");
-		System.out.println("\t\t\s\s\s공지사항");
-		System.out.println("=============================================");
+		System.out.println("===========================");
+		System.out.println("\t\t\t공지사항");
+		System.out.println("===========================");
 	}
 
 }

@@ -13,6 +13,11 @@ import com.project.notice.NoticeData;
 import com.project.user.data.DataTeacher;
 import com.project.user.data.UserDbms;
 
+/**
+ * 관리자의 공지사항 관련 기능을 모아놓은 클래스 입니다.
+ * @author eugene
+ *
+ */
 public class NoticeService {
 	
 	private static Scanner scan;
@@ -23,6 +28,9 @@ public class NoticeService {
 	
 	
 	//공지사항 등록 구현
+	/**
+	 * 공지사항을 등록하는 메소드입니다.
+	 */
 	public static void addNotice() {
 		
 		System.out.println("새로운 공지사항을 등록합니다. ");
@@ -89,6 +97,10 @@ public class NoticeService {
 		return true;
 	}
 
+	/**
+	 * 공지사항의 제목을 수정하는 메소드입니다.
+	 * @param noticeNo
+	 */
 	public static void modifyNoticeTitle(int noticeNo) {
 		
 		System.out.println("제목을 입력해 주세요.(20자 이내)");
@@ -110,6 +122,10 @@ public class NoticeService {
 		
 	}
 	
+	/**
+	 * 공지사항의 내용을 수정하는 메소드입니다.
+	 * @param noticeNo
+	 */
 	public static void modifyNoticeContent(int noticeNo) {
 		
 		String inputContent = getContent();
@@ -140,6 +156,10 @@ public class NoticeService {
 		return input;
 	}
 	
+	/**
+	 * 공지사항을 삭제하는 메소드입니다.
+	 * @param noticeNo
+	 */
 	public static void deleteNotice(int noticeNo) {
 		System.out.println();
 		System.out.println("공지사항을 삭제합니다.");

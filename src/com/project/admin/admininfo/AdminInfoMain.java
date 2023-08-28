@@ -11,6 +11,11 @@ import com.project.user.data.DataAdmin;
 import com.project.user.data.DataTeacher;
 import com.project.user.data.UserDbms;
 
+/**
+ * 관리자의 정보 데이터를 담을 클래스입니다.
+ * @author eugene
+ *
+ */
 public class AdminInfoMain {
 
 	UserDbms list = new UserDbms();

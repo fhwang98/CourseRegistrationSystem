@@ -11,6 +11,11 @@ import com.project.authentication.Authentication;
 import com.project.notice.NoticeData;
 import com.project.user.data.DataAdmin;
 
+/**
+ * 관리자 로그인 화면을 컨트롤하는 클래스입니다.
+ * @author eugene
+ *
+ */
 public class AdminMain {
 	
 	public static boolean loop;
@@ -19,7 +24,11 @@ public class AdminMain {
 		loop = true;
 	}
 
-	public static void controlAdmin(DataAdmin a) {
+	/**
+	 * 관리자 로그인 화면의 선택지를 컨트롤하는 메소드입니다.
+	 * @param a
+	 */
+	public static void controlAdmin() {
 
 		Scanner scan = new Scanner(System.in);
 

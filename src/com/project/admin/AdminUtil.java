@@ -1,26 +1,29 @@
 package com.project.admin;
 
+/**
+ * 관리자 기능 전체에서 필요할만한 메소드를 모아둔 클래스 입니다.
+ * @author eugene
+ *
+ */
 public class AdminUtil {
 
-	public static boolean isDigit(String sel) {
+	private static boolean isDigit(String sel) {
 		//길이가 0일때
-		if (sel.length() == 0) {
+		if (!sel.matches("[0-9]{1,2}")) {
 			return false;
-		}
-		for (int i = 0; i < sel.length(); i++) {
-			if (sel.charAt(i) < '0' || sel.charAt(i) > '9') {
-				return false;
-			}
 		}
 		return true;
 	}
 	
-
-	
+	/**
+	 * 스캐너로 입력받은 값의 유효성 검사를 진행하는 메소드 입니다.
+	 * @param input
+	 * @param min
+	 * @param max
+	 * @return
+	 */
 	public static int isValidSel(String input, int min, int max) {
-		
-		input = input.replaceAll("(\\s||\\t|\\r\\n|\\n)", "");
-		
+
 		if (!isDigit(input)) {
 			return -1;
 		}

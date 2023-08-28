@@ -6,6 +6,11 @@ import com.project.admin.AdminUtil;
 import com.project.admin.AdminView;
 import com.project.notice.NoticeData;
 
+/**
+ * 관리자의 공지사항 관련 기능을 컨트롤하는 클래스입니다.
+ * @author eugene
+ *
+ */
 public class NoticeMain {
 
 	private static int page;
@@ -31,6 +36,9 @@ public class NoticeMain {
 		return lastpage;
 	}
 
+	/**
+	 * 공지사항 페이지와 메뉴를 컨트롤하는 메소드입니다.
+	 */
 	public static void controlNoticeMain() {
 		NoticeData.load();
 		 //공지사항 전체 루프
@@ -110,6 +118,9 @@ public class NoticeMain {
 		}
 	}
 	
+	/**
+	 * 공지사항 글 하나를 컨트롤하는 메소드 입니다.
+	 */
 	private static void checkingControl() {
 		
 		checkingLoop = true;

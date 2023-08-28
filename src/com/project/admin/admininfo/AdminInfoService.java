@@ -4,6 +4,11 @@ import com.project.admin.AdminData;
 import com.project.authentication.Authentication;
 import com.project.admin.Admin;
 
+/**
+ * 로그인한 관리자의 정보를 출력하는 메소드 입니다.
+ * @author eugene
+ *
+ */
 public class AdminInfoService {
 
 	public static void check() {

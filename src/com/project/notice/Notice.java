@@ -2,6 +2,11 @@ package com.project.notice;
 
 import java.util.Calendar;
 
+/**
+ * 공지사항 데이터를 저장하기 위한 클래스 입니다.
+ * @author eugene
+ *
+ */
 public class Notice {
 
 	private int no;

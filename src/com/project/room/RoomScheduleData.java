@@ -6,6 +6,11 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+/**
+ * 강의실 스케줄 데이터를 관리하는 클래스입니다.
+ * @author eugene
+ *
+ */
 public class RoomScheduleData {
 	
 	private static ArrayList<RoomSchedule> list;
@@ -14,11 +19,17 @@ public class RoomScheduleData {
 		list = new ArrayList<RoomSchedule>();
 	}
 
-	
+	/**
+	 * 강의실 스케줄 데이터가 저장된 리스트를 불러오는 getter입니다.
+	 * @return
+	 */
 	public static ArrayList<RoomSchedule> getList() {
 		return list;
 	}
 
+	/**
+	 * 강의실 스케줄 데이터를 강의실 리스트에 저장하는 메소드 입니다.
+	 */
 	public static void load() {
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader("data/dataCourse.txt"));

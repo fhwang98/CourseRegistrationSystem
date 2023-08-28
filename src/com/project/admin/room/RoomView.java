@@ -7,9 +7,9 @@ import com.project.room.Room;
 public class RoomView {
 	
 	public static void printRoomHead() {
-		System.out.println("=============================================");
-		System.out.println("\t\t강의실 관리");
-		System.out.println("=============================================");
+		System.out.println("===========================");
+		System.out.println("\t\t\t강의실 관리");
+		System.out.println("===========================");
 		
 	}
 
@@ -18,8 +18,8 @@ public class RoomView {
 		System.out.println("  0.\t뒤로가기");
 		System.out.println("  1.\t전체 강의실 조회");
 		System.out.println("  2.\t강의실 검색");
-		System.out.println("---------------------------------------------");
-		System.out.print("번호 입력:");
+		System.out.println("------------------------------------");
+		System.out.print("번호 입력: ");
 	}
 
 	public static void printRoom(int index, ArrayList<Room> list) {
@@ -32,7 +32,7 @@ public class RoomView {
 			if (i == 0) {
 				System.out.printf("강의 일정\t:\t%s\n",schedule.get(i).replace("_ _ (_)", "없음"));
 			} else {
-				System.out.printf("\t\t%s\n",schedule.get(i));
+				System.out.printf("\t\t\t%s\n",schedule.get(i));
 			}
 		}
 		
@@ -47,7 +47,7 @@ public class RoomView {
 	}
 	
 	public static void printRoomListMenu(int page, int lastpage) {
-		System.out.println("---------------------------------------------");
+		System.out.println("------------------------------------");
 		System.out.println("0. 뒤로가기");
 		if (page == 0) {
 			System.out.println("1. 다음 페이지");
@@ -57,8 +57,8 @@ public class RoomView {
 			System.out.println("1. 이전 페이지");
 			System.out.println("2. 다음 페이지");
 		}
-		System.out.println("---------------------------------------------");
-		System.out.print("번호 입력:");
+		System.out.println("------------------------------------");
+		System.out.print("번호 입력: ");
 	}
 
 	public static void printSearchSelectDay() {
