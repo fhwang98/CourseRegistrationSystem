@@ -10,8 +10,16 @@ import com.project.admin.AdminView;
 import com.project.room.Room;
 import com.project.room.RoomData;
 
+/**
+ * 강의실과 관련한 기능을 컨트롤하는 클래스입니다.
+ * @author eugene
+ *
+ */
 public class RoomService {
 	
+	/**
+	 * 해당되는 시간에 사용 가능한 강의실만 저장한 리스트입니다.
+	 */
 	public static ArrayList<Room> availableRoom;
 	
 	static {
@@ -29,6 +37,11 @@ public class RoomService {
 	static {
 		scan= new Scanner(System.in);
 	}
+	
+	/**
+	 * 전체 강의실 목록을 조회하는 메소드 입니다.
+	 * @param list
+	 */
 	public static void showAll(ArrayList<Room> list) {
 		
 		// 리스트가 정렬이 되어있
@@ -73,6 +86,9 @@ public class RoomService {
 		}
 	}
 	
+	/**
+	 *검색할 강의실의 시간과 요일을 입력받는 메소드 입니다.
+	 */
 	public static void searchRoom() {
 		
 		//강의실검색
@@ -120,6 +136,11 @@ public class RoomService {
 		return true;
 	}
 
+	/**
+	 * 입력받은 시간에 사용 가능한 강의실을 검색하는 메소드입니다.
+	 * @param dayOfWeek
+	 * @param time
+	 */
 	public static void search(String dayOfWeek, String time) {
 		
 		//RoomData.getRoomList()

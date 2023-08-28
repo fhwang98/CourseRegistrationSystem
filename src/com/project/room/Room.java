@@ -2,6 +2,11 @@ package com.project.room;
 
 import java.util.ArrayList;
 
+/**
+ * 강의실의 데이터를 저장할 클래스 입니다.
+ * @author eugene
+ *
+ */
 public class Room {
 	
 	private String roomNum;

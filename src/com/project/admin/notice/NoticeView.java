@@ -4,24 +4,37 @@ import java.util.ArrayList;
 
 import com.project.admin.Admin;
 import com.project.admin.AdminData;
-import com.project.authentication.Authentication;
 import com.project.notice.Notice;
 import com.project.notice.NoticeData;
 import com.project.user.data.DataTeacher;
 import com.project.user.data.UserDbms;
 
+/**
+ * 관리자의 공지사항 화면을 출력하는 클래스입니다.
+ * @author eugene
+ *
+ */
 public class NoticeView {
 
+	/**
+	 * 유효하지 않은 입력을 받았을 때 메시지를 출력하는 메소드 입니다.
+	 */
 	public static void printInvalidInputMessage() {
 		System.out.println();
 		System.out.println("올바른 번호를 입력해 주세요.");
 	}
 	
+	/**
+	 * 화면을 잠시 멈추는 메소드 입니다.
+	 */
 	public static void printPendingMessage() {
 		System.out.println();
 		System.out.println("계속하려면 엔터를 입력해 주세요.");
 	}
 	
+	/**
+	 *  새로운 공지사항을 작성할 때 제목을 출력하는 메시지 입니다.
+	 */
 	public static void printPosting() {
 		
 		System.out.println("===========================");
@@ -31,7 +44,10 @@ public class NoticeView {
 		System.out.println("새로운 공지사항을 작성합니다.");
 	}
 	
-	
+	/**
+	 * 공지사항 하나의 정보를 출력하는 메소드 입니다.
+	 * @param index
+	 */
 	public static void printNotice(int index) {
 
 		printNoticeHead();
@@ -78,7 +94,9 @@ public class NoticeView {
 		return null;
 	}
 	
-
+	/**
+	 * 공지사항의 메뉴를 출력하는 메소드 입니다.
+	 */
 	public static void printOpenedNoticeMenu() {
 		System.out.println("===========================");
 		System.out.println("------------------------------------");
@@ -90,6 +108,10 @@ public class NoticeView {
 		System.out.print("번호 입력: ");
 	}
 
+	/**
+	 * 공지사항의 제목을 10개씩 출력하는 메소드입니다.
+	 * @param page
+	 */
 	public static void printNoticePage(int page) {
 
 		printNoticeHead();
@@ -106,6 +128,10 @@ public class NoticeView {
 		System.out.print("번호 입력:");
 	}
 
+	/**
+	 * 공지사항 화면의 메뉴를 출력하는 메소드입니다.
+	 * @param page
+	 */
 	private static void printNoticeListMenu(int page) {
 		System.out.println("------------------------------------");
 
@@ -131,6 +157,9 @@ public class NoticeView {
 
 	}
 
+	/**
+	 * 공지사항의 제목을 출력하는 메세지 입니다.
+	 */
 	private static void printNoticeHead() {
 		System.out.println("===========================");
 		System.out.println("\t\t\t공지사항");

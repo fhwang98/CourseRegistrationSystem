@@ -12,7 +12,7 @@ import com.project.user.data.DataTeacher;
 import com.project.user.data.UserDbms;
 
 /**
- * 관리자의 정보 데이터를 담을 클래스입니다.
+ * 관리자의 정보를 수정하거나 삭제하는 클래스입니다.
  * @author eugene
  *
  */
@@ -22,7 +22,9 @@ public class AdminInfoMain {
 	ArrayList<DataAdmin> allAdminList = UserDbms.getAdminAllList();
 	ArrayList<DataTeacher> allTeacherList = UserDbms.getTeacherAllList();
 	
-	
+	/**
+	 *관리자의 정보를 수정하거나 삭제하는 메소드 입니다.
+	 */
 	public static void myInfoMain() {
 		AdminInfoView.adminInfoTitle();
 				

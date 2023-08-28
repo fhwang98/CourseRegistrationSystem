@@ -12,13 +12,19 @@ import com.project.user.data.UserDbms;
  */
 public class PendingCourseView {
 
-	
+	/**
+	 * 승인 대기 강좌의 제목을 출력하는 메소드 입니다.
+	 */
 	public static void printPendingCourseHead() {
 		System.out.println("===========================");
 		System.out.println("\t\t승인 대기 강좌");
 		System.out.println("===========================");
 	}
 	
+	/**
+	 * 승인 대기 강좌 하나의 정보를 출력하는 메소드 입니다.
+	 * @param index
+	 */
 	public static void printPendingCourse(int index) {
 		
 		/*
@@ -98,7 +104,11 @@ public class PendingCourseView {
 	}
 	
 	
-	
+	/**
+	 * 승인 대기 강좌의 메뉴를 출력하는 메소드 입니다.
+	 * @param page
+	 * @param lastpage
+	 */
 	public static void printPendingCourseMenu(int page, int lastpage) {
 		/*
 			—---------------------------------
