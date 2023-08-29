@@ -98,7 +98,10 @@ public class PendingCourseService {
 		scan.nextLine();
 	}
 
-	
+	/**
+	 * 승인후 생성된 Course 객체를 파일에 저장하는 메소드 입니다.
+	 * @param Course 객체
+	 */
 	private static void updateDataCourseFile(Course c) {
 		try {
 			BufferedWriter writer = new BufferedWriter (new FileWriter("data/dataCourse.txt", true));
@@ -118,6 +121,11 @@ public class PendingCourseService {
 		}
 	}
 	
+	/**
+	 * 카테고리를 인자로 받아 기존의 강좌와 겹치지 않는 강좌코드를 생성해 반환하는 메소드입니다.
+	 * @param category
+	 * @return 강좌 코드
+	 */
 	private static String getCourseCode(String category) {
 		
 		
@@ -138,6 +146,11 @@ public class PendingCourseService {
 
 	}
 
+	/**
+	 * 카테고리를 입력받아 영문자로 반환하는 메소드입니다.
+	 * @param category
+	 * @return 카테고리 문자
+	 */
 	private static String getCategoryCode(String category) {
 		if (category.equals("문화")) {
 			return "C";
@@ -153,6 +166,12 @@ public class PendingCourseService {
 		return "";
 	}
 
+	/**
+	 * 사용가능한 강의실을 찾아 강의실 번호를 반환해주는 메소드입니다.
+	 * @param dow
+	 * @param startTime
+	 * @return 강의실 번호
+	 */
 	private static String searchRoom(String dow, String startTime) { //월 12 이런식으로 들어옴
 		
 		RoomData.load();

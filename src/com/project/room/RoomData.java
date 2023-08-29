@@ -31,7 +31,7 @@ public class RoomData {
 	 * 강의실스케줄 파일을 불러와 강의실 리스트를 저장하는 메소드 입니다.
 	 */
 	public static void load() {
-		
+		roomList = new ArrayList<Room>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader("data/dataRoomSchedule.txt"));
 			

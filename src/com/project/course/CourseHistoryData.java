@@ -6,6 +6,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
+/**
+ * 수강 내역 정보를 가져오고 저장하는 클래스입니다.
+ * 
+ * @author 황은하
+ *
+ */
 public class CourseHistoryData {
 
 	public static ArrayList<CourseHistory> historyList;
@@ -14,6 +20,9 @@ public class CourseHistoryData {
 		CourseHistoryData.historyList = new ArrayList<CourseHistory>();
 	}
 
+	/**
+	 * 수강 내역 정보를 파일에서 읽어와 리스트에 저장하는 메소드입니다.
+	 */
 	public static void load() {
 
 		try {
@@ -41,6 +50,9 @@ public class CourseHistoryData {
 
 	}
 
+	/**
+	 * 수강 내역 정보를 저장하는 메소드입니다.
+	 */
 	public static void save() {
 
 		try {

@@ -31,6 +31,7 @@ public class NoticeData {
 	 * @param list
 	 */
 	public static void update(ArrayList<Notice> list) {
+		 NoticeData.list = new ArrayList<>();
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter("data/dataNotice.txt"));
 			
@@ -49,7 +50,7 @@ public class NoticeData {
 	 * 공지사항 데이터 파일을 불러와 ArrayList에 저장하는 메소드 입니다.
 	 */
 	public static void load() {
-		
+		 NoticeData.list = new ArrayList<>();
 				try {
 					BufferedReader reader = new BufferedReader(new FileReader("data/dataNotice.txt"));
 					String line = null;

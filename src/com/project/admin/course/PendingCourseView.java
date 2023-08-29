@@ -89,7 +89,7 @@ public class PendingCourseView {
 		System.out.println("[번호]  [강좌명]\t\t\t[승인 여부]");
 		int size = PendingCourseData.getList().size();
 		
-		for (int i = 0; i < ((size % 10 == 0) ? 10 : size % 10); i++) {
+		for (int i = 0; i < (((size - 1 -(10 * page))/ 10 == 0) ? ((size - 1 -(10 * page)) % 10) + 1 : 10); i++) {
 			String courseName = PendingCourseData.getList().get(i + 10 * page).getCourseName();
 			if (courseName.length() < 6) {
 				courseName += "\t\t\t";

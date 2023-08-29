@@ -13,6 +13,9 @@ import java.util.Scanner;
 import com.project.course.Teacher;
 
 
+/**
+ * 강좌 데이터를 조작하는 클래스입니다.
+ */
 
 public class CourseData {
 
@@ -28,8 +31,10 @@ public class CourseData {
 		CourseData.teacherList = new ArrayList<Teacher>();
 		CourseData.map = new HashMap<String, Course>();
 	}
-	
-//전체 강좌 ArrayList
+
+	/**
+	 * 전체 강좌 배열(ArrayList)
+	 */
 	public static void allCourseList() {
 
 		try {
@@ -55,7 +60,9 @@ public class CourseData {
 		}
 	}
 
-	// 전체 강좌 HashMap
+	/**
+	 * 전체 강좌 배열(HashMap)
+	 */
 	public static void allCourseMap() {
 
 		try {
@@ -87,7 +94,9 @@ public class CourseData {
 	}
 	// 수강신청
 
-	// 개인별 강좌 추천 문화 선택
+	/**
+	 * 개인별 강좌 추천 중 문화 선택 시 파일의 내용 중 카테고리가 문화이면서 다음달부터 시작하는 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void cultureRecommend() {
 
 		try {
@@ -163,6 +172,9 @@ public class CourseData {
 	}
 	
 	//개인별 강좌 추천 체육 선택
+	/**
+	 * 개인별 강좌 추전 중 체육 선택 시 파일의 내용 중 카테고리가 체육이면서 다음달부터 시작하는 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void sportsRecommend() {
 		
 		try {
@@ -236,6 +248,10 @@ public class CourseData {
 		
 	}
 	//개인별 강좌 추천 피아노 선택
+	
+	/**
+	 * 개인별 강좌 추전 중 피아노 선택 시 파일의 내용 중 카테고리가 피아노이면서 다음달부터 시작하는 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void pianoRecommend() {
 		
 		try {
@@ -314,6 +330,10 @@ public class CourseData {
 	}
 	
 	//개인별 강좌 추천 어린이 선택
+	
+	/**
+	 * 개인별 강좌 추전 중 어린이 선택 시 파일의 내용 중 카테고리가 어린이이면서 다음달부터 시작하는 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void kidsRecommend() {
 		
 		try {
@@ -392,6 +412,10 @@ public class CourseData {
 	}
 	
 	//개인별 강좌 추천 블럭교실 선택
+	
+	/**
+	 * 개인별 강좌 추전 중 블럭교실 선택 시 파일의 내용 중 카테고리가 블럭교실이면서 다음달부터 시작하는 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void blockRecommend() {
 		
 		try {
@@ -469,6 +493,10 @@ public class CourseData {
 	}
 	
 //강좌 전체 목록
+	
+	/**
+	 * 강좌 목록에서 전체 강좌 선택 시 모든 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void allList() {
 
 		try {
@@ -479,9 +507,9 @@ public class CourseData {
 			
 			String line = null;
 
-			System.out.println("===================================");
+			System.out.println("========================");
 			System.out.println("전체 강좌");
-			System.out.println("===================================");
+			System.out.println("========================");
 			while ((line = reader2.readLine()) != null) {
 				
 				String[] temp = line.split(",");
@@ -504,12 +532,14 @@ public class CourseData {
 				for (Teacher t : CourseData.teacherList) {
 					if (t.getTeacherNum().equals(c.getTeacherNum())) {
 						courseMent(c,t);
+						break;
 					}
 				}
 			}
 			
 			reader.close();
 			reader2.close();
+			
 //			line = null;
 			
 
@@ -521,6 +551,10 @@ public class CourseData {
 //강좌 카테고리별 목록
 	
 	//카테고리 문화 선택 시 
+	
+	/**
+	 * 카테고리별 강좌 보기 중 문화 선택 시 파일의 내용 중 카테고리가 문화인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void cultureList() {
 
 		try {
@@ -532,9 +566,9 @@ public class CourseData {
 			String line = null;
 
 			
-			System.out.println("===================================");
+			System.out.println("========================");
 			System.out.println("문화");
-			System.out.println("===================================");
+			System.out.println("========================");
 			
 			while ((line = reader2.readLine()) != null) {
 				
@@ -561,7 +595,7 @@ public class CourseData {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
-							
+							break;
 						}
 					}
 //					courseMent(c);
@@ -577,6 +611,10 @@ public class CourseData {
 	}
 	
 	//카테고리 피아노 선택시
+	
+	/**
+	 * 카테고리별 강좌 보기 중 피아노 선택 시 파일의 내용 중 카테고리가 문화인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void pianoList() {
 		
 		try {
@@ -587,9 +625,9 @@ public class CourseData {
 			
 			String line = null;
 			
-			System.out.println("===================================");
+			System.out.println("========================");
 			System.out.println("피아노");
-			System.out.println("===================================");
+			System.out.println("========================");
 			
 			while ((line = reader2.readLine()) != null) {
 				
@@ -616,6 +654,7 @@ public class CourseData {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 //					courseMent(c);
@@ -632,6 +671,10 @@ public class CourseData {
 	}
 	
 	//카테고리 스포츠 선택시
+	
+	/**
+	 * 카테고리별 강좌 보기 중 체육 선택 시 파일의 내용 중 카테고리가 문화인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void sportsList() {
 		
 		try {
@@ -642,9 +685,9 @@ public class CourseData {
 			
 			String line = null;
 			
-			System.out.println("===================================");
+			System.out.println("========================");
 			System.out.println("체육");
-			System.out.println("===================================");
+			System.out.println("========================");
 			
 			while ((line = reader2.readLine()) != null) {
 				
@@ -671,6 +714,7 @@ public class CourseData {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 //					courseMent(c);
@@ -686,6 +730,9 @@ public class CourseData {
 	}
 	
 	//카테고리 어린이 선택시
+	/**
+	 * 카테고리별 강좌 보기 중 어린이 선택 시 파일의 내용 중 카테고리가 문화인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void kidsList() {
 		
 		try {
@@ -696,9 +743,9 @@ public class CourseData {
 			
 			String line = null;
 			
-			System.out.println("===================================");
+			System.out.println("========================");
 			System.out.println("어린이");
-			System.out.println("===================================");
+			System.out.println("========================");
 			
 			while ((line = reader2.readLine()) != null) {
 				
@@ -725,6 +772,7 @@ public class CourseData {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 //					courseMent(c);
@@ -739,6 +787,10 @@ public class CourseData {
 	}
 	
 	//카테고리 블럭 선택시
+	
+	/**
+	 * 카테고리별 강좌 보기 중 블럭교실 선택 시 파일의 내용 중 카테고리가 문화인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void blockList() {
 		
 		try {
@@ -749,9 +801,9 @@ public class CourseData {
 			
 			String line = null;
 			
-			System.out.println("===================================");
+			System.out.println("========================");
 			System.out.println("블럭교실");
-			System.out.println("===================================");
+			System.out.println("========================");
 			
 while ((line = reader2.readLine()) != null) {
 				
@@ -778,6 +830,7 @@ while ((line = reader2.readLine()) != null) {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 //					courseMent(c);
@@ -794,6 +847,9 @@ while ((line = reader2.readLine()) != null) {
 	
 //요일 시간별 강좌목록
 	//월요일 오전 선택시
+	/**
+	 * 요일/시간별 강좌 보기 선택 시 파일의 내용 중 강좌요일이 월요일이고 강좌 시작시간이 오전인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void mondayAmTime() {
 		try {
 
@@ -832,6 +888,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -847,6 +904,10 @@ while ((line = reader2.readLine()) != null) {
 	}
 	
 	//월요일 오후 선택시
+	
+	/**
+	 * 요일/시간별 강좌 보기 선택 시 파일의 내용 중 강좌요일이 월요일이고 강좌 시작시간이 오후인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void mondayPmTime() {
 		try {
 
@@ -887,6 +948,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -900,6 +962,9 @@ while ((line = reader2.readLine()) != null) {
 		}
 
 	}
+	/**
+	 * 요일/시간별 강좌 보기 선택 시 파일의 내용 중 강좌요일이 화요일이고 강좌 시작시간이 오전인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void tuesdayAmTime() {
 		try {
 			
@@ -938,6 +1003,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -952,6 +1018,9 @@ while ((line = reader2.readLine()) != null) {
 
 		
 	}
+	/**
+	 * 요일/시간별 강좌 보기 선택 시 파일의 내용 중 강좌요일이 화요일이고 강좌 시작시간이 오후인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void tuesdayPmTime() {
 		try {
 			
@@ -992,6 +1061,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1007,6 +1077,9 @@ while ((line = reader2.readLine()) != null) {
 		
 	}
 	
+	/**
+	 * 요일/시간별 강좌 보기 선택 시 파일의 내용 중 강좌요일이 수요일이고 강좌 시작시간이 오전인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void wednesdayAmTime() {
 		try {
 			
@@ -1045,6 +1118,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1058,6 +1132,10 @@ while ((line = reader2.readLine()) != null) {
 		}
 		
 	}
+	
+	/**
+	 * 요일/시간별 강좌 보기 선택 시 파일의 내용 중 강좌요일이 수요일이고 강좌 시작시간이 오후인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void wednesdayPmTime() {
 		try {
 			
@@ -1098,6 +1176,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1113,6 +1192,9 @@ while ((line = reader2.readLine()) != null) {
 
 		
 	}
+	/**
+	 * 요일/시간별 강좌 보기 선택 시 파일의 내용 중 강좌요일이 목요일이고 강좌 시작시간이 오전인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void thursdayAmTime() {
 		try {
 			
@@ -1151,6 +1233,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1164,6 +1247,10 @@ while ((line = reader2.readLine()) != null) {
 		}
 		
 	}
+	
+	/**
+	 * 요일/시간별 강좌 보기 선택 시 파일의 내용 중 강좌요일이 목요일이고 강좌 시작시간이 오후인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void thursdayPmTime() {
 		try {
 			
@@ -1204,6 +1291,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1218,6 +1306,9 @@ while ((line = reader2.readLine()) != null) {
 		
 	}
 	
+	/**
+	 * 요일/시간별 강좌 보기 선택 시 파일의 내용 중 강좌요일이 금요일이고 강좌 시작시간이 오전인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void fridayAmTime() {
 		try {
 			
@@ -1256,6 +1347,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1269,6 +1361,9 @@ while ((line = reader2.readLine()) != null) {
 		}
 		
 	}
+	/**
+	 * 요일/시간별 강좌 보기 선택 시 파일의 내용 중 강좌요일이 금요일이고 강좌 시작시간이 오후인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void fridayPmTime() {
 		try {
 			
@@ -1309,6 +1404,7 @@ while ((line = reader2.readLine()) != null) {
 						for (Teacher t : CourseData.teacherList) {
 							if (t.getTeacherNum().equals(c.getTeacherNum())) {
 								courseMent(c, t);
+								break;
 							}
 						}
 					}
@@ -1325,6 +1421,9 @@ while ((line = reader2.readLine()) != null) {
 	// 연령층별 강좌목록
 	
 	//어린이 선택 시
+	/**
+	 * 연령층별 보기 선택 시 파일의 내용 중 강좌대상이 어린이인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void child() {
 		try {
 
@@ -1358,6 +1457,7 @@ while ((line = reader2.readLine()) != null) {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 					//courseMent(c);
@@ -1373,6 +1473,9 @@ while ((line = reader2.readLine()) != null) {
 	}
 	
 	//연령층별  청소년 선택시
+	/**
+	 * 연령층별 보기 선택 시 파일의 내용 중 강좌대상이 청소년인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void teenager() {
 		try {
 			
@@ -1406,6 +1509,7 @@ while ((line = reader2.readLine()) != null) {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 					//courseMent(c);
@@ -1421,6 +1525,9 @@ while ((line = reader2.readLine()) != null) {
 	}
 	
 	//연령층별 성인 선택시
+	/**
+	 * 연령층별 보기 선택 시 파일의 내용 중 강좌대상이 성인인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void adult() {
 		try {
 			
@@ -1454,6 +1561,7 @@ while ((line = reader2.readLine()) != null) {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 					//courseMent(c);
@@ -1469,6 +1577,9 @@ while ((line = reader2.readLine()) != null) {
 		
 	}
 	//연령층별 누구나 선택 시
+	/**
+	 * 연령층별 보기 선택 시 파일의 내용 중 강좌대상이 누구나인 강좌를 리스트에 저장하는 메소드입니다. 
+	 */
 	public static void everyone() {
 		try {
 			
@@ -1503,6 +1614,7 @@ while ((line = reader2.readLine()) != null) {
 					for (Teacher t : CourseData.teacherList) {
 						if (t.getTeacherNum().equals(c.getTeacherNum())) {
 							courseMent(c,t);
+							break;
 						}
 					}
 					//courseMent(c);
@@ -1521,19 +1633,20 @@ while ((line = reader2.readLine()) != null) {
 	
 	private static void courseMent(Course c, Teacher t) {
 		if (c != null) {
+			System.out.println("------------------------");
 			System.out.printf("[%s] 프로그램명 : %s\n", c.getCategory(), c.getCourseName());
 			System.out.println();
 			System.out.printf("강좌코드: %s\n", c.getNum());
 			System.out.println();
 			System.out.printf("강사명: %s\n", t.getTeacherName());
 			System.out.println();
-			System.out.printf("시간: %s\n", c.getTime());
+			System.out.printf("시작시간: %s\n", c.getTime());
 			System.out.println();
 			System.out.printf("요일: %s\n", c.getDay());
 			System.out.println();
 			System.out.printf("대상: %s\n", c.getTarget());
 			System.out.println();
-			System.out.printf("수강료: %s\n", c.getCourseFee());
+			System.out.printf("수강료: %s(원)\n", c.getCourseFee());
 			System.out.println();
 			System.out.printf("신청인원: %s\n", c.getPerson());
 			System.out.println();
@@ -1542,7 +1655,7 @@ while ((line = reader2.readLine()) != null) {
 			System.out.printf("강좌시작일: %s\n", c.getStartDay());
 			System.out.println();
 			System.out.printf("강의실 : %s\n", c.getRoomNum());
-			System.out.println("-----------------------------------------");
+			System.out.println("------------------------");
 		}		
 		CourseData.courseList.clear();
 	}

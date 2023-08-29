@@ -38,7 +38,7 @@ public class AdminCourseMain {
 				loop = false;
 			} else if ( sel == 1) {
 				//전체 강좌 조회
-				CourseList.courseList();
+				CourseList.courseListMent();
 			} else if ( sel == 2) {
 				//승인 대기 강좌
 				PendingCourseMain.controlPendingCourse();

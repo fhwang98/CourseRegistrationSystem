@@ -310,14 +310,6 @@ public class AdminUserService {
 					}
 				}
 
-//				// 바뀐 일반 회원의 정보 보여줌
-//				AdminUserView.printMemberListLabel("조회");
-//				ArrayList<DataMember> changedMemberList = getMemberObjectByName(inputName);
-//
-//				for (DataMember m : changedMemberList) {
-//					printMemberData(m);
-//				}
-
 				return;
 
 			} else if (inputSearch.equals("2")) { // 삭제
@@ -361,13 +353,6 @@ public class AdminUserService {
 				// 해당 회원이 탈퇴하지 않은 경우
 				// 탈퇴하지 않은 회원인 경우
 				deleteMember(deleteMember);
-
-//				AdminUserView.printMemberListLabel("조회");
-//				ArrayList<DataMember> changedMemberList = getMemberObjectByName(inputName);
-//
-//				for (DataMember m : changedMemberList) {
-//					printMemberData(m);
-//				}
 
 				return;
 
@@ -636,6 +621,8 @@ public class AdminUserService {
 			String sel = scan.nextLine();
 
 			if (sel.equals("0")) {
+				printGoToBeforePage(scan);
+				
 				break;
 
 			} else if (sel.equals("1")) { // 이름 수정
@@ -713,7 +700,7 @@ public class AdminUserService {
 			System.out.println("취소를 선택했습니다.");
 			printGoToBeforePage(scan);
 		} else { // 유효하지 않은 입력
-			AdminUserView.printInvalidInput();
+			System.out.print("잘못 입력하셨습니다. 수정할 항목번호를 다시 입력해주세요. : ");
 			invalid = true;
 		}
 		return invalid;
@@ -818,7 +805,7 @@ public class AdminUserService {
 			printGoToBeforePage(scan);
 
 		} else { // 유효하지 않은 입력
-			AdminUserView.printInvalidInput();
+			System.out.print("잘못 입력하셨습니다. 수정할 항목번호를 다시 입력해주세요. : ");
 			invalid = true;
 		}
 		return invalid;
@@ -915,7 +902,7 @@ public class AdminUserService {
 			printGoToBeforePage(scan);
 
 		} else { // 유효하지 않은 입력
-			AdminUserView.printInvalidInput();
+			System.out.print("잘못 입력하셨습니다. 수정할 항목번호를 다시 입력해주세요. : ");
 			invalid = true;
 		}
 		return invalid;
@@ -1011,7 +998,7 @@ public class AdminUserService {
 			printGoToBeforePage(scan);
 
 		} else { // 유효하지 않은 입력
-			AdminUserView.printInvalidInput();
+			System.out.print("잘못 입력하셨습니다. 수정할 항목번호를 다시 입력해주세요. : ");
 			invalid = true;
 		}
 		return invalid;

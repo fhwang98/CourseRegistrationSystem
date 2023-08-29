@@ -3,6 +3,7 @@ package com.project.user.mypage;
 import java.util.Scanner;
 
 import com.project.authentication.Authentication;
+import com.project.user.UserMain;
 import com.project.user.data.DataMember;
 /**
  * 
@@ -35,7 +36,8 @@ public class MyPageMain {
 			
 			
 			if (sel.equals("0")) {
-				loop = false; 
+				loop = false;
+				UserMain.LoginGeneralMember();
 			} else if (sel.equals("1")) {
 				MyPageService.memCheck(loginCode);
 			} else if (sel.equals("2")) {

@@ -1,16 +1,23 @@
 package com.project.main;
 
-import java.util.Scanner;
+import java.util.Scanner; 
 
 import com.project.busstop.BusStopMain;
-import com.project.centerinfo.CenterInfo;
+import com.project.centerinfo.CenterInfoView;
 import com.project.courseinfo.CourseInfo;
 import com.project.notice.NoticeMain;
 import com.project.user.login.LoginMain;
 import com.project.user.signup.SignUpMain;
 
+/**
+ * 초기메인화면을 담당하는 클래스입니다.
+ *
+ */
 public class MainView {
 	
+	/**
+	 * 초기메인화면에서 선택하는 선택지에 따라 달라지는 화면을 연결시켜주는 메소드입니다.
+	 */
 	public static void MainScreen() {
 		
 		Scanner scan = new Scanner(System.in);
@@ -36,7 +43,7 @@ public class MainView {
 				CourseInfo.courseInfo();
 				mainView();
 			} else if (input.equals("4")) {
-				CenterInfo.centerInfo();
+				CenterInfoView.centerInfo();
 				mainView();
 			} else if (input.equals("5")) {
 				BusStopMain.busStopMain();
@@ -53,7 +60,11 @@ public class MainView {
 		
 	}
 
+	/**
+	 * 초기메인화면을 출력하는 메소드입니다.
+	 */
 	public static void mainView() {
+		System.out.println();
 		System.out.println("         초기메인화면");
 		System.out.println("—-------------------------------------");
 		System.out.println("1. 로그인");

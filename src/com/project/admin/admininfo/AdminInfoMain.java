@@ -104,6 +104,9 @@ public class AdminInfoMain {
 		
 	}
 
+	/**
+	 * 로그인한 관리자 계정의 회원 정보를 삭제하는 메소드입니다.
+	 */
 	private static void deleteMember() {
 
 		String id = getId(Authentication.loginUserCode);
@@ -122,6 +125,11 @@ public class AdminInfoMain {
 		
 	}
 
+	/**
+	 * 로그인한 유저의 회원연번을 인자로 받아 id를 반환해주는 메소드입니다.
+	 * @param loginUserCode
+	 * @return
+	 */
 	public static String getId(String loginUserCode) {
 		for (DataAdmin a : UserDbms.getAdminAllList()) {
 			if (a.getAdminCode().equals(loginUserCode)) {
@@ -132,6 +140,10 @@ public class AdminInfoMain {
 		return null;
 	}
 
+	/**
+	 * 로그인한 관리자의 이름을 수정하는 메소드입니다.
+	 * @param input
+	 */
 	private static void updateName(String input) {	
 		
 		String id = getId(Authentication.loginUserCode);
@@ -149,6 +161,10 @@ public class AdminInfoMain {
 		
 	}
 
+	/**
+	 * 로그인한 관리자의 전화번호를 수정하는 메소드입니다.
+	 * @param input
+	 */
 	private static void updatePhone(String input) {	
 		
 		String id = getId(Authentication.loginUserCode);

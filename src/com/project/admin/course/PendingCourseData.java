@@ -23,7 +23,7 @@ public class PendingCourseData {
 	
 	/**
 	 * 승인 대기중 강좌 데이터를 저장한 리스트를 불러올 getter입니다.
-	 * @return
+	 * @return 승인 대기 강좌 리스트
 	 */
 	public static ArrayList<PendingCourse> getList() {
 		return list;
@@ -97,7 +97,7 @@ public class PendingCourseData {
 	 * 승인대기 강좌의 데이터를 파일에서 불러와 ArrayList에 저장하는 메소드 입니다.
 	 */
 	public static void load() {
-		
+		list = new ArrayList<PendingCourse>();
 		try {
 			BufferedReader reader = new BufferedReader(new FileReader("data/dataPendingCourse.txt"));
 			
@@ -135,7 +135,7 @@ public class PendingCourseData {
 	
 	/**
 	 * 승인대기 강좌 하나를 파일에 추가하는 메소드입니다.
-	 * @param p
+	 * @param PendingCourse 객체
 	 */
 	public static void update(PendingCourse p) { //이어쓰기
 	      try {

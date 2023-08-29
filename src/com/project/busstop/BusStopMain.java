@@ -16,9 +16,11 @@ public class BusStopMain {
 	 * 셔틀 버스 메인 기능이 실행되는 메소드입니다.
 	 */
 	public static void busStopMain() {
+		outLoop = true;
+		
 		// 버스정류장 데이터 가져오기
 		BusStopData.load();
-
+		
 		Scanner scan = new Scanner(System.in);
 
 		while (outLoop) {
@@ -39,7 +41,6 @@ public class BusStopMain {
 
 					BusStopMain.inLoop = false;
 					BusStopMain.outLoop = false;
-					break;
 				} else if (intSel > 0 && intSel <= BusStopData.busStopList.size()) { // 버스정류장 연번에 해당되는 경우
 					BusStopService.showTimeList("" + intSel);
 				} else { // 그 외의 다른 입력 (-1)

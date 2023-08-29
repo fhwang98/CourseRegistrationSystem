@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.project.admin.AdminUtil;
 import com.project.admin.AdminView;
+import com.project.notice.Notice;
 import com.project.notice.NoticeData;
 
 /**
@@ -42,9 +43,10 @@ public class NoticeMain {
 	public static void controlNoticeMain() {
 		NoticeData.load();
 		 //공지사항 전체 루프
-		lastpage = NoticeData.getList().size() / 10;
+		lastpage = (NoticeData.getList().size() - 1)/ 10;
 		mainLoop = true;
 		while (mainLoop) {
+
 			
 			//공지사항 첫화면 출력
 			NoticeView.printNoticePage(page);

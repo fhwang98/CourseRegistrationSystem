@@ -30,7 +30,7 @@ public class AdminData {
 	 * 관리자의 회원정보가 담긴 파일을 불러와 리스트에 저장합니다.
 	 */
 	public static void load() {
-		
+		adminList = new ArrayList<Admin>();
 		try {
 			
 			BufferedReader reader = new BufferedReader(new FileReader("data/dataAdmin.txt"));

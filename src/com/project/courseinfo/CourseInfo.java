@@ -5,9 +5,14 @@ import java.util.Scanner;
 import com.project.main.MainView;
 import com.project.user.UserMain;
 
+/**
+ * 수강안내 페이지 출력 클래스 입니다.
+ */
 public class CourseInfo {
 	
-	//수강 안내 페이지 출력 멘트
+	/**
+	 * 수강안내 페이지 목록에 있는 번호 선택시 화면을 출력하는 메소드 입니다.
+	 */
 	public static void courseInfo() {
 		
 		
@@ -25,7 +30,7 @@ public class CourseInfo {
 				} else if(input.equals("2")) {
 					Individual.individual();
 				} else if(input.equals("3")) {
-					CourseList.courseList();
+					CourseList.courseListMent();
 				} else if(input.equals("4")) {
 					Discount.discount();
 				} else if(input.equals("5")) {
@@ -45,7 +50,9 @@ public class CourseInfo {
 		
 	}
 
-
+/**
+ * 수강신청 안내 페이지 목록 메시지를 출력하는 메소드 입니다. 
+ */
 	public static void courseInfoList() {
 	
 		System.out.println();

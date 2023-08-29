@@ -4,15 +4,24 @@ import java.util.Scanner;
 
 import com.project.main.MainView;
 
-public class CenterInfo {
+/**
+ * 출력클래스 입니다.
+ * 
+ * 출력과 관련된 기능을 제공합니다.
+ */
+public class CenterInfoView {
 
 	static Scanner scan = new Scanner(System.in);
 
+	/**
+	 * 센터 정보를 출력하는 역할을 합니다.
+	 * @param centerInfo
+	 */
 	public static void centerInfo() {
 
 		System.out.println();
 		System.out.println("=========================");
-		System.out.println("[센터 정보]");
+		System.out.println("센터 정보");
 		System.out.println("=========================");
 		System.out.println();
 		System.out.println("센터명 : OOO센터");

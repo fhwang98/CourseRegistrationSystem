@@ -565,6 +565,8 @@ public class AdminTeacherService {
 			String sel = scan.nextLine();
 
 			if (sel.equals("0")) {
+				printGoToBeforePage(scan);
+				
 				break;
 
 			} else if (sel.equals("1")) { // 이름 수정
@@ -628,7 +630,7 @@ public class AdminTeacherService {
 			printGoToBeforePage(scan);
 
 		} else { // 유효하지 않은 입력
-			AdminTeacherView.printInvalidInput();
+			System.out.print("잘못 입력하셨습니다. 수정할 항목번호를 다시 입력해주세요. : ");
 			invalid = true;
 		}
 		return invalid;
@@ -724,7 +726,7 @@ public class AdminTeacherService {
 			printGoToBeforePage(scan);
 
 		} else { // 유효하지 않은 입력
-			AdminTeacherView.printInvalidInput();
+			System.out.print("잘못 입력하셨습니다. 수정할 항목번호를 다시 입력해주세요. : ");
 			invalid = true;
 		}
 		return invalid;

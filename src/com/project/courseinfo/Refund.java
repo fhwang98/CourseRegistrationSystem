@@ -2,17 +2,24 @@ package com.project.courseinfo;
 
 import java.util.Scanner;
 
+/**
+ * 환불 안내 화면을 출력하는 클래스입니다.
+ * 
+ */
 public class Refund {
 
 	static Scanner scan = new Scanner(System.in);
 
-	//환불 안내 출력 멘트
+	/**
+	 * 환불 안내 메세지를 출력하는 메소드 입니다.
+	 * 
+	 */
 	public static void refund() {
 
 		System.out.println();
-		System.out.println("============================");
+		System.out.println("========================");
 		System.out.println("환불 안내");
-		System.out.println("============================");
+		System.out.println("========================");
 		System.out.println("신청 후 7일 이내: 100% 환불");
 		System.out.println("신청 후 8일 ~ 수강일 10일 전: 90% 환불");
 		System.out.println("수강일 9일 전 ~ 7일 전: 80% 환불");

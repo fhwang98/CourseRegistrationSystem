@@ -27,7 +27,7 @@ public class AdminMain {
 
 	/**
 	 * 관리자 로그인 화면의 선택지를 컨트롤하는 메소드입니다.
-	 * @param a
+	 * 
 	 */
 	public static void controlAdmin() {
 

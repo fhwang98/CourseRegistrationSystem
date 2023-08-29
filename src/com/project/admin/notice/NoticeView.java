@@ -116,12 +116,12 @@ public class NoticeView {
 
 		printNoticeHead();
 
-		int lastindex = NoticeData.getList().size() - 1 - page * 10;
+		int index = NoticeData.getList().size() - 1 - page * 10;
 		
 		System.out.println("[번호]\t[제목]");
-		for (int i = 0; i < ((lastindex / 10 == 0) ? lastindex % 10 + 1 : 10); i++) {
+		for (int i = 0; i < ((index  / 10 == 0) ? index % 10 + 1 : 10); i++) {
 			System.out.printf("%4d.\t\t", i + 1);
-			System.out.println(NoticeData.getList().get(lastindex - i).getTitle());
+			System.out.println(NoticeData.getList().get(index - i ).getTitle());
 		}
 		
 		printNoticeListMenu(page);

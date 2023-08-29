@@ -1,7 +1,7 @@
 package com.project.admin.admininfo;
 
 /**
- * 관리자 내정보의 화면을 출력하는 메소드 입니다.
+ * 관리자 내정보의 화면을 출력하는 클래스 입니다.
  * @author eugene
  *
  */
@@ -18,6 +18,9 @@ public class AdminInfoView {
 		
 	}
 
+	/**
+	 * 관리자 내정보의 선택지를 출력하는 메소드입니다.
+	 */
 	public static void adminInfoInput() {
 		
 		System.out.println("-------------------------------------");

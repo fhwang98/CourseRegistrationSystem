@@ -2,21 +2,28 @@ package com.project.courseinfo;
 
 import java.util.Scanner;
 
+/**
+ * 할인 안내 출력 클래스입니다.
+ * 
+ */
 public class Discount {
 	static Scanner scan = new Scanner(System.in);
 	
-	//할인 안내 출력 멘트
+	/**
+	 * 할인 안내 선택 시 메시지를 출력하는 메소드 입니다.
+	 * 
+	 */
 	public static void discount() {
 		
 		System.out.println();
-		System.out.println("============================");
+		System.out.println("========================");
 		System.out.println("할인 대상 안내");
-		System.out.println("============================");
+		System.out.println("========================");
 		System.out.println("[감면 대상이 아닌 회원]");
 		System.out.println();
 		System.out.println("기존 수강료 100% 결제");
 		System.out.println();
-		System.out.println("----------------------------");
+		System.out.println("------------------------");
 		System.out.println("[감면 대상 회원]");
 		System.out.println();
 		System.out.println("회원가입 시 받은 자료로 구분");
