@@ -35,7 +35,7 @@ Java 콘솔 기반의 문화센터 관리 프로그램으로, 강좌 선택의 �
 3. **공지사항 관리**
    - 공지사항 등록, 수정, 삭제 기능 제공.
 
-### 순서도
+## 순서도
 ![2조 순서도](https://github.com/user-attachments/assets/e5113e46-c14b-449c-b2fd-73e07eb40a80)
 
 ## 개발 환경
@@ -44,7 +44,7 @@ Java 콘솔 기반의 문화센터 관리 프로그램으로, 강좌 선택의 �
 - **운영체제**: Windows 10, MacOS
 - **기간**: 2023.08.16 ~ 2023.08.24
 
-## 프로젝트 구조
+## 데이터
 
 ### 데이터 구조
 - **회원 데이터**
@@ -58,6 +58,21 @@ Java 콘솔 기반의 문화센터 관리 프로그램으로, 강좌 선택의 �
 
 ### 데이터 관계도
 ![데이터관계도](https://github.com/user-attachments/assets/3ef6d27d-2458-4ef3-8569-0948f14dd39a)
+
+## 화면 구현
+### 관리자 기능
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/25e65568-bc11-4cbd-be82-a56406e9816d">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/62f8f12f-5375-4aa6-bd68-f298d2754e38">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/5597ae68-f877-426f-aad5-2facaaa3ee91">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/e4362578-74cd-4dd1-afb9-c55cafd7fa90">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/a4ebf5e0-675e-463c-9ae7-79ff76b306cc">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/8279c921-3b25-4fae-81d9-1676b42dc2df">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/295ea427-8fdb-43a9-b84b-20a50cc1f91d">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/0d62663e-bc20-4645-a883-00cb53ef1857">
+<img width="500" alt="image" src="https://github.com/user-attachments/assets/9b5c8dc0-1012-4905-a479-a4ca8d0eba28">
+
+
+
 
 ## 담당 역할
 - **이연섭**: 회원 마이페이지, 수강신청, 수강신청 안내, 관리자 내 정보 조회, 수강 내역 관리
