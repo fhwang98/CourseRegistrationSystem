@@ -9,6 +9,7 @@ Java 콘솔 기반의 문화센터 관리 프로그램으로, 강좌 선택의 �
 - **개발 도구**: Eclipse IDE
 - **운영체제**: Windows 10, MacOS
 - **기간**: 2023.08.16 ~ 2023.08.24
+- [PPT](https://drive.google.com/file/d/19qCDCQYYCizMXJkUc0aJr0PNHVL178nQ/view?usp=sharing)
 
 ## 주요 기능
 
